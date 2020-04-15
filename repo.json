@@ -1,9 +1,9 @@
 {
   "repo": [
   {
-    "url":"https://dev.azure.com/msresearch/4x4/_git/Azure-Sphere-Public-Api-Docs",
+    "url":"https://github.com/azure/azure-rest-api-specs",
          "branch":"master",
-         "name":"azure-sphere-rest-api"
+         "name":"azure-rest-api-specs"
   }
   ]
 }
