@@ -7,12 +7,12 @@
   "remove_tag_from_operationId": true,
   "organizations": [{
       "services": [{
-          "toc_title": "Advisor",
-          "url_group": "advisor",
+          "toc_title": "Azure Sphere Public API",
+          "url_group": "azure-sphere",
           "service_index": "index.md",
           "swagger_files": [
             {
-              "source": "azure-rest-api-specs/specification/advisor/resource-manager/Microsoft.Advisor/stable/2017-04-19/advisor.json"
+              "source": "azure-sphere-rest-api/AzureSphere/open-api-docs/azure-sphere-security-service.json"
             }
           ]
       }]
