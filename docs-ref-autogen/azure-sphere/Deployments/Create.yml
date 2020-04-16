@@ -1,0 +1,112 @@
+### YamlMime:RESTOperation
+uid: prod.core.sphere.azure.net.azure-sphere.deployments.create
+name: Create
+service: Azure Sphere Public API
+groupName: Deployments
+apiVersion: "2.0"
+summary: Starts an asynchronous operation to deploy the specified set of images to the specified DeviceGroup.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: POST https://prod.core.sphere.azure.net/v2/tenants/{tenantId}/devicegroups/{deviceGroupId}/deployments
+uriParameters:
+- name: tenantId
+  in: path
+  isRequired: true
+  description: The Azure Sphere tenant ID.
+  types:
+  - uid: string
+  format: uuid
+responses:
+- name: 202 Accepted
+  description: Successfully started the operation.
+  types:
+  - uid: Microsoft.Azure.Sphere.PublicApi.Contracts.Operation
+requestBody:
+- name: default
+  parameters:
+  - name: body
+    in: body
+    description: List of unique image ID(s) which are to be deployed.
+    types:
+    - uid: string
+      isArray: true
+requestHeader: []
+definitions:
+- name: Microsoft.Azure.Sphere.PublicApi.Contracts.Operation
+  kind: object
+  properties:
+  - name: TenantId
+    description: Gets the tenant identifier.
+    types:
+    - uid: string
+  - name: OperationId
+    description: Gets the unique operation identifier.
+    types:
+    - uid: string
+  - name: CreatedDateUTC
+    description: Gets the operation creation date in UTC.
+    types:
+    - uid: string
+  - name: StartedDateUTC
+    description: Gets the date in UTC that the operation started processing.
+    types:
+    - uid: string
+  - name: CompletedDateUTC
+    description: Gets the date in UTC that the operation completed.
+    types:
+    - uid: string
+  - name: OperationType
+    description: Gets the operation type identifier.
+    types:
+    - uid: DeviceClaim
+    - uid: DeviceUnclaim
+    - uid: DeviceUpdateDeviceGroup
+    - uid: MigrateTenant
+    - uid: CreateProduct
+    - uid: DeployToDeviceGroup
+    - uid: DeployToOSFeed
+    - uid: ImageUpload
+    - uid: TenantCreation
+    typesTitle: enum
+  - name: State
+    description: Gets the state of the operation. .
+    types:
+    - uid: NotStarted
+    - uid: InProgress
+    - uid: Complete
+    - uid: Failed
+    typesTitle: enum
+  - name: ResourceLocation
+    description: Gets the location of resources created during the execution of the operation.
+    types:
+    - uid: string
+  - name: Error
+    description: ''
+    types:
+    - uid: Microsoft.Azure.Sphere.PublicApi.Contracts.ErrorResponse
+- name: Microsoft.Azure.Sphere.PublicApi.Contracts.ErrorResponse
+  kind: object
+  properties:
+  - name: Code
+    description: Gets the code.
+    types:
+    - uid: OperationFailed
+    - uid: TenantInMigration
+    - uid: TenantMigrationRequired
+    - uid: ClientUpdateRequired
+    - uid: InternalServerError
+    - uid: BadRequest
+    - uid: Forbidden
+    - uid: Conflict
+    - uid: NotFound
+    typesTitle: enum
+  - name: Message
+    description: Gets the human readable error message.
+    types:
+    - uid: string
+examples: []
+security: []
+errorCodes: []

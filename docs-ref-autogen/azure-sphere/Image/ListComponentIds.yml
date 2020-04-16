@@ -1,0 +1,51 @@
+### YamlMime:RESTOperation
+uid: prod.core.sphere.azure.net.azure-sphere.image.listcomponentids
+name: List Component Ids
+service: Azure Sphere Public API
+groupName: Image
+apiVersion: "2.0"
+summary: Retrieves a set of image Ids with corresponding component Ids.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: POST https://prod.core.sphere.azure.net/v2/tenants/{tenantId}/images/componentIdsForImages
+uriParameters:
+- name: tenantId
+  in: path
+  isRequired: true
+  description: The Azure Sphere tenant ID.
+  types:
+  - uid: string
+  format: uuid
+responses:
+- name: 200 OK
+  description: Success.
+  types:
+  - uid: Microsoft.Azure.Sphere.PublicApi.Contracts.ImageIdComponentIdPair
+requestBody:
+- name: default
+  parameters:
+  - name: body
+    in: body
+    description: The images IDs.
+    types:
+    - uid: string
+      isArray: true
+requestHeader: []
+definitions:
+- name: Microsoft.Azure.Sphere.PublicApi.Contracts.ImageIdComponentIdPair
+  kind: object
+  properties:
+  - name: ImageId
+    description: A unique identifier for an Image.
+    types:
+    - uid: string
+  - name: ComponentId
+    description: "A unique identifier for the Component \n            that the Image with  is part of."
+    types:
+    - uid: string
+examples: []
+security: []
+errorCodes: []

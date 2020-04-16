@@ -1,0 +1,55 @@
+### YamlMime:RESTOperation
+uid: prod.core.sphere.azure.net.azure-sphere.accesscontrol.listrolesbyuser
+name: List Roles By User
+service: Azure Sphere Public API
+groupName: Access Control
+apiVersion: "2.0"
+summary: Get the roles assigned to a user within the scope of a tenant.
+produces:
+- application/json
+paths:
+- content: GET https://prod.core.sphere.azure.net/v2/tenants/{tenantId}/users/{userId}/role
+uriParameters:
+- name: tenantId
+  in: path
+  isRequired: true
+  description: The tenant ID in which to get roles.
+  types:
+  - uid: string
+  format: uuid
+- name: userId
+  in: path
+  isRequired: true
+  description: Principal ID or email address to get roles for..
+  types:
+  - uid: string
+responses:
+- name: 200 OK
+  description: Success.
+  types:
+  - uid: Microsoft.Azure.Sphere.PublicApi.Contracts.AccessControlGetRolesResponse
+requestHeader: []
+definitions:
+- name: Microsoft.Azure.Sphere.PublicApi.Contracts.AccessControlGetRolesResponse
+  kind: object
+  properties:
+  - name: Roles
+    description: Roles assigned to a principal.
+    types:
+    - uid: Microsoft.Azure.Sphere.PublicApi.Contracts.AccessControlGetRolesResponse.TenantRole
+      isArray: true
+- name: Microsoft.Azure.Sphere.PublicApi.Contracts.AccessControlGetRolesResponse.TenantRole
+  kind: object
+  properties:
+  - name: TenantId
+    description: ''
+    types:
+    - uid: string
+  - name: RoleNames
+    description: ''
+    types:
+    - uid: string
+      isArray: true
+examples: []
+security: []
+errorCodes: []

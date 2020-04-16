@@ -1,0 +1,77 @@
+### YamlMime:RESTOperation
+uid: prod.core.sphere.azure.net.azure-sphere.errorreporting.list
+name: List
+service: Azure Sphere Public API
+groupName: Error Reporting
+apiVersion: "2.0"
+summary: Gets device event report(s).
+produces:
+- application/json
+paths:
+- content: GET https://prod.core.sphere.azure.net/v2/tenants/{tenantId}/getDeviceInsights
+- content: GET https://prod.core.sphere.azure.net/v2/tenants/{tenantId}/getDeviceInsights?maxPageSize={maxPageSize}
+  isOptional: true
+uriParameters:
+- name: tenantId
+  in: path
+  isRequired: true
+  description: The Azure Sphere tenant ID.
+  types:
+  - uid: string
+  format: uuid
+- name: maxPageSize
+  in: query
+  description: The maximum number of results that should be returned in a page. Defaults to 1000 which indicates no preference.
+  types:
+  - uid: integer
+  format: int32
+responses:
+- name: 200 OK
+  description: Success.
+  types:
+  - uid: Microsoft.Azure.Sphere.PublicApi.Contracts.ErrorReporting.CustomEventReport
+requestHeader:
+- name: continuationToken
+  in: header
+  description: A continuation token used to continue from a previous page of results.
+  types:
+  - uid: string
+definitions:
+- name: Microsoft.Azure.Sphere.PublicApi.Contracts.ErrorReporting.CustomEventReport
+  kind: object
+  properties:
+  - name: DeviceId
+    description: The id of the device to which the telemetry report belong.
+    types:
+    - uid: string
+  - name: Description
+    description: "A human-readable (in US-English) message that explains what happened.  \n            This may include values for the Program Counter, Link Register and Stack Pointer.  \n            This is usually generated from the marker's event stream."
+    types:
+    - uid: string
+  - name: StartTimestampInUnix
+    description: The start time of the event
+    types:
+    - uid: integer
+  - name: EndTimestampInUnix
+    description: The end time of the event
+    types:
+    - uid: integer
+  - name: EventType
+    description: The type of the event.
+    types:
+    - uid: string
+  - name: EventClass
+    description: The class of the event.
+    types:
+    - uid: string
+  - name: EventCategory
+    description: The event category.
+    types:
+    - uid: string
+  - name: EventCount
+    description: The count of number of times we saw this event happen on the device.
+    types:
+    - uid: integer
+examples: []
+security: []
+errorCodes: []

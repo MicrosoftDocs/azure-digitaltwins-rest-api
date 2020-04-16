@@ -1,0 +1,51 @@
+### YamlMime:RESTOperation
+uid: prod.core.sphere.azure.net.azure-sphere.image.geturl
+name: Get Url
+service: Azure Sphere Public API
+groupName: Image
+apiVersion: "2.0"
+summary: Gets the URL where the specified Image can be downloaded.
+produces:
+- application/json
+paths:
+- content: GET https://prod.core.sphere.azure.net/v2/tenants/{tenantId}/images/{imageId}
+uriParameters:
+- name: tenantId
+  in: path
+  isRequired: true
+  description: The Azure Sphere tenant ID.
+  types:
+  - uid: string
+  format: uuid
+- name: imageId
+  in: path
+  isRequired: true
+  description: The Image ID.
+  types:
+  - uid: string
+  format: uuid
+responses:
+- name: 200 OK
+  description: Success.
+  types:
+  - uid: Microsoft.Azure.Sphere.PublicApi.Contracts.ImageDownloadInfo
+requestHeader: []
+definitions:
+- name: Microsoft.Azure.Sphere.PublicApi.Contracts.ImageDownloadInfo
+  kind: object
+  properties:
+  - name: IsSuccess
+    description: Gets or sets a value indicating whether the request to get Image URI is successful.
+    types:
+    - uid: boolean
+  - name: Uri
+    description: Gets or sets the SAS image URI.
+    types:
+    - uid: string
+  - name: UriMessage
+    description: Gets or sets the image URI message if the request to get URI fails.
+    types:
+    - uid: string
+examples: []
+security: []
+errorCodes: []
