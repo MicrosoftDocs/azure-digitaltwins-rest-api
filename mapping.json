@@ -7,12 +7,12 @@
   "remove_tag_from_operationId": true,
   "organizations": [{
       "services": [{
-          "toc_title": "Azure Sphere Public API",
-          "url_group": "azure-sphere",
+          "toc_title": "Azure digital twins",
+          "url_group": "digital-twins",
           "service_index": "index.md",
           "swagger_files": [
             {
-              "source": "azure-sphere-rest-api/AzureSphere/open-api-docs/azure-sphere-security-service.json"
+              "source": "digital-twins/OpenApiSpec/digitaltwins.json"
             }
           ]
       }]

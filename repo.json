@@ -1,9 +1,9 @@
 {
   "repo": [
   {
-    "url":"https://dev.azure.com/msresearch/4x4/_git/Azure-Sphere-Public-Api-Docs",
-         "branch":"master",
-         "name":"azure-sphere-rest-api"
-  }
+         "url":"https://github.com/Azure/azure-digital-twins",
+         "branch":"private-preview",
+         "name":"digital-twins"
+      }
   ]
 }

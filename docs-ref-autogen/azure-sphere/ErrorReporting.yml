@@ -1,8 +1,0 @@
-### YamlMime:RESTOperationGroup
-uid: prod.core.sphere.azure.net.azure-sphere.errorreporting
-name: Error Reporting
-apiVersion: "2.0"
-service: Azure Sphere Public API
-operations:
-- uid: prod.core.sphere.azure.net.azure-sphere.errorreporting.list
-  summary: Gets device event report(s).
