@@ -1,0 +1,65 @@
+### YamlMime:RESTOperation
+uid: prod.core.sphere.azure.net.azure-sphere.devicecapability.create
+name: Create
+service: Azure Sphere Public API
+groupName: Device Capability
+apiVersion: "2.0"
+summary: Creates a signed device capability image.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: POST https://prod.core.sphere.azure.net/v2/tenants/{tenantId}/deviceCapabilityImage
+uriParameters:
+- name: tenantId
+  in: path
+  isRequired: true
+  description: The Azure Sphere tenant ID.
+  types:
+  - uid: string
+  format: uuid
+responses:
+- name: 200 OK
+  description: Success.
+  types:
+  - uid: Microsoft.Azure.Sphere.PublicApi.Contracts.DeviceCapabilityResponse
+requestBody:
+- name: default
+  parameters:
+  - name: DeviceId
+    in: body
+    description: Device id of the device for which capability is required.
+    types:
+    - uid: string
+  - name: Capabilities
+    in: body
+    description: Capabilities this device should have.
+    types:
+    - uid: integer
+      isArray: true
+requestHeader: []
+definitions:
+- name: Microsoft.Azure.Sphere.PublicApi.Contracts.DeviceCapabilityResponse
+  kind: object
+  properties:
+  - name: SignedDeviceCapabilityImageBytes
+    description: Gets or sets the byte array containing the signed device capability image data.
+    types:
+    - uid: string
+      isArray: true
+- name: Microsoft.Azure.Sphere.PublicApi.Contracts.DeviceCapabilityRequest
+  kind: object
+  properties:
+  - name: DeviceId
+    description: Device id of the device for which capability is required.
+    types:
+    - uid: string
+  - name: Capabilities
+    description: Capabilities this device should have.
+    types:
+    - uid: integer
+      isArray: true
+examples: []
+security: []
+errorCodes: []

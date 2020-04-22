@@ -1,0 +1,36 @@
+### YamlMime:RESTOperation
+uid: prod.core.sphere.azure.net.azure-sphere.image.getstatus
+name: Get Status
+service: Azure Sphere Public API
+groupName: Image
+apiVersion: "2.0"
+summary: Gets the status of the specified image.
+produces:
+- application/json
+paths:
+- content: GET https://prod.core.sphere.azure.net/v2/tenants/{tenantId}/images/{imageId}/status
+uriParameters:
+- name: tenantId
+  in: path
+  isRequired: true
+  description: The Azure Sphere tenant ID.
+  types:
+  - uid: string
+  format: uuid
+- name: imageId
+  in: path
+  isRequired: true
+  description: The Image ID.
+  types:
+  - uid: string
+  format: uuid
+responses:
+- name: 200 OK
+  description: Success.
+  types:
+  - uid: string
+requestHeader: []
+definitions: []
+examples: []
+security: []
+errorCodes: []

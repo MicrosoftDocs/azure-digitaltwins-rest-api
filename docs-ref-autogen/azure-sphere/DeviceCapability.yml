@@ -1,0 +1,8 @@
+### YamlMime:RESTOperationGroup
+uid: prod.core.sphere.azure.net.azure-sphere.devicecapability
+name: Device Capability
+apiVersion: "2.0"
+service: Azure Sphere Public API
+operations:
+- uid: prod.core.sphere.azure.net.azure-sphere.devicecapability.create
+  summary: Creates a signed device capability image.

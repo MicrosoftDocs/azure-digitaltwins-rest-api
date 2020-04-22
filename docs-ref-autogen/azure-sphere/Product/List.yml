@@ -1,0 +1,73 @@
+### YamlMime:RESTOperation
+uid: prod.core.sphere.azure.net.azure-sphere.product.list
+name: List
+service: Azure Sphere Public API
+groupName: Product
+apiVersion: "2.0"
+summary: Gets all Products.
+produces:
+- application/json
+paths:
+- content: GET https://prod.core.sphere.azure.net/v2/tenants/{tenantId}/products
+- content: GET https://prod.core.sphere.azure.net/v2/tenants/{tenantId}/products?maxPageSize={maxPageSize}
+  isOptional: true
+uriParameters:
+- name: tenantId
+  in: path
+  isRequired: true
+  description: The Azure Sphere tenant ID.
+  types:
+  - uid: string
+  format: uuid
+- name: maxPageSize
+  in: query
+  description: The maximum number of results that should be included in the response.
+  types:
+  - uid: integer
+  format: int32
+responses:
+- name: 200 OK
+  description: Success.
+  types:
+  - uid: Microsoft.Azure.Sphere.PublicApi.Contracts.ItemCollectionResponse_Microsoft.Azure.Sphere.PublicApi.Contracts.v2.Product_
+requestHeader:
+- name: continuationToken
+  in: header
+  description: A continuation token used to continue from a previous page of results.
+  types:
+  - uid: string
+definitions:
+- name: Microsoft.Azure.Sphere.PublicApi.Contracts.ItemCollectionResponse_Microsoft.Azure.Sphere.PublicApi.Contracts.v2.Product_
+  kind: object
+  properties:
+  - name: Items
+    description: List of items
+    types:
+    - uid: Microsoft.Azure.Sphere.PublicApi.Contracts.v2.Product
+      isArray: true
+  - name: ContinuationToken
+    description: Continuation token that can be used to get next set of items
+    types:
+    - uid: string
+- name: Microsoft.Azure.Sphere.PublicApi.Contracts.v2.Product
+  kind: object
+  properties:
+  - name: Id
+    description: The unique ID of the product.
+    types:
+    - uid: string
+  - name: TenantId
+    description: The unique ID of the tenant that owns the product.
+    types:
+    - uid: string
+  - name: Name
+    description: The name of the product.
+    types:
+    - uid: string
+  - name: Description
+    description: The description of the product.
+    types:
+    - uid: string
+examples: []
+security: []
+errorCodes: []

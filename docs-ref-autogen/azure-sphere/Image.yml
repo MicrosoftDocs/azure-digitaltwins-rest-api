@@ -1,0 +1,16 @@
+### YamlMime:RESTOperationGroup
+uid: prod.core.sphere.azure.net.azure-sphere.image
+name: Image
+apiVersion: "2.0"
+service: Azure Sphere Public API
+operations:
+- uid: prod.core.sphere.azure.net.azure-sphere.image.getmetadata
+  summary: Gets metadata for the specified Image.
+- uid: prod.core.sphere.azure.net.azure-sphere.image.getstatus
+  summary: Gets the status of the specified image.
+- uid: prod.core.sphere.azure.net.azure-sphere.image.geturl
+  summary: Gets the URL where the specified Image can be downloaded.
+- uid: prod.core.sphere.azure.net.azure-sphere.image.listcomponentids
+  summary: Retrieves a set of image Ids with corresponding component Ids.
+- uid: prod.core.sphere.azure.net.azure-sphere.image.upload
+  summary: Starts an asynchronous operation to upload the provided image.

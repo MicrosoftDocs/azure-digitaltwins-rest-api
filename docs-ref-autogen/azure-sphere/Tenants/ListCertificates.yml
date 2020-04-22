@@ -1,0 +1,29 @@
+### YamlMime:RESTOperation
+uid: prod.core.sphere.azure.net.azure-sphere.tenants.listcertificates
+name: List Certificates
+service: Azure Sphere Public API
+groupName: Tenants
+apiVersion: "2.0"
+summary: Gets all public tenant certificates for a Tenant.
+produces:
+- application/json
+paths:
+- content: GET https://prod.core.sphere.azure.net/v2/tenants/{tenantId}/certs
+uriParameters:
+- name: tenantId
+  in: path
+  isRequired: true
+  description: Azure Sphere tenant ID.
+  types:
+  - uid: string
+responses:
+- name: 200 OK
+  description: Success. The response contains the tenants public certificates.
+  types:
+  - uid: string
+    isArray: true
+requestHeader: []
+definitions: []
+examples: []
+security: []
+errorCodes: []

@@ -1,0 +1,18 @@
+### YamlMime:RESTOperationGroup
+uid: prod.core.sphere.azure.net.azure-sphere.accesscontrol
+name: Access Control
+apiVersion: "2.0"
+service: Azure Sphere Public API
+operations:
+- uid: prod.core.sphere.azure.net.azure-sphere.accesscontrol.assignrole
+  summary: Assign a role to principal.
+- uid: prod.core.sphere.azure.net.azure-sphere.accesscontrol.inviteuser
+  summary: Invites a user into the Azure Sphere common tenant.
+- uid: prod.core.sphere.azure.net.azure-sphere.accesscontrol.listavailableroles
+  summary: Get the list of currently available roles.
+- uid: prod.core.sphere.azure.net.azure-sphere.accesscontrol.listrolesbyuser
+  summary: Get the roles assigned to a user within the scope of a tenant.
+- uid: prod.core.sphere.azure.net.azure-sphere.accesscontrol.listusers
+  summary: Get all of the principals (user) which have roles assigned to them within the scope of a tenant.
+- uid: prod.core.sphere.azure.net.azure-sphere.accesscontrol.unnassignrole
+  summary: Unassign a role from principal.
