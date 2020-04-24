@@ -1,0 +1,257 @@
+### YamlMime:RESTOperation
+uid: digital-twins.query.querytwins
+name: Query Twins
+service: Azure digital twins
+groupName: Query
+apiVersion: 2020-03-01-preview
+summary: Executes a query that allows traversing relationships and filtering by property values.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: POST https:///query?api-version=2020-03-01-preview
+uriParameters:
+- name: api-version
+  in: query
+  isRequired: true
+  description: The requested API version.
+  types:
+  - uid: string
+responses:
+- name: 200 OK
+  description: Success
+  types:
+  - uid: QueryResult
+- name: Other Status Codes
+  description: Default response.
+  types:
+  - uid: ErrorResponse
+requestBody:
+- name: default
+  parameters:
+  - name: query
+    in: body
+    description: The query to execute. This value is ignored if a continuation token is provided.
+    types:
+    - uid: string
+  - name: continuationToken
+    in: body
+    description: A token which is used to retrieve the next set of results from a previous query.
+    types:
+    - uid: string
+requestHeader: []
+definitions:
+- name: QueryResult
+  description: The results of a query operation and an optional continuation token.
+  kind: object
+  properties:
+  - name: items
+    description: The query results.
+    types:
+    - uid: object
+      isArray: true
+  - name: continuationToken
+    description: A token which can be used to construct a new QuerySpecification to retrieve the next set of results.
+    types:
+    - uid: string
+- name: ErrorResponse
+  description: Error response.
+  kind: object
+  properties:
+  - name: error
+    description: The error details.
+    types:
+    - uid: Error
+- name: QuerySpecification
+  description: A query specification containing either a query statement or a continuation token from a previous query result.
+  kind: object
+  properties:
+  - name: query
+    description: The query to execute. This value is ignored if a continuation token is provided.
+    types:
+    - uid: string
+  - name: continuationToken
+    description: A token which is used to retrieve the next set of results from a previous query.
+    types:
+    - uid: string
+- name: Error
+  description: Error definition.
+  kind: object
+  properties:
+  - name: code
+    isReadyOnly: true
+    description: Service specific error code which serves as the substatus for the HTTP error code.
+    types:
+    - uid: string
+  - name: message
+    isReadyOnly: true
+    description: A human-readable representation of the error.
+    types:
+    - uid: string
+  - name: details
+    isReadyOnly: true
+    description: Internal error details.
+    types:
+    - uid: Error
+      isArray: true
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+- name: InnerError
+  description: A more specific error description than was provided by the containing error.
+  kind: object
+  properties:
+  - name: code
+    description: A more specific error code than was provided by the containing error.
+    types:
+    - uid: string
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+examples:
+- name: QueryFirstPage
+  request:
+    uri: POST https:///query?api-version=2020-03-01-preview
+    body: >-
+      {
+        "query": "SELECT * FROM DIGITALTWINS WHERE temp = 79"
+      }
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "items": [
+          {
+            "$dtId": "Twin-01",
+            "$metadata": {
+              "$model": "urn:azureiotcom:Sample:1"
+            },
+            "name": "Sample01",
+            "temp": "79",
+            "comfortIndex": "50"
+          },
+          {
+            "$dtId": "Twin-02",
+            "$metadata": {
+              "$model": "urn:azureiotcom:Sample:1"
+            },
+            "name": "Sample02",
+            "temp": "79",
+            "comfortIndex": "50"
+          },
+          {
+            "$dtId": "Twin-03",
+            "$metadata": {
+              "$model": "urn:azureiotcom:Sample:1"
+            },
+            "name": "Sample03",
+            "temp": "79",
+            "comfortIndex": "50"
+          }
+        ],
+        "continuationToken": "<token>"
+      }
+- name: QueryNextPage
+  request:
+    uri: POST https:///query?api-version=2020-03-01-preview
+    body: >-
+      {
+        "continuationToken": "<continuationToken from previous query>"
+      }
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "items": [
+          {
+            "$dtId": "Twin-04",
+            "$metadata": {
+              "$model": "urn:azureiotcom:Sample:1"
+            },
+            "name": "Sample04",
+            "temp": "79",
+            "comfortIndex": "50"
+          },
+          {
+            "$dtId": "Twin-05",
+            "$metadata": {
+              "$model": "urn:azureiotcom:Sample:1"
+            },
+            "name": "Sample05",
+            "temp": "79",
+            "comfortIndex": "50"
+          },
+          {
+            "$dtId": "Twin-06",
+            "$metadata": {
+              "$model": "urn:azureiotcom:Sample:1"
+            },
+            "name": "Sample06",
+            "temp": "79",
+            "comfortIndex": "50"
+          }
+        ]
+      }
+- name: QueryJoin
+  request:
+    uri: POST https:///query?api-version=2020-03-01-preview
+    body: >-
+      {
+        "query": "SELECT Widget, Gadget FROM DIGITALTWINS Widget JOIN Gadget RELATED Widget.Contains WHERE Widget.$dtId = 'Twin-01'"
+      }
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "items": [
+          {
+            "Widget": {
+              "$dtId": "Twin-01",
+              "$metadata": {
+                "$model": "urn:azureiotcom:Sample:1"
+              },
+              "name": "Sample01",
+              "temp": "79",
+              "comfortIndex": "50"
+            },
+            "Gadget": {
+              "$dtId": "Twin-02",
+              "$metadata": {
+                "$model": "urn:azureiotcom:Sample:1"
+              },
+              "name": "Sample02",
+              "temp": "79",
+              "comfortIndex": "50"
+            }
+          },
+          {
+            "Widget": {
+              "$dtId": "Twin-01",
+              "$metadata": {
+                "$model": "urn:azureiotcom:Sample:1"
+              },
+              "name": "Sample01",
+              "temp": "79",
+              "comfortIndex": "50"
+            },
+            "Gadget": {
+              "$dtId": "Twin-10",
+              "$metadata": {
+                "$model": "urn:azureiotcom:Sample:1"
+              },
+              "name": "Sample10",
+              "temp": "79",
+              "comfortIndex": "50"
+            }
+          }
+        ]
+      }
+security:
+- name: oauth2
+  type: oauth2
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
+errorCodes: []
