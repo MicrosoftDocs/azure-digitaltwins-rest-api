@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperation
 uid: digital-twins.eventroutes.delete
 name: Delete
-service: Azure digital twins
+service: Azure Digital Twins
 groupName: Event Routes
 apiVersion: 2020-03-01-preview
 summary: Deletes an event route.

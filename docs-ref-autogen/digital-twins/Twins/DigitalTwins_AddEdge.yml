@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperation
 uid: digital-twins.twins.digitaltwins_addedge
 name: DigitalTwins AddEdge
-service: Azure digital twins
+service: Azure Digital Twins
 groupName: Twins
 apiVersion: 2020-03-01-preview
 summary: Adds an edge between two digital twins.

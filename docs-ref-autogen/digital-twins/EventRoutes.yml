@@ -2,7 +2,7 @@
 uid: digital-twins.eventroutes
 name: Event Routes
 apiVersion: 2020-03-01-preview
-service: Azure digital twins
+service: Azure Digital Twins
 operations:
 - uid: digital-twins.eventroutes.add
   summary: Add an event route.

@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperation
 uid: digital-twins.twins.digitaltwins_listedgesbyrelationship
 name: DigitalTwins ListEdgesByRelationship
-service: Azure digital twins
+service: Azure Digital Twins
 groupName: Twins
 apiVersion: 2020-03-01-preview
 summary: Retrieves edges from a digital twin for the named relationship.

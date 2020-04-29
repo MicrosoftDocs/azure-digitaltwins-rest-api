@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperation
 uid: digital-twins.twins.digitaltwins_getedgebyid
 name: DigitalTwins GetEdgeById
-service: Azure digital twins
+service: Azure Digital Twins
 groupName: Twins
 apiVersion: 2020-03-01-preview
 summary: Retrieves an edge which connects two digital twins.

@@ -2,7 +2,7 @@
 uid: digital-twins.twins
 name: Twins
 apiVersion: 2020-03-01-preview
-service: Azure digital twins
+service: Azure Digital Twins
 operations:
 - uid: digital-twins.twins.digitaltwins_add
   summary: Adds a new digital twin instance. If a twin with this id already exists a 409 Conflict error is returned.
