@@ -4,6 +4,11 @@
          "url":"https://github.com/Azure/azure-digital-twins",
          "branch":"private-preview",
          "name":"digital-twins"
+      },
+	  {
+         "url":"https://msazure.visualstudio.com/One/_git/Azure-IoT-DigitalTwins-Main",
+         "branch":"master",
+         "name":"digital-twins-main"
       }
   ]
 }
