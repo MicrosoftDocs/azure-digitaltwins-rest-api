@@ -3,19 +3,19 @@ uid: digital-twins.twins.digitaltwins_update
 name: DigitalTwins Update
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-03-01-preview
-summary: Updates a digital twin
+apiVersion: 2020-05-31-preview
+summary: "Updates a digital twin.  \nUpdates a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no digital twin with the provided id."
 consumes:
-- application/json
+- application/json-patch+json
 produces:
 - application/json
 paths:
-- content: PATCH https:///digitaltwins/{id}?api-version=2020-03-01-preview
+- content: PATCH https:///digitaltwins/{id}?api-version=2020-05-31-preview
 uriParameters:
 - name: id
   in: path
   isRequired: true
-  description: The id of the digital twin.
+  description: The id of the digital twin. The id is unique within the service and case sensitive.
   types:
   - uid: string
 - name: api-version
@@ -26,11 +26,12 @@ uriParameters:
   - uid: string
 responses:
 - name: 204 No Content
+  headers:
+  - name: ETag
+    value: string
   description: Success
 - name: 202 Accepted
   description: Asynchronous Success
-  types:
-  - uid: object
 - name: Other Status Codes
   description: Default response.
   types:
@@ -40,10 +41,16 @@ requestBody:
   parameters:
   - name: patchDocument
     in: body
-    description: An update specification described by JSON-patch. Updates to property values and $model elements may happen in the same request. Operations are limited to add, replace and remove.
+    description: An update specification described by JSON Patch. Updates to property values and $model elements may happen in the same request. Operations are limited to add, replace and remove.
     types:
     - uid: object
-requestHeader: []
+      isArray: true
+requestHeader:
+- name: If-Match
+  in: header
+  description: Only perform the operation if the entity's etag matches one of the etags provided or * is provided.
+  types:
+  - uid: string
 definitions:
 - name: ErrorResponse
   description: Error response.
@@ -92,12 +99,12 @@ definitions:
 examples:
 - name: PatchTwinBasicExample
   request:
-    uri: PATCH https:///digitaltwins/myNewTwinId?api-version=2020-03-01-preview
+    uri: PATCH https:///digitaltwins/myNewTwinId?api-version=2020-05-31-preview
     body: >-
       [
         {
           "op": "replace",
-          "path": "property1",
+          "path": "/property1",
           "value": 1
         }
       ]
@@ -107,22 +114,22 @@ examples:
   - statusCode: "204"
 - name: PatchTwinAdvancedExample
   request:
-    uri: PATCH https:///digitaltwins/myNewTwinId?api-version=2020-03-01-preview
+    uri: PATCH https:///digitaltwins/myNewTwinId?api-version=2020-05-31-preview
     body: >-
       [
         {
           "op": "replace",
-          "path": "property1",
+          "path": "/property1",
           "value": 1
         },
         {
           "op": "add",
-          "path": "property2/subProperty1",
+          "path": "/property2/subProperty1",
           "value": 1
         },
         {
           "op": "remove",
-          "path": "property3"
+          "path": "/property3"
         }
       ]
   responses:

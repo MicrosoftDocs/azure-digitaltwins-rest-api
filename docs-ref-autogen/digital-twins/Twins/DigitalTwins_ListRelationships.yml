@@ -1,21 +1,28 @@
 ### YamlMime:RESTOperation
-uid: digital-twins.twins.digitaltwins_listincomingedges
-name: DigitalTwins ListIncomingEdges
+uid: digital-twins.twins.digitaltwins_listrelationships
+name: DigitalTwins ListRelationships
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-03-01-preview
-summary: Retrieves all incoming relationships for a digital twin.
+apiVersion: 2020-05-31-preview
+summary: "Retrieves the relationships from a digital twin.  \nRetrieves the relationships from a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no digital twin with the provided id."
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https:///digitaltwins/{id}/incomingrelationships?api-version=2020-03-01-preview
+- content: GET https:///digitaltwins/{id}/relationships?api-version=2020-05-31-preview
+- content: GET https:///digitaltwins/{id}/relationships?relationshipName={relationshipName}&api-version=2020-05-31-preview
+  isOptional: true
 uriParameters:
 - name: id
   in: path
   isRequired: true
-  description: The id of the digital twin.
+  description: The id of the digital twin. The id is unique within the service and case sensitive.
+  types:
+  - uid: string
+- name: relationshipName
+  in: query
+  description: The name of the relationship.
   types:
   - uid: string
 - name: api-version
@@ -28,21 +35,21 @@ responses:
 - name: 200 OK
   description: Success
   types:
-  - uid: IncomingEdgeCollection
+  - uid: RelationshipCollection
 - name: Other Status Codes
   description: Default response.
   types:
   - uid: ErrorResponse
 requestHeader: []
 definitions:
-- name: IncomingEdgeCollection
-  description: A collection of incoming edges which relate digital twins.
+- name: RelationshipCollection
+  description: A collection of relationships which relate digital twins together.
   kind: object
   properties:
   - name: value
-    description: An incoming edge.
+    description: The relationship objects.
     types:
-    - uid: IncomingEdge
+    - uid: object
       isArray: true
   - name: nextLink
     description: A URI to retrieve the next page of objects.
@@ -56,26 +63,6 @@ definitions:
     description: The error details.
     types:
     - uid: Error
-- name: IncomingEdge
-  description: An incoming edge.
-  kind: object
-  properties:
-  - name: $edgeId
-    description: A user-provided string representing the id of this edge, unique in the context of the source digital twin, i.e. sourceId + edgeId is unique in the context of the service.
-    types:
-    - uid: string
-  - name: $sourceId
-    description: The id of the source digital twin.
-    types:
-    - uid: string
-  - name: $relationship
-    description: The name of the relationship.
-    types:
-    - uid: string
-  - name: $edgeLink
-    description: Link to the edge resource itself, to be used for deletion.
-    types:
-    - uid: string
 - name: Error
   description: Error definition.
   kind: object
@@ -113,9 +100,9 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: GetIncomingRelationship
+- name: GetRelationship
   request:
-    uri: GET https:///digitaltwins/mySourceTwin/incomingrelationships?api-version=2020-03-01-preview
+    uri: GET https:///digitaltwins/mySourceTwin/relationships?api-version=2020-05-31-preview
   responses:
   - statusCode: "200"
     body: >-
@@ -123,15 +110,42 @@ examples:
         "value": [
           {
             "$sourceId": "mySourceTwin",
-            "$edgeId": "firstEdgeId",
-            "$relationship": "myRelationship",
-            "$edgeLink": "/digitaltwins/mySourceTwin/relationships/myRelationship/firstEdgeId"
+            "$relationshipId": "firstRelationshipId",
+            "$targetId": "targetTwinId",
+            "$relationshipName": "myRelationship",
+            "property": "value"
           },
           {
             "$sourceId": "mySourceTwin",
-            "$edgeId": "secondEdgeId",
-            "$relationship": "myRelationship",
-            "$edgeLink": "/digitaltwins/mySourceTwin/relationships/myRelationship/secondEdgeId"
+            "$relationshipId": "secondRelationshipId",
+            "$targetId": "targetTwinId",
+            "$relationshipName": "myRelationship",
+            "property": "value"
+          }
+        ],
+        "nextLink": "url-to-next-page"
+      }
+- name: GetRelationshipByName
+  request:
+    uri: GET https:///digitaltwins/mySourceTwin/relationships?relationshipName=myRelationship&api-version=2020-05-31-preview
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "value": [
+          {
+            "$sourceId": "mySourceTwin",
+            "$relationshipId": "firstRelationshipId",
+            "$targetId": "targetTwinId",
+            "$relationshipName": "myRelationship",
+            "property": "value"
+          },
+          {
+            "$sourceId": "mySourceTwin",
+            "$relationshipId": "secondRelationshipId",
+            "$targetId": "targetTwinId",
+            "$relationshipName": "myRelationship",
+            "property": "value"
           }
         ],
         "nextLink": "url-to-next-page"

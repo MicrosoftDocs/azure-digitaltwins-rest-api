@@ -3,8 +3,8 @@ uid: digital-twins.twins.digitaltwins_sendtelemetry
 name: DigitalTwins SendTelemetry
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-03-01-preview
-summary: Send telemetry from a twin
+apiVersion: 2020-05-31-preview
+summary: "Sends telemetry on behalf of a digital twin.  \nSends telemetry on behalf of a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no digital twin with the provided id."
 consumes:
 - application/json
 produces:
@@ -15,7 +15,7 @@ uriParameters:
 - name: id
   in: path
   isRequired: true
-  description: The id of the digital twin.
+  description: The id of the digital twin. The id is unique within the service and case sensitive.
   types:
   - uid: string
 responses:
@@ -30,47 +30,19 @@ requestBody:
   parameters:
   - name: telemetry
     in: body
-    description: The telemetry to emit from the instance.
+    description: The telemetry measurements to send from the digital twin.
     types:
     - uid: object
 requestHeader:
-- name: ce-id
+- name: dt-id
   in: header
   isRequired: true
-  description: A string which uniquely identifies the message
+  description: A unique message identifier (in the scope of the digital twin id) that is commonly used for de-duplicating messages.
   types:
   - uid: string
-- name: ce-datacontenttype
+- name: dt-timestamp
   in: header
-  description: A string which describes the content type.
-  types:
-  - uid: string
-- name: ce-dataschema
-  in: header
-  isRequired: true
-  description: A string that describes the model ID (DTMI) that contains the definition for the telemetry message.
-  types:
-  - uid: string
-- name: ce-specversion
-  in: header
-  isRequired: true
-  description: A string that describes the version of the CloudEvents specification. Must be '1.0'.
-  types:
-  - uid: string
-- name: ce-subject
-  in: header
-  description: A dot-seperated string that identifies the DTDL component sending the telemetry.
-  types:
-  - uid: string
-- name: ce-time
-  in: header
-  description: A string that describes the time associated with the telemetry message in RFC 3339 format.
-  types:
-  - uid: string
-- name: ce-type
-  in: header
-  isRequired: true
-  description: A string the describes the type of the message. Must be 'microsoft.iot.telemetry'.
+  description: An RFC 3339 timestamp that identifies the time the telemetry was measured.
   types:
   - uid: string
 definitions:
@@ -122,17 +94,15 @@ examples:
 - name: SendTelemetry
   request:
     uri: POST https:///digitaltwins/myTwinId/telemetry
+    body: >-
+      {
+        "temperature": 1
+      }
     headers:
-    - name: ce-id
-      value: myMessageId
-    - name: ce-datacontenttype
-      value: application/json
-    - name: ce-dataschema
-      value: dtmi:com:example:MyDigitalTwin:1
-    - name: ce-specversion
-      value: "1.0"
-    - name: ce-type
-      value: microsoft.iot.telemetry
+    - name: dt-id
+      value: e5ca50dd-ca31-4fae-8d84-3af5a72b10c5
+    - name: dt-timestamp
+      value: 1985-04-12T23:20:50.52Z
   responses:
   - statusCode: "204"
 security:

@@ -3,19 +3,19 @@ uid: digital-twins.twins.digitaltwins_getbyid
 name: DigitalTwins GetById
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-03-01-preview
-summary: Retrieves a digital twin instance.
+apiVersion: 2020-05-31-preview
+summary: "Retrieves a digital twin.  \nRetrieves a digital twin.\nStatus codes:\n200 (OK): Success.\n404 (Not Found): There is no digital twin with the provided id."
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https:///digitaltwins/{id}?api-version=2020-03-01-preview
+- content: GET https:///digitaltwins/{id}?api-version=2020-05-31-preview
 uriParameters:
 - name: id
   in: path
   isRequired: true
-  description: The id of the digital twin.
+  description: The id of the digital twin. The id is unique within the service and case sensitive.
   types:
   - uid: string
 - name: api-version
@@ -26,6 +26,9 @@ uriParameters:
   - uid: string
 responses:
 - name: 200 OK
+  headers:
+  - name: ETag
+    value: string
   description: Success
   types:
   - uid: object
@@ -82,14 +85,14 @@ definitions:
 examples:
 - name: GetTwin
   request:
-    uri: GET https:///digitaltwins/myTwinId?api-version=2020-03-01-preview
+    uri: GET https:///digitaltwins/myTwinId?api-version=2020-05-31-preview
   responses:
   - statusCode: "200"
     body: >-
       {
         "$dtId": "myTwinId",
         "$metadata": {
-          "$model": "urn:examplecom:interfaces:interfaceName:1",
+          "$model": "dtmi:com:example:interfaces:interfaceName;1",
           "$kind": "DigitalTwin",
           "property1": {
             "desiredValue": 1,
@@ -118,7 +121,7 @@ examples:
         },
         "component1": {
           "$metadata": {
-            "$model": "urn:examplecom:interfaces:interfaceName:1",
+            "$model": "dtmi:com:example:interfaces:subInterfaceName;1",
             "componentProperty": {
               "desiredValue": "some value",
               "desiredVersion": 1,

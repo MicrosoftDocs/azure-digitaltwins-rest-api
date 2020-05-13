@@ -1,21 +1,27 @@
 ### YamlMime:RESTOperation
-uid: digital-twins.models.digitaltwinmodels_update
-name: DigitalTwinModels Update
+uid: digital-twins.twins.digitaltwins_updaterelationship
+name: DigitalTwins UpdateRelationship
 service: Azure Digital Twins
-groupName: Models
+groupName: Twins
 apiVersion: 2020-05-31-preview
-summary: "Updates the metadata for a model.  \nUpdates the metadata for a model.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no model with the provided id."
+summary: "Updates the properties on a relationship between two digital twins.  \nUpdates the properties on a relationship between two digital twins.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is either no digital twin or relationship with the provided id."
 consumes:
 - application/json-patch+json
 produces:
 - application/json
 paths:
-- content: PATCH https:///models/{id}?api-version=2020-05-31-preview
+- content: PATCH https:///digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-05-31-preview
 uriParameters:
 - name: id
   in: path
   isRequired: true
-  description: The id for the model. The id is globally unique and case sensitive.
+  description: The id of the digital twin. The id is unique within the service and case sensitive.
+  types:
+  - uid: string
+- name: relationshipId
+  in: path
+  isRequired: true
+  description: The id of the relationship. The id is unique within the digital twin and case sensitive.
   types:
   - uid: string
 - name: api-version
@@ -26,6 +32,9 @@ uriParameters:
   - uid: string
 responses:
 - name: 204 No Content
+  headers:
+  - name: ETag
+    value: string
   description: Success
 - name: Other Status Codes
   description: Default response.
@@ -34,13 +43,18 @@ responses:
 requestBody:
 - name: default
   parameters:
-  - name: updateModel
+  - name: patchDocument
     in: body
-    description: An update specification described by JSON Patch. Only the decommissioned property can be replaced.
+    description: JSON Patch description of the update to the relationship properties.
     types:
     - uid: object
       isArray: true
-requestHeader: []
+requestHeader:
+- name: If-Match
+  in: header
+  description: Only perform the operation if the entity's etag matches one of the etags provided or * is provided.
+  types:
+  - uid: string
 definitions:
 - name: ErrorResponse
   description: Error response.
@@ -87,15 +101,37 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: ModelUpdateDecommissioned
+- name: PatchRelationshipBasicExample
   request:
-    uri: PATCH https:///models/dtmi:com:example:Sample;1?api-version=2020-05-31-preview
+    uri: PATCH https:///digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2020-05-31-preview
     body: >-
       [
         {
+          "op": "add",
+          "path": "/property",
+          "value": 1
+        }
+      ]
+  responses:
+  - statusCode: "204"
+- name: PatchRelationshipAdvancedExample
+  request:
+    uri: PATCH https:///digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2020-05-31-preview
+    body: >-
+      [
+        {
+          "op": "add",
+          "path": "/property1",
+          "value": 1
+        },
+        {
+          "op": "remove",
+          "path": "/property2"
+        },
+        {
           "op": "replace",
-          "path": "/decommissioned",
-          "value": true
+          "path": "/property3/subProperty1",
+          "value": "new value"
         }
       ]
   responses:

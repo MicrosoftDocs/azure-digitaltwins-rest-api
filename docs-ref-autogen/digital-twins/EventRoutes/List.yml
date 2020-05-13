@@ -3,14 +3,14 @@ uid: digital-twins.eventroutes.list
 name: List
 service: Azure Digital Twins
 groupName: Event Routes
-apiVersion: 2020-03-01-preview
-summary: Retrieves event routes.
+apiVersion: 2020-05-31-preview
+summary: "Retrieves all event routes.  \nRetrieves all event routes.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid."
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https:///eventroutes?api-version=2020-03-01-preview
+- content: GET https:///eventroutes?api-version=2020-05-31-preview
 uriParameters:
 - name: api-version
   in: query
@@ -111,7 +111,7 @@ definitions:
 examples:
 - name: EventRoutesList
   request:
-    uri: GET https:///eventroutes?api-version=2020-03-01-preview
+    uri: GET https:///eventroutes?api-version=2020-05-31-preview
   responses:
   - statusCode: "200"
     body: >-
@@ -120,12 +120,12 @@ examples:
           {
             "id": "eventroute-001",
             "endpointId": "endpoint-001",
-            "filter": "$eventType = 'DigitalTwinLifecycleNotification'"
+            "filter": "type = 'Microsoft.DigitalTwins.Twin.Create'"
           },
           {
             "id": "eventroute-002",
             "endpointId": "endpoint-002",
-            "filter": "$eventType = 'DigitalTwinTelemetryMessages' or $eventType = 'DigitalTwinLifecycleNotification'"
+            "filter": "type = 'Microsoft.DigitalTwins.Twin.Create' OR type = 'microsoft.iot.telemetry'"
           }
         ],
         "nextLink": "url-to-next-page"

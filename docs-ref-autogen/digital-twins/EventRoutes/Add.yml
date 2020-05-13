@@ -3,19 +3,19 @@ uid: digital-twins.eventroutes.add
 name: Add
 service: Azure Digital Twins
 groupName: Event Routes
-apiVersion: 2020-03-01-preview
-summary: Add an event route.
+apiVersion: 2020-05-31-preview
+summary: "Adds or replaces an event route.  \nAdds or replaces an event route.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid."
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: PUT https:///eventroutes/{id}?api-version=2020-03-01-preview
+- content: PUT https:///eventroutes/{id}?api-version=2020-05-31-preview
 uriParameters:
 - name: id
   in: path
   isRequired: true
-  description: The id for an event route.
+  description: The id for an event route. The id is unique within event routes and case sensitive.
   types:
   - uid: string
 - name: api-version
@@ -111,20 +111,21 @@ definitions:
 examples:
 - name: EventRoutePut
   request:
-    uri: PUT https:///eventroutes/eventroute-001?api-version=2020-03-01-preview
+    uri: PUT https:///eventroutes/eventroute-001?api-version=2020-05-31-preview
     body: >-
       {
-        "endpointId": "endpoint-001"
+        "endpointId": "endpoint-001",
+        "filter": "true"
       }
   responses:
   - statusCode: "204"
 - name: EventRouteWithFilter
   request:
-    uri: PUT https:///eventroutes/eventroute-001?api-version=2020-03-01-preview
+    uri: PUT https:///eventroutes/eventroute-001?api-version=2020-05-31-preview
     body: >-
       {
         "endpointId": "endpoint-001",
-        "filter": "$eventType = 'DigitalTwinLifecycleNotification'"
+        "filter": "type = 'Microsoft.DigitalTwins.Twin.Create'"
       }
   responses:
   - statusCode: "204"

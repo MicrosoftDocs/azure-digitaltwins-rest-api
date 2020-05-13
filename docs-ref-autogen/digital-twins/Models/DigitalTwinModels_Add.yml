@@ -3,14 +3,14 @@ uid: digital-twins.models.digitaltwinmodels_add
 name: DigitalTwinModels Add
 service: Azure Digital Twins
 groupName: Models
-apiVersion: 2020-03-01-preview
-summary: Add one or more models.
+apiVersion: 2020-05-31-preview
+summary: "Uploads one or more models.  \nUploads one or more models. When any error occurs, no models are uploaded.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n409 (Conflict): One or more of the provided models already exist."
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: POST https:///models?api-version=2020-03-01-preview
+- content: POST https:///models?api-version=2020-05-31-preview
 uriParameters:
 - name: api-version
   in: query
@@ -19,7 +19,7 @@ uriParameters:
   types:
   - uid: string
 responses:
-- name: 201 Created
+- name: 200 OK
   description: Success
   types:
   - uid: ModelData
@@ -44,23 +44,19 @@ definitions:
   kind: object
   properties:
   - name: displayName
-    description: The display name of the model as specified in the model definition.
+    description: A language map that contains the localized display names as specified in the model definition.
     types:
-    - uid: string
+    - uid: object
+  - name: description
+    description: A language map that contains the localized descriptions as specified i the model definition.
+    types:
+    - uid: object
   - name: id
     description: The id of the model as specified in the model definition.
     types:
     - uid: string
   - name: uploadTime
     description: The time the model was uploaded to the service.
-    types:
-    - uid: string
-  - name: serviceOrigin
-    description: The service which originated this model. This indicates if the model was uploaded to the service or was discovered via a device in IoT Hub. Models from IoT Hub may change at any time and it is recommended they are only used for creation of proxy twins.
-    types:
-    - uid: string
-  - name: resolveSource
-    description: The repository from which this model was taken from. This value is always fixed for models uploaded directly to this service.
     types:
     - uid: string
   - name: decommissioned
@@ -118,12 +114,13 @@ definitions:
 examples:
 - name: ModelAdd
   request:
-    uri: POST https:///models?api-version=2020-03-01-preview
+    uri: POST https:///models?api-version=2020-05-31-preview
     body: >-
       [
         {
-          "@id": "urn:azureiotcom:Sample:1",
+          "@id": "dtmi:com:example:Sample;1",
           "@type": "Interface",
+          "displayName": "Sample Interface",
           "contents": [
             {
               "@type": "Property",
@@ -144,20 +141,20 @@ examples:
               "schema": "integer"
             }
           ],
-          "@context": "http://azureiot.com/v1/contexts/IoTModel.json"
+          "@context": "dtmi:dtdl:context;2"
         }
       ]
   responses:
-  - statusCode: "201"
+  - statusCode: "200"
     body: >-
       [
         {
-          "id": "urn:azureiotcom:Sample:1",
-          "displayName": "",
+          "id": "dtmi:com:example:Sample;1",
+          "displayName": {
+            "en": "Sample Interface"
+          },
           "uploadTime": "2020-03-01T17:32:28Z",
-          "decommissioned": false,
-          "serviceOrigin": "ADT",
-          "resolveSource": "$developer"
+          "decommissioned": false
         }
       ]
 security:

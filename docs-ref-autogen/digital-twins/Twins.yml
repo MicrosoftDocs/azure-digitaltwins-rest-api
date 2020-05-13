@@ -1,34 +1,34 @@
 ### YamlMime:RESTOperationGroup
 uid: digital-twins.twins
 name: Twins
-apiVersion: 2020-03-01-preview
+apiVersion: 2020-05-31-preview
 service: Azure Digital Twins
 operations:
 - uid: digital-twins.twins.digitaltwins_add
-  summary: Adds a new digital twin instance. If a twin with this id already exists a 409 Conflict error is returned.
-- uid: digital-twins.twins.digitaltwins_addedge
-  summary: Adds an edge between two digital twins.
+  summary: "Adds or replaces a digital twin.  \nAdds or replaces a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n412 (Precondition Failed): The model is decommissioned or the digital twin already exists (when using If-None-Match: *)."
+- uid: digital-twins.twins.digitaltwins_addrelationship
+  summary: "Adds a relationship between two digital twins.  \nAdds a relationship between two digital twins.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is either no digital twin, target digital twin, or relationship with the provided id.\n409 (Conflict): A relationship with the provided id already exists."
 - uid: digital-twins.twins.digitaltwins_delete
-  summary: Deletes a digital twin. All edges referencing this digital twin must already be deleted.
-- uid: digital-twins.twins.digitaltwins_deleteedge
-  summary: Deletes an edge between two digital twins.
+  summary: "Deletes a digital twin. All relationships referencing the digital twin must already be deleted.  \nDeletes a digital twin. All relationships referencing the digital twin must already be deleted.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no digital twin with the provided id."
+- uid: digital-twins.twins.digitaltwins_deleterelationship
+  summary: "Deletes a relationship between two digital twins.  \nDeletes a relationship between two digital twins.\nStatus codes:\n200 (OK): Success.\n404 (Not Found): There is either no digital twin or relationship with the provided id."
 - uid: digital-twins.twins.digitaltwins_getbyid
-  summary: Retrieves a digital twin instance.
+  summary: "Retrieves a digital twin.  \nRetrieves a digital twin.\nStatus codes:\n200 (OK): Success.\n404 (Not Found): There is no digital twin with the provided id."
 - uid: digital-twins.twins.digitaltwins_getcomponent
-  summary: Retrieves a component from a digital twin.
-- uid: digital-twins.twins.digitaltwins_getedgebyid
-  summary: Retrieves an edge which connects two digital twins.
-- uid: digital-twins.twins.digitaltwins_listedges
-  summary: Retrieves the edges from a digital twin.
-- uid: digital-twins.twins.digitaltwins_listedgesbyrelationship
-  summary: Retrieves edges from a digital twin for the named relationship.
-- uid: digital-twins.twins.digitaltwins_listincomingedges
-  summary: Retrieves all incoming relationships for a digital twin.
+  summary: "Retrieves a component from a digital twin.  \nRetrieves a component from a digital twin.\nStatus codes:\n200 (OK): Success.\n404 (Not Found): There is either no digital twin with the provided id or the component path is invalid."
+- uid: digital-twins.twins.digitaltwins_getrelationshipbynameandid
+  summary: "Retrieves a relationship between two digital twins.  \nRetrieves a relationship between two digital twins.\nStatus codes:\n200 (OK): Success.\n404 (Not Found): There is either no digital twin or relationship with the provided id."
+- uid: digital-twins.twins.digitaltwins_listincomingrelationships
+  summary: "Retrieves all incoming relationship for a digital twin.  \nRetrieves all incoming relationship for a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no digital twin with the provided id."
+- uid: digital-twins.twins.digitaltwins_listrelationships
+  summary: "Retrieves the relationships from a digital twin.  \nRetrieves the relationships from a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no digital twin with the provided id."
+- uid: digital-twins.twins.digitaltwins_sendcomponenttelemetry
+  summary: "Sends telemetry on behalf of a component in a digital twin.  \nSends telemetry on behalf of a component in a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is either no digital twin with the provided id or the component path is invalid."
 - uid: digital-twins.twins.digitaltwins_sendtelemetry
-  summary: Send telemetry from a twin
+  summary: "Sends telemetry on behalf of a digital twin.  \nSends telemetry on behalf of a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no digital twin with the provided id."
 - uid: digital-twins.twins.digitaltwins_update
-  summary: Updates a digital twin
+  summary: "Updates a digital twin.  \nUpdates a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no digital twin with the provided id."
 - uid: digital-twins.twins.digitaltwins_updatecomponent
-  summary: Updates a component on a digital twin.
-- uid: digital-twins.twins.digitaltwins_updateedge
-  summary: Updates the properties on an edge between two digital twins.
+  summary: "Updates a component on a digital twin.  \nUpdates a component on a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is either no digital twin with the provided id or the component path is invalid."
+- uid: digital-twins.twins.digitaltwins_updaterelationship
+  summary: "Updates the properties on a relationship between two digital twins.  \nUpdates the properties on a relationship between two digital twins.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is either no digital twin or relationship with the provided id."

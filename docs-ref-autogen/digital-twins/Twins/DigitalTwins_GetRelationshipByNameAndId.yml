@@ -1,34 +1,27 @@
 ### YamlMime:RESTOperation
-uid: digital-twins.twins.digitaltwins_updateedge
-name: DigitalTwins UpdateEdge
+uid: digital-twins.twins.digitaltwins_getrelationshipbynameandid
+name: DigitalTwins GetRelationshipByNameAndId
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-03-01-preview
-summary: Updates the properties on an edge between two digital twins.
+apiVersion: 2020-05-31-preview
+summary: "Retrieves a relationship between two digital twins.  \nRetrieves a relationship between two digital twins.\nStatus codes:\n200 (OK): Success.\n404 (Not Found): There is either no digital twin or relationship with the provided id."
 consumes:
-- application/json-patch+json
 - application/json
 produces:
 - application/json
 paths:
-- content: PATCH https:///digitaltwins/{id}/relationships/{relationship}/{edgeId}?api-version=2020-03-01-preview
+- content: GET https:///digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-05-31-preview
 uriParameters:
 - name: id
   in: path
   isRequired: true
-  description: The id of the digital twin.
+  description: The id of the digital twin. The id is unique within the service and case sensitive.
   types:
   - uid: string
-- name: relationship
+- name: relationshipId
   in: path
   isRequired: true
-  description: The name of the relationship which is having its edges modified.
-  types:
-  - uid: string
-- name: edgeId
-  in: path
-  isRequired: true
-  description: The id of the edge which is being updated.
+  description: The id of the relationship. The id is unique within the digital twin and case sensitive.
   types:
   - uid: string
 - name: api-version
@@ -38,20 +31,17 @@ uriParameters:
   types:
   - uid: string
 responses:
-- name: 204 No Content
+- name: 200 OK
+  headers:
+  - name: ETag
+    value: string
   description: Success
+  types:
+  - uid: object
 - name: Other Status Codes
   description: Default response.
   types:
   - uid: ErrorResponse
-requestBody:
-- name: default
-  parameters:
-  - name: patchDocument
-    in: body
-    description: JSON-Patch description of update to edge properties.
-    types:
-    - uid: object
 requestHeader: []
 definitions:
 - name: ErrorResponse
@@ -99,41 +89,19 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: PatchRelationshipBasicExample
+- name: GetRelationshipById
   request:
-    uri: PATCH https:///digitaltwins/myTwinId/relationships/myRelationship/myEdgeId?api-version=2020-03-01-preview
-    body: >-
-      [
-        {
-          "op": "add",
-          "path": "property",
-          "value": 1
-        }
-      ]
+    uri: GET https:///digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-05-31-preview
   responses:
-  - statusCode: "204"
-- name: PatchRelationshipAdvancedExample
-  request:
-    uri: PATCH https:///digitaltwins/myTwinId/relationships/myRelationship/myEdgeId?api-version=2020-03-01-preview
+  - statusCode: "200"
     body: >-
-      [
-        {
-          "op": "add",
-          "path": "property1",
-          "value": 1
-        },
-        {
-          "op": "remove",
-          "path": "property2"
-        },
-        {
-          "op": "replace",
-          "path": "property3/subProperty1",
-          "value": "new value"
-        }
-      ]
-  responses:
-  - statusCode: "204"
+      {
+        "$relationshipId": "myRelationshipId",
+        "$sourceId": "mySourceTwin",
+        "$targetId": "myTargetTwin",
+        "$relationshipName": "myRelationship",
+        "relationshipProperty": "some value"
+      }
 security:
 - name: oauth2
   type: oauth2

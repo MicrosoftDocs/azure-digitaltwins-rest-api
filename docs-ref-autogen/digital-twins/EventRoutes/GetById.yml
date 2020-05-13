@@ -3,19 +3,19 @@ uid: digital-twins.eventroutes.getbyid
 name: Get By Id
 service: Azure Digital Twins
 groupName: Event Routes
-apiVersion: 2020-03-01-preview
-summary: Retrieves an event route by id.
+apiVersion: 2020-05-31-preview
+summary: "Retrieves an event route.  \nRetrieves an event route.\nStatus codes:\n200 (OK): Success.\n404 (Not Found): There is no event route with the provided id."
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https:///eventroutes/{id}?api-version=2020-03-01-preview
+- content: GET https:///eventroutes/{id}?api-version=2020-05-31-preview
 uriParameters:
 - name: id
   in: path
   isRequired: true
-  description: The id for an event route.
+  description: The id for an event route. The id is unique within event routes and case sensitive.
   types:
   - uid: string
 - name: api-version
@@ -99,14 +99,14 @@ definitions:
 examples:
 - name: EventRouteGet
   request:
-    uri: GET https:///eventroutes/eventroute-001?api-version=2020-03-01-preview
+    uri: GET https:///eventroutes/eventroute-001?api-version=2020-05-31-preview
   responses:
   - statusCode: "200"
     body: >-
       {
         "id": "eventroute-001",
         "endpointId": "endpoint-001",
-        "filter": "$eventType = 'DigitalTwinLifecycleNotification'"
+        "filter": "type = 'Microsoft.DigitalTwins.Twin.Create'"
       }
 security:
 - name: oauth2

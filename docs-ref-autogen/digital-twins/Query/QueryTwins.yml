@@ -3,14 +3,14 @@ uid: digital-twins.query.querytwins
 name: Query Twins
 service: Azure Digital Twins
 groupName: Query
-apiVersion: 2020-03-01-preview
-summary: Executes a query that allows traversing relationships and filtering by property values.
+apiVersion: 2020-05-31-preview
+summary: "Executes a query that allows traversing relationships and filtering by property values.  \nExecutes a query that allows traversing relationships and filtering by property values.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid."
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: POST https:///query?api-version=2020-03-01-preview
+- content: POST https:///query?api-version=2020-05-31-preview
 uriParameters:
 - name: api-version
   in: query
@@ -20,6 +20,9 @@ uriParameters:
   - uid: string
 responses:
 - name: 200 OK
+  headers:
+  - name: query-charge
+    value: string
   description: Success
   types:
   - uid: QueryResult
@@ -114,7 +117,7 @@ definitions:
 examples:
 - name: QueryFirstPage
   request:
-    uri: POST https:///query?api-version=2020-03-01-preview
+    uri: POST https:///query?api-version=2020-05-31-preview
     body: >-
       {
         "query": "SELECT * FROM DIGITALTWINS WHERE temp = 79"
@@ -127,36 +130,36 @@ examples:
           {
             "$dtId": "Twin-01",
             "$metadata": {
-              "$model": "urn:azureiotcom:Sample:1"
+              "$model": "dtmi:com:example:Sample;1"
             },
             "name": "Sample01",
-            "temp": "79",
-            "comfortIndex": "50"
+            "temp": 79,
+            "comfortIndex": 50
           },
           {
             "$dtId": "Twin-02",
             "$metadata": {
-              "$model": "urn:azureiotcom:Sample:1"
+              "$model": "dtmi:com:example:Sample;1"
             },
             "name": "Sample02",
-            "temp": "79",
-            "comfortIndex": "50"
+            "temp": 79,
+            "comfortIndex": 50
           },
           {
             "$dtId": "Twin-03",
             "$metadata": {
-              "$model": "urn:azureiotcom:Sample:1"
+              "$model": "dtmi:com:example:Sample;1"
             },
             "name": "Sample03",
-            "temp": "79",
-            "comfortIndex": "50"
+            "temp": 79,
+            "comfortIndex": 50
           }
         ],
         "continuationToken": "<token>"
       }
 - name: QueryNextPage
   request:
-    uri: POST https:///query?api-version=2020-03-01-preview
+    uri: POST https:///query?api-version=2020-05-31-preview
     body: >-
       {
         "continuationToken": "<continuationToken from previous query>"
@@ -169,35 +172,35 @@ examples:
           {
             "$dtId": "Twin-04",
             "$metadata": {
-              "$model": "urn:azureiotcom:Sample:1"
+              "$model": "dtmi:com:example:Sample;1"
             },
             "name": "Sample04",
-            "temp": "79",
-            "comfortIndex": "50"
+            "temp": 79,
+            "comfortIndex": 50
           },
           {
             "$dtId": "Twin-05",
             "$metadata": {
-              "$model": "urn:azureiotcom:Sample:1"
+              "$model": "dtmi:com:example:Sample;1"
             },
             "name": "Sample05",
-            "temp": "79",
-            "comfortIndex": "50"
+            "temp": 79,
+            "comfortIndex": 50
           },
           {
             "$dtId": "Twin-06",
             "$metadata": {
-              "$model": "urn:azureiotcom:Sample:1"
+              "$model": "dtmi:com:example:Sample;1"
             },
             "name": "Sample06",
-            "temp": "79",
-            "comfortIndex": "50"
+            "temp": 79,
+            "comfortIndex": 50
           }
         ]
       }
 - name: QueryJoin
   request:
-    uri: POST https:///query?api-version=2020-03-01-preview
+    uri: POST https:///query?api-version=2020-05-31-preview
     body: >-
       {
         "query": "SELECT Widget, Gadget FROM DIGITALTWINS Widget JOIN Gadget RELATED Widget.Contains WHERE Widget.$dtId = 'Twin-01'"
@@ -211,40 +214,40 @@ examples:
             "Widget": {
               "$dtId": "Twin-01",
               "$metadata": {
-                "$model": "urn:azureiotcom:Sample:1"
+                "$model": "dtmi:com:example:Sample;1"
               },
               "name": "Sample01",
-              "temp": "79",
-              "comfortIndex": "50"
+              "temp": 79,
+              "comfortIndex": 50
             },
             "Gadget": {
               "$dtId": "Twin-02",
               "$metadata": {
-                "$model": "urn:azureiotcom:Sample:1"
+                "$model": "dtmi:com:example:Sample;1"
               },
               "name": "Sample02",
-              "temp": "79",
-              "comfortIndex": "50"
+              "temp": 79,
+              "comfortIndex": 50
             }
           },
           {
             "Widget": {
               "$dtId": "Twin-01",
               "$metadata": {
-                "$model": "urn:azureiotcom:Sample:1"
+                "$model": "dtmi:com:example:Sample;1"
               },
               "name": "Sample01",
-              "temp": "79",
-              "comfortIndex": "50"
+              "temp": 79,
+              "comfortIndex": 50
             },
             "Gadget": {
               "$dtId": "Twin-10",
               "$metadata": {
-                "$model": "urn:azureiotcom:Sample:1"
+                "$model": "dtmi:com:example:Sample;1"
               },
               "name": "Sample10",
-              "temp": "79",
-              "comfortIndex": "50"
+              "temp": 79,
+              "comfortIndex": 50
             }
           }
         ]

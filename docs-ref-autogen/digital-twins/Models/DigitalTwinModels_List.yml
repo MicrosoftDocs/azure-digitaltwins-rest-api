@@ -3,15 +3,15 @@ uid: digital-twins.models.digitaltwinmodels_list
 name: DigitalTwinModels List
 service: Azure Digital Twins
 groupName: Models
-apiVersion: 2020-03-01-preview
-summary: Retrieve model metadata and optionally model definitions.
+apiVersion: 2020-05-31-preview
+summary: "Retrieves model metadata and,optionally, model definitions.  \nRetrieves model metadata and, optionally, model definitions.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid."
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https:///models?api-version=2020-03-01-preview
-- content: GET https:///models?dependenciesFor={dependenciesFor}&includeModelDefinition={includeModelDefinition}&api-version=2020-03-01-preview
+- content: GET https:///models?api-version=2020-05-31-preview
+- content: GET https:///models?dependenciesFor={dependenciesFor}&includeModelDefinition={includeModelDefinition}&api-version=2020-05-31-preview
   isOptional: true
 uriParameters:
 - name: dependenciesFor
@@ -50,7 +50,7 @@ definitions:
   description: A collection of ModelData objects.
   kind: object
   properties:
-  - name: value
+  - name: values
     description: The ModelData objects.
     types:
     - uid: ModelData
@@ -72,23 +72,19 @@ definitions:
   kind: object
   properties:
   - name: displayName
-    description: The display name of the model as specified in the model definition.
+    description: A language map that contains the localized display names as specified in the model definition.
     types:
-    - uid: string
+    - uid: object
+  - name: description
+    description: A language map that contains the localized descriptions as specified i the model definition.
+    types:
+    - uid: object
   - name: id
     description: The id of the model as specified in the model definition.
     types:
     - uid: string
   - name: uploadTime
     description: The time the model was uploaded to the service.
-    types:
-    - uid: string
-  - name: serviceOrigin
-    description: The service which originated this model. This indicates if the model was uploaded to the service or was discovered via a device in IoT Hub. Models from IoT Hub may change at any time and it is recommended they are only used for creation of proxy twins.
-    types:
-    - uid: string
-  - name: resolveSource
-    description: The repository from which this model was taken from. This value is always fixed for models uploaded directly to this service.
     types:
     - uid: string
   - name: decommissioned
@@ -138,35 +134,32 @@ definitions:
 examples:
 - name: ModelsGet
   request:
-    uri: GET https:///models?api-version=2020-03-01-preview
+    uri: GET https:///models?api-version=2020-05-31-preview
   responses:
   - statusCode: "200"
     body: >-
       {
-        "value": [
+        "values": [
           {
-            "id": "urn:azureiotcom:Sample:1",
-            "displayName": "",
+            "id": "dtmi:com:example:Sample;1",
             "uploadTime": "2020-03-01T17:32:28Z",
-            "decommissioned": false,
-            "serviceOrigin": "ADT",
-            "resolveSource": "$developer"
+            "decommissioned": false
           },
           {
-            "id": "urn:azureiotcom:SampleCapabilityModel:1",
-            "displayName": "My Capability Model",
+            "id": "dtmi:com:example:SampleDeviceModel;1",
+            "displayName": {
+              "en": "My Device Model"
+            },
             "uploadTime": "2020-05-01T17:32:28Z",
-            "decommissioned": false,
-            "serviceOrigin": "ADT",
-            "resolveSource": "$developer"
+            "decommissioned": false
           },
           {
-            "id": "urn:azureiotcom:AnotherSample:1",
-            "displayName": "My Sample",
+            "id": "dtmi:com:example:AnotherSample;1",
+            "displayName": {
+              "en": "My Sample"
+            },
             "uploadTime": "2020-03-01T17:32:28Z",
-            "decommissioned": false,
-            "serviceOrigin": "ADT",
-            "resolveSource": "$developer"
+            "decommissioned": false
           }
         ],
         "nextLink": "url-to-next-page"
@@ -176,9 +169,9 @@ examples:
     uri: >-
       GET https:///models?dependenciesFor=[
 
-        "urn:azureiotcom:SampleCapabiiltyModel:1"
+        "dtmi:com:example:SampleDeviceModel;1"
 
-      ]&includeModelDefinition=True&api-version=2020-03-01-preview
+      ]&includeModelDefinition=True&api-version=2020-05-31-preview
     headers:
     - name: x-ms-max-item-count
       value: "20"
@@ -186,16 +179,13 @@ examples:
   - statusCode: "200"
     body: >-
       {
-        "value": [
+        "values": [
           {
-            "id": "urn:azureiotcom:Sample:1",
-            "displayName": "",
+            "id": "dtmi:com:example:Sample;1",
             "uploadTime": "2020-03-01T17:32:28Z",
             "decommissioned": false,
-            "serviceOrigin": "ADT",
-            "resolveSource": "$developer",
             "model": {
-              "@id": "urn:azureiotcom:Sample:1",
+              "@id": "dtmi:com:example:Sample;1",
               "@type": "Interface",
               "contents": [
                 {
@@ -217,27 +207,28 @@ examples:
                   "schema": "integer"
                 }
               ],
-              "@context": "http://azureiot.com/v1/contexts/IoTModel.json"
+              "@context": "dtmi:dtdl:context;2"
             }
           },
           {
-            "id": "urn:azureiotcom:SampleCapabilityModel:1",
-            "displayName": "My Capability Model",
+            "id": "dtmi:com:example:SampleDeviceModel;1",
+            "displayName": {
+              "en": "My Device Model"
+            },
             "uploadTime": "2020-03-01T17:32:28Z",
             "decommissioned": false,
-            "serviceOrigin": "ADT",
-            "resolveSource": "$developer",
             "model": {
-              "@id": "urn:azureiotcom:SampleCapabilityModel:1",
-              "@type": "CapabilityModel",
-              "displayName": "My Capability Model",
-              "implements": [
+              "@id": "dtmi:com:example:SampleDeviceModel;1",
+              "@type": "Interface",
+              "displayName": "My Device Model",
+              "contents": [
                 {
+                  "@type": "Component",
                   "name": "Sample",
-                  "schema": "urn:azureiotcom:Sample:1"
+                  "schema": "dtmi:com:example:Sample;1"
                 }
               ],
-              "@context": "http://azureiot.com/v1/contexts/IoTModel.json"
+              "@context": "dtmi:dtdl:context;2"
             }
           }
         ],
