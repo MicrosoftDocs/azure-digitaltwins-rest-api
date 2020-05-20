@@ -16,13 +16,13 @@ ms.topic: "reference"
 This is the reference documentation for the Azure Digital Twins REST APIs.
 
 These APIs are used to manage and interact with an Azure Digital Twins instance, including:
-* Event routes
-* Models
-* Twin graph queries
-* Digital twins
+* [Event routes](docs-ref-autogen/digital-twins/EventRoutes.yml)
+* [Models](docs-ref-autogen/digital-twins/Models.yml)
+* [Twin graph queries](docs-ref-autogen/digital-twins/Query.yml)
+* [Digital twins](docs-ref-autogen/digital-twins/Twins.yml)
 
 They cover operations like create, delete, update, and list (exact operations vary by topic).
 
 ## Learn more
 
-To learn more about these concepts and about working with Azure Digital Twins, visit the [Azure Digital Twins documentation](https://docs.microsoft.com/en-us/azure/digital-twins/).
+To learn more about these concepts and about working with Azure Digital Twins, visit the [Azure Digital Twins documentation](https://docs.microsoft.com/azure/digital-twins/).
