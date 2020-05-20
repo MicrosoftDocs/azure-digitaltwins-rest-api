@@ -25,4 +25,4 @@ They cover operations like create, delete, update, and list (exact operations va
 
 ## Learn more
 
-To learn more about these concepts and about working with Azure Digital Twins, visit the [Azure Digital Twins documentation](https://docs.microsoft.com/en-us/azure/digital-twins/).
+To learn more about these concepts and about working with Azure Digital Twins, visit the [Azure Digital Twins documentation](https://docs.microsoft.com/azure/digital-twins/).
