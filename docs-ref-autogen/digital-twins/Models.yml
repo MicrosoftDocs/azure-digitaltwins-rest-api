@@ -5,12 +5,55 @@ apiVersion: 2020-05-31-preview
 service: Azure Digital Twins
 operations:
 - uid: digital-twins.models.digitaltwinmodels_add
-  summary: "Uploads one or more models.  \nUploads one or more models. When any error occurs, no models are uploaded.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n409 (Conflict): One or more of the provided models already exist."
+  summary: >-
+    Uploads one or more models. When any error occurs, no models are uploaded.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    409 (Conflict): One or more of the provided models already exist.
 - uid: digital-twins.models.digitaltwinmodels_delete
-  summary: "Deletes a model.  \nDeletes a model. A model can only be deleted if no other models reference it.\nStatus codes:\n204 (No Content): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no model with the provided id.\n409 (Conflict): There are dependencies on the model that prevent it from being deleted."
+  summary: >-
+    Deletes a model. A model can only be deleted if no other models reference it.
+
+    Status codes:
+
+    204 (No Content): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is no model with the provided id.
+
+    409 (Conflict): There are dependencies on the model that prevent it from being deleted.
 - uid: digital-twins.models.digitaltwinmodels_getbyid
-  summary: "Retrieves model metadata and optionally the model definition.  \nRetrieves model metadata and optionally the model definition.\nStatus codes:\n200 (OK): Success.\n404 (Not Found): There is no model with the provided id."
+  summary: >-
+    Retrieves model metadata and optionally the model definition.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    404 (Not Found): There is no model with the provided id.
 - uid: digital-twins.models.digitaltwinmodels_list
-  summary: "Retrieves model metadata and,optionally, model definitions.  \nRetrieves model metadata and, optionally, model definitions.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid."
+  summary: >-
+    Retrieves model metadata and, optionally, model definitions.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
 - uid: digital-twins.models.digitaltwinmodels_update
-  summary: "Updates the metadata for a model.  \nUpdates the metadata for a model.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no model with the provided id."
+  summary: >-
+    Updates the metadata for a model.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is no model with the provided id.

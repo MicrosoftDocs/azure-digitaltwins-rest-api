@@ -4,7 +4,16 @@ name: DigitalTwins SendTelemetry
 service: Azure Digital Twins
 groupName: Twins
 apiVersion: 2020-05-31-preview
-summary: "Sends telemetry on behalf of a digital twin.  \nSends telemetry on behalf of a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no digital twin with the provided id."
+summary: >-
+  Sends telemetry on behalf of a digital twin.
+
+  Status codes:
+
+  200 (OK): Success.
+
+  400 (Bad Request): The request is invalid.
+
+  404 (Not Found): There is no digital twin with the provided id.
 consumes:
 - application/json
 produces:

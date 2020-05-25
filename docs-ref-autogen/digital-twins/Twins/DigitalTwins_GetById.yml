@@ -4,7 +4,14 @@ name: DigitalTwins GetById
 service: Azure Digital Twins
 groupName: Twins
 apiVersion: 2020-05-31-preview
-summary: "Retrieves a digital twin.  \nRetrieves a digital twin.\nStatus codes:\n200 (OK): Success.\n404 (Not Found): There is no digital twin with the provided id."
+summary: >-
+  Retrieves a digital twin.
+
+  Status codes:
+
+  200 (OK): Success.
+
+  404 (Not Found): There is no digital twin with the provided id.
 consumes:
 - application/json
 produces:
@@ -93,7 +100,6 @@ examples:
         "$dtId": "myTwinId",
         "$metadata": {
           "$model": "dtmi:com:example:interfaces:interfaceName;1",
-          "$kind": "DigitalTwin",
           "property1": {
             "desiredValue": 1,
             "desiredVersion": 1,

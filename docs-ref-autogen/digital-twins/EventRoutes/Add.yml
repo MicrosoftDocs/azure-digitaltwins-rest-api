@@ -4,7 +4,14 @@ name: Add
 service: Azure Digital Twins
 groupName: Event Routes
 apiVersion: 2020-05-31-preview
-summary: "Adds or replaces an event route.  \nAdds or replaces an event route.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid."
+summary: >-
+  Adds or replaces an event route.
+
+  Status codes:
+
+  200 (OK): Success.
+
+  400 (Bad Request): The request is invalid.
 consumes:
 - application/json
 produces:
@@ -34,10 +41,10 @@ responses:
 requestBody:
 - name: default
   parameters:
-  - name: endpointId
+  - name: endpointName
     in: body
     isRequired: true
-    description: The id of the endpoint this event route is bound to.
+    description: The name of the endpoint this event route is bound to.
     types:
     - uid: string
   - name: filter
@@ -64,8 +71,8 @@ definitions:
     description: The id of the event route.
     types:
     - uid: string
-  - name: endpointId
-    description: The id of the endpoint this event route is bound to.
+  - name: endpointName
+    description: The name of the endpoint this event route is bound to.
     types:
     - uid: string
   - name: filter
@@ -114,7 +121,7 @@ examples:
     uri: PUT https:///eventroutes/eventroute-001?api-version=2020-05-31-preview
     body: >-
       {
-        "endpointId": "endpoint-001",
+        "endpointName": "endpoint-001",
         "filter": "true"
       }
   responses:
@@ -124,7 +131,7 @@ examples:
     uri: PUT https:///eventroutes/eventroute-001?api-version=2020-05-31-preview
     body: >-
       {
-        "endpointId": "endpoint-001",
+        "endpointName": "endpoint-001",
         "filter": "type = 'Microsoft.DigitalTwins.Twin.Create'"
       }
   responses:

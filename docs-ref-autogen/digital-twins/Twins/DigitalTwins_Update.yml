@@ -4,7 +4,16 @@ name: DigitalTwins Update
 service: Azure Digital Twins
 groupName: Twins
 apiVersion: 2020-05-31-preview
-summary: "Updates a digital twin.  \nUpdates a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no digital twin with the provided id."
+summary: >-
+  Updates a digital twin.
+
+  Status codes:
+
+  200 (OK): Success.
+
+  400 (Bad Request): The request is invalid.
+
+  404 (Not Found): There is no digital twin with the provided id.
 consumes:
 - application/json-patch+json
 produces:
@@ -110,7 +119,6 @@ examples:
       ]
   responses:
   - statusCode: "202"
-    body: '{}'
   - statusCode: "204"
 - name: PatchTwinAdvancedExample
   request:
@@ -134,7 +142,6 @@ examples:
       ]
   responses:
   - statusCode: "202"
-    body: '{}'
   - statusCode: "204"
 security:
 - name: oauth2

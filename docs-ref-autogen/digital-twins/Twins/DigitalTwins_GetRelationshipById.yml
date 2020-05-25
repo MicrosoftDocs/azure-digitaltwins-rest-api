@@ -1,10 +1,17 @@
 ### YamlMime:RESTOperation
-uid: digital-twins.twins.digitaltwins_getrelationshipbynameandid
-name: DigitalTwins GetRelationshipByNameAndId
+uid: digital-twins.twins.digitaltwins_getrelationshipbyid
+name: DigitalTwins GetRelationshipById
 service: Azure Digital Twins
 groupName: Twins
 apiVersion: 2020-05-31-preview
-summary: "Retrieves a relationship between two digital twins.  \nRetrieves a relationship between two digital twins.\nStatus codes:\n200 (OK): Success.\n404 (Not Found): There is either no digital twin or relationship with the provided id."
+summary: >-
+  Retrieves a relationship between two digital twins.
+
+  Status codes:
+
+  200 (OK): Success.
+
+  404 (Not Found): There is either no digital twin or relationship with the provided id.
 consumes:
 - application/json
 produces:
