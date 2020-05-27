@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperation
 uid: digital-twins.eventroutes.add
 name: Add
-service: Azure Digital Twins
+service: Azure DigitalTwins
 groupName: Event Routes
 apiVersion: 2020-05-31-preview
 summary: >-

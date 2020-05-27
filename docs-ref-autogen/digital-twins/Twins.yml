@@ -2,7 +2,7 @@
 uid: digital-twins.twins
 name: Twins
 apiVersion: 2020-05-31-preview
-service: Azure Digital Twins
+service: Azure DigitalTwins
 operations:
 - uid: digital-twins.twins.digitaltwins_add
   summary: >-

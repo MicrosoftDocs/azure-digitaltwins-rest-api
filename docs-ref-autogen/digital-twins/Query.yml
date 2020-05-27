@@ -2,7 +2,7 @@
 uid: digital-twins.query
 name: Query
 apiVersion: 2020-05-31-preview
-service: Azure Digital Twins
+service: Azure DigitalTwins
 operations:
 - uid: digital-twins.query.querytwins
   summary: >-
