@@ -7,7 +7,7 @@
   "remove_tag_from_operationId": true,
   "organizations": [{
       "services": [{
-          "toc_title": "Azure Digital Twins",
+          "toc_title": "Azure DigitalTwins",
           "url_group": "digital-twins",
           "service_index": "index.md",
           "swagger_files": [
