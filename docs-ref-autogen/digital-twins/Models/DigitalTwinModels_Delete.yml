@@ -4,7 +4,18 @@ name: DigitalTwinModels Delete
 service: Azure Digital Twins
 groupName: Models
 apiVersion: 2020-05-31-preview
-summary: "Deletes a model.  \nDeletes a model. A model can only be deleted if no other models reference it.\nStatus codes:\n204 (No Content): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no model with the provided id.\n409 (Conflict): There are dependencies on the model that prevent it from being deleted."
+summary: >-
+  Deletes a model. A model can only be deleted if no other models reference it.
+
+  Status codes:
+
+  204 (No Content): Success.
+
+  400 (Bad Request): The request is invalid.
+
+  404 (Not Found): There is no model with the provided id.
+
+  409 (Conflict): There are dependencies on the model that prevent it from being deleted.
 consumes:
 - application/json
 produces:

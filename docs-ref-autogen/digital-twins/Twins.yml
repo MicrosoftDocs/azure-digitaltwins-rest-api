@@ -5,30 +5,150 @@ apiVersion: 2020-05-31-preview
 service: Azure Digital Twins
 operations:
 - uid: digital-twins.twins.digitaltwins_add
-  summary: "Adds or replaces a digital twin.  \nAdds or replaces a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n412 (Precondition Failed): The model is decommissioned or the digital twin already exists (when using If-None-Match: *)."
+  summary: >-
+    Adds or replaces a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    412 (Precondition Failed): The model is decommissioned or the digital twin already exists (when using If-None-Match: *).
 - uid: digital-twins.twins.digitaltwins_addrelationship
-  summary: "Adds a relationship between two digital twins.  \nAdds a relationship between two digital twins.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is either no digital twin, target digital twin, or relationship with the provided id.\n409 (Conflict): A relationship with the provided id already exists."
+  summary: >-
+    Adds a relationship between two digital twins.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is either no digital twin, target digital twin, or relationship with the provided id.
+
+    409 (Conflict): A relationship with the provided id already exists.
 - uid: digital-twins.twins.digitaltwins_delete
-  summary: "Deletes a digital twin. All relationships referencing the digital twin must already be deleted.  \nDeletes a digital twin. All relationships referencing the digital twin must already be deleted.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no digital twin with the provided id."
+  summary: >-
+    Deletes a digital twin. All relationships referencing the digital twin must already be deleted.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is no digital twin with the provided id.
 - uid: digital-twins.twins.digitaltwins_deleterelationship
-  summary: "Deletes a relationship between two digital twins.  \nDeletes a relationship between two digital twins.\nStatus codes:\n200 (OK): Success.\n404 (Not Found): There is either no digital twin or relationship with the provided id."
+  summary: >-
+    Deletes a relationship between two digital twins.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    404 (Not Found): There is either no digital twin or relationship with the provided id.
 - uid: digital-twins.twins.digitaltwins_getbyid
-  summary: "Retrieves a digital twin.  \nRetrieves a digital twin.\nStatus codes:\n200 (OK): Success.\n404 (Not Found): There is no digital twin with the provided id."
+  summary: >-
+    Retrieves a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    404 (Not Found): There is no digital twin with the provided id.
 - uid: digital-twins.twins.digitaltwins_getcomponent
-  summary: "Retrieves a component from a digital twin.  \nRetrieves a component from a digital twin.\nStatus codes:\n200 (OK): Success.\n404 (Not Found): There is either no digital twin with the provided id or the component path is invalid."
-- uid: digital-twins.twins.digitaltwins_getrelationshipbynameandid
-  summary: "Retrieves a relationship between two digital twins.  \nRetrieves a relationship between two digital twins.\nStatus codes:\n200 (OK): Success.\n404 (Not Found): There is either no digital twin or relationship with the provided id."
+  summary: >-
+    Retrieves a component from a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    404 (Not Found): There is either no digital twin with the provided id or the component path is invalid.
+- uid: digital-twins.twins.digitaltwins_getrelationshipbyid
+  summary: >-
+    Retrieves a relationship between two digital twins.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    404 (Not Found): There is either no digital twin or relationship with the provided id.
 - uid: digital-twins.twins.digitaltwins_listincomingrelationships
-  summary: "Retrieves all incoming relationship for a digital twin.  \nRetrieves all incoming relationship for a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no digital twin with the provided id."
+  summary: >-
+    Retrieves all incoming relationship for a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is no digital twin with the provided id.
 - uid: digital-twins.twins.digitaltwins_listrelationships
-  summary: "Retrieves the relationships from a digital twin.  \nRetrieves the relationships from a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no digital twin with the provided id."
+  summary: >-
+    Retrieves the relationships from a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is no digital twin with the provided id.
 - uid: digital-twins.twins.digitaltwins_sendcomponenttelemetry
-  summary: "Sends telemetry on behalf of a component in a digital twin.  \nSends telemetry on behalf of a component in a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is either no digital twin with the provided id or the component path is invalid."
+  summary: >-
+    Sends telemetry on behalf of a component in a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is either no digital twin with the provided id or the component path is invalid.
 - uid: digital-twins.twins.digitaltwins_sendtelemetry
-  summary: "Sends telemetry on behalf of a digital twin.  \nSends telemetry on behalf of a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no digital twin with the provided id."
+  summary: >-
+    Sends telemetry on behalf of a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is no digital twin with the provided id.
 - uid: digital-twins.twins.digitaltwins_update
-  summary: "Updates a digital twin.  \nUpdates a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is no digital twin with the provided id."
+  summary: >-
+    Updates a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is no digital twin with the provided id.
 - uid: digital-twins.twins.digitaltwins_updatecomponent
-  summary: "Updates a component on a digital twin.  \nUpdates a component on a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is either no digital twin with the provided id or the component path is invalid."
+  summary: >-
+    Updates a component on a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is either no digital twin with the provided id or the component path is invalid.
 - uid: digital-twins.twins.digitaltwins_updaterelationship
-  summary: "Updates the properties on a relationship between two digital twins.  \nUpdates the properties on a relationship between two digital twins.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is either no digital twin or relationship with the provided id."
+  summary: >-
+    Updates the properties on a relationship between two digital twins.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is either no digital twin or relationship with the provided id.

@@ -4,7 +4,14 @@ name: DigitalTwinModels List
 service: Azure Digital Twins
 groupName: Models
 apiVersion: 2020-05-31-preview
-summary: "Retrieves model metadata and,optionally, model definitions.  \nRetrieves model metadata and, optionally, model definitions.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid."
+summary: >-
+  Retrieves model metadata and, optionally, model definitions.
+
+  Status codes:
+
+  200 (OK): Success.
+
+  400 (Bad Request): The request is invalid.
 consumes:
 - application/json
 produces:
@@ -50,7 +57,7 @@ definitions:
   description: A collection of ModelData objects.
   kind: object
   properties:
-  - name: values
+  - name: value
     description: The ModelData objects.
     types:
     - uid: ModelData
@@ -76,7 +83,7 @@ definitions:
     types:
     - uid: object
   - name: description
-    description: A language map that contains the localized descriptions as specified i the model definition.
+    description: A language map that contains the localized descriptions as specified in the model definition.
     types:
     - uid: object
   - name: id
@@ -139,7 +146,7 @@ examples:
   - statusCode: "200"
     body: >-
       {
-        "values": [
+        "value": [
           {
             "id": "dtmi:com:example:Sample;1",
             "uploadTime": "2020-03-01T17:32:28Z",
@@ -179,7 +186,7 @@ examples:
   - statusCode: "200"
     body: >-
       {
-        "values": [
+        "value": [
           {
             "id": "dtmi:com:example:Sample;1",
             "uploadTime": "2020-03-01T17:32:28Z",

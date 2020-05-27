@@ -4,7 +4,16 @@ name: DigitalTwins UpdateComponent
 service: Azure Digital Twins
 groupName: Twins
 apiVersion: 2020-05-31-preview
-summary: "Updates a component on a digital twin.  \nUpdates a component on a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is either no digital twin with the provided id or the component path is invalid."
+summary: >-
+  Updates a component on a digital twin.
+
+  Status codes:
+
+  200 (OK): Success.
+
+  400 (Bad Request): The request is invalid.
+
+  404 (Not Found): There is either no digital twin with the provided id or the component path is invalid.
 consumes:
 - application/json-patch+json
 produces:
@@ -116,7 +125,6 @@ examples:
       ]
   responses:
   - statusCode: "202"
-    body: '{}'
   - statusCode: "204"
 - name: PatchComponentAdvancedExample
   request:
@@ -140,7 +148,6 @@ examples:
       ]
   responses:
   - statusCode: "202"
-    body: '{}'
   - statusCode: "204"
 security:
 - name: oauth2

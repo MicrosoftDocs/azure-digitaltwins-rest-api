@@ -4,7 +4,18 @@ name: DigitalTwins AddRelationship
 service: Azure Digital Twins
 groupName: Twins
 apiVersion: 2020-05-31-preview
-summary: "Adds a relationship between two digital twins.  \nAdds a relationship between two digital twins.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n404 (Not Found): There is either no digital twin, target digital twin, or relationship with the provided id.\n409 (Conflict): A relationship with the provided id already exists."
+summary: >-
+  Adds a relationship between two digital twins.
+
+  Status codes:
+
+  200 (OK): Success.
+
+  400 (Bad Request): The request is invalid.
+
+  404 (Not Found): There is either no digital twin, target digital twin, or relationship with the provided id.
+
+  409 (Conflict): A relationship with the provided id already exists.
 consumes:
 - application/json
 produces:

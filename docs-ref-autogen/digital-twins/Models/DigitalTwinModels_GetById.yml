@@ -4,7 +4,14 @@ name: DigitalTwinModels GetById
 service: Azure Digital Twins
 groupName: Models
 apiVersion: 2020-05-31-preview
-summary: "Retrieves model metadata and optionally the model definition.  \nRetrieves model metadata and optionally the model definition.\nStatus codes:\n200 (OK): Success.\n404 (Not Found): There is no model with the provided id."
+summary: >-
+  Retrieves model metadata and optionally the model definition.
+
+  Status codes:
+
+  200 (OK): Success.
+
+  404 (Not Found): There is no model with the provided id.
 consumes:
 - application/json
 produces:
@@ -51,7 +58,7 @@ definitions:
     types:
     - uid: object
   - name: description
-    description: A language map that contains the localized descriptions as specified i the model definition.
+    description: A language map that contains the localized descriptions as specified in the model definition.
     types:
     - uid: object
   - name: id

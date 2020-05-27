@@ -4,7 +4,14 @@ name: DigitalTwins DeleteRelationship
 service: Azure Digital Twins
 groupName: Twins
 apiVersion: 2020-05-31-preview
-summary: "Deletes a relationship between two digital twins.  \nDeletes a relationship between two digital twins.\nStatus codes:\n200 (OK): Success.\n404 (Not Found): There is either no digital twin or relationship with the provided id."
+summary: >-
+  Deletes a relationship between two digital twins.
+
+  Status codes:
+
+  200 (OK): Success.
+
+  404 (Not Found): There is either no digital twin or relationship with the provided id.
 consumes:
 - application/json
 produces:

@@ -4,7 +4,16 @@ name: DigitalTwins Add
 service: Azure Digital Twins
 groupName: Twins
 apiVersion: 2020-05-31-preview
-summary: "Adds or replaces a digital twin.  \nAdds or replaces a digital twin.\nStatus codes:\n200 (OK): Success.\n400 (Bad Request): The request is invalid.\n412 (Precondition Failed): The model is decommissioned or the digital twin already exists (when using If-None-Match: *)."
+summary: >-
+  Adds or replaces a digital twin.
+
+  Status codes:
+
+  200 (OK): Success.
+
+  400 (Bad Request): The request is invalid.
+
+  412 (Precondition Failed): The model is decommissioned or the digital twin already exists (when using If-None-Match: *).
 consumes:
 - application/json
 produces:
@@ -113,8 +122,7 @@ examples:
       {
         "$dtId": "myNewTwinId",
         "$metadata": {
-          "$model": "dtmi:com:example:interfaces:interfaceName;1",
-          "$kind": "DigitalTwin"
+          "$model": "dtmi:com:example:interfaces:interfaceName;1"
         }
       }
   - statusCode: "202"
@@ -148,7 +156,6 @@ examples:
         "$dtId": "myNewTwinId",
         "$metadata": {
           "$model": "dtmi:com:example:interfaces:interfaceName;1",
-          "$kind": "DigitalTwin",
           "property1": {
             "desiredValue": 1,
             "desiredVersion": 1,

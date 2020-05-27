@@ -19,7 +19,7 @@
 ### [DigitalTwins DeleteRelationship](digital-twins/Twins/DigitalTwins_DeleteRelationship.yml)
 ### [DigitalTwins GetById](digital-twins/Twins/DigitalTwins_GetById.yml)
 ### [DigitalTwins GetComponent](digital-twins/Twins/DigitalTwins_GetComponent.yml)
-### [DigitalTwins GetRelationshipByNameAndId](digital-twins/Twins/DigitalTwins_GetRelationshipByNameAndId.yml)
+### [DigitalTwins GetRelationshipById](digital-twins/Twins/DigitalTwins_GetRelationshipById.yml)
 ### [DigitalTwins ListIncomingRelationships](digital-twins/Twins/DigitalTwins_ListIncomingRelationships.yml)
 ### [DigitalTwins ListRelationships](digital-twins/Twins/DigitalTwins_ListRelationships.yml)
 ### [DigitalTwins SendComponentTelemetry](digital-twins/Twins/DigitalTwins_SendComponentTelemetry.yml)
