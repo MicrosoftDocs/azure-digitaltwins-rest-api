@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperation
 uid: digital-twins.twins.digitaltwins_listrelationships
 name: DigitalTwins ListRelationships
-service: Azure Digital Twins
+service: Azure DigitalTwins
 groupName: Twins
 apiVersion: 2020-05-31-preview
 summary: >-

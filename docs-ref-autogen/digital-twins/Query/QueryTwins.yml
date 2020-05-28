@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperation
 uid: digital-twins.query.querytwins
 name: Query Twins
-service: Azure Digital Twins
+service: Azure DigitalTwins
 groupName: Query
 apiVersion: 2020-05-31-preview
 summary: >-

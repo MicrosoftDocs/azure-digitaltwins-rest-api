@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperation
 uid: digital-twins.models.digitaltwinmodels_list
 name: DigitalTwinModels List
-service: Azure Digital Twins
+service: Azure DigitalTwins
 groupName: Models
 apiVersion: 2020-05-31-preview
 summary: >-
