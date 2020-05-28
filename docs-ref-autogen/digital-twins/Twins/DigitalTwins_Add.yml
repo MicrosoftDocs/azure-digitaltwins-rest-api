@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperation
-uid: digital-twins.twins.digitaltwins_add
+uid: <digitaltwins-name>.digitaltwins.azure.net.digital-twins.twins.digitaltwins_add
 name: DigitalTwins Add
-service: Azure DigitalTwins
+service: Azure Digital Twins
 groupName: Twins
 apiVersion: 2020-05-31-preview
 summary: >-
@@ -19,7 +19,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: PUT https:///digitaltwins/{id}?api-version=2020-05-31-preview
+- content: PUT https://<digitaltwins-name>.digitaltwins.azure.net/digitaltwins/{id}?api-version=2020-05-31-preview
 uriParameters:
 - name: id
   in: path
@@ -109,7 +109,7 @@ definitions:
 examples:
 - name: PutTwinBasicExample
   request:
-    uri: PUT https:///digitaltwins/myNewTwinId?api-version=2020-05-31-preview
+    uri: PUT https://<digitaltwins-name>.digitaltwins.azure.net/digitaltwins/myNewTwinId?api-version=2020-05-31-preview
     body: >-
       {
         "$metadata": {
@@ -128,7 +128,7 @@ examples:
   - statusCode: "202"
 - name: PutTwinAdvancedExample
   request:
-    uri: PUT https:///digitaltwins/myNewTwinId?api-version=2020-05-31-preview
+    uri: PUT https://<digitaltwins-name>.digitaltwins.azure.net/digitaltwins/myNewTwinId?api-version=2020-05-31-preview
     body: >-
       {
         "$metadata": {
