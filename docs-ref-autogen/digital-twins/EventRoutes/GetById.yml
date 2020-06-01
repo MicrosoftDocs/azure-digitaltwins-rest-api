@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperation
-uid: <digitaltwins-name>.digitaltwins.azure.net.digital-twins.eventroutes.getbyid
+uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.eventroutes.getbyid
 name: Get By Id
-service: Azure Digital Twins
+service: Azure DigitalTwins
 groupName: Event Routes
 apiVersion: 2020-05-31-preview
 summary: >-
@@ -17,7 +17,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: GET https://<digitaltwins-name>.digitaltwins.azure.net/eventroutes/{id}?api-version=2020-05-31-preview
+- content: GET https://digitaltwins-name.digitaltwins.azure.net/eventroutes/{id}?api-version=2020-05-31-preview
 uriParameters:
 - name: id
   in: path
@@ -106,7 +106,7 @@ definitions:
 examples:
 - name: EventRouteGet
   request:
-    uri: GET https://<digitaltwins-name>.digitaltwins.azure.net/eventroutes/eventroute-001?api-version=2020-05-31-preview
+    uri: GET https://digitaltwins-name.digitaltwins.azure.net/eventroutes/eventroute-001?api-version=2020-05-31-preview
   responses:
   - statusCode: "200"
     body: >-
