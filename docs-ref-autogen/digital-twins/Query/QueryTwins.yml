@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperation
-uid: digital-twins.query.querytwins
+uid: <digitaltwins-name>.digitaltwins.azure.net.digital-twins.query.querytwins
 name: Query Twins
-service: Azure DigitalTwins
+service: Azure Digital Twins
 groupName: Query
 apiVersion: 2020-05-31-preview
 summary: >-
@@ -17,7 +17,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: POST https:///query?api-version=2020-05-31-preview
+- content: POST https://<digitaltwins-name>.digitaltwins.azure.net/query?api-version=2020-05-31-preview
 uriParameters:
 - name: api-version
   in: query
@@ -124,7 +124,7 @@ definitions:
 examples:
 - name: QueryFirstPage
   request:
-    uri: POST https:///query?api-version=2020-05-31-preview
+    uri: POST https://<digitaltwins-name>.digitaltwins.azure.net/query?api-version=2020-05-31-preview
     body: >-
       {
         "query": "SELECT * FROM DIGITALTWINS WHERE temp = 79"
@@ -166,7 +166,7 @@ examples:
       }
 - name: QueryNextPage
   request:
-    uri: POST https:///query?api-version=2020-05-31-preview
+    uri: POST https://<digitaltwins-name>.digitaltwins.azure.net/query?api-version=2020-05-31-preview
     body: >-
       {
         "continuationToken": "<continuationToken from previous query>"
@@ -207,7 +207,7 @@ examples:
       }
 - name: QueryJoin
   request:
-    uri: POST https:///query?api-version=2020-05-31-preview
+    uri: POST https://<digitaltwins-name>.digitaltwins.azure.net/query?api-version=2020-05-31-preview
     body: >-
       {
         "query": "SELECT Widget, Gadget FROM DIGITALTWINS Widget JOIN Gadget RELATED Widget.Contains WHERE Widget.$dtId = 'Twin-01'"

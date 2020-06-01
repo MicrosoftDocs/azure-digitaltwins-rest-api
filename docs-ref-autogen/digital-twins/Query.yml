@@ -1,10 +1,10 @@
 ### YamlMime:RESTOperationGroup
-uid: digital-twins.query
+uid: <digitaltwins-name>.digitaltwins.azure.net.digital-twins.query
 name: Query
 apiVersion: 2020-05-31-preview
-service: Azure DigitalTwins
+service: Azure Digital Twins
 operations:
-- uid: digital-twins.query.querytwins
+- uid: <digitaltwins-name>.digitaltwins.azure.net.digital-twins.query.querytwins
   summary: >-
     Executes a query that allows traversing relationships and filtering by property values.
 

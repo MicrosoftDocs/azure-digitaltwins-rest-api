@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperation
-uid: digital-twins.models.digitaltwinmodels_update
+uid: <digitaltwins-name>.digitaltwins.azure.net.digital-twins.models.digitaltwinmodels_update
 name: DigitalTwinModels Update
-service: Azure DigitalTwins
+service: Azure Digital Twins
 groupName: Models
 apiVersion: 2020-05-31-preview
 summary: >-
@@ -19,7 +19,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: PATCH https:///models/{id}?api-version=2020-05-31-preview
+- content: PATCH https://<digitaltwins-name>.digitaltwins.azure.net/models/{id}?api-version=2020-05-31-preview
 uriParameters:
 - name: id
   in: path
@@ -98,7 +98,7 @@ definitions:
 examples:
 - name: ModelUpdateDecommissioned
   request:
-    uri: PATCH https:///models/dtmi:com:example:Sample;1?api-version=2020-05-31-preview
+    uri: PATCH https://<digitaltwins-name>.digitaltwins.azure.net/models/dtmi:com:example:Sample;1?api-version=2020-05-31-preview
     body: >-
       [
         {

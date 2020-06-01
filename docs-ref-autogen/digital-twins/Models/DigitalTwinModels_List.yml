@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperation
-uid: digital-twins.models.digitaltwinmodels_list
+uid: <digitaltwins-name>.digitaltwins.azure.net.digital-twins.models.digitaltwinmodels_list
 name: DigitalTwinModels List
-service: Azure DigitalTwins
+service: Azure Digital Twins
 groupName: Models
 apiVersion: 2020-05-31-preview
 summary: >-
@@ -17,8 +17,8 @@ consumes:
 produces:
 - application/json
 paths:
-- content: GET https:///models?api-version=2020-05-31-preview
-- content: GET https:///models?dependenciesFor={dependenciesFor}&includeModelDefinition={includeModelDefinition}&api-version=2020-05-31-preview
+- content: GET https://<digitaltwins-name>.digitaltwins.azure.net/models?api-version=2020-05-31-preview
+- content: GET https://<digitaltwins-name>.digitaltwins.azure.net/models?dependenciesFor={dependenciesFor}&includeModelDefinition={includeModelDefinition}&api-version=2020-05-31-preview
   isOptional: true
 uriParameters:
 - name: dependenciesFor
@@ -82,10 +82,18 @@ definitions:
     description: A language map that contains the localized display names as specified in the model definition.
     types:
     - uid: object
+      isDictionary: true
+      additionalTypes:
+      - uid: string
+      - uid: string
   - name: description
     description: A language map that contains the localized descriptions as specified in the model definition.
     types:
     - uid: object
+      isDictionary: true
+      additionalTypes:
+      - uid: string
+      - uid: string
   - name: id
     description: The id of the model as specified in the model definition.
     types:
@@ -141,7 +149,7 @@ definitions:
 examples:
 - name: ModelsGet
   request:
-    uri: GET https:///models?api-version=2020-05-31-preview
+    uri: GET https://<digitaltwins-name>.digitaltwins.azure.net/models?api-version=2020-05-31-preview
   responses:
   - statusCode: "200"
     body: >-
@@ -174,7 +182,7 @@ examples:
 - name: ModelsGetWithContextAndIncludeModelDefinition
   request:
     uri: >-
-      GET https:///models?dependenciesFor=[
+      GET https://<digitaltwins-name>.digitaltwins.azure.net/models?dependenciesFor=[
 
         "dtmi:com:example:SampleDeviceModel;1"
 

@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperation
-uid: digital-twins.twins.digitaltwins_delete
+uid: <digitaltwins-name>.digitaltwins.azure.net.digital-twins.twins.digitaltwins_delete
 name: DigitalTwins Delete
-service: Azure DigitalTwins
+service: Azure Digital Twins
 groupName: Twins
 apiVersion: 2020-05-31-preview
 summary: >-
@@ -19,7 +19,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: DELETE https:///digitaltwins/{id}?api-version=2020-05-31-preview
+- content: DELETE https://<digitaltwins-name>.digitaltwins.azure.net/digitaltwins/{id}?api-version=2020-05-31-preview
 uriParameters:
 - name: id
   in: path
@@ -94,7 +94,7 @@ definitions:
 examples:
 - name: DeleteTwin
   request:
-    uri: DELETE https:///digitaltwins/myTwinId?api-version=2020-05-31-preview
+    uri: DELETE https://<digitaltwins-name>.digitaltwins.azure.net/digitaltwins/myTwinId?api-version=2020-05-31-preview
   responses:
   - statusCode: "204"
 security:
