@@ -1,0 +1,128 @@
+### YamlMime:RESTOperation
+uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.twins.digitaltwins_sendtelemetry
+name: DigitalTwins SendTelemetry
+service: Azure Digital Twins
+groupName: Twins
+apiVersion: 2020-05-31-preview
+summary: >-
+  Sends telemetry on behalf of a digital twin.
+
+  Status codes:
+
+  200 (OK): Success.
+
+  400 (Bad Request): The request is invalid.
+
+  404 (Not Found): There is no digital twin with the provided id.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: POST https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/telemetry?api-version=2020-05-31-preview
+uriParameters:
+- name: id
+  in: path
+  isRequired: true
+  description: The id of the digital twin. The id is unique within the service and case sensitive.
+  types:
+  - uid: string
+- name: api-version
+  in: query
+  isRequired: true
+  description: The requested API version.
+  types:
+  - uid: string
+responses:
+- name: 204 No Content
+  description: Success
+- name: Other Status Codes
+  description: Default response.
+  types:
+  - uid: ErrorResponse
+requestBody:
+- name: default
+  parameters:
+  - name: telemetry
+    in: body
+    description: The telemetry measurements to send from the digital twin.
+    types:
+    - uid: object
+requestHeader:
+- name: dt-id
+  in: header
+  isRequired: true
+  description: A unique message identifier (in the scope of the digital twin id) that is commonly used for de-duplicating messages.
+  types:
+  - uid: string
+- name: dt-timestamp
+  in: header
+  description: An RFC 3339 timestamp that identifies the time the telemetry was measured.
+  types:
+  - uid: string
+definitions:
+- name: ErrorResponse
+  description: Error response.
+  kind: object
+  properties:
+  - name: error
+    description: The error details.
+    types:
+    - uid: Error
+- name: Error
+  description: Error definition.
+  kind: object
+  properties:
+  - name: code
+    isReadyOnly: true
+    description: Service specific error code which serves as the substatus for the HTTP error code.
+    types:
+    - uid: string
+  - name: message
+    isReadyOnly: true
+    description: A human-readable representation of the error.
+    types:
+    - uid: string
+  - name: details
+    isReadyOnly: true
+    description: Internal error details.
+    types:
+    - uid: Error
+      isArray: true
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+- name: InnerError
+  description: A more specific error description than was provided by the containing error.
+  kind: object
+  properties:
+  - name: code
+    description: A more specific error code than was provided by the containing error.
+    types:
+    - uid: string
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+examples:
+- name: SendTelemetry
+  request:
+    uri: POST https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myTwinId/telemetry?api-version=2020-05-31-preview
+    body: >-
+      {
+        "temperature": 1
+      }
+    headers:
+    - name: dt-id
+      value: e5ca50dd-ca31-4fae-8d84-3af5a72b10c5
+    - name: dt-timestamp
+      value: 1985-04-12T23:20:50.52Z
+  responses:
+  - statusCode: "204"
+security:
+- name: oauth2
+  type: oauth2
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
+errorCodes: []
