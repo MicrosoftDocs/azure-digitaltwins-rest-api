@@ -1,4 +1,4 @@
-# [Azure Digital Twins](../index.md)
+# [Azure DigitalTwins](../index.md)
 ## [Event Routes](digital-twins/EventRoutes.yml)
 ### [Add](digital-twins/EventRoutes/Add.yml)
 ### [Delete](digital-twins/EventRoutes/Delete.yml)

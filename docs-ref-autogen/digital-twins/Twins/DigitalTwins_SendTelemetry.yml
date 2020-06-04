@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperation
-uid: <digitaltwins-name>.digitaltwins.azure.net.digital-twins.twins.digitaltwins_sendtelemetry
+uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.twins.digitaltwins_sendtelemetry
 name: DigitalTwins SendTelemetry
-service: Azure Digital Twins
+service: Azure DigitalTwins
 groupName: Twins
 apiVersion: 2020-05-31-preview
 summary: >-
@@ -19,12 +19,18 @@ consumes:
 produces:
 - application/json
 paths:
-- content: POST https://<digitaltwins-name>.digitaltwins.azure.net/digitaltwins/{id}/telemetry
+- content: POST https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/telemetry?api-version=2020-05-31-preview
 uriParameters:
 - name: id
   in: path
   isRequired: true
   description: The id of the digital twin. The id is unique within the service and case sensitive.
+  types:
+  - uid: string
+- name: api-version
+  in: query
+  isRequired: true
+  description: The requested API version.
   types:
   - uid: string
 responses:
@@ -102,7 +108,7 @@ definitions:
 examples:
 - name: SendTelemetry
   request:
-    uri: POST https://<digitaltwins-name>.digitaltwins.azure.net/digitaltwins/myTwinId/telemetry
+    uri: POST https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myTwinId/telemetry?api-version=2020-05-31-preview
     body: >-
       {
         "temperature": 1

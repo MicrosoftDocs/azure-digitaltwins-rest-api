@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperation
-uid: <digitaltwins-name>.digitaltwins.azure.net.digital-twins.twins.digitaltwins_addrelationship
+uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.twins.digitaltwins_addrelationship
 name: DigitalTwins AddRelationship
-service: Azure Digital Twins
+service: Azure DigitalTwins
 groupName: Twins
 apiVersion: 2020-05-31-preview
 summary: >-
@@ -21,7 +21,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: PUT https://<digitaltwins-name>.digitaltwins.azure.net/digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-05-31-preview
+- content: PUT https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-05-31-preview
 uriParameters:
 - name: id
   in: path
@@ -115,7 +115,7 @@ definitions:
 examples:
 - name: CreateRelationshipBasicExample
   request:
-    uri: PUT https://<digitaltwins-name>.digitaltwins.azure.net/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-05-31-preview
+    uri: PUT https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-05-31-preview
     body: >-
       {
         "$targetId": "myTargetTwin",
@@ -132,7 +132,7 @@ examples:
       }
 - name: CreateRelationshipAdvancedExample
   request:
-    uri: PUT https://<digitaltwins-name>.digitaltwins.azure.net/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-05-31-preview
+    uri: PUT https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-05-31-preview
     body: >-
       {
         "$targetId": "myTargetTwin",
