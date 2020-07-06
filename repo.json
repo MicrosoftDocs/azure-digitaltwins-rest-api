@@ -9,6 +9,11 @@
          "url":"https://msazure.visualstudio.com/One/_git/Azure-IoT-DigitalTwins-Main",
          "branch":"master",
          "name":"digital-twins-main"
+      },
+	  {
+         "url":"https://github.com/Azure/azure-rest-api-specs",
+         "branch":"master",
+         "name":"digital-twins-control"
       }
   ]
 }
