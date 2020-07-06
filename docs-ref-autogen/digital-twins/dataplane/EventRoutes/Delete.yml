@@ -1,0 +1,98 @@
+### YamlMime:RESTOperation
+uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.eventroutes.delete
+name: Delete
+service: Azure Digital Twins
+groupName: Event Routes
+apiVersion: 2020-05-31-preview
+summary: >-
+  Deletes an event route.
+
+  Status codes:
+
+  200 (OK): Success.
+
+  404 (Not Found): There is no event route with the provided id.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: DELETE https://digitaltwins-name.digitaltwins.azure.net/eventroutes/{id}?api-version=2020-05-31-preview
+uriParameters:
+- name: id
+  in: path
+  isRequired: true
+  description: The id for an event route. The id is unique within event routes and case sensitive.
+  types:
+  - uid: string
+- name: api-version
+  in: query
+  isRequired: true
+  description: The requested API version.
+  types:
+  - uid: string
+responses:
+- name: 204 No Content
+  description: Success
+- name: Other Status Codes
+  description: Default response.
+  types:
+  - uid: ErrorResponse
+requestHeader: []
+definitions:
+- name: ErrorResponse
+  description: Error response.
+  kind: object
+  properties:
+  - name: error
+    description: The error details.
+    types:
+    - uid: Error
+- name: Error
+  description: Error definition.
+  kind: object
+  properties:
+  - name: code
+    isReadyOnly: true
+    description: Service specific error code which serves as the substatus for the HTTP error code.
+    types:
+    - uid: string
+  - name: message
+    isReadyOnly: true
+    description: A human-readable representation of the error.
+    types:
+    - uid: string
+  - name: details
+    isReadyOnly: true
+    description: Internal error details.
+    types:
+    - uid: Error
+      isArray: true
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+- name: InnerError
+  description: A more specific error description than was provided by the containing error.
+  kind: object
+  properties:
+  - name: code
+    description: A more specific error code than was provided by the containing error.
+    types:
+    - uid: string
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+examples:
+- name: EventRouteDelete
+  request:
+    uri: DELETE https://digitaltwins-name.digitaltwins.azure.net/eventroutes/eventroute-001?api-version=2020-05-31-preview
+  responses:
+  - statusCode: "204"
+security:
+- name: oauth2
+  type: oauth2
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
+errorCodes: []

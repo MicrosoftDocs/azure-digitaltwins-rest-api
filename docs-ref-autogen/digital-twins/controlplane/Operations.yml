@@ -1,0 +1,8 @@
+### YamlMime:RESTOperationGroup
+uid: management.azure.com.digital-twins.controlplane.operations
+name: Operations
+apiVersion: 2020-03-01-preview
+service: Azure Digital Twins
+operations:
+- uid: management.azure.com.digital-twins.controlplane.operations.list
+  summary: Lists all of the available DigitalTwins service REST API operations.
