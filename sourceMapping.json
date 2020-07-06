@@ -24,3 +24,17 @@
   "EventRoutes/GetById.yml": "https://msazure.visualstudio.com/One/_git/Azure-IoT-DigitalTwins-Main?path=products/swagger/external-data-plane/preview/2020-05-31-preview/digitaltwins.json&version=GBmaster&a=contents&line=1046",
   "EventRoutes/List.yml": "https://msazure.visualstudio.com/One/_git/Azure-IoT-DigitalTwins-Main?path=products/swagger/external-data-plane/preview/2020-05-31-preview/digitaltwins.json&version=GBmaster&a=contents&line=1007"
 }
+{
+  "DigitalTwinsInstance/DigitalTwins_CreateOrUpdate.yml": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/preview/2020-03-01-preview/digitaltwins.json#L83",
+  "DigitalTwinsInstance/DigitalTwins_Delete.yml": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/preview/2020-03-01-preview/digitaltwins.json#L192",
+  "DigitalTwinsInstance/DigitalTwins_Get.yml": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/preview/2020-03-01-preview/digitaltwins.json#L43",
+  "DigitalTwinsInstance/DigitalTwins_List.yml": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/preview/2020-03-01-preview/digitaltwins.json#L440",
+  "DigitalTwinsInstance/DigitalTwins_ListByResourceGroup.yml": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/preview/2020-03-01-preview/digitaltwins.json#L479",
+  "DigitalTwinsInstance/DigitalTwins_Update.yml": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/preview/2020-03-01-preview/digitaltwins.json#L139",
+  "Endpoints/DigitalTwinsEndpoint_CreateOrUpdate.yml": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/preview/2020-03-01-preview/digitaltwins.json#L329",
+  "Endpoints/DigitalTwinsEndpoint_Delete.yml": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/preview/2020-03-01-preview/digitaltwins.json#L388",
+  "Endpoints/DigitalTwinsEndpoint_Get.yml": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/preview/2020-03-01-preview/digitaltwins.json#L286",
+  "Endpoints/DigitalTwinsEndpoint_List.yml": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/preview/2020-03-01-preview/digitaltwins.json#L241",
+  "Operations/List.yml": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/preview/2020-03-01-preview/digitaltwins.json#L521",
+  "CheckNameAvailability/DigitalTwins_CheckNameAvailability.yml": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/preview/2020-03-01-preview/digitaltwins.json#L557"
+}
