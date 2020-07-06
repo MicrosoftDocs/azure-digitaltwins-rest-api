@@ -28,7 +28,7 @@ uriParameters:
   types:
   - uid: string
 responses:
-- name: 200 OK
+- name: 201 Created
   description: Success
   types:
   - uid: ModelData

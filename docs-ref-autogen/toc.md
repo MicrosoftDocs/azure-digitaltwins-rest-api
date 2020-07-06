@@ -1,18 +1,43 @@
-# [Azure Digital Twins](../index.md)
-## [Event Routes](digital-twins/EventRoutes.yml)
+# Azure Digital Twins
+## [Overview](../index.md)
+## Check Name Availability
+### [Overview](digital-twins/CheckNameAvailability.yml)
+### [DigitalTwins CheckNameAvailability](digital-twins/CheckNameAvailability/DigitalTwins_CheckNameAvailability.yml)
+## Digital Twins Instance
+### [Overview](digital-twins/DigitalTwinsInstance.yml)
+### [DigitalTwins CreateOrUpdate](digital-twins/DigitalTwinsInstance/DigitalTwins_CreateOrUpdate.yml)
+### [DigitalTwins Delete](digital-twins/DigitalTwinsInstance/DigitalTwins_Delete.yml)
+### [DigitalTwins Get](digital-twins/DigitalTwinsInstance/DigitalTwins_Get.yml)
+### [DigitalTwins List](digital-twins/DigitalTwinsInstance/DigitalTwins_List.yml)
+### [DigitalTwins ListByResourceGroup](digital-twins/DigitalTwinsInstance/DigitalTwins_ListByResourceGroup.yml)
+### [DigitalTwins Update](digital-twins/DigitalTwinsInstance/DigitalTwins_Update.yml)
+## Endpoints
+### [Overview](digital-twins/Endpoints.yml)
+### [DigitalTwinsEndpoint CreateOrUpdate](digital-twins/Endpoints/DigitalTwinsEndpoint_CreateOrUpdate.yml)
+### [DigitalTwinsEndpoint Delete](digital-twins/Endpoints/DigitalTwinsEndpoint_Delete.yml)
+### [DigitalTwinsEndpoint Get](digital-twins/Endpoints/DigitalTwinsEndpoint_Get.yml)
+### [DigitalTwinsEndpoint List](digital-twins/Endpoints/DigitalTwinsEndpoint_List.yml)
+## Event Routes
+### [Overview](digital-twins/EventRoutes.yml)
 ### [Add](digital-twins/EventRoutes/Add.yml)
 ### [Delete](digital-twins/EventRoutes/Delete.yml)
 ### [Get By Id](digital-twins/EventRoutes/GetById.yml)
 ### [List](digital-twins/EventRoutes/List.yml)
-## [Models](digital-twins/Models.yml)
+## Models
+### [Overview](digital-twins/Models.yml)
 ### [DigitalTwinModels Add](digital-twins/Models/DigitalTwinModels_Add.yml)
 ### [DigitalTwinModels Delete](digital-twins/Models/DigitalTwinModels_Delete.yml)
 ### [DigitalTwinModels GetById](digital-twins/Models/DigitalTwinModels_GetById.yml)
 ### [DigitalTwinModels List](digital-twins/Models/DigitalTwinModels_List.yml)
 ### [DigitalTwinModels Update](digital-twins/Models/DigitalTwinModels_Update.yml)
-## [Query](digital-twins/Query.yml)
+## Operations
+### [Overview](digital-twins/Operations.yml)
+### [List](digital-twins/Operations/List.yml)
+## Query
+### [Overview](digital-twins/Query.yml)
 ### [Query Twins](digital-twins/Query/QueryTwins.yml)
-## [Twins](digital-twins/Twins.yml)
+## Twins
+### [Overview](digital-twins/Twins.yml)
 ### [DigitalTwins Add](digital-twins/Twins/DigitalTwins_Add.yml)
 ### [DigitalTwins AddRelationship](digital-twins/Twins/DigitalTwins_AddRelationship.yml)
 ### [DigitalTwins Delete](digital-twins/Twins/DigitalTwins_Delete.yml)
