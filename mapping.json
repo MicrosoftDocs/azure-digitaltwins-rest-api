@@ -12,7 +12,12 @@
           "service_index": "index.md",
           "swagger_files": [
             {
-              "source": "digital-twins-main/products/swagger/external-data-plane/preview/2020-05-31-preview/digitaltwins.json"
+              "source": "digital-twins-main/products/swagger/external-data-plane/preview/2020-05-31-preview/digitaltwins.json",
+			  "sub_group_toc_title": "Data Plane"
+            },
+			{
+              "source": "digital-twins-control/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/preview/2020-03-01-preview/digitaltwins.json",
+			  "sub_group_toc_title": "Control Plane"
             }
           ]
       }]

@@ -1,0 +1,42 @@
+### YamlMime:RESTOperationGroup
+uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.eventroutes
+name: Event Routes
+apiVersion: 2020-05-31-preview
+service: Azure Digital Twins
+operations:
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.eventroutes.add
+  summary: >-
+    Adds or replaces an event route.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.eventroutes.delete
+  summary: >-
+    Deletes an event route.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    404 (Not Found): There is no event route with the provided id.
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.eventroutes.getbyid
+  summary: >-
+    Retrieves an event route.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    404 (Not Found): There is no event route with the provided id.
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.eventroutes.list
+  summary: >-
+    Retrieves all event routes.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.

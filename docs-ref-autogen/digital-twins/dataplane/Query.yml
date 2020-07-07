@@ -1,0 +1,15 @@
+### YamlMime:RESTOperationGroup
+uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.query
+name: Query
+apiVersion: 2020-05-31-preview
+service: Azure Digital Twins
+operations:
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.query.querytwins
+  summary: >-
+    Executes a query that allows traversing relationships and filtering by property values.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
