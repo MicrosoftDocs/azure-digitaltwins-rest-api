@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperationGroup
 uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.models
 name: Models
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 service: Azure Digital Twins
 operations:
 - uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.models.digitaltwinmodels_add
@@ -10,50 +10,69 @@ operations:
 
     Status codes:
 
-    200 (OK): Success.
+    * 201 Created
 
-    400 (Bad Request): The request is invalid.
-
-    409 (Conflict): One or more of the provided models already exist.
+    * 400 Bad Request
+      * DTDLParserError - The models provided are not valid DTDL.
+      * InvalidArgument - The model id is invalid.
+      * LimitExceeded - The maximum number of model ids allowed in 'dependenciesFor' has been reached.
+      * ModelVersionNotSupported - The version of DTDL used is not supported.
+    * 409 Conflict
+      * ModelAlreadyExists - The model provided already exists.
 - uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.models.digitaltwinmodels_delete
   summary: >-
     Deletes a model. A model can only be deleted if no other models reference it.
 
     Status codes:
 
-    204 (No Content): Success.
+    * 204 No Content
 
-    400 (Bad Request): The request is invalid.
-
-    404 (Not Found): There is no model with the provided id.
-
-    409 (Conflict): There are dependencies on the model that prevent it from being deleted.
+    * 400 Bad Request
+      * InvalidArgument - The model id is invalid.
+      * MissingArgument - The model id was not provided.
+    * 404 Not Found
+      * ModelNotFound - The model was not found.
+    * 409 Conflict
+      * ModelReferencesNotDeleted - The model refers to models that are not deleted.
 - uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.models.digitaltwinmodels_getbyid
   summary: >-
     Retrieves model metadata and optionally the model definition.
 
     Status codes:
 
-    200 (OK): Success.
+    * 200 OK
 
-    404 (Not Found): There is no model with the provided id.
+    * 400 Bad Request
+      * InvalidArgument - The model id is invalid.
+      * MissingArgument - The model id was not provided.
+    * 404 Not Found
+      * ModelNotFound - The model was not found.
 - uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.models.digitaltwinmodels_list
   summary: >-
     Retrieves model metadata and, optionally, model definitions.
 
     Status codes:
 
-    200 (OK): Success.
+    * 200 OK
 
-    400 (Bad Request): The request is invalid.
+    * 400 Bad Request
+      * InvalidArgument - The model id is invalid.
+      * LimitExceeded - The maximum number of model ids allowed in 'dependenciesFor' has been reached.
+    * 404 Not Found
+      * ModelNotFound - The model was not found.
 - uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.models.digitaltwinmodels_update
   summary: >-
     Updates the metadata for a model.
 
     Status codes:
 
-    200 (OK): Success.
+    * 204 No Content
 
-    400 (Bad Request): The request is invalid.
-
-    404 (Not Found): There is no model with the provided id.
+    * 400 Bad Request
+      * InvalidArgument - The model id is invalid.
+      * JsonPatchInvalid - The JSON Patch provided is invalid.
+      * MissingArgument - The model id was not provided.
+    * 404 Not Found
+      * ModelNotFound - The model was not found.
+    * 409 Conflict
+      * ModelReferencesNotDecommissioned - The model refers to models that are not decommissioned.

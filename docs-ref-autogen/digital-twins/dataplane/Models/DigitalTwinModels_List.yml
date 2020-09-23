@@ -3,22 +3,26 @@ uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.models.dig
 name: DigitalTwinModels List
 service: Azure Digital Twins
 groupName: Models
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 summary: >-
   Retrieves model metadata and, optionally, model definitions.
 
   Status codes:
 
-  200 (OK): Success.
+  * 200 OK
 
-  400 (Bad Request): The request is invalid.
+  * 400 Bad Request
+    * InvalidArgument - The model id is invalid.
+    * LimitExceeded - The maximum number of model ids allowed in 'dependenciesFor' has been reached.
+  * 404 Not Found
+    * ModelNotFound - The model was not found.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-name.digitaltwins.azure.net/models?api-version=2020-05-31-preview
-- content: GET https://digitaltwins-name.digitaltwins.azure.net/models?dependenciesFor={dependenciesFor}&includeModelDefinition={includeModelDefinition}&api-version=2020-05-31-preview
+- content: GET https://digitaltwins-name.digitaltwins.azure.net/models?api-version=2020-10-31
+- content: GET https://digitaltwins-name.digitaltwins.azure.net/models?dependenciesFor={dependenciesFor}&includeModelDefinition={includeModelDefinition}&api-version=2020-10-31
   isOptional: true
 uriParameters:
 - name: dependenciesFor
@@ -41,26 +45,31 @@ responses:
 - name: 200 OK
   description: Success
   types:
-  - uid: PagedModelDataCollection
+  - uid: PagedDigitalTwinsModelDataCollection
 - name: Other Status Codes
   description: Default response.
   types:
   - uid: ErrorResponse
 requestHeader:
-- name: x-ms-max-item-count
+- name: max-items-per-page
   in: header
-  description: The maximum number of items to retrieve per request. The server may choose to return less than the requested max.
+  description: The maximum number of items to retrieve per request. The server may choose to return less than the requested number.
   types:
   - uid: integer
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
 definitions:
-- name: PagedModelDataCollection
-  description: A collection of ModelData objects.
+- name: PagedDigitalTwinsModelDataCollection
+  description: A collection of DigitalTwinsModelData objects.
   kind: object
   properties:
   - name: value
-    description: The ModelData objects.
+    description: The DigitalTwinsModelData objects.
     types:
-    - uid: ModelData
+    - uid: DigitalTwinsModelData
       isArray: true
   - name: nextLink
     description: A URI to retrieve the next page of objects.
@@ -74,7 +83,7 @@ definitions:
     description: The error details.
     types:
     - uid: Error
-- name: ModelData
+- name: DigitalTwinsModelData
   description: A model definition and metadata for that model.
   kind: object
   properties:
@@ -147,9 +156,9 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: ModelsGet
+- name: List models
   request:
-    uri: GET https://digitaltwins-name.digitaltwins.azure.net/models?api-version=2020-05-31-preview
+    uri: GET https://digitaltwins-name.digitaltwins.azure.net/models?api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-
@@ -179,17 +188,14 @@ examples:
         ],
         "nextLink": "url-to-next-page"
       }
-- name: ModelsGetWithContextAndIncludeModelDefinition
+- name: List models (include dependencies and definitions)
   request:
     uri: >-
       GET https://digitaltwins-name.digitaltwins.azure.net/models?dependenciesFor=[
 
         "dtmi:com:example:SampleDeviceModel;1"
 
-      ]&includeModelDefinition=True&api-version=2020-05-31-preview
-    headers:
-    - name: x-ms-max-item-count
-      value: "20"
+      ]&includeModelDefinition=True&api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-

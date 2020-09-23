@@ -3,21 +3,22 @@ uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.eventroute
 name: Delete
 service: Azure Digital Twins
 groupName: Event Routes
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 summary: >-
   Deletes an event route.
 
   Status codes:
 
-  200 (OK): Success.
+  * 204 No Content
 
-  404 (Not Found): There is no event route with the provided id.
+  * 404 Not Found
+    * EventRouteNotFound - The event route was not found.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: DELETE https://digitaltwins-name.digitaltwins.azure.net/eventroutes/{id}?api-version=2020-05-31-preview
+- content: DELETE https://digitaltwins-name.digitaltwins.azure.net/eventroutes/{id}?api-version=2020-10-31
 uriParameters:
 - name: id
   in: path
@@ -38,7 +39,12 @@ responses:
   description: Default response.
   types:
   - uid: ErrorResponse
-requestHeader: []
+requestHeader:
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
 definitions:
 - name: ErrorResponse
   description: Error response.
@@ -85,9 +91,9 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: EventRouteDelete
+- name: Delete an event route
   request:
-    uri: DELETE https://digitaltwins-name.digitaltwins.azure.net/eventroutes/eventroute-001?api-version=2020-05-31-preview
+    uri: DELETE https://digitaltwins-name.digitaltwins.azure.net/eventroutes/eventroute-001?api-version=2020-10-31
   responses:
   - statusCode: "204"
 security:

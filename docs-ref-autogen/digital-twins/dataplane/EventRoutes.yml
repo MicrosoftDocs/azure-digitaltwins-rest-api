@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperationGroup
 uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.eventroutes
 name: Event Routes
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 service: Azure Digital Twins
 operations:
 - uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.eventroutes.add
@@ -10,33 +10,37 @@ operations:
 
     Status codes:
 
-    200 (OK): Success.
+    * 204 No Content
 
-    400 (Bad Request): The request is invalid.
+    * 400 Bad Request
+      * EventRouteEndpointInvalid - The endpoint provided does not exist or is not active.
+      * EventRouteFilterInvalid - The event route filter is invalid.
+      * EventRouteIdInvalid - The event route id is invalid.
+      * LimitExceeded - The maximum number of event routes allowed has been reached.
 - uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.eventroutes.delete
   summary: >-
     Deletes an event route.
 
     Status codes:
 
-    200 (OK): Success.
+    * 204 No Content
 
-    404 (Not Found): There is no event route with the provided id.
+    * 404 Not Found
+      * EventRouteNotFound - The event route was not found.
 - uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.eventroutes.getbyid
   summary: >-
     Retrieves an event route.
 
     Status codes:
 
-    200 (OK): Success.
+    * 200 OK
 
-    404 (Not Found): There is no event route with the provided id.
+    * 404 Not Found
+      * EventRouteNotFound - The event route was not found.
 - uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.eventroutes.list
   summary: >-
     Retrieves all event routes.
 
     Status codes:
 
-    200 (OK): Success.
-
-    400 (Bad Request): The request is invalid.
+    * 200 OK

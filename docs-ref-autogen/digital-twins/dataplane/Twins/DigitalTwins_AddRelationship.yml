@@ -3,25 +3,30 @@ uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digi
 name: DigitalTwins AddRelationship
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 summary: >-
   Adds a relationship between two digital twins.
 
   Status codes:
 
-  200 (OK): Success.
+  * 200 OK
 
-  400 (Bad Request): The request is invalid.
-
-  404 (Not Found): There is either no digital twin, target digital twin, or relationship with the provided id.
-
-  409 (Conflict): A relationship with the provided id already exists.
+  * 400 Bad Request
+    * InvalidArgument - The digital twin id, relationship id, or payload is invalid.
+    * InvalidRelationship - The relationship is invalid.
+    * OperationNotAllowed - The relationship cannot connect to the same digital twin.
+    * ValidationFailed - The relationship content is invalid.
+  * 404 Not Found
+    * DigitalTwinNotFound - The digital twin was not found.
+    * TargetTwinNotFound - The digital twin target of the relationship was not found.
+  * 412 Precondition Failed
+    * PreconditionFailed - The precondition check (If-Match or If-None-Match) failed.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: PUT https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-05-31-preview
+- content: PUT https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-10-31
 uriParameters:
 - name: id
   in: path
@@ -65,6 +70,11 @@ requestHeader:
 - name: If-None-Match
   in: header
   description: Only perform the operation if the entity does not already exist.
+  types:
+  - uid: string
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
   types:
   - uid: string
 definitions:
@@ -113,9 +123,9 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: CreateRelationshipBasicExample
+- name: Create a relationship
   request:
-    uri: PUT https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-05-31-preview
+    uri: PUT https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-10-31
     body: >-
       {
         "$targetId": "myTargetTwin",
@@ -128,11 +138,12 @@ examples:
         "$relationshipId": "myRelationshipId",
         "$sourceId": "mySourceTwin",
         "$targetId": "myTargetTwin",
-        "$relationshipName": "myRelationship"
+        "$relationshipName": "myRelationship",
+        "$etag": "W/\"1553dbf5-0052-4be8-bea8-46269075b503\""
       }
-- name: CreateRelationshipAdvancedExample
+- name: Create a relationship (with properties)
   request:
-    uri: PUT https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-05-31-preview
+    uri: PUT https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-10-31
     body: >-
       {
         "$targetId": "myTargetTwin",
@@ -149,7 +160,8 @@ examples:
         "$targetId": "myTargetTwin",
         "$relationshipName": "myRelationship",
         "relationshipProperty1": 1,
-        "relationshipProperty2": "some value"
+        "relationshipProperty2": "some value",
+        "$etag": "W/\"1553dbf5-0052-4be8-bea8-46269075b503\""
       }
 security:
 - name: oauth2

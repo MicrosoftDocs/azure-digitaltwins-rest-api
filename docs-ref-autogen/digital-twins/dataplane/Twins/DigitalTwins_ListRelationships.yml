@@ -3,24 +3,25 @@ uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digi
 name: DigitalTwins ListRelationships
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 summary: >-
   Retrieves the relationships from a digital twin.
 
   Status codes:
 
-  200 (OK): Success.
+  * 200 OK
 
-  400 (Bad Request): The request is invalid.
-
-  404 (Not Found): There is no digital twin with the provided id.
+  * 400 Bad Request
+    * InvalidArgument - The digital twin id is invalid.
+  * 404 Not Found
+    * DigitalTwinNotFound - The digital twin was not found.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/relationships?api-version=2020-05-31-preview
-- content: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/relationships?relationshipName={relationshipName}&api-version=2020-05-31-preview
+- content: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/relationships?api-version=2020-10-31
+- content: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/relationships?relationshipName={relationshipName}&api-version=2020-10-31
   isOptional: true
 uriParameters:
 - name: id
@@ -49,7 +50,12 @@ responses:
   description: Default response.
   types:
   - uid: ErrorResponse
-requestHeader: []
+requestHeader:
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
 definitions:
 - name: RelationshipCollection
   description: A collection of relationships which relate digital twins together.
@@ -109,9 +115,9 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: GetRelationship
+- name: List relationships
   request:
-    uri: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/mySourceTwin/relationships?api-version=2020-05-31-preview
+    uri: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/mySourceTwin/relationships?api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-
@@ -122,6 +128,7 @@ examples:
             "$relationshipId": "firstRelationshipId",
             "$targetId": "targetTwinId",
             "$relationshipName": "myRelationship",
+            "$etag": "W/\"1553dbf5-0052-4be8-bea8-46269075b503\"",
             "property": "value"
           },
           {
@@ -129,14 +136,15 @@ examples:
             "$relationshipId": "secondRelationshipId",
             "$targetId": "targetTwinId",
             "$relationshipName": "myRelationship",
+            "$etag": "W/\"2552a0a7-0666-4d5e-a67f-ece5b9b81fe0\"",
             "property": "value"
           }
         ],
         "nextLink": "url-to-next-page"
       }
-- name: GetRelationshipByName
+- name: List relationships by name
   request:
-    uri: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/mySourceTwin/relationships?relationshipName=myRelationship&api-version=2020-05-31-preview
+    uri: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/mySourceTwin/relationships?relationshipName=myRelationship&api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-
@@ -147,6 +155,7 @@ examples:
             "$relationshipId": "firstRelationshipId",
             "$targetId": "targetTwinId",
             "$relationshipName": "myRelationship",
+            "$etag": "W/\"1553dbf5-0052-4be8-bea8-46269075b503\"",
             "property": "value"
           },
           {
@@ -154,6 +163,7 @@ examples:
             "$relationshipId": "secondRelationshipId",
             "$targetId": "targetTwinId",
             "$relationshipName": "myRelationship",
+            "$etag": "W/\"2552a0a7-0666-4d5e-a67f-ece5b9b81fe0\"",
             "property": "value"
           }
         ],

@@ -3,23 +3,27 @@ uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.models.dig
 name: DigitalTwinModels Add
 service: Azure Digital Twins
 groupName: Models
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 summary: >-
   Uploads one or more models. When any error occurs, no models are uploaded.
 
   Status codes:
 
-  200 (OK): Success.
+  * 201 Created
 
-  400 (Bad Request): The request is invalid.
-
-  409 (Conflict): One or more of the provided models already exist.
+  * 400 Bad Request
+    * DTDLParserError - The models provided are not valid DTDL.
+    * InvalidArgument - The model id is invalid.
+    * LimitExceeded - The maximum number of model ids allowed in 'dependenciesFor' has been reached.
+    * ModelVersionNotSupported - The version of DTDL used is not supported.
+  * 409 Conflict
+    * ModelAlreadyExists - The model provided already exists.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: POST https://digitaltwins-name.digitaltwins.azure.net/models?api-version=2020-05-31-preview
+- content: POST https://digitaltwins-name.digitaltwins.azure.net/models?api-version=2020-10-31
 uriParameters:
 - name: api-version
   in: query
@@ -31,7 +35,7 @@ responses:
 - name: 201 Created
   description: Success
   types:
-  - uid: ModelData
+  - uid: DigitalTwinsModelData
     isArray: true
 - name: Other Status Codes
   description: Default response.
@@ -46,9 +50,14 @@ requestBody:
     types:
     - uid: object
       isArray: true
-requestHeader: []
+requestHeader:
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
 definitions:
-- name: ModelData
+- name: DigitalTwinsModelData
   description: A model definition and metadata for that model.
   kind: object
   properties:
@@ -129,9 +138,9 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: ModelAdd
+- name: Add models
   request:
-    uri: POST https://digitaltwins-name.digitaltwins.azure.net/models?api-version=2020-05-31-preview
+    uri: POST https://digitaltwins-name.digitaltwins.azure.net/models?api-version=2020-10-31
     body: >-
       [
         {
@@ -162,7 +171,7 @@ examples:
         }
       ]
   responses:
-  - statusCode: "200"
+  - statusCode: "201"
     body: >-
       [
         {
