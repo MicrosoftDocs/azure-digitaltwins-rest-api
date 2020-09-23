@@ -1,0 +1,154 @@
+### YamlMime:RESTOperationGroup
+uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins
+name: Twins
+apiVersion: 2020-05-31-preview
+service: Azure Digital Twins
+operations:
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_add
+  summary: >-
+    Adds or replaces a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    412 (Precondition Failed): The model is decommissioned or the digital twin already exists (when using If-None-Match: *).
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_addrelationship
+  summary: >-
+    Adds a relationship between two digital twins.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is either no digital twin, target digital twin, or relationship with the provided id.
+
+    409 (Conflict): A relationship with the provided id already exists.
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_delete
+  summary: >-
+    Deletes a digital twin. All relationships referencing the digital twin must already be deleted.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is no digital twin with the provided id.
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_deleterelationship
+  summary: >-
+    Deletes a relationship between two digital twins.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    404 (Not Found): There is either no digital twin or relationship with the provided id.
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_getbyid
+  summary: >-
+    Retrieves a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    404 (Not Found): There is no digital twin with the provided id.
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_getcomponent
+  summary: >-
+    Retrieves a component from a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    404 (Not Found): There is either no digital twin with the provided id or the component path is invalid.
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_getrelationshipbyid
+  summary: >-
+    Retrieves a relationship between two digital twins.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    404 (Not Found): There is either no digital twin or relationship with the provided id.
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_listincomingrelationships
+  summary: >-
+    Retrieves all incoming relationship for a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is no digital twin with the provided id.
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_listrelationships
+  summary: >-
+    Retrieves the relationships from a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is no digital twin with the provided id.
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_sendcomponenttelemetry
+  summary: >-
+    Sends telemetry on behalf of a component in a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is either no digital twin with the provided id or the component path is invalid.
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_sendtelemetry
+  summary: >-
+    Sends telemetry on behalf of a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is no digital twin with the provided id.
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_update
+  summary: >-
+    Updates a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is no digital twin with the provided id.
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_updatecomponent
+  summary: >-
+    Updates a component on a digital twin.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is either no digital twin with the provided id or the component path is invalid.
+- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_updaterelationship
+  summary: >-
+    Updates the properties on a relationship between two digital twins.
+
+    Status codes:
+
+    200 (OK): Success.
+
+    400 (Bad Request): The request is invalid.
+
+    404 (Not Found): There is either no digital twin or relationship with the provided id.
