@@ -3,22 +3,26 @@ uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.models.dig
 name: DigitalTwinModels GetById
 service: Azure Digital Twins
 groupName: Models
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 summary: >-
   Retrieves model metadata and optionally the model definition.
 
   Status codes:
 
-  200 (OK): Success.
+  * 200 OK
 
-  404 (Not Found): There is no model with the provided id.
+  * 400 Bad Request
+    * InvalidArgument - The model id is invalid.
+    * MissingArgument - The model id was not provided.
+  * 404 Not Found
+    * ModelNotFound - The model was not found.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-name.digitaltwins.azure.net/models/{id}?api-version=2020-05-31-preview
-- content: GET https://digitaltwins-name.digitaltwins.azure.net/models/{id}?includeModelDefinition={includeModelDefinition}&api-version=2020-05-31-preview
+- content: GET https://digitaltwins-name.digitaltwins.azure.net/models/{id}?api-version=2020-10-31
+- content: GET https://digitaltwins-name.digitaltwins.azure.net/models/{id}?includeModelDefinition={includeModelDefinition}&api-version=2020-10-31
   isOptional: true
 uriParameters:
 - name: id
@@ -42,14 +46,19 @@ responses:
 - name: 200 OK
   description: Success
   types:
-  - uid: ModelData
+  - uid: DigitalTwinsModelData
 - name: Other Status Codes
   description: Default response.
   types:
   - uid: ErrorResponse
-requestHeader: []
+requestHeader:
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
 definitions:
-- name: ModelData
+- name: DigitalTwinsModelData
   description: A model definition and metadata for that model.
   kind: object
   properties:
@@ -130,9 +139,9 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: ModelGetById
+- name: Get a model by id
   request:
-    uri: GET https://digitaltwins-name.digitaltwins.azure.net/models/dtmi:com:example:Sample;1?api-version=2020-05-31-preview
+    uri: GET https://digitaltwins-name.digitaltwins.azure.net/models/dtmi:com:example:Sample;1?api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-
@@ -141,9 +150,9 @@ examples:
         "uploadTime": "2020-03-01T17:32:28Z",
         "decommissioned": false
       }
-- name: ModelGetByIdWithIncludeModelDefinition
+- name: Get a model by id (with definition)
   request:
-    uri: GET https://digitaltwins-name.digitaltwins.azure.net/models/dtmi:com:example:Sample;1?includeModelDefinition=True&api-version=2020-05-31-preview
+    uri: GET https://digitaltwins-name.digitaltwins.azure.net/models/dtmi:com:example:Sample;1?includeModelDefinition=True&api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-

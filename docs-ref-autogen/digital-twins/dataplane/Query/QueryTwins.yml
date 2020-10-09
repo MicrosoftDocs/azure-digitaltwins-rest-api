@@ -3,21 +3,25 @@ uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.query.quer
 name: Query Twins
 service: Azure Digital Twins
 groupName: Query
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 summary: >-
   Executes a query that allows traversing relationships and filtering by property values.
 
   Status codes:
 
-  200 (OK): Success.
+  * 200 OK
 
-  400 (Bad Request): The request is invalid.
+  * 400 Bad Request
+    * BadRequest - The continuation token is invalid.
+    * SqlQueryError - The query contains some errors.
+  * 429 Too Many Requests
+    * QuotaReachedError - The maximum query rate limit has been reached.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: POST https://digitaltwins-name.digitaltwins.azure.net/query?api-version=2020-05-31-preview
+- content: POST https://digitaltwins-name.digitaltwins.azure.net/query?api-version=2020-10-31
 uriParameters:
 - name: api-version
   in: query
@@ -50,13 +54,23 @@ requestBody:
     description: A token which is used to retrieve the next set of results from a previous query.
     types:
     - uid: string
-requestHeader: []
+requestHeader:
+- name: max-items-per-page
+  in: header
+  description: The maximum number of items to retrieve per request. The server may choose to return less than the requested number.
+  types:
+  - uid: integer
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
 definitions:
 - name: QueryResult
   description: The results of a query operation and an optional continuation token.
   kind: object
   properties:
-  - name: items
+  - name: value
     description: The query results.
     types:
     - uid: object
@@ -122,9 +136,9 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: QueryFirstPage
+- name: Query for digital twins
   request:
-    uri: POST https://digitaltwins-name.digitaltwins.azure.net/query?api-version=2020-05-31-preview
+    uri: POST https://digitaltwins-name.digitaltwins.azure.net/query?api-version=2020-10-31
     body: >-
       {
         "query": "SELECT * FROM DIGITALTWINS WHERE temp = 79"
@@ -133,7 +147,7 @@ examples:
   - statusCode: "200"
     body: >-
       {
-        "items": [
+        "value": [
           {
             "$dtId": "Twin-01",
             "$metadata": {
@@ -164,9 +178,9 @@ examples:
         ],
         "continuationToken": "<token>"
       }
-- name: QueryNextPage
+- name: Retrieve paged query results
   request:
-    uri: POST https://digitaltwins-name.digitaltwins.azure.net/query?api-version=2020-05-31-preview
+    uri: POST https://digitaltwins-name.digitaltwins.azure.net/query?api-version=2020-10-31
     body: >-
       {
         "continuationToken": "<continuationToken from previous query>"
@@ -175,7 +189,7 @@ examples:
   - statusCode: "200"
     body: >-
       {
-        "items": [
+        "value": [
           {
             "$dtId": "Twin-04",
             "$metadata": {
@@ -205,9 +219,9 @@ examples:
           }
         ]
       }
-- name: QueryJoin
+- name: Query for digital twins through a relationship
   request:
-    uri: POST https://digitaltwins-name.digitaltwins.azure.net/query?api-version=2020-05-31-preview
+    uri: POST https://digitaltwins-name.digitaltwins.azure.net/query?api-version=2020-10-31
     body: >-
       {
         "query": "SELECT Widget, Gadget FROM DIGITALTWINS Widget JOIN Gadget RELATED Widget.Contains WHERE Widget.$dtId = 'Twin-01'"
@@ -216,7 +230,7 @@ examples:
   - statusCode: "200"
     body: >-
       {
-        "items": [
+        "value": [
           {
             "Widget": {
               "$dtId": "Twin-01",

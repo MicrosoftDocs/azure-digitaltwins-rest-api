@@ -3,23 +3,28 @@ uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digi
 name: DigitalTwins Update
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 summary: >-
   Updates a digital twin.
 
   Status codes:
 
-  200 (OK): Success.
+  * 204 No Content
 
-  400 (Bad Request): The request is invalid.
-
-  404 (Not Found): There is no digital twin with the provided id.
+  * 400 Bad Request
+    * InvalidArgument - The digital twin id or payload is invalid.
+    * JsonPatchInvalid - The JSON Patch provided is invalid.
+    * ValidationFailed - Applying the patch results in an invalid digital twin.
+  * 404 Not Found
+    * DigitalTwinNotFound - The digital twin was not found.
+  * 412 Precondition Failed
+    * PreconditionFailed - The precondition check (If-Match or If-None-Match) failed.
 consumes:
 - application/json-patch+json
 produces:
 - application/json
 paths:
-- content: PATCH https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}?api-version=2020-05-31-preview
+- content: PATCH https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}?api-version=2020-10-31
 uriParameters:
 - name: id
   in: path
@@ -58,6 +63,11 @@ requestHeader:
 - name: If-Match
   in: header
   description: Only perform the operation if the entity's etag matches one of the etags provided or * is provided.
+  types:
+  - uid: string
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
   types:
   - uid: string
 definitions:
@@ -106,9 +116,9 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: PatchTwinBasicExample
+- name: Update a digital twin
   request:
-    uri: PATCH https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myNewTwinId?api-version=2020-05-31-preview
+    uri: PATCH https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myNewTwinId?api-version=2020-10-31
     body: >-
       [
         {
@@ -120,9 +130,9 @@ examples:
   responses:
   - statusCode: "202"
   - statusCode: "204"
-- name: PatchTwinAdvancedExample
+- name: Update a digital twin (multiple updates)
   request:
-    uri: PATCH https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myNewTwinId?api-version=2020-05-31-preview
+    uri: PATCH https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myNewTwinId?api-version=2020-10-31
     body: >-
       [
         {

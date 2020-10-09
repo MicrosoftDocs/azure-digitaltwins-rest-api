@@ -3,23 +3,26 @@ uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digi
 name: DigitalTwins SendComponentTelemetry
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 summary: >-
   Sends telemetry on behalf of a component in a digital twin.
 
   Status codes:
 
-  200 (OK): Success.
+  * 204 No Content
 
-  400 (Bad Request): The request is invalid.
-
-  404 (Not Found): There is either no digital twin with the provided id or the component path is invalid.
+  * 400 Bad Request
+    * InvalidArgument - The digital twin id, message id, or component path is invalid.
+    * ValidationFailed - The telemetry content is invalid.
+  * 404 Not Found
+    * DigitalTwinNotFound - The digital twin was not found.
+    * ComponentNotFound - The component path was not found.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: POST https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/components/{componentPath}/telemetry?api-version=2020-05-31-preview
+- content: POST https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/components/{componentPath}/telemetry?api-version=2020-10-31
 uriParameters:
 - name: id
   in: path
@@ -55,15 +58,20 @@ requestBody:
     types:
     - uid: object
 requestHeader:
-- name: dt-id
+- name: Message-Id
   in: header
   isRequired: true
   description: A unique message identifier (in the scope of the digital twin id) that is commonly used for de-duplicating messages.
   types:
   - uid: string
-- name: dt-timestamp
+- name: Telemetry-Source-Time
   in: header
   description: An RFC 3339 timestamp that identifies the time the telemetry was measured.
+  types:
+  - uid: string
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
   types:
   - uid: string
 definitions:
@@ -112,17 +120,17 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: SendTelemetry
+- name: Send telemetry in a component
   request:
-    uri: POST https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myTwinId/components/myComponent/telemetry?api-version=2020-05-31-preview
+    uri: POST https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myTwinId/components/myComponent/telemetry?api-version=2020-10-31
     body: >-
       {
         "temperature": 1
       }
     headers:
-    - name: dt-id
+    - name: Message-Id
       value: e5ca50dd-ca31-4fae-8d84-3af5a72b10c5
-    - name: dt-timestamp
+    - name: Telemetry-Source-Time
       value: 1985-04-12T23:20:50.52Z
   responses:
   - statusCode: "204"

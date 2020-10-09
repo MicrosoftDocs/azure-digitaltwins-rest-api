@@ -3,21 +3,19 @@ uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.eventroute
 name: List
 service: Azure Digital Twins
 groupName: Event Routes
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 summary: >-
   Retrieves all event routes.
 
   Status codes:
 
-  200 (OK): Success.
-
-  400 (Bad Request): The request is invalid.
+  * 200 OK
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-name.digitaltwins.azure.net/eventroutes?api-version=2020-05-31-preview
+- content: GET https://digitaltwins-name.digitaltwins.azure.net/eventroutes?api-version=2020-10-31
 uriParameters:
 - name: api-version
   in: query
@@ -35,11 +33,16 @@ responses:
   types:
   - uid: ErrorResponse
 requestHeader:
-- name: x-ms-max-item-count
+- name: max-items-per-page
   in: header
-  description: The maximum number of items to retrieve per request. The server may choose to return less than the requested max.
+  description: The maximum number of items to retrieve per request. The server may choose to return less than the requested number.
   types:
   - uid: integer
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
 definitions:
 - name: EventRouteCollection
   description: A collection of EventRoute objects.
@@ -116,9 +119,9 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: EventRoutesList
+- name: List event routes
   request:
-    uri: GET https://digitaltwins-name.digitaltwins.azure.net/eventroutes?api-version=2020-05-31-preview
+    uri: GET https://digitaltwins-name.digitaltwins.azure.net/eventroutes?api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-
