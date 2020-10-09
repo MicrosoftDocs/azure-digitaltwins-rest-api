@@ -3,21 +3,22 @@ uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.eventroute
 name: Get By Id
 service: Azure Digital Twins
 groupName: Event Routes
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 summary: >-
   Retrieves an event route.
 
   Status codes:
 
-  200 (OK): Success.
+  * 200 OK
 
-  404 (Not Found): There is no event route with the provided id.
+  * 404 Not Found
+    * EventRouteNotFound - The event route was not found.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-name.digitaltwins.azure.net/eventroutes/{id}?api-version=2020-05-31-preview
+- content: GET https://digitaltwins-name.digitaltwins.azure.net/eventroutes/{id}?api-version=2020-10-31
 uriParameters:
 - name: id
   in: path
@@ -40,7 +41,17 @@ responses:
   description: Default response.
   types:
   - uid: ErrorResponse
-requestHeader: []
+requestHeader:
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
+- name: tracestate
+  in: header
+  description: Provides vendor-specific trace identification information and is a companion to traceparent.
+  types:
+  - uid: string
 definitions:
 - name: EventRoute
   description: A route which directs notification and telemetry events to an endpoint. Endpoints are a destination outside of Azure Digital Twins such as an EventHub.
@@ -104,9 +115,9 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: EventRouteGet
+- name: Get an event route by id
   request:
-    uri: GET https://digitaltwins-name.digitaltwins.azure.net/eventroutes/eventroute-001?api-version=2020-05-31-preview
+    uri: GET https://digitaltwins-name.digitaltwins.azure.net/eventroutes/eventroute-001?api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-

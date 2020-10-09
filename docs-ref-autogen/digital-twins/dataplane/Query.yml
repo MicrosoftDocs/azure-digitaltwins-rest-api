@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperationGroup
 uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.query
 name: Query
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 service: Azure Digital Twins
 operations:
 - uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.query.querytwins
@@ -10,6 +10,10 @@ operations:
 
     Status codes:
 
-    200 (OK): Success.
+    * 200 OK
 
-    400 (Bad Request): The request is invalid.
+    * 400 Bad Request
+      * BadRequest - The continuation token is invalid.
+      * SqlQueryError - The query contains some errors.
+    * 429 Too Many Requests
+      * QuotaReachedError - The maximum query rate limit has been reached.

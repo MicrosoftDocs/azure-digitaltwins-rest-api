@@ -3,23 +3,24 @@ uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digi
 name: DigitalTwins ListIncomingRelationships
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 summary: >-
   Retrieves all incoming relationship for a digital twin.
 
   Status codes:
 
-  200 (OK): Success.
+  * 200 OK
 
-  400 (Bad Request): The request is invalid.
-
-  404 (Not Found): There is no digital twin with the provided id.
+  * 400 Bad Request
+    * InvalidArgument - The digital twin id is invalid.
+  * 404 Not Found
+    * DigitalTwinNotFound - The digital twin was not found.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/incomingrelationships?api-version=2020-05-31-preview
+- content: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/incomingrelationships?api-version=2020-10-31
 uriParameters:
 - name: id
   in: path
@@ -42,7 +43,17 @@ responses:
   description: Default response.
   types:
   - uid: ErrorResponse
-requestHeader: []
+requestHeader:
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
+- name: tracestate
+  in: header
+  description: Provides vendor-specific trace identification information and is a companion to traceparent.
+  types:
+  - uid: string
 definitions:
 - name: IncomingRelationshipCollection
   description: A collection of incoming relationships which relate digital twins together.
@@ -122,9 +133,9 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: GetIncomingRelationship
+- name: List incoming relationships
   request:
-    uri: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/mySourceTwin/incomingrelationships?api-version=2020-05-31-preview
+    uri: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/mySourceTwin/incomingrelationships?api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-

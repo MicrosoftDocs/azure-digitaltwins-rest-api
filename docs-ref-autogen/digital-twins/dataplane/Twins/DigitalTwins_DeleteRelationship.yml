@@ -3,21 +3,27 @@ uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digi
 name: DigitalTwins DeleteRelationship
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 summary: >-
   Deletes a relationship between two digital twins.
 
   Status codes:
 
-  200 (OK): Success.
+  * 204 No Content
 
-  404 (Not Found): There is either no digital twin or relationship with the provided id.
+  * 400 Bad Request
+    * InvalidArgument - The digital twin id or relationship id is invalid.
+  * 404 Not Found
+    * DigitalTwinNotFound - The digital twin was not found.
+    * RelationshipNotFound - The relationship was not found.
+  * 412 Precondition Failed
+    * PreconditionFailed - The precondition check (If-Match or If-None-Match) failed.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: DELETE https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-05-31-preview
+- content: DELETE https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-10-31
 uriParameters:
 - name: id
   in: path
@@ -48,6 +54,16 @@ requestHeader:
 - name: If-Match
   in: header
   description: Only perform the operation if the entity's etag matches one of the etags provided or * is provided.
+  types:
+  - uid: string
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
+- name: tracestate
+  in: header
+  description: Provides vendor-specific trace identification information and is a companion to traceparent.
   types:
   - uid: string
 definitions:
@@ -96,9 +112,9 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: DeleteRelationship
+- name: Delete a relationship
   request:
-    uri: DELETE https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2020-05-31-preview
+    uri: DELETE https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2020-10-31
   responses:
   - statusCode: "204"
 security:

@@ -3,23 +3,28 @@ uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digi
 name: DigitalTwins UpdateComponent
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 summary: >-
   Updates a component on a digital twin.
 
   Status codes:
 
-  200 (OK): Success.
+  * 204 No Content
 
-  400 (Bad Request): The request is invalid.
-
-  404 (Not Found): There is either no digital twin with the provided id or the component path is invalid.
+  * 400 Bad Request
+    * InvalidArgument - The digital twin id, component path, or payload is invalid.
+    * JsonPatchInvalid - The JSON Patch provided is invalid.
+    * ValidationFailed - Applying the patch results in an invalid digital twin.
+  * 404 Not Found
+    * DigitalTwinNotFound - The digital twin was not found.
+  * 412 Precondition Failed
+    * PreconditionFailed - The precondition check (If-Match or If-None-Match) failed.
 consumes:
 - application/json-patch+json
 produces:
 - application/json
 paths:
-- content: PATCH https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/components/{componentPath}?api-version=2020-05-31-preview
+- content: PATCH https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/components/{componentPath}?api-version=2020-10-31
 uriParameters:
 - name: id
   in: path
@@ -64,6 +69,16 @@ requestHeader:
 - name: If-Match
   in: header
   description: Only perform the operation if the entity's etag matches one of the etags provided or * is provided.
+  types:
+  - uid: string
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
+- name: tracestate
+  in: header
+  description: Provides vendor-specific trace identification information and is a companion to traceparent.
   types:
   - uid: string
 definitions:
@@ -112,9 +127,9 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: PatchComponentBasicExample
+- name: Update a component in a digital twin
   request:
-    uri: PATCH https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myTwinId/components/myComponent?api-version=2020-05-31-preview
+    uri: PATCH https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myTwinId/components/myComponent?api-version=2020-10-31
     body: >-
       [
         {
@@ -126,9 +141,9 @@ examples:
   responses:
   - statusCode: "202"
   - statusCode: "204"
-- name: PatchComponentAdvancedExample
+- name: Update a component in a digital twin (multiple updates)
   request:
-    uri: PATCH https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myTwinId/components/myComponent?api-version=2020-05-31-preview
+    uri: PATCH https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myTwinId/components/myComponent?api-version=2020-10-31
     body: >-
       [
         {

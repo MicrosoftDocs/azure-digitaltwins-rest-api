@@ -3,21 +3,24 @@ uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digi
 name: DigitalTwins GetById
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 summary: >-
   Retrieves a digital twin.
 
   Status codes:
 
-  200 (OK): Success.
+  * 200 OK
 
-  404 (Not Found): There is no digital twin with the provided id.
+  * 400 Bad Request
+    * InvalidArgument - The digital twin id is invalid.
+  * 404 Not Found
+    * DigitalTwinNotFound - The digital twin was not found.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}?api-version=2020-05-31-preview
+- content: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}?api-version=2020-10-31
 uriParameters:
 - name: id
   in: path
@@ -43,7 +46,17 @@ responses:
   description: Default response.
   types:
   - uid: ErrorResponse
-requestHeader: []
+requestHeader:
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
+- name: tracestate
+  in: header
+  description: Provides vendor-specific trace identification information and is a companion to traceparent.
+  types:
+  - uid: string
 definitions:
 - name: ErrorResponse
   description: Error response.
@@ -90,9 +103,9 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: GetTwin
+- name: Get a digital twin by id
   request:
-    uri: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myTwinId?api-version=2020-05-31-preview
+    uri: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myTwinId?api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-
@@ -127,7 +140,6 @@ examples:
         },
         "component1": {
           "$metadata": {
-            "$model": "dtmi:com:example:interfaces:subInterfaceName;1",
             "componentProperty": {
               "desiredValue": "some value",
               "desiredVersion": 1,

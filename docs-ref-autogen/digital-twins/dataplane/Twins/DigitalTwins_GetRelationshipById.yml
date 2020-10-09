@@ -3,21 +3,25 @@ uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digi
 name: DigitalTwins GetRelationshipById
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-05-31-preview
+apiVersion: 2020-10-31
 summary: >-
   Retrieves a relationship between two digital twins.
 
   Status codes:
 
-  200 (OK): Success.
+  * 200 OK
 
-  404 (Not Found): There is either no digital twin or relationship with the provided id.
+  * 400 Bad Request
+    * InvalidArgument - The digital twin id or relationship id is invalid.
+  * 404 Not Found
+    * DigitalTwinNotFound - The digital twin was not found.
+    * RelationshipNotFound - The relationship was not found.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-05-31-preview
+- content: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-10-31
 uriParameters:
 - name: id
   in: path
@@ -49,7 +53,17 @@ responses:
   description: Default response.
   types:
   - uid: ErrorResponse
-requestHeader: []
+requestHeader:
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
+- name: tracestate
+  in: header
+  description: Provides vendor-specific trace identification information and is a companion to traceparent.
+  types:
+  - uid: string
 definitions:
 - name: ErrorResponse
   description: Error response.
@@ -96,9 +110,9 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: GetRelationshipById
+- name: Get a relationship by id
   request:
-    uri: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-05-31-preview
+    uri: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-
@@ -107,6 +121,7 @@ examples:
         "$sourceId": "mySourceTwin",
         "$targetId": "myTargetTwin",
         "$relationshipName": "myRelationship",
+        "$etag": "W/\"1553dbf5-0052-4be8-bea8-46269075b503\"",
         "relationshipProperty": "some value"
       }
 security:
