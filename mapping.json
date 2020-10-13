@@ -16,7 +16,7 @@
 			  "sub_group_toc_title": "Data Plane"
             },
 			{
-              "source": "digital-twins-control/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/preview/2020-03-01-preview/digitaltwins.json",
+              "source": "digital-twins-control/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2020-10-31/digitaltwins.json",
 			  "sub_group_toc_title": "Control Plane"
             }
           ]
