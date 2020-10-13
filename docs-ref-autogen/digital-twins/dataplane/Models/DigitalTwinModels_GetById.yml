@@ -57,6 +57,11 @@ requestHeader:
   description: Identifies the request in a distributed tracing system.
   types:
   - uid: string
+- name: tracestate
+  in: header
+  description: Provides vendor-specific trace identification information and is a companion to traceparent.
+  types:
+  - uid: string
 definitions:
 - name: DigitalTwinsModelData
   description: A model definition and metadata for that model.
