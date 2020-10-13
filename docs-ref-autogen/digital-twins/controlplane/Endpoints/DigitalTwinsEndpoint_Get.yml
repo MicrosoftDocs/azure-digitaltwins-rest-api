@@ -3,14 +3,14 @@ uid: management.azure.com.digital-twins.controlplane.endpoints.digitaltwinsendpo
 name: DigitalTwinsEndpoint Get
 service: Azure Digital Twins
 groupName: Endpoints
-apiVersion: 2020-03-01-preview
+apiVersion: 2020-10-31
 summary: Get DigitalTwinsInstances Endpoint.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}/endpoints/{endpointName}?api-version=2020-03-01-preview
+- content: GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}/endpoints/{endpointName}?api-version=2020-10-31
 uriParameters:
 - name: subscriptionId
   in: path
@@ -30,13 +30,14 @@ uriParameters:
   description: The name of the DigitalTwinsInstance.
   types:
   - uid: string
+  pattern: ^(?!-)[A-Za-z0-9-]{3,63}(?<!-)$
 - name: endpointName
   in: path
   isRequired: true
   description: Name of Endpoint Resource.
   types:
   - uid: string
-  pattern: ^[A-Za-z0-9-._]{1,64}$
+  pattern: ^(?![0-9]+$)(?!-)[a-zA-Z0-9-]{2,49}[a-zA-Z0-9]$
 - name: api-version
   in: query
   isRequired: true
@@ -109,7 +110,7 @@ definitions:
     - uid: ErrorDefinition
       isArray: true
 - name: ServiceBus
-  description: properties related to servicebus.
+  description: Properties related to ServiceBus.
   kind: object
   properties:
   - name: endpointType
@@ -127,34 +128,22 @@ definitions:
     description: Time when the Endpoint was added to DigitalTwinsInstance.
     types:
     - uid: string
-  - name: tags
-    description: The resource tags.
+  - name: deadLetterSecret
+    description: Dead letter storage secret. Will be obfuscated during read.
     types:
-    - uid: object
-      isDictionary: true
-      additionalTypes:
-      - uid: string
-      - uid: string
+    - uid: string
   - name: primaryConnectionString
-    description: PrimaryConnectionString of the endpoint. Will be obfuscated during read
+    description: PrimaryConnectionString of the endpoint. Will be obfuscated during read.
     types:
     - uid: string
   - name: secondaryConnectionString
-    description: SecondaryConnectionString of the endpoint. Will be obfuscated during read
+    description: SecondaryConnectionString of the endpoint. Will be obfuscated during read.
     types:
     - uid: string
 - name: EventHub
-  description: properties related to eventhub.
+  description: Properties related to EventHub.
   kind: object
   properties:
-  - name: connectionString-PrimaryKey
-    description: PrimaryConnectionString of the endpoint. Will be obfuscated during read
-    types:
-    - uid: string
-  - name: connectionString-SecondaryKey
-    description: SecondaryConnectionString of the endpoint. Will be obfuscated during read
-    types:
-    - uid: string
   - name: endpointType
     description: The type of Digital Twins endpoint
     types:
@@ -170,16 +159,20 @@ definitions:
     description: Time when the Endpoint was added to DigitalTwinsInstance.
     types:
     - uid: string
-  - name: tags
-    description: The resource tags.
+  - name: deadLetterSecret
+    description: Dead letter storage secret. Will be obfuscated during read.
     types:
-    - uid: object
-      isDictionary: true
-      additionalTypes:
-      - uid: string
-      - uid: string
+    - uid: string
+  - name: connectionStringPrimaryKey
+    description: PrimaryConnectionString of the endpoint. Will be obfuscated during read.
+    types:
+    - uid: string
+  - name: connectionStringSecondaryKey
+    description: SecondaryConnectionString of the endpoint. Will be obfuscated during read.
+    types:
+    - uid: string
 - name: EventGrid
-  description: properties related to eventgrid.
+  description: Properties related to EventGrid.
   kind: object
   properties:
   - name: endpointType
@@ -197,24 +190,20 @@ definitions:
     description: Time when the Endpoint was added to DigitalTwinsInstance.
     types:
     - uid: string
-  - name: tags
-    description: The resource tags.
+  - name: deadLetterSecret
+    description: Dead letter storage secret. Will be obfuscated during read.
     types:
-    - uid: object
-      isDictionary: true
-      additionalTypes:
-      - uid: string
-      - uid: string
+    - uid: string
   - name: TopicEndpoint
     description: EventGrid Topic Endpoint
     types:
     - uid: string
   - name: accessKey1
-    description: EventGrid secondary accesskey. Will be obfuscated during read
+    description: EventGrid secondary accesskey. Will be obfuscated during read.
     types:
     - uid: string
   - name: accessKey2
-    description: EventGrid secondary accesskey. Will be obfuscated during read
+    description: EventGrid secondary accesskey. Will be obfuscated during read.
     types:
     - uid: string
 - name: EndpointProvisioningState
@@ -236,22 +225,40 @@ definitions:
   - name: Canceled
     types:
     - uid: string
+  - name: Deleted
+    types:
+    - uid: string
+  - name: Warning
+    types:
+    - uid: string
+  - name: Suspending
+    types:
+    - uid: string
+  - name: Restoring
+    types:
+    - uid: string
+  - name: Moving
+    types:
+    - uid: string
+  - name: Disabled
+    types:
+    - uid: string
 examples:
 - name: Get a DigitalTwinsInstance endpoint
   request:
-    uri: GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus?api-version=2020-03-01-preview
+    uri: GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus?api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-
       {
-        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/DigitalTwinsInstance/myDigitalTwinsService/endpoints/myServiceBus",
-        "type": "Microsoft.DigitalTwins/digitalTwinsInstance/endpoints",
-        "name": "myendpoint",
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances/endpoints",
+        "name": "myServiceBus",
         "properties": {
           "endpointType": "ServiceBus",
-          "provisioningState": "Provisioned",
-          "primaryConnectionString": "************",
-          "secondaryConnectionString": "************",
+          "provisioningState": "Succeeded",
+          "primaryConnectionString": "Endpoint=sb://***/;SharedAccessKeyName=***;SharedAccessKey=***;EntityPath=***",
+          "secondaryConnectionString": "Endpoint=sb://***/;SharedAccessKeyName=***;SharedAccessKey=***;EntityPath=***",
           "createdTime": "2019-11-19T01:10:34.350Z"
         }
       }

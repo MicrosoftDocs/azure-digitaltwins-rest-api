@@ -3,14 +3,14 @@ uid: management.azure.com.digital-twins.controlplane.checknameavailability.digit
 name: DigitalTwins CheckNameAvailability
 service: Azure Digital Twins
 groupName: Check Name Availability
-apiVersion: 2020-03-01-preview
+apiVersion: 2020-10-31
 summary: Check if a DigitalTwinsInstance name is available.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: POST https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.DigitalTwins/locations/{location}/checkNameAvailability?api-version=2020-03-01-preview
+- content: POST https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.DigitalTwins/locations/{location}/checkNameAvailability?api-version=2020-10-31
 uriParameters:
 - name: subscriptionId
   in: path
@@ -64,10 +64,6 @@ definitions:
     description: Specifies a Boolean value that indicates if the name is available.
     types:
     - uid: boolean
-  - name: name
-    description: The name that was checked.
-    types:
-    - uid: string
   - name: message
     description: Message indicating an unavailable name due to a conflict, or a description of the naming rules that are violated.
     types:
@@ -136,7 +132,7 @@ definitions:
 examples:
 - name: Check name Availability
   request:
-    uri: POST https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/WestUS/checkNameAvailability?api-version=2020-03-01-preview
+    uri: POST https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/WestUS2/checkNameAvailability?api-version=2020-10-31
     body: >-
       {
         "name": "myadtinstance",
@@ -147,7 +143,6 @@ examples:
     body: >-
       {
         "nameAvailable": false,
-        "name": "myadtinstance",
         "message": "Name 'myadtinstance' is already taken. Please specify a different name",
         "reason": "AlreadyExists"
       }

@@ -3,14 +3,14 @@ uid: management.azure.com.digital-twins.controlplane.digitaltwinsinstance.digita
 name: DigitalTwins List
 service: Azure Digital Twins
 groupName: Digital Twins Instance
-apiVersion: 2020-03-01-preview
+apiVersion: 2020-10-31
 summary: Get all the DigitalTwinsInstances in a subscription.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.DigitalTwins/digitalTwinsInstances?api-version=2020-03-01-preview
+- content: GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.DigitalTwins/digitalTwinsInstances?api-version=2020-10-31
 uriParameters:
 - name: subscriptionId
   in: path
@@ -67,7 +67,7 @@ definitions:
     - uid: string
   - name: properties.lastUpdatedTime
     isReadyOnly: true
-    description: Time when DigitalTwinsInstance was created.
+    description: Time when DigitalTwinsInstance was updated.
     types:
     - uid: string
   - name: properties.provisioningState
@@ -107,10 +107,6 @@ definitions:
       additionalTypes:
       - uid: string
       - uid: string
-  - name: sku
-    description: This property is reserved for future use, and will be ignored/omitted
-    types:
-    - uid: DigitalTwinsSkuInfo
 - name: ErrorDefinition
   description: Error definition.
   kind: object
@@ -150,50 +146,52 @@ definitions:
   - name: Canceled
     types:
     - uid: string
-- name: DigitalTwinsSkuInfo
-  description: Information about the SKU of the DigitalTwinsInstance.
-  kind: object
-  properties:
-  - name: name
-    description: The name of the SKU.
+  - name: Deleted
     types:
-    - uid: DigitalTwinsSku
-- name: DigitalTwinsSku
-  description: The name of the SKU.
-  kind: enum
-  properties:
-  - name: F1
+    - uid: string
+  - name: Warning
+    types:
+    - uid: string
+  - name: Suspending
+    types:
+    - uid: string
+  - name: Restoring
+    types:
+    - uid: string
+  - name: Moving
     types:
     - uid: string
 examples:
 - name: Get DigitalTwinsInstance resources by subscription
   request:
-    uri: GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/digitalTwinsInstances?api-version=2020-03-01-preview
+    uri: GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/digitalTwinsInstances?api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-
       {
         "value": [
           {
-            "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/DigitalTwinsInstance/myDigitalTwinsService",
-            "location": "westus",
-            "type": "Microsoft.DigitalTwins/DigitalTwinsInstance",
+            "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService",
+            "location": "westus2",
+            "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
             "name": "myDigitalTwinsService",
             "properties": {
               "createdTime": "2019-11-19T12:55:05.229Z",
-              "provisioningState": "Provisioning",
+              "lastUpdatedTime": "2019-11-19T12:55:07.229Z",
+              "provisioningState": "Succeeded",
               "hostName": "https://myDigitalTwinsService.api.wus2.ss.azuredigitaltwins-test.net"
             }
           },
           {
-            "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg2/providers/Microsoft.DigitalTwins/DigitalTwinsInstance/myDigitalTwinsService2",
-            "location": "westus",
-            "type": "Microsoft.DigitalTwins/DigitalTwinsInstance",
+            "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg2/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService2",
+            "location": "westus2",
+            "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
             "name": "myDigitalTwinsService2",
             "properties": {
               "createdTime": "2019-11-19T12:55:05.229Z",
+              "lastUpdatedTime": "2019-11-19T12:55:07.229Z",
               "provisioningState": "Provisioning",
-              "hostName": "https://myDigitalTwinsService2.api.wus2.ss.azuredigitaltwins-test.net"
+              "hostName": null
             }
           }
         ]

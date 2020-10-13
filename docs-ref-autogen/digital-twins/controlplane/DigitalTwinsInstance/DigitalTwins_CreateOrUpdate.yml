@@ -3,14 +3,14 @@ uid: management.azure.com.digital-twins.controlplane.digitaltwinsinstance.digita
 name: DigitalTwins CreateOrUpdate
 service: Azure Digital Twins
 groupName: Digital Twins Instance
-apiVersion: 2020-03-01-preview
+apiVersion: 2020-10-31
 summary: Create or update the metadata of a DigitalTwinsInstance. The usual pattern to modify a property is to retrieve the DigitalTwinsInstance and security metadata, and then combine them with the modified values in a new body to update the DigitalTwinsInstance.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}?api-version=2020-03-01-preview
+- content: PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}?api-version=2020-10-31
 uriParameters:
 - name: subscriptionId
   in: path
@@ -30,6 +30,7 @@ uriParameters:
   description: The name of the DigitalTwinsInstance.
   types:
   - uid: string
+  pattern: ^(?!-)[A-Za-z0-9-]{3,63}(?<!-)$
 - name: api-version
   in: query
   isRequired: true
@@ -38,7 +39,7 @@ uriParameters:
   - uid: string
 responses:
 - name: 200 OK
-  description: This is returned as a response to the status polling request for the create or update operation. The body contains the resource representation that indicates a transitional provisioning state.
+  description: This is returned as a response when the resource already exists and was updated successfully.
   types:
   - uid: DigitalTwinsDescription
 - name: 201 Created
@@ -67,21 +68,8 @@ requestBody:
       additionalTypes:
       - uid: string
       - uid: string
-  - name: sku
-    in: body
-    description: This property is reserved for future use, and will be ignored/omitted
-    types:
-    - uid: DigitalTwinsSkuInfo
 requestHeader: []
 definitions:
-- name: DigitalTwinsSkuInfo
-  description: Information about the SKU of the DigitalTwinsInstance.
-  kind: object
-  properties:
-  - name: name
-    description: The name of the SKU.
-    types:
-    - uid: DigitalTwinsSku
 - name: DigitalTwinsDescription
   description: The description of the DigitalTwins service.
   kind: object
@@ -93,7 +81,7 @@ definitions:
     - uid: string
   - name: properties.lastUpdatedTime
     isReadyOnly: true
-    description: Time when DigitalTwinsInstance was created.
+    description: Time when DigitalTwinsInstance was updated.
     types:
     - uid: string
   - name: properties.provisioningState
@@ -133,10 +121,6 @@ definitions:
       additionalTypes:
       - uid: string
       - uid: string
-  - name: sku
-    description: This property is reserved for future use, and will be ignored/omitted
-    types:
-    - uid: DigitalTwinsSkuInfo
 - name: ErrorResponse
   description: Error response.
   kind: object
@@ -145,13 +129,6 @@ definitions:
     description: Error description
     types:
     - uid: ErrorDefinition
-- name: DigitalTwinsSku
-  description: The name of the SKU.
-  kind: enum
-  properties:
-  - name: F1
-    types:
-    - uid: string
 - name: provisioningState
   description: The provisioning state.
   kind: enum
@@ -169,6 +146,21 @@ definitions:
     types:
     - uid: string
   - name: Canceled
+    types:
+    - uid: string
+  - name: Deleted
+    types:
+    - uid: string
+  - name: Warning
+    types:
+    - uid: string
+  - name: Suspending
+    types:
+    - uid: string
+  - name: Restoring
+    types:
+    - uid: string
+  - name: Moving
     types:
     - uid: string
 - name: ErrorDefinition
@@ -194,38 +186,41 @@ definitions:
 examples:
 - name: Put a DigitalTwinsInstance resource
   request:
-    uri: PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService?api-version=2020-03-01-preview
+    uri: PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService?api-version=2020-10-31
     body: >-
       {
-        "location": "WestUS"
+        "location": "WestUS2"
       }
   responses:
   - statusCode: "200"
     body: >-
       {
-        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/DigitalTwinsInstance/myDigitalTwinsService",
-        "location": "westus",
-        "type": "Microsoft.DigitalTwins/DigitalTwinsInstance",
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService",
+        "location": "westus2",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
         "name": "myDigitalTwinsService",
+        "tags": {
+          "purpose": "dev"
+        },
         "properties": {
           "createdTime": "2019-11-19T12:55:05.229Z",
           "lastUpdatedTime": "2019-12-06T12:21:58.610Z",
-          "provisioningState": "Provisioning",
+          "provisioningState": "Succeeded",
           "hostName": "https://myDigitalTwinsService.api.wus2.ss.azuredigitaltwins-test.net"
         }
       }
   - statusCode: "201"
     body: >-
       {
-        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/DigitalTwinsInstance/myDigitalTwinsService",
-        "location": "westus",
-        "type": "Microsoft.DigitalTwins/DigitalTwinsInstance",
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService",
+        "location": "westus2",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
         "name": "myDigitalTwinsService",
         "properties": {
           "createdTime": "2019-11-19T12:55:05.229Z",
-          "lastUpdatedTime": "2019-12-06T12:21:58.610Z",
+          "lastUpdatedTime": "2019-11-19T12:55:05.229Z",
           "provisioningState": "Provisioning",
-          "hostName": "https://myDigitalTwinsService.api.wus2.ss.azuredigitaltwins-test.net"
+          "hostName": null
         }
       }
 security:
