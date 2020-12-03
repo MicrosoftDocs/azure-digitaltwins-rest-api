@@ -1,5 +1,5 @@
 ### YamlMime:RESTOperation
-uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.eventroutes.list
+uid: digitaltwins-hostname.digital-twins.dataplane.eventroutes.list
 name: List
 service: Azure Digital Twins
 groupName: Event Routes
@@ -15,7 +15,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-name.digitaltwins.azure.net/eventroutes?api-version=2020-10-31
+- content: GET https://digitaltwins-hostname/eventroutes?api-version=2020-10-31
 uriParameters:
 - name: api-version
   in: query
@@ -126,7 +126,7 @@ definitions:
 examples:
 - name: List event routes
   request:
-    uri: GET https://digitaltwins-name.digitaltwins.azure.net/eventroutes?api-version=2020-10-31
+    uri: GET https://digitaltwins-hostname/eventroutes?api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-

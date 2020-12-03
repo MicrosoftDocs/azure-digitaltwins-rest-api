@@ -1,5 +1,5 @@
 ### YamlMime:RESTOperation
-uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.models.digitaltwinmodels_add
+uid: digitaltwins-hostname.digital-twins.dataplane.models.digitaltwinmodels_add
 name: DigitalTwinModels Add
 service: Azure Digital Twins
 groupName: Models
@@ -23,7 +23,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: POST https://digitaltwins-name.digitaltwins.azure.net/models?api-version=2020-10-31
+- content: POST https://digitaltwins-hostname/models?api-version=2020-10-31
 uriParameters:
 - name: api-version
   in: query
@@ -145,7 +145,7 @@ definitions:
 examples:
 - name: Add models
   request:
-    uri: POST https://digitaltwins-name.digitaltwins.azure.net/models?api-version=2020-10-31
+    uri: POST https://digitaltwins-hostname/models?api-version=2020-10-31
     body: >-
       [
         {

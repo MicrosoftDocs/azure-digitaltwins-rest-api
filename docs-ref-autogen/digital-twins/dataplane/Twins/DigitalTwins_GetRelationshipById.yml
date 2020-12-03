@@ -1,5 +1,5 @@
 ### YamlMime:RESTOperation
-uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_getrelationshipbyid
+uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_getrelationshipbyid
 name: DigitalTwins GetRelationshipById
 service: Azure Digital Twins
 groupName: Twins
@@ -21,7 +21,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-10-31
+- content: GET https://digitaltwins-hostname/digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-10-31
 uriParameters:
 - name: id
   in: path
@@ -112,7 +112,7 @@ definitions:
 examples:
 - name: Get a relationship by id
   request:
-    uri: GET https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-10-31
+    uri: GET https://digitaltwins-hostname/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-
