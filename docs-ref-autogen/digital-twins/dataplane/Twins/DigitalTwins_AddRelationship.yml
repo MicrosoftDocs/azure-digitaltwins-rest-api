@@ -1,5 +1,5 @@
 ### YamlMime:RESTOperation
-uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_addrelationship
+uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_addrelationship
 name: DigitalTwins AddRelationship
 service: Azure Digital Twins
 groupName: Twins
@@ -26,7 +26,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: PUT https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-10-31
+- content: PUT https://digitaltwins-hostname/digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-10-31
 uriParameters:
 - name: id
   in: path
@@ -130,7 +130,7 @@ definitions:
 examples:
 - name: Create a relationship
   request:
-    uri: PUT https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-10-31
+    uri: PUT https://digitaltwins-hostname/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-10-31
     body: >-
       {
         "$targetId": "myTargetTwin",
@@ -148,7 +148,7 @@ examples:
       }
 - name: Create a relationship (with properties)
   request:
-    uri: PUT https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-10-31
+    uri: PUT https://digitaltwins-hostname/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-10-31
     body: >-
       {
         "$targetId": "myTargetTwin",

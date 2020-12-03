@@ -1,10 +1,10 @@
 ### YamlMime:RESTOperationGroup
-uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins
+uid: digitaltwins-hostname.digital-twins.dataplane.twins
 name: Twins
 apiVersion: 2020-10-31
 service: Azure Digital Twins
 operations:
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_add
+- uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_add
   summary: >-
     Adds or replaces a digital twin.
 
@@ -19,7 +19,7 @@ operations:
       * ValidationFailed - The digital twin payload is not valid.
     * 412 Precondition Failed
       * PreconditionFailed - The precondition check (If-Match or If-None-Match) failed.
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_addrelationship
+- uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_addrelationship
   summary: >-
     Adds a relationship between two digital twins.
 
@@ -37,7 +37,7 @@ operations:
       * TargetTwinNotFound - The digital twin target of the relationship was not found.
     * 412 Precondition Failed
       * PreconditionFailed - The precondition check (If-Match or If-None-Match) failed.
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_delete
+- uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_delete
   summary: >-
     Deletes a digital twin. All relationships referencing the digital twin must already be deleted.
 
@@ -52,7 +52,7 @@ operations:
       * DigitalTwinNotFound - The digital twin was not found.
     * 412 Precondition Failed
       * PreconditionFailed - The precondition check (If-Match or If-None-Match) failed.
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_deleterelationship
+- uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_deleterelationship
   summary: >-
     Deletes a relationship between two digital twins.
 
@@ -67,7 +67,7 @@ operations:
       * RelationshipNotFound - The relationship was not found.
     * 412 Precondition Failed
       * PreconditionFailed - The precondition check (If-Match or If-None-Match) failed.
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_getbyid
+- uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_getbyid
   summary: >-
     Retrieves a digital twin.
 
@@ -79,7 +79,7 @@ operations:
       * InvalidArgument - The digital twin id is invalid.
     * 404 Not Found
       * DigitalTwinNotFound - The digital twin was not found.
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_getcomponent
+- uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_getcomponent
   summary: >-
     Retrieves a component from a digital twin.
 
@@ -92,7 +92,7 @@ operations:
     * 404 Not Found
       * DigitalTwinNotFound - The digital twin was not found.
       * ComponentNotFound - The component path was not found.
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_getrelationshipbyid
+- uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_getrelationshipbyid
   summary: >-
     Retrieves a relationship between two digital twins.
 
@@ -105,7 +105,7 @@ operations:
     * 404 Not Found
       * DigitalTwinNotFound - The digital twin was not found.
       * RelationshipNotFound - The relationship was not found.
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_listincomingrelationships
+- uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_listincomingrelationships
   summary: >-
     Retrieves all incoming relationship for a digital twin.
 
@@ -117,7 +117,7 @@ operations:
       * InvalidArgument - The digital twin id is invalid.
     * 404 Not Found
       * DigitalTwinNotFound - The digital twin was not found.
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_listrelationships
+- uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_listrelationships
   summary: >-
     Retrieves the relationships from a digital twin.
 
@@ -129,7 +129,7 @@ operations:
       * InvalidArgument - The digital twin id is invalid.
     * 404 Not Found
       * DigitalTwinNotFound - The digital twin was not found.
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_sendcomponenttelemetry
+- uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_sendcomponenttelemetry
   summary: >-
     Sends telemetry on behalf of a component in a digital twin.
 
@@ -143,7 +143,7 @@ operations:
     * 404 Not Found
       * DigitalTwinNotFound - The digital twin was not found.
       * ComponentNotFound - The component path was not found.
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_sendtelemetry
+- uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_sendtelemetry
   summary: >-
     Sends telemetry on behalf of a digital twin.
 
@@ -156,7 +156,7 @@ operations:
       * ValidationFailed - The telemetry content is invalid.
     * 404 Not Found
       * DigitalTwinNotFound - The digital twin was not found.
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_update
+- uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_update
   summary: >-
     Updates a digital twin.
 
@@ -172,7 +172,7 @@ operations:
       * DigitalTwinNotFound - The digital twin was not found.
     * 412 Precondition Failed
       * PreconditionFailed - The precondition check (If-Match or If-None-Match) failed.
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_updatecomponent
+- uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_updatecomponent
   summary: >-
     Updates a component on a digital twin.
 
@@ -188,7 +188,7 @@ operations:
       * DigitalTwinNotFound - The digital twin was not found.
     * 412 Precondition Failed
       * PreconditionFailed - The precondition check (If-Match or If-None-Match) failed.
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_updaterelationship
+- uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_updaterelationship
   summary: >-
     Updates the properties on a relationship between two digital twins.
 

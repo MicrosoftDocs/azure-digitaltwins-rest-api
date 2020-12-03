@@ -1,5 +1,5 @@
 ### YamlMime:RESTOperation
-uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.twins.digitaltwins_updaterelationship
+uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_updaterelationship
 name: DigitalTwins UpdateRelationship
 service: Azure Digital Twins
 groupName: Twins
@@ -28,7 +28,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: PATCH https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-10-31
+- content: PATCH https://digitaltwins-hostname/digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-10-31
 uriParameters:
 - name: id
   in: path
@@ -131,7 +131,7 @@ definitions:
 examples:
 - name: Update relationship properties
   request:
-    uri: PATCH https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2020-10-31
+    uri: PATCH https://digitaltwins-hostname/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2020-10-31
     body: >-
       [
         {
@@ -144,7 +144,7 @@ examples:
   - statusCode: "204"
 - name: Update relationship properties (multiple updates)
   request:
-    uri: PATCH https://digitaltwins-name.digitaltwins.azure.net/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2020-10-31
+    uri: PATCH https://digitaltwins-hostname/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2020-10-31
     body: >-
       [
         {

@@ -1,10 +1,10 @@
 ### YamlMime:RESTOperationGroup
-uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.models
+uid: digitaltwins-hostname.digital-twins.dataplane.models
 name: Models
 apiVersion: 2020-10-31
 service: Azure Digital Twins
 operations:
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.models.digitaltwinmodels_add
+- uid: digitaltwins-hostname.digital-twins.dataplane.models.digitaltwinmodels_add
   summary: >-
     Uploads one or more models. When any error occurs, no models are uploaded.
 
@@ -19,7 +19,7 @@ operations:
       * ModelVersionNotSupported - The version of DTDL used is not supported.
     * 409 Conflict
       * ModelAlreadyExists - The model provided already exists.
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.models.digitaltwinmodels_delete
+- uid: digitaltwins-hostname.digital-twins.dataplane.models.digitaltwinmodels_delete
   summary: >-
     Deletes a model. A model can only be deleted if no other models reference it.
 
@@ -34,7 +34,7 @@ operations:
       * ModelNotFound - The model was not found.
     * 409 Conflict
       * ModelReferencesNotDeleted - The model refers to models that are not deleted.
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.models.digitaltwinmodels_getbyid
+- uid: digitaltwins-hostname.digital-twins.dataplane.models.digitaltwinmodels_getbyid
   summary: >-
     Retrieves model metadata and optionally the model definition.
 
@@ -47,7 +47,7 @@ operations:
       * MissingArgument - The model id was not provided.
     * 404 Not Found
       * ModelNotFound - The model was not found.
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.models.digitaltwinmodels_list
+- uid: digitaltwins-hostname.digital-twins.dataplane.models.digitaltwinmodels_list
   summary: >-
     Retrieves model metadata and, optionally, model definitions.
 
@@ -60,7 +60,7 @@ operations:
       * LimitExceeded - The maximum number of model ids allowed in 'dependenciesFor' has been reached.
     * 404 Not Found
       * ModelNotFound - The model was not found.
-- uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.models.digitaltwinmodels_update
+- uid: digitaltwins-hostname.digital-twins.dataplane.models.digitaltwinmodels_update
   summary: >-
     Updates the metadata for a model.
 
