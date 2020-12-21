@@ -1,5 +1,5 @@
 ### YamlMime:RESTOperation
-uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.models.digitaltwinmodels_getbyid
+uid: digitaltwins-hostname.digital-twins.dataplane.models.digitaltwinmodels_getbyid
 name: DigitalTwinModels GetById
 service: Azure Digital Twins
 groupName: Models
@@ -21,8 +21,8 @@ consumes:
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-name.digitaltwins.azure.net/models/{id}?api-version=2020-10-31
-- content: GET https://digitaltwins-name.digitaltwins.azure.net/models/{id}?includeModelDefinition={includeModelDefinition}&api-version=2020-10-31
+- content: GET https://digitaltwins-hostname/models/{id}?api-version=2020-10-31
+- content: GET https://digitaltwins-hostname/models/{id}?includeModelDefinition={includeModelDefinition}&api-version=2020-10-31
   isOptional: true
 uriParameters:
 - name: id
@@ -146,7 +146,7 @@ definitions:
 examples:
 - name: Get a model by id
   request:
-    uri: GET https://digitaltwins-name.digitaltwins.azure.net/models/dtmi:com:example:Sample;1?api-version=2020-10-31
+    uri: GET https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-
@@ -157,7 +157,7 @@ examples:
       }
 - name: Get a model by id (with definition)
   request:
-    uri: GET https://digitaltwins-name.digitaltwins.azure.net/models/dtmi:com:example:Sample;1?includeModelDefinition=True&api-version=2020-10-31
+    uri: GET https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?includeModelDefinition=True&api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-

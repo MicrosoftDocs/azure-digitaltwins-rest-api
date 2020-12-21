@@ -1,5 +1,5 @@
 ### YamlMime:RESTOperation
-uid: digitaltwins-name.digitaltwins.azure.net.digital-twins.dataplane.eventroutes.add
+uid: digitaltwins-hostname.digital-twins.dataplane.eventroutes.add
 name: Add
 service: Azure Digital Twins
 groupName: Event Routes
@@ -21,7 +21,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: PUT https://digitaltwins-name.digitaltwins.azure.net/eventroutes/{id}?api-version=2020-10-31
+- content: PUT https://digitaltwins-hostname/eventroutes/{id}?api-version=2020-10-31
 uriParameters:
 - name: id
   in: path
@@ -133,7 +133,7 @@ definitions:
 examples:
 - name: Add an event route
   request:
-    uri: PUT https://digitaltwins-name.digitaltwins.azure.net/eventroutes/eventroute-001?api-version=2020-10-31
+    uri: PUT https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2020-10-31
     body: >-
       {
         "endpointName": "endpoint-001",
@@ -143,7 +143,7 @@ examples:
   - statusCode: "204"
 - name: Add an event route (with filter)
   request:
-    uri: PUT https://digitaltwins-name.digitaltwins.azure.net/eventroutes/eventroute-001?api-version=2020-10-31
+    uri: PUT https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2020-10-31
     body: >-
       {
         "endpointName": "endpoint-001",
