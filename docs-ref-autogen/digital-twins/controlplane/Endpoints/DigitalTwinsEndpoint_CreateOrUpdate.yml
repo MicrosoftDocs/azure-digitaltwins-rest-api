@@ -3,14 +3,14 @@ uid: management.azure.com.digital-twins.controlplane.endpoints.digitaltwinsendpo
 name: DigitalTwinsEndpoint CreateOrUpdate
 service: Azure Digital Twins
 groupName: Endpoints
-apiVersion: 2020-10-31
+apiVersion: 2020-12-01
 summary: Create or update DigitalTwinsInstance endpoint.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}/endpoints/{endpointName}?api-version=2020-10-31
+- content: PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}/endpoints/{endpointName}?api-version=2020-12-01
 uriParameters:
 - name: subscriptionId
   in: path
@@ -124,16 +124,32 @@ definitions:
     description: Time when the Endpoint was added to DigitalTwinsInstance.
     types:
     - uid: string
+  - name: authenticationType
+    description: Specifies the authentication type being used for connecting to the endpoint.
+    types:
+    - uid: AuthenticationType
   - name: deadLetterSecret
-    description: Dead letter storage secret. Will be obfuscated during read.
+    description: Dead letter storage secret for key-based authentication. Will be obfuscated during read.
+    types:
+    - uid: string
+  - name: deadLetterUri
+    description: Dead letter storage URL for identity-based authentication.
     types:
     - uid: string
   - name: primaryConnectionString
-    description: PrimaryConnectionString of the endpoint. Will be obfuscated during read.
+    description: PrimaryConnectionString of the endpoint for key-based authentication. Will be obfuscated during read.
     types:
     - uid: string
   - name: secondaryConnectionString
-    description: SecondaryConnectionString of the endpoint. Will be obfuscated during read.
+    description: SecondaryConnectionString of the endpoint for key-based authentication. Will be obfuscated during read.
+    types:
+    - uid: string
+  - name: endpointUri
+    description: The URL of the ServiceBus namespace for identity-based authentication. It must include the protocol sb://
+    types:
+    - uid: string
+  - name: entityPath
+    description: The ServiceBus Topic name for identity-based authentication
     types:
     - uid: string
 - name: EventHub
@@ -155,16 +171,32 @@ definitions:
     description: Time when the Endpoint was added to DigitalTwinsInstance.
     types:
     - uid: string
+  - name: authenticationType
+    description: Specifies the authentication type being used for connecting to the endpoint.
+    types:
+    - uid: AuthenticationType
   - name: deadLetterSecret
-    description: Dead letter storage secret. Will be obfuscated during read.
+    description: Dead letter storage secret for key-based authentication. Will be obfuscated during read.
+    types:
+    - uid: string
+  - name: deadLetterUri
+    description: Dead letter storage URL for identity-based authentication.
     types:
     - uid: string
   - name: connectionStringPrimaryKey
-    description: PrimaryConnectionString of the endpoint. Will be obfuscated during read.
+    description: PrimaryConnectionString of the endpoint for key-based authentication. Will be obfuscated during read.
     types:
     - uid: string
   - name: connectionStringSecondaryKey
-    description: SecondaryConnectionString of the endpoint. Will be obfuscated during read.
+    description: SecondaryConnectionString of the endpoint for key-based authentication. Will be obfuscated during read.
+    types:
+    - uid: string
+  - name: endpointUri
+    description: The URL of the EventHub namespace for identity-based authentication. It must include the protocol sb://
+    types:
+    - uid: string
+  - name: entityPath
+    description: The EventHub name in the EventHub namespace for identity-based authentication.
     types:
     - uid: string
 - name: EventGrid
@@ -186,8 +218,16 @@ definitions:
     description: Time when the Endpoint was added to DigitalTwinsInstance.
     types:
     - uid: string
+  - name: authenticationType
+    description: Specifies the authentication type being used for connecting to the endpoint.
+    types:
+    - uid: AuthenticationType
   - name: deadLetterSecret
-    description: Dead letter storage secret. Will be obfuscated during read.
+    description: Dead letter storage secret for key-based authentication. Will be obfuscated during read.
+    types:
+    - uid: string
+  - name: deadLetterUri
+    description: Dead letter storage URL for identity-based authentication.
     types:
     - uid: string
   - name: TopicEndpoint
@@ -259,14 +299,25 @@ definitions:
   - name: Disabled
     types:
     - uid: string
+- name: AuthenticationType
+  description: Specifies the authentication type being used for connecting to the endpoint.
+  kind: enum
+  properties:
+  - name: KeyBased
+    types:
+    - uid: string
+  - name: IdentityBased
+    types:
+    - uid: string
 examples:
 - name: Put a DigitalTwinsInstance resource
   request:
-    uri: PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus?api-version=2020-10-31
+    uri: PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus?api-version=2020-12-01
     body: >-
       {
         "properties": {
           "endpointType": "ServiceBus",
+          "authenticationType": "KeyBased",
           "primaryConnectionString": "Endpoint=sb://mysb.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=xyzxyzoX4=;EntityPath=abcabc",
           "secondaryConnectionString": "Endpoint=sb://mysb.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=xyzxyzoX4=;EntityPath=abcabc"
         }
@@ -280,6 +331,7 @@ examples:
         "name": "myServiceBus",
         "properties": {
           "endpointType": "ServiceBus",
+          "authenticationType": "KeyBased",
           "provisioningState": "Succeeded",
           "primaryConnectionString": "Endpoint=sb://***/;SharedAccessKeyName=***;SharedAccessKey=***;EntityPath=***",
           "secondaryConnectionString": "Endpoint=sb://***/;SharedAccessKeyName=***;SharedAccessKey=***;EntityPath=***",
@@ -294,9 +346,53 @@ examples:
         "name": "myServiceBus",
         "properties": {
           "endpointType": "ServiceBus",
+          "authenticationType": "KeyBased",
           "provisioningState": "Provisioning",
           "primaryConnectionString": "",
           "secondaryConnectionString": "",
+          "createdTime": "2019-11-19T01:10:34.350Z"
+        }
+      }
+- name: Put a DigitalTwinsInstance resource with identity
+  request:
+    uri: PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus?api-version=2020-12-01
+    body: >-
+      {
+        "properties": {
+          "endpointType": "ServiceBus",
+          "authenticationType": "IdentityBased",
+          "endpointUri": "sb://mysb.servicebus.windows.net/",
+          "entityPath": "mysbtopic"
+        }
+      }
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances/endpoints",
+        "name": "myServiceBus",
+        "properties": {
+          "endpointType": "ServiceBus",
+          "provisioningState": "Provisioning",
+          "authenticationType": "IdentityBased",
+          "endpointUri": "sb://mysb.servicebus.windows.net/",
+          "entityPath": "mysbtopic",
+          "createdTime": "2019-11-19T01:10:34.350Z"
+        }
+      }
+  - statusCode: "201"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances/endpoints",
+        "name": "myServiceBus",
+        "properties": {
+          "endpointType": "ServiceBus",
+          "provisioningState": "Provisioning",
+          "authenticationType": "IdentityBased",
+          "endpointUri": "sb://mysb.servicebus.windows.net/",
+          "entityPath": "mysbtopic",
           "createdTime": "2019-11-19T01:10:34.350Z"
         }
       }

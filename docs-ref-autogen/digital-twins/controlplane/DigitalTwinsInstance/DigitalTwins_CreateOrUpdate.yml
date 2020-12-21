@@ -3,14 +3,14 @@ uid: management.azure.com.digital-twins.controlplane.digitaltwinsinstance.digita
 name: DigitalTwins CreateOrUpdate
 service: Azure Digital Twins
 groupName: Digital Twins Instance
-apiVersion: 2020-10-31
+apiVersion: 2020-12-01
 summary: Create or update the metadata of a DigitalTwinsInstance. The usual pattern to modify a property is to retrieve the DigitalTwinsInstance and security metadata, and then combine them with the modified values in a new body to update the DigitalTwinsInstance.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}?api-version=2020-10-31
+- content: PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}?api-version=2020-12-01
 uriParameters:
 - name: subscriptionId
   in: path
@@ -53,6 +53,17 @@ responses:
 requestBody:
 - name: default
   parameters:
+  - name: properties.privateEndpointConnections
+    in: body
+    description: The private endpoint connection of a Digital Twin.
+    types:
+    - uid: PrivateEndpointConnection
+      isArray: true
+  - name: properties.publicNetworkAccess
+    in: body
+    description: Public network access for the DigitalTwinsInstance.
+    types:
+    - uid: publicNetworkAccess
   - name: location
     in: body
     isRequired: true
@@ -68,8 +79,54 @@ requestBody:
       additionalTypes:
       - uid: string
       - uid: string
+  - name: identity
+    in: body
+    description: The managed identity for the DigitalTwinsInstance.
+    types:
+    - uid: DigitalTwinsIdentity
 requestHeader: []
 definitions:
+- name: PrivateEndpointConnection
+  description: The private endpoint connection of a Digital Twin.
+  kind: object
+  properties:
+  - name: id
+    isReadyOnly: true
+    description: The resource identifier.
+    types:
+    - uid: string
+  - name: name
+    isReadyOnly: true
+    description: The resource name.
+    types:
+    - uid: string
+  - name: type
+    isReadyOnly: true
+    description: The resource type.
+    types:
+    - uid: string
+  - name: properties
+    description: ''
+    types:
+    - uid: Properties
+- name: DigitalTwinsIdentity
+  description: The managed identity for the DigitalTwinsInstance.
+  kind: object
+  properties:
+  - name: type
+    description: The type of Managed Identity used by the DigitalTwinsInstance. Only SystemAssigned is supported.
+    types:
+    - uid: DigitalTwinsIdentityType
+  - name: principalId
+    isReadyOnly: true
+    description: The object id of the Managed Identity Resource. This will be sent to the RP from ARM via the x-ms-identity-principal-id header in the PUT request if the resource has a systemAssigned(implicit) identity
+    types:
+    - uid: string
+  - name: tenantId
+    isReadyOnly: true
+    description: The tenant id of the Managed Identity Resource. This will be sent to the RP from ARM via the x-ms-client-tenant-id header in the PUT request if the resource has a systemAssigned(implicit) identity
+    types:
+    - uid: string
 - name: DigitalTwinsDescription
   description: The description of the DigitalTwins service.
   kind: object
@@ -94,6 +151,15 @@ definitions:
     description: Api endpoint to work with DigitalTwinsInstance.
     types:
     - uid: string
+  - name: properties.privateEndpointConnections
+    description: The private endpoint connection of a Digital Twin.
+    types:
+    - uid: PrivateEndpointConnection
+      isArray: true
+  - name: properties.publicNetworkAccess
+    description: Public network access for the DigitalTwinsInstance.
+    types:
+    - uid: publicNetworkAccess
   - name: id
     isReadyOnly: true
     description: The resource identifier.
@@ -121,6 +187,10 @@ definitions:
       additionalTypes:
       - uid: string
       - uid: string
+  - name: identity
+    description: The managed identity for the DigitalTwinsInstance.
+    types:
+    - uid: DigitalTwinsIdentity
 - name: ErrorResponse
   description: Error response.
   kind: object
@@ -129,6 +199,37 @@ definitions:
     description: Error description
     types:
     - uid: ErrorDefinition
+- name: Properties
+  kind: object
+  properties:
+  - name: provisioningState
+    isReadyOnly: true
+    description: The provisioning state.
+    types:
+    - uid: ConnectionPropertiesProvisioningState
+  - name: privateEndpoint
+    description: ''
+    types:
+    - uid: PrivateEndpoint
+  - name: groupIds
+    description: The list of group ids for the private endpoint connection.
+    types:
+    - uid: string
+      isArray: true
+  - name: privateLinkServiceConnectionState
+    description: ''
+    types:
+    - uid: PrivateLinkServiceConnectionState
+- name: DigitalTwinsIdentityType
+  description: The type of Managed Identity used by the DigitalTwinsInstance. Only SystemAssigned is supported.
+  kind: enum
+  properties:
+  - name: None
+    types:
+    - uid: string
+  - name: SystemAssigned
+    types:
+    - uid: string
 - name: provisioningState
   description: The provisioning state.
   kind: enum
@@ -137,6 +238,9 @@ definitions:
     types:
     - uid: string
   - name: Deleting
+    types:
+    - uid: string
+  - name: Updating
     types:
     - uid: string
   - name: Succeeded
@@ -163,6 +267,16 @@ definitions:
   - name: Moving
     types:
     - uid: string
+- name: publicNetworkAccess
+  description: Public network access for the DigitalTwinsInstance.
+  kind: enum
+  properties:
+  - name: Enabled
+    types:
+    - uid: string
+  - name: Disabled
+    types:
+    - uid: string
 - name: ErrorDefinition
   description: Error definition.
   kind: object
@@ -183,10 +297,66 @@ definitions:
     types:
     - uid: ErrorDefinition
       isArray: true
+- name: ConnectionPropertiesProvisioningState
+  description: The provisioning state.
+  kind: enum
+  properties:
+  - name: Pending
+    types:
+    - uid: string
+  - name: Approved
+    types:
+    - uid: string
+  - name: Rejected
+    types:
+    - uid: string
+  - name: Disconnected
+    types:
+    - uid: string
+- name: PrivateEndpoint
+  description: The private endpoint property of a private endpoint connection.
+  kind: object
+  properties:
+  - name: id
+    isReadyOnly: true
+    description: The resource identifier.
+    types:
+    - uid: string
+- name: PrivateLinkServiceConnectionState
+  kind: object
+  properties:
+  - name: status
+    description: The status of a private endpoint connection.
+    types:
+    - uid: PrivateLinkServiceConnectionStatus
+  - name: description
+    description: The description for the current state of a private endpoint connection.
+    types:
+    - uid: string
+  - name: actionsRequired
+    description: Actions required for a private endpoint connection.
+    types:
+    - uid: string
+- name: PrivateLinkServiceConnectionStatus
+  description: The status of a private endpoint connection.
+  kind: enum
+  properties:
+  - name: Pending
+    types:
+    - uid: string
+  - name: Approved
+    types:
+    - uid: string
+  - name: Rejected
+    types:
+    - uid: string
+  - name: Disconnected
+    types:
+    - uid: string
 examples:
 - name: Put a DigitalTwinsInstance resource
   request:
-    uri: PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService?api-version=2020-10-31
+    uri: PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService?api-version=2020-12-01
     body: >-
       {
         "location": "WestUS2"
@@ -206,7 +376,8 @@ examples:
           "createdTime": "2019-11-19T12:55:05.229Z",
           "lastUpdatedTime": "2019-12-06T12:21:58.610Z",
           "provisioningState": "Succeeded",
-          "hostName": "https://myDigitalTwinsService.api.wus2.ss.azuredigitaltwins-test.net"
+          "hostName": "https://myDigitalTwinsService.api.wus2.ss.azuredigitaltwins-test.net",
+          "publicNetworkAccess": "Enabled"
         }
       }
   - statusCode: "201"
@@ -220,7 +391,101 @@ examples:
           "createdTime": "2019-11-19T12:55:05.229Z",
           "lastUpdatedTime": "2019-11-19T12:55:05.229Z",
           "provisioningState": "Provisioning",
-          "hostName": null
+          "hostName": null,
+          "publicNetworkAccess": "Enabled"
+        }
+      }
+- name: Put a DigitalTwinsInstance resource with identity
+  request:
+    uri: PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService?api-version=2020-12-01
+    body: >-
+      {
+        "location": "WestUS2",
+        "identity": {
+          "type": "SystemAssigned"
+        }
+      }
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService",
+        "location": "westus2",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
+        "name": "myDigitalTwinsService",
+        "tags": {
+          "purpose": "dev"
+        },
+        "identity": {
+          "type": "SystemAssigned",
+          "principalId": "544215a9-21d8-4fb5-8094-8efbcc311dd0",
+          "tenantId": "544215a9-21d8-4fb5-8094-8efbcc311dd0"
+        },
+        "properties": {
+          "createdTime": "2019-11-19T12:55:05.229Z",
+          "lastUpdatedTime": "2019-12-06T12:21:58.610Z",
+          "provisioningState": "Succeeded",
+          "hostName": "https://myDigitalTwinsService.api.wus2.ss.azuredigitaltwins-test.net",
+          "publicNetworkAccess": "Enabled"
+        }
+      }
+  - statusCode: "201"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService",
+        "location": "westus2",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
+        "name": "myDigitalTwinsService",
+        "identity": {
+          "type": "SystemAssigned"
+        },
+        "properties": {
+          "createdTime": "2019-11-19T12:55:05.229Z",
+          "lastUpdatedTime": "2019-11-19T12:55:05.229Z",
+          "provisioningState": "Provisioning",
+          "hostName": null,
+          "publicNetworkAccess": "Enabled"
+        }
+      }
+- name: Put a DigitalTwinsInstance resource with publicNetworkAccess property
+  request:
+    uri: PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService?api-version=2020-12-01
+    body: >-
+      {
+        "location": "WestUS2",
+        "properties": {
+          "publicNetworkAccess": "Enabled"
+        }
+      }
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService",
+        "location": "westus2",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
+        "name": "myDigitalTwinsService",
+        "properties": {
+          "createdTime": "2019-11-19T12:55:05.229Z",
+          "lastUpdatedTime": "2019-12-06T12:21:58.610Z",
+          "provisioningState": "Succeeded",
+          "hostName": "https://myDigitalTwinsService.api.wus2.ss.azuredigitaltwins-test.net",
+          "publicNetworkAccess": "Enabled"
+        }
+      }
+  - statusCode: "201"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService",
+        "location": "westus2",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
+        "name": "myDigitalTwinsService",
+        "properties": {
+          "createdTime": "2019-11-19T12:55:05.229Z",
+          "lastUpdatedTime": "2019-11-19T12:55:05.229Z",
+          "provisioningState": "Provisioning",
+          "hostName": null,
+          "publicNetworkAccess": "Enabled"
         }
       }
 security:
