@@ -21,6 +21,14 @@
 ### Operations
 #### [Overview](digital-twins/controlplane/Operations.yml)
 #### [List](digital-twins/controlplane/Operations/List.yml)
+### Private Endpoints
+#### [Overview](digital-twins/controlplane/PrivateEndpoints.yml)
+#### [PrivateEndpointConnections CreateOrUpdate](digital-twins/controlplane/PrivateEndpoints/PrivateEndpointConnections_CreateOrUpdate.yml)
+#### [PrivateEndpointConnections Delete](digital-twins/controlplane/PrivateEndpoints/PrivateEndpointConnections_Delete.yml)
+#### [PrivateEndpointConnections Get](digital-twins/controlplane/PrivateEndpoints/PrivateEndpointConnections_Get.yml)
+#### [PrivateEndpointConnections List](digital-twins/controlplane/PrivateEndpoints/PrivateEndpointConnections_List.yml)
+#### [PrivateLinkResources Get](digital-twins/controlplane/PrivateEndpoints/PrivateLinkResources_Get.yml)
+#### [PrivateLinkResources List](digital-twins/controlplane/PrivateEndpoints/PrivateLinkResources_List.yml)
 ## Data Plane
 ### Event Routes
 #### [Overview](digital-twins/dataplane/EventRoutes.yml)

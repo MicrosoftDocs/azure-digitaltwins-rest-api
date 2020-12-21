@@ -3,14 +3,14 @@ uid: management.azure.com.digital-twins.controlplane.checknameavailability.digit
 name: DigitalTwins CheckNameAvailability
 service: Azure Digital Twins
 groupName: Check Name Availability
-apiVersion: 2020-10-31
+apiVersion: 2020-12-01
 summary: Check if a DigitalTwinsInstance name is available.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: POST https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.DigitalTwins/locations/{location}/checkNameAvailability?api-version=2020-10-31
+- content: POST https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.DigitalTwins/locations/{location}/checkNameAvailability?api-version=2020-12-01
 uriParameters:
 - name: subscriptionId
   in: path
@@ -132,7 +132,7 @@ definitions:
 examples:
 - name: Check name Availability
   request:
-    uri: POST https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/WestUS2/checkNameAvailability?api-version=2020-10-31
+    uri: POST https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/WestUS2/checkNameAvailability?api-version=2020-12-01
     body: >-
       {
         "name": "myadtinstance",
