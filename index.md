@@ -21,7 +21,7 @@ The control plane APIs are used to manage your Azure Digital Twins instance as a
 * [Digital Twins Instance](docs-ref-autogen/digital-twins/controlplane/DigitalTwinsInstance.yml)
 * [Endpoints](docs-ref-autogen/digital-twins/controlplane/Endpoints.yml)
 * [Operations](docs-ref-autogen/digital-twins/controlplane/Operations.yml)
-* [Private endpoints](docs-ref-autogen/digital-twins/controlplane/PrivateEndpoints.yml)
+* [Private Endpoints](docs-ref-autogen/digital-twins/controlplane/PrivateEndpoints.yml)
 
 ## Data plane
 
