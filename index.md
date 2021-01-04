@@ -4,7 +4,7 @@ titleSuffix: "Azure Digital Twins APIS"
 description: "This is the overview page for the Azure Digital Twins REST API reference documentation."      
 author: baanders              
 ms.author: baanders               
-ms.date: 07/08/2020                    
+ms.date: 01/04/2021                  
 ms.service: "digital-twins"                          
 ms.topic: "reference"        
 ---                            
@@ -21,6 +21,7 @@ The control plane APIs are used to manage your Azure Digital Twins instance as a
 * [Digital Twins Instance](docs-ref-autogen/digital-twins/controlplane/DigitalTwinsInstance.yml)
 * [Endpoints](docs-ref-autogen/digital-twins/controlplane/Endpoints.yml)
 * [Operations](docs-ref-autogen/digital-twins/controlplane/Operations.yml)
+* [Private Endpoints](docs-ref-autogen/digital-twins/controlplane/PrivateEndpoints.yml)
 
 ## Data plane
 
