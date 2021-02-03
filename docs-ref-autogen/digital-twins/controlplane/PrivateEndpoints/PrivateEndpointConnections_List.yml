@@ -146,7 +146,6 @@ definitions:
     types:
     - uid: string
 - name: PrivateEndpoint
-  description: The private endpoint property of a private endpoint connection.
   kind: object
   properties:
   - name: id
