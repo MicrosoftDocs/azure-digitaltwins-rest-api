@@ -3,14 +3,14 @@ uid: management.azure.com.digital-twins.controlplane.operations.list
 name: List
 service: Azure Digital Twins
 groupName: Operations
-apiVersion: 2020-10-31
+apiVersion: 2020-12-01
 summary: Lists all of the available DigitalTwins service REST API operations.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https://management.azure.com/providers/Microsoft.DigitalTwins/operations?api-version=2020-10-31
+- content: GET https://management.azure.com/providers/Microsoft.DigitalTwins/operations?api-version=2020-12-01
 uriParameters:
 - name: api-version
   in: query
@@ -121,7 +121,7 @@ definitions:
 examples:
 - name: Get available operations
   request:
-    uri: GET https://management.azure.com/providers/Microsoft.DigitalTwins/operations?api-version=2020-10-31
+    uri: GET https://management.azure.com/providers/Microsoft.DigitalTwins/operations?api-version=2020-12-01
   responses:
   - statusCode: "200"
     body: >-

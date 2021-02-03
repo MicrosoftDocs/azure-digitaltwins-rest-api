@@ -118,7 +118,6 @@ examples:
     body: >-
       {
         "$metadata": {
-          "$model": "dtmi:com:example:interfaces:interfaceName;1",
           "property1": {
             "desiredValue": 1,
             "desiredVersion": 1,
