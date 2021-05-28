@@ -1,0 +1,29 @@
+{
+  "redirections": [
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/CheckNameAvailability.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/check-name-availability",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/DigitalTwinsInstance.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/digital-twins-instance",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/PrivateEndpoints.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/private-endpoints",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/EventRoutes.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/event-routes",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Query/QueryTwins.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/query/query-twins",
+      "redirect_document_id": true
+    }
+  ]
+}
