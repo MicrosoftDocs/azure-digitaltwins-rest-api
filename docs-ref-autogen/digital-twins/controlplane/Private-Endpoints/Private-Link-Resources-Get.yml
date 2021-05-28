@@ -1,0 +1,215 @@
+### YamlMime:RESTOperation
+uid: management.azure.com.digital-twins.controlplane.privateendpoints.privatelinkresources_get
+name: PrivateLinkResources Get
+service: Azure Digital Twins
+groupName: Private Endpoints
+apiVersion: 2020-12-01
+summary: Get the specified private link resource for the given Digital Twin.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}/privateLinkResources/{resourceId}?api-version=2020-12-01
+uriParameters:
+- name: subscriptionId
+  in: path
+  isRequired: true
+  description: The subscription identifier.
+  types:
+  - uid: string
+- name: resourceGroupName
+  in: path
+  isRequired: true
+  description: The name of the resource group that contains the DigitalTwinsInstance.
+  types:
+  - uid: string
+- name: resourceName
+  in: path
+  isRequired: true
+  description: The name of the DigitalTwinsInstance.
+  types:
+  - uid: string
+  pattern: ^(?!-)[A-Za-z0-9-]{3,63}(?<!-)$
+- name: resourceId
+  in: path
+  isRequired: true
+  description: The name of the private link resource.
+  types:
+  - uid: string
+- name: api-version
+  in: query
+  isRequired: true
+  description: Version of the DigitalTwinsInstance Management API.
+  types:
+  - uid: string
+responses:
+- name: 200 OK
+  description: The body contains the specified of private link resource.
+  types:
+  - uid: GroupIdInformation
+- name: Other Status Codes
+  description: Error response describing why the operation failed.
+  types:
+  - uid: ErrorResponse
+requestHeader: []
+definitions:
+- name: GroupIdInformation
+  description: The group information for creating a private endpoint on Digital Twin.
+  kind: object
+  properties:
+  - name: properties
+    description: ''
+    types:
+    - uid: Properties
+  - name: id
+    description: The resource identifier.
+    types:
+    - uid: string
+  - name: name
+    isReadyOnly: true
+    description: The resource name.
+    types:
+    - uid: string
+  - name: type
+    isReadyOnly: true
+    description: The resource type.
+    types:
+    - uid: string
+- name: ErrorResponse
+  description: Error response.
+  kind: object
+  properties:
+  - name: error
+    description: Error description
+    types:
+    - uid: ErrorDefinition
+- name: Properties
+  kind: object
+  properties:
+  - name: provisioningState
+    isReadyOnly: true
+    description: The provisioning state.
+    types:
+    - uid: ConnectionPropertiesProvisioningState
+  - name: privateEndpoint
+    description: ''
+    types:
+    - uid: PrivateEndpoint
+  - name: groupIds
+    description: The list of group ids for the private endpoint connection.
+    types:
+    - uid: string
+      isArray: true
+  - name: privateLinkServiceConnectionState
+    description: ''
+    types:
+    - uid: PrivateLinkServiceConnectionState
+- name: ErrorDefinition
+  description: Error definition.
+  kind: object
+  properties:
+  - name: code
+    isReadyOnly: true
+    description: Service specific error code which serves as the substatus for the HTTP error code.
+    types:
+    - uid: string
+  - name: message
+    isReadyOnly: true
+    description: Description of the error.
+    types:
+    - uid: string
+  - name: details
+    isReadyOnly: true
+    description: Internal error details.
+    types:
+    - uid: ErrorDefinition
+      isArray: true
+- name: ConnectionPropertiesProvisioningState
+  description: The provisioning state.
+  kind: enum
+  properties:
+  - name: Pending
+    types:
+    - uid: string
+  - name: Approved
+    types:
+    - uid: string
+  - name: Rejected
+    types:
+    - uid: string
+  - name: Disconnected
+    types:
+    - uid: string
+- name: PrivateEndpoint
+  kind: object
+  properties:
+  - name: id
+    isReadyOnly: true
+    description: The resource identifier.
+    types:
+    - uid: string
+- name: PrivateLinkServiceConnectionState
+  kind: object
+  properties:
+  - name: status
+    description: The status of a private endpoint connection.
+    types:
+    - uid: PrivateLinkServiceConnectionStatus
+  - name: description
+    description: The description for the current state of a private endpoint connection.
+    types:
+    - uid: string
+  - name: actionsRequired
+    description: Actions required for a private endpoint connection.
+    types:
+    - uid: string
+- name: PrivateLinkServiceConnectionStatus
+  description: The status of a private endpoint connection.
+  kind: enum
+  properties:
+  - name: Pending
+    types:
+    - uid: string
+  - name: Approved
+    types:
+    - uid: string
+  - name: Rejected
+    types:
+    - uid: string
+  - name: Disconnected
+    types:
+    - uid: string
+examples:
+- name: Get the specified private link resource for the given Digital Twin
+  request:
+    uri: GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateLinkResources/subResource?api-version=2020-12-01
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateLinkResources/myDigitalTwinsService",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances/privateLinkResources",
+        "name": "myDigitalTwinsService",
+        "properties": {
+          "groupId": "digitalTwinsInstance",
+          "requiredMembers": [
+            "myDigitalTwinsService"
+          ],
+          "requiredZoneNames": [
+            "privatelink.api.wus2.digitaltwins.azure.net"
+          ]
+        }
+      }
+security:
+- name: azure_auth
+  type: oauth2
+  description: Azure Active Directory OAuth2 Flow
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+  scopes:
+  - name: user_impersonation
+    description: impersonate your user account
+metadata:
+  description: Learn more about Azure Digital Twins service - Get the specified private link resource for the given Digital Twin.
+errorCodes: []

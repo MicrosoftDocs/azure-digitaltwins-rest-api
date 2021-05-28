@@ -178,4 +178,6 @@ security:
   scopes:
   - name: user_impersonation
     description: impersonate your user account
+metadata:
+  description: Learn more about Azure Digital Twins service - Lists all of the available DigitalTwins service REST API operations.
 errorCodes: []

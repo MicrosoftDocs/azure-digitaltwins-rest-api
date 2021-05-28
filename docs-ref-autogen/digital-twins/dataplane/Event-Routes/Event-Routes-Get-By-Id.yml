@@ -1,0 +1,144 @@
+### YamlMime:RESTOperation
+uid: digitaltwins-hostname.digital-twins.dataplane.eventroutes.getbyid
+name: Get By Id
+service: Azure Digital Twins
+groupName: Event Routes
+apiVersion: 2020-10-31
+summary: >-
+  Retrieves an event route.
+
+  Status codes:
+
+  * 200 OK
+
+  * 404 Not Found
+    * EventRouteNotFound - The event route was not found.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: GET https://digitaltwins-hostname/eventroutes/{id}?api-version=2020-10-31
+uriParameters:
+- name: id
+  in: path
+  isRequired: true
+  description: The id for an event route. The id is unique within event routes and case sensitive.
+  types:
+  - uid: string
+- name: api-version
+  in: query
+  isRequired: true
+  description: The requested API version.
+  types:
+  - uid: string
+responses:
+- name: 200 OK
+  description: Success
+  types:
+  - uid: EventRoute
+- name: Other Status Codes
+  description: Default response.
+  types:
+  - uid: ErrorResponse
+requestHeader:
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
+- name: tracestate
+  in: header
+  description: Provides vendor-specific trace identification information and is a companion to traceparent.
+  types:
+  - uid: string
+definitions:
+- name: EventRoute
+  description: A route which directs notification and telemetry events to an endpoint. Endpoints are a destination outside of Azure Digital Twins such as an EventHub.
+  kind: object
+  properties:
+  - name: id
+    isReadyOnly: true
+    description: The id of the event route.
+    types:
+    - uid: string
+  - name: endpointName
+    description: The name of the endpoint this event route is bound to.
+    types:
+    - uid: string
+  - name: filter
+    description: An expression which describes the events which are routed to the endpoint.
+    types:
+    - uid: string
+- name: ErrorResponse
+  description: Error response.
+  kind: object
+  properties:
+  - name: error
+    description: The error details.
+    types:
+    - uid: Error
+- name: Error
+  description: Error definition.
+  kind: object
+  properties:
+  - name: code
+    isReadyOnly: true
+    description: Service specific error code which serves as the substatus for the HTTP error code.
+    types:
+    - uid: string
+  - name: message
+    isReadyOnly: true
+    description: A human-readable representation of the error.
+    types:
+    - uid: string
+  - name: details
+    isReadyOnly: true
+    description: Internal error details.
+    types:
+    - uid: Error
+      isArray: true
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+- name: InnerError
+  description: A more specific error description than was provided by the containing error.
+  kind: object
+  properties:
+  - name: code
+    description: A more specific error code than was provided by the containing error.
+    types:
+    - uid: string
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+examples:
+- name: Get an event route by id
+  request:
+    uri: GET https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2020-10-31
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "id": "eventroute-001",
+        "endpointName": "endpoint-001",
+        "filter": "type = 'Microsoft.DigitalTwins.Twin.Create'"
+      }
+security:
+- name: oauth2
+  type: oauth2
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
+metadata:
+  description: >-
+    Retrieves an event route.
+
+    Status codes:
+
+    * 200 OK
+
+    * 404 Not Found
+      * EventRouteNotFound - The event route was not found.
+errorCodes: []

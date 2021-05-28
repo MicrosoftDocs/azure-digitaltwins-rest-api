@@ -1,0 +1,48 @@
+### YamlMime:RESTOperationGroup
+uid: digitaltwins-hostname.digital-twins.dataplane.eventroutes
+name: Event Routes
+apiVersion: 2020-10-31
+service: Azure Digital Twins
+metadata:
+  description: Learn more about [Azure Digital Twins Event Routes Operations]. How to [Add,Delete,Get By Id,List].
+operations:
+- uid: digitaltwins-hostname.digital-twins.dataplane.eventroutes.add
+  summary: >-
+    Adds or replaces an event route.
+
+    Status codes:
+
+    * 204 No Content
+
+    * 400 Bad Request
+      * EventRouteEndpointInvalid - The endpoint provided does not exist or is not active.
+      * EventRouteFilterInvalid - The event route filter is invalid.
+      * EventRouteIdInvalid - The event route id is invalid.
+      * LimitExceeded - The maximum number of event routes allowed has been reached.
+- uid: digitaltwins-hostname.digital-twins.dataplane.eventroutes.delete
+  summary: >-
+    Deletes an event route.
+
+    Status codes:
+
+    * 204 No Content
+
+    * 404 Not Found
+      * EventRouteNotFound - The event route was not found.
+- uid: digitaltwins-hostname.digital-twins.dataplane.eventroutes.getbyid
+  summary: >-
+    Retrieves an event route.
+
+    Status codes:
+
+    * 200 OK
+
+    * 404 Not Found
+      * EventRouteNotFound - The event route was not found.
+- uid: digitaltwins-hostname.digital-twins.dataplane.eventroutes.list
+  summary: >-
+    Retrieves all event routes.
+
+    Status codes:
+
+    * 200 OK

@@ -3,6 +3,8 @@ uid: digitaltwins-hostname.digital-twins.dataplane.models
 name: Models
 apiVersion: 2020-10-31
 service: Azure Digital Twins
+metadata:
+  description: Learn more about [Azure Digital Twins Models Operations]. How to [DigitalTwinModels Add,DigitalTwinModels Delete,DigitalTwinModels GetById,DigitalTwinModels List,DigitalTwinModels Update].
 operations:
 - uid: digitaltwins-hostname.digital-twins.dataplane.models.digitaltwinmodels_add
   summary: >-

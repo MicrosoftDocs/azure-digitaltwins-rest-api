@@ -1,0 +1,521 @@
+### YamlMime:RESTOperation
+uid: management.azure.com.digital-twins.controlplane.digitaltwinsinstance.digitaltwins_update
+name: DigitalTwins Update
+service: Azure Digital Twins
+groupName: Digital Twins Instance
+apiVersion: 2020-12-01
+summary: Update metadata of DigitalTwinsInstance.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}?api-version=2020-12-01
+uriParameters:
+- name: subscriptionId
+  in: path
+  isRequired: true
+  description: The subscription identifier.
+  types:
+  - uid: string
+- name: resourceGroupName
+  in: path
+  isRequired: true
+  description: The name of the resource group that contains the DigitalTwinsInstance.
+  types:
+  - uid: string
+- name: resourceName
+  in: path
+  isRequired: true
+  description: The name of the DigitalTwinsInstance.
+  types:
+  - uid: string
+  pattern: ^(?!-)[A-Za-z0-9-]{3,63}(?<!-)$
+- name: api-version
+  in: query
+  isRequired: true
+  description: Version of the DigitalTwinsInstance Management API.
+  types:
+  - uid: string
+responses:
+- name: 200 OK
+  description: This is returned as a response to the status polling request for the create or update operation. The body contains the resource representation that indicates a transitional provisioning state.
+  types:
+  - uid: DigitalTwinsDescription
+- name: 202 Accepted
+  description: Accepted - Patch request accepted; the operation will complete asynchronously.
+  types:
+  - uid: DigitalTwinsDescription
+- name: Other Status Codes
+  description: Error response describing why the operation failed.
+  types:
+  - uid: ErrorResponse
+requestBody:
+- name: default
+  parameters:
+  - name: tags
+    in: body
+    description: Instance patch properties
+    types:
+    - uid: object
+      isDictionary: true
+      additionalTypes:
+      - uid: string
+      - uid: string
+  - name: identity
+    in: body
+    description: The managed identity for the DigitalTwinsInstance.
+    types:
+    - uid: DigitalTwinsIdentity
+  - name: properties
+    in: body
+    description: Properties for the DigitalTwinsInstance.
+    types:
+    - uid: DigitalTwinsPatchProperties
+requestHeader: []
+definitions:
+- name: DigitalTwinsIdentity
+  description: The managed identity for the DigitalTwinsInstance.
+  kind: object
+  properties:
+  - name: type
+    description: The type of Managed Identity used by the DigitalTwinsInstance. Only SystemAssigned is supported.
+    types:
+    - uid: DigitalTwinsIdentityType
+  - name: principalId
+    isReadyOnly: true
+    description: The object id of the Managed Identity Resource. This will be sent to the RP from ARM via the x-ms-identity-principal-id header in the PUT request if the resource has a systemAssigned(implicit) identity
+    types:
+    - uid: string
+  - name: tenantId
+    isReadyOnly: true
+    description: The tenant id of the Managed Identity Resource. This will be sent to the RP from ARM via the x-ms-client-tenant-id header in the PUT request if the resource has a systemAssigned(implicit) identity
+    types:
+    - uid: string
+- name: DigitalTwinsPatchProperties
+  description: The properties of a DigitalTwinsInstance.
+  kind: object
+  properties:
+  - name: publicNetworkAccess
+    description: Public network access for the DigitalTwinsInstance.
+    types:
+    - uid: publicNetworkAccess
+- name: DigitalTwinsDescription
+  description: The description of the DigitalTwins service.
+  kind: object
+  properties:
+  - name: properties.createdTime
+    isReadyOnly: true
+    description: Time when DigitalTwinsInstance was created.
+    types:
+    - uid: string
+  - name: properties.lastUpdatedTime
+    isReadyOnly: true
+    description: Time when DigitalTwinsInstance was updated.
+    types:
+    - uid: string
+  - name: properties.provisioningState
+    isReadyOnly: true
+    description: The provisioning state.
+    types:
+    - uid: provisioningState
+  - name: properties.hostName
+    isReadyOnly: true
+    description: Api endpoint to work with DigitalTwinsInstance.
+    types:
+    - uid: string
+  - name: properties.privateEndpointConnections
+    description: The private endpoint connection of a Digital Twin.
+    types:
+    - uid: PrivateEndpointConnection
+      isArray: true
+  - name: properties.publicNetworkAccess
+    description: Public network access for the DigitalTwinsInstance.
+    types:
+    - uid: publicNetworkAccess
+  - name: id
+    isReadyOnly: true
+    description: The resource identifier.
+    types:
+    - uid: string
+  - name: name
+    isReadyOnly: true
+    description: The resource name.
+    types:
+    - uid: string
+  - name: type
+    isReadyOnly: true
+    description: The resource type.
+    types:
+    - uid: string
+  - name: location
+    description: The resource location.
+    types:
+    - uid: string
+  - name: tags
+    description: The resource tags.
+    types:
+    - uid: object
+      isDictionary: true
+      additionalTypes:
+      - uid: string
+      - uid: string
+  - name: identity
+    description: The managed identity for the DigitalTwinsInstance.
+    types:
+    - uid: DigitalTwinsIdentity
+- name: ErrorResponse
+  description: Error response.
+  kind: object
+  properties:
+  - name: error
+    description: Error description
+    types:
+    - uid: ErrorDefinition
+- name: DigitalTwinsPatchDescription
+  description: The description of the DigitalTwins service.
+  kind: object
+  properties:
+  - name: tags
+    description: Instance patch properties
+    types:
+    - uid: object
+      isDictionary: true
+      additionalTypes:
+      - uid: string
+      - uid: string
+  - name: identity
+    description: The managed identity for the DigitalTwinsInstance.
+    types:
+    - uid: DigitalTwinsIdentity
+  - name: properties
+    description: Properties for the DigitalTwinsInstance.
+    types:
+    - uid: DigitalTwinsPatchProperties
+- name: DigitalTwinsIdentityType
+  description: The type of Managed Identity used by the DigitalTwinsInstance. Only SystemAssigned is supported.
+  kind: enum
+  properties:
+  - name: None
+    types:
+    - uid: string
+  - name: SystemAssigned
+    types:
+    - uid: string
+- name: publicNetworkAccess
+  description: Public network access for the DigitalTwinsInstance.
+  kind: enum
+  properties:
+  - name: Enabled
+    types:
+    - uid: string
+  - name: Disabled
+    types:
+    - uid: string
+- name: provisioningState
+  description: The provisioning state.
+  kind: enum
+  properties:
+  - name: Provisioning
+    types:
+    - uid: string
+  - name: Deleting
+    types:
+    - uid: string
+  - name: Updating
+    types:
+    - uid: string
+  - name: Succeeded
+    types:
+    - uid: string
+  - name: Failed
+    types:
+    - uid: string
+  - name: Canceled
+    types:
+    - uid: string
+  - name: Deleted
+    types:
+    - uid: string
+  - name: Warning
+    types:
+    - uid: string
+  - name: Suspending
+    types:
+    - uid: string
+  - name: Restoring
+    types:
+    - uid: string
+  - name: Moving
+    types:
+    - uid: string
+- name: PrivateEndpointConnection
+  description: The private endpoint connection of a Digital Twin.
+  kind: object
+  properties:
+  - name: id
+    isReadyOnly: true
+    description: The resource identifier.
+    types:
+    - uid: string
+  - name: name
+    isReadyOnly: true
+    description: The resource name.
+    types:
+    - uid: string
+  - name: type
+    isReadyOnly: true
+    description: The resource type.
+    types:
+    - uid: string
+  - name: properties
+    description: ''
+    types:
+    - uid: Properties
+- name: ErrorDefinition
+  description: Error definition.
+  kind: object
+  properties:
+  - name: code
+    isReadyOnly: true
+    description: Service specific error code which serves as the substatus for the HTTP error code.
+    types:
+    - uid: string
+  - name: message
+    isReadyOnly: true
+    description: Description of the error.
+    types:
+    - uid: string
+  - name: details
+    isReadyOnly: true
+    description: Internal error details.
+    types:
+    - uid: ErrorDefinition
+      isArray: true
+- name: Properties
+  kind: object
+  properties:
+  - name: provisioningState
+    isReadyOnly: true
+    description: The provisioning state.
+    types:
+    - uid: ConnectionPropertiesProvisioningState
+  - name: privateEndpoint
+    description: ''
+    types:
+    - uid: PrivateEndpoint
+  - name: groupIds
+    description: The list of group ids for the private endpoint connection.
+    types:
+    - uid: string
+      isArray: true
+  - name: privateLinkServiceConnectionState
+    description: ''
+    types:
+    - uid: PrivateLinkServiceConnectionState
+- name: ConnectionPropertiesProvisioningState
+  description: The provisioning state.
+  kind: enum
+  properties:
+  - name: Pending
+    types:
+    - uid: string
+  - name: Approved
+    types:
+    - uid: string
+  - name: Rejected
+    types:
+    - uid: string
+  - name: Disconnected
+    types:
+    - uid: string
+- name: PrivateEndpoint
+  kind: object
+  properties:
+  - name: id
+    isReadyOnly: true
+    description: The resource identifier.
+    types:
+    - uid: string
+- name: PrivateLinkServiceConnectionState
+  kind: object
+  properties:
+  - name: status
+    description: The status of a private endpoint connection.
+    types:
+    - uid: PrivateLinkServiceConnectionStatus
+  - name: description
+    description: The description for the current state of a private endpoint connection.
+    types:
+    - uid: string
+  - name: actionsRequired
+    description: Actions required for a private endpoint connection.
+    types:
+    - uid: string
+- name: PrivateLinkServiceConnectionStatus
+  description: The status of a private endpoint connection.
+  kind: enum
+  properties:
+  - name: Pending
+    types:
+    - uid: string
+  - name: Approved
+    types:
+    - uid: string
+  - name: Rejected
+    types:
+    - uid: string
+  - name: Disconnected
+    types:
+    - uid: string
+examples:
+- name: Patch a DigitalTwinsInstance resource
+  request:
+    uri: PATCH https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService?api-version=2020-12-01
+    body: >-
+      {
+        "tags": {
+          "purpose": "dev"
+        }
+      }
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService",
+        "location": "westus2",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
+        "name": "myDigitalTwinsService",
+        "tags": {
+          "purpose": "dev"
+        },
+        "properties": {
+          "createdTime": "2019-11-19T12:55:05.229Z",
+          "lastUpdatedTime": "2019-12-06T12:21:58.610Z",
+          "provisioningState": "Succeeded",
+          "hostName": "https://myDigitalTwinsService.api.wus2.ss.azuredigitaltwins-test.net",
+          "publicNetworkAccess": "Disabled"
+        }
+      }
+  - statusCode: "202"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService",
+        "location": "westus2",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
+        "name": "myDigitalTwinsService",
+        "tags": {
+          "purpose": "dev"
+        },
+        "properties": {
+          "createdTime": "2019-11-19T12:55:05.229Z",
+          "lastUpdatedTime": "2019-12-06T12:21:58.610Z",
+          "provisioningState": "Updating",
+          "hostName": "https://myDigitalTwinsService.api.wus2.ss.azuredigitaltwins-test.net",
+          "publicNetworkAccess": "Disabled"
+        }
+      }
+- name: Patch a DigitalTwinsInstance resource with identity
+  request:
+    uri: PATCH https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService?api-version=2020-12-01
+    body: >-
+      {
+        "identity": {
+          "type": "None"
+        }
+      }
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService",
+        "location": "westus2",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
+        "name": "myDigitalTwinsService",
+        "tags": {
+          "purpose": "dev"
+        },
+        "properties": {
+          "createdTime": "2019-11-19T12:55:05.229Z",
+          "lastUpdatedTime": "2019-12-06T12:21:58.610Z",
+          "provisioningState": "Succeeded",
+          "hostName": "https://myDigitalTwinsService.api.wus2.ss.azuredigitaltwins-test.net",
+          "publicNetworkAccess": "Enabled"
+        }
+      }
+  - statusCode: "202"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService",
+        "location": "westus2",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
+        "name": "myDigitalTwinsService",
+        "tags": {
+          "purpose": "dev"
+        },
+        "properties": {
+          "createdTime": "2019-11-19T12:55:05.229Z",
+          "lastUpdatedTime": "2019-12-06T12:21:58.610Z",
+          "provisioningState": "Updating",
+          "hostName": "https://myDigitalTwinsService.api.wus2.ss.azuredigitaltwins-test.net",
+          "publicNetworkAccess": "Enabled"
+        }
+      }
+- name: Patch a DigitalTwinsInstance resource with publicNetworkAccess property
+  request:
+    uri: PATCH https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService?api-version=2020-12-01
+    body: >-
+      {
+        "properties": {
+          "publicNetworkAccess": "Disabled"
+        }
+      }
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService",
+        "location": "westus2",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
+        "name": "myDigitalTwinsService",
+        "tags": {
+          "purpose": "dev"
+        },
+        "properties": {
+          "createdTime": "2019-11-19T12:55:05.229Z",
+          "lastUpdatedTime": "2019-12-06T12:21:58.610Z",
+          "provisioningState": "Succeeded",
+          "hostName": "https://myDigitalTwinsService.api.wus2.ss.azuredigitaltwins-test.net",
+          "publicNetworkAccess": "Disabled"
+        }
+      }
+  - statusCode: "202"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService",
+        "location": "westus2",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
+        "name": "myDigitalTwinsService",
+        "tags": {
+          "purpose": "dev"
+        },
+        "properties": {
+          "createdTime": "2019-11-19T12:55:05.229Z",
+          "lastUpdatedTime": "2019-12-06T12:21:58.610Z",
+          "provisioningState": "Updating",
+          "hostName": "https://myDigitalTwinsService.api.wus2.ss.azuredigitaltwins-test.net",
+          "publicNetworkAccess": "Disabled"
+        }
+      }
+security:
+- name: azure_auth
+  type: oauth2
+  description: Azure Active Directory OAuth2 Flow
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+  scopes:
+  - name: user_impersonation
+    description: impersonate your user account
+metadata:
+  description: Learn more about Azure Digital Twins service - Update metadata of DigitalTwinsInstance.
+errorCodes: []

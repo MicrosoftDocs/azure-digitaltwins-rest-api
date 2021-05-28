@@ -3,6 +3,8 @@ uid: management.azure.com.digital-twins.controlplane.endpoints
 name: Endpoints
 apiVersion: 2020-12-01
 service: Azure Digital Twins
+metadata:
+  description: Learn more about [Azure Digital Twins Endpoints Operations]. How to [DigitalTwinsEndpoint CreateOrUpdate,DigitalTwinsEndpoint Delete,DigitalTwinsEndpoint Get,DigitalTwinsEndpoint List].
 operations:
 - uid: management.azure.com.digital-twins.controlplane.endpoints.digitaltwinsendpoint_createorupdate
   summary: Create or update DigitalTwinsInstance endpoint.
