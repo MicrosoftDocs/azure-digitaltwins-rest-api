@@ -32,10 +32,10 @@
 ## Data Plane
 ### Event Routes
 #### [Overview](digital-twins/dataplane/Event-Routes.yml)
-#### [Add](digital-twins/dataplane/Event-Routes/Event-Routes-Add.yml)
-#### [Delete](digital-twins/dataplane/Event-Routes/Event-Routes-Delete.yml)
-#### [Get By Id](digital-twins/dataplane/Event-Routes/Event-Routes-Get-By-Id.yml)
-#### [List](digital-twins/dataplane/Event-Routes/Event-Routes-List.yml)
+#### [Add](digital-twins/dataplane/Event-Routes/Add.yml)
+#### [Delete](digital-twins/dataplane/Event-Routes/Delete.yml)
+#### [Get By Id](digital-twins/dataplane/Event-Routes/Get-By-Id.yml)
+#### [List](digital-twins/dataplane/Event-Routes/List.yml)
 ### Models
 #### [Overview](digital-twins/dataplane/Models.yml)
 #### [DigitalTwinModels Add](digital-twins/dataplane/Models/Digital-Twin-Models-Add.yml)
