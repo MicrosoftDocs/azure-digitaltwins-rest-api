@@ -224,6 +224,26 @@
       "source_path": "docs-ref-autogen/digital-twins/dataplane/Twins/DigitalTwins_UpdateRelationship.md",
       "redirect_url": "/rest/api/digital-twins/dataplane/twins/digital-twins-update-relationship",
       "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Event-Routes/Event-Routes-Add.yml",
+      "redirect_url": "/rest/api/digital-twins/dataplane/event-routes/add",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Event-Routes/Event-Routes-Delete.yml",
+      "redirect_url": "/rest/api/digital-twins/dataplane/event-routes/delete",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Event-Routes/Event-Routes-Get-By-Id.yml",
+      "redirect_url": "/rest/api/digital-twins/dataplane/event-routes/get-by-id",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Event-Routes/Event-Routes-List.yml",
+      "redirect_url": "/rest/api/digital-twins/dataplane/event-routes/list",
+      "redirect_document_id": true
     }
   ]
 }
