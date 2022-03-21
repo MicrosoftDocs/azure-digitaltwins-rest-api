@@ -4,7 +4,7 @@ name: Twins
 apiVersion: 2020-10-31
 service: Azure Digital Twins
 metadata:
-  description: Learn more about [Azure Digital Twins Twins Operations]. How to [DigitalTwins Add,DigitalTwins AddRelationship,DigitalTwins Delete,DigitalTwins DeleteRelationship,DigitalTwins GetById,DigitalTwins GetComponent,DigitalTwins GetRelationshipById,DigitalTwins ListIncomingRelationships,DigitalTwins ListRelationships,DigitalTwins SendComponentTelemetry,DigitalTwins SendTelemetry,DigitalTwins Update,DigitalTwins UpdateComponent,DigitalTwins UpdateRelationship].
+  description: Learn more about [Azure Digital Twins Twins Operations]. How to [DigitalTwins Add,DigitalTwins AddRelationship,DigitalTwins Delete,DigitalTwins DeleteRelationsh
 operations:
 - uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_add
   summary: >-
