@@ -1,0 +1,71 @@
+### YamlMime:Summary or Description is longer than 160 or both empty
+- swaggerPath: https://github.com/Azure/azure-rest-api-specs/blob/master/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2020-12-01/digitaltwins.json
+  detailed:
+  - operation: DigitalTwins_CreateOrUpdate
+    path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}
+    reason: summary is longer than 160
+- swaggerPath: https://github.com/Azure/azure-rest-api-specs/blob/master/specification/digitaltwins/data-plane/Microsoft.DigitalTwins/stable/2020-10-31/digitaltwins.json
+  detailed:
+  - operation: DigitalTwinModels_Update
+    path: /models/{id}
+    reason: summary is longer than 160
+  - operation: DigitalTwinModels_List
+    path: /models
+    reason: description is longer than 160
+  - operation: DigitalTwinModels_GetById
+    path: /models/{id}
+    reason: description is longer than 160
+  - operation: DigitalTwinModels_Delete
+    path: /models/{id}
+    reason: description is longer than 160
+  - operation: DigitalTwinModels_Add
+    path: /models
+    reason: description is longer than 160
+  - operation: EventRoutes_Add
+    path: /eventroutes/{id}
+    reason: description is longer than 160
+  - operation: DigitalTwins_UpdateRelationship
+    path: /digitaltwins/{id}/relationships/{relationshipId}
+    reason: description is longer than 160
+  - operation: DigitalTwins_UpdateComponent
+    path: /digitaltwins/{id}/components/{componentPath}
+    reason: description is longer than 160
+  - operation: DigitalTwins_Update
+    path: /digitaltwins/{id}
+    reason: description is longer than 160
+  - operation: DigitalTwins_SendTelemetry
+    path: /digitaltwins/{id}/telemetry
+    reason: description is longer than 160
+  - operation: DigitalTwins_SendComponentTelemetry
+    path: /digitaltwins/{id}/components/{componentPath}/telemetry
+    reason: description is longer than 160
+  - operation: DigitalTwins_ListRelationships
+    path: /digitaltwins/{id}/relationships
+    reason: description is longer than 160
+  - operation: DigitalTwins_ListIncomingRelationships
+    path: /digitaltwins/{id}/incomingrelationships
+    reason: description is longer than 160
+  - operation: DigitalTwins_GetRelationshipById
+    path: /digitaltwins/{id}/relationships/{relationshipId}
+    reason: description is longer than 160
+  - operation: DigitalTwins_GetComponent
+    path: /digitaltwins/{id}/components/{componentPath}
+    reason: description is longer than 160
+  - operation: DigitalTwins_GetById
+    path: /digitaltwins/{id}
+    reason: description is longer than 160
+  - operation: DigitalTwins_DeleteRelationship
+    path: /digitaltwins/{id}/relationships/{relationshipId}
+    reason: description is longer than 160
+  - operation: DigitalTwins_Delete
+    path: /digitaltwins/{id}
+    reason: description is longer than 160
+  - operation: DigitalTwins_AddRelationship
+    path: /digitaltwins/{id}/relationships/{relationshipId}
+    reason: description is longer than 160
+  - operation: DigitalTwins_Add
+    path: /digitaltwins/{id}
+    reason: description is longer than 160
+  - operation: Query_QueryTwins
+    path: /query
+    reason: description is longer than 160

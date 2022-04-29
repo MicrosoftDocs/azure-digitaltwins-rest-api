@@ -195,12 +195,7 @@ examples:
       }
 - name: List models (include dependencies and definitions)
   request:
-    uri: >-
-      GET https://digitaltwins-hostname/models?dependenciesFor=[
-
-        "dtmi:com:example:SampleDeviceModel;1"
-
-      ]&includeModelDefinition=True&api-version=2020-10-31
+    uri: GET https://digitaltwins-hostname/models?dependenciesFor=dtmi:com:example:SampleDeviceModel;1&includeModelDefinition=True&api-version=2020-10-31
   responses:
   - statusCode: "200"
     body: >-
