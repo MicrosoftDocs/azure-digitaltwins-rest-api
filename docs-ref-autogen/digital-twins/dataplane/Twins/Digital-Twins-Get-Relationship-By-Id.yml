@@ -138,5 +138,5 @@ metadata:
     * 200 OK
 
     * 400 Bad Request
-      * InvalidArgument - The digital twin id or relationship id is invalid.
+      * InvalidArgument - The digital twin id or relationship id is inv
 errorCodes: []

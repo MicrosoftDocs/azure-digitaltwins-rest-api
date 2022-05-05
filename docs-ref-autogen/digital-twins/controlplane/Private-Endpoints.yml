@@ -4,7 +4,7 @@ name: Private Endpoints
 apiVersion: 2020-12-01
 service: Azure Digital Twins
 metadata:
-  description: Learn more about [Azure Digital Twins Private Endpoints Operations]. How to [PrivateEndpointConnections CreateOrUpdate,PrivateEndpointConnections Delete,PrivateEndpointConnections Get,PrivateEndpointConnections List,PrivateLinkResources Get,PrivateLinkResources List].
+  description: Learn more about [Azure Digital Twins Private Endpoints Operations]. How to [PrivateEndpointConnections CreateOrUpdate,PrivateEndpointConnections Delete,Private
 operations:
 - uid: management.azure.com.digital-twins.controlplane.privateendpoints.privateendpointconnections_createorupdate
   summary: Update the status of a private endpoint connection with the given name.

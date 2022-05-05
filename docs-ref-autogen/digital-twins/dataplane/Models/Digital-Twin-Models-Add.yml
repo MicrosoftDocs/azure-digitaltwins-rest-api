@@ -202,5 +202,5 @@ metadata:
     * 201 Created
 
     * 400 Bad Request
-      * DTDLParserError - The models provided are not valid DTDL.
+      * DTDLParserError - The models provid
 errorCodes: []

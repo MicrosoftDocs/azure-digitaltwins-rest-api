@@ -293,5 +293,5 @@ metadata:
     * 200 OK
 
     * 400 Bad Request
-      * BadRequest - The continuation token is invalid.
+      * BadRequest - The continuati
 errorCodes: []

@@ -182,5 +182,5 @@ metadata:
     * 200 OK
 
     * 400 Bad Request
-      * InvalidArgument - The digital twin id, relationship id, or payload is invalid.
+      * InvalidArgument - The digital twin id, relationship id, or payload i
 errorCodes: []

@@ -15,10 +15,7 @@ operations:
     * 204 No Content
 
     * 400 Bad Request
-      * EventRouteEndpointInvalid - The endpoint provided does not exist or is not active.
-      * EventRouteFilterInvalid - The event route filter is invalid.
-      * EventRouteIdInvalid - The event route id is invalid.
-      * LimitExceeded - The maximum number of event routes allowed has been reached.
+      * EventRouteEndpointInvalid - The endpoint provided does not exist or is not...
 - uid: digitaltwins-hostname.digital-twins.dataplane.eventroutes.delete
   summary: >-
     Deletes an event route.
