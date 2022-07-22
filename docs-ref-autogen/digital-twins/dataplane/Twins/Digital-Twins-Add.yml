@@ -130,6 +130,19 @@ examples:
           "$model": "dtmi:com:example:interfaces:interfaceName;1"
         }
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PUT https://digitaltwins-hostname/digitaltwins/myNewTwinId?api-version=2020-10-31
+
+      {
+        "$metadata": {
+          "$model": "dtmi:com:example:interfaces:interfaceName;1"
+        }
+      }
+
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -158,6 +171,29 @@ examples:
           "componentProperty": "some value"
         }
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PUT https://digitaltwins-hostname/digitaltwins/myNewTwinId?api-version=2020-10-31
+
+
+      {
+        "$metadata": {
+          "$model": "dtmi:com:example:interfaces:interfaceName;1"
+        },
+        "property1": 1,
+        "property2": {
+          "subProperty1": "some value",
+          "subProperty2": "some other value"
+        },
+        "component1": {
+          "$metadata": {},
+          "componentProperty": "some value"
+        }
+      }
+
+      ```
+
     headers:
     - name: If-None-Match
       value: '*'

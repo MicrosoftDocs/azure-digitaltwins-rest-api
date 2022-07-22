@@ -132,6 +132,19 @@ examples:
       {
         "temperature": 1
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      POST https://digitaltwins-hostname/digitaltwins/myTwinId/components/myComponent/telemetry?api-version=2020-10-31
+
+
+
+      {
+        "temperature": 1
+      }
+
+      ```
+
     headers:
     - name: Message-Id
       value: e5ca50dd-ca31-4fae-8d84-3af5a72b10c5

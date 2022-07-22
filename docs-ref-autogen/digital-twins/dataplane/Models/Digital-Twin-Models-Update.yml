@@ -122,6 +122,21 @@ examples:
           "value": true
         }
       ]
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PATCH https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2020-10-31
+
+      [
+        {
+          "op": "replace",
+          "path": "/decommissioned",
+          "value": true
+        }
+      ]
+
+      ```
+
   responses:
   - statusCode: "204"
 security:

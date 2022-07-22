@@ -109,6 +109,12 @@ examples:
 - name: Delete a digital twin
   request:
     uri: DELETE https://digitaltwins-hostname/digitaltwins/myTwinId?api-version=2020-10-31
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      DELETE https://digitaltwins-hostname/digitaltwins/myTwinId?api-version=2020-10-31
+      ```
+
   responses:
   - statusCode: "204"
 security:

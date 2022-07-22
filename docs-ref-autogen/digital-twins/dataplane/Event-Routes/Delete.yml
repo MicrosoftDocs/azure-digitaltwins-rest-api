@@ -99,6 +99,12 @@ examples:
 - name: Delete an event route
   request:
     uri: DELETE https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2020-10-31
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      DELETE https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2020-10-31
+      ```
+
   responses:
   - statusCode: "204"
 security:

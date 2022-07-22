@@ -360,6 +360,17 @@ examples:
       {
         "location": "WestUS2"
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService?api-version=2020-12-01
+
+      {
+        "location": "WestUS2"
+      }
+
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -404,6 +415,20 @@ examples:
           "type": "SystemAssigned"
         }
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService?api-version=2020-12-01
+
+      {
+        "location": "WestUS2",
+        "identity": {
+          "type": "SystemAssigned"
+        }
+      }
+
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -456,6 +481,20 @@ examples:
           "publicNetworkAccess": "Enabled"
         }
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService?api-version=2020-12-01
+
+      {
+        "location": "WestUS2",
+        "properties": {
+          "publicNetworkAccess": "Enabled"
+        }
+      }
+
+      ```
+
   responses:
   - statusCode: "200"
     body: >-

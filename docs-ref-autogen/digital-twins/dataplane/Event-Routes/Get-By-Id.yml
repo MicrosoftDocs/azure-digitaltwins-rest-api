@@ -118,6 +118,12 @@ examples:
 - name: Get an event route by id
   request:
     uri: GET https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2020-10-31
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2020-10-31
+      ```
+
   responses:
   - statusCode: "200"
     body: >-

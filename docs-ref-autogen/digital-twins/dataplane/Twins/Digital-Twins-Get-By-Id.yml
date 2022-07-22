@@ -106,6 +106,12 @@ examples:
 - name: Get a digital twin by id
   request:
     uri: GET https://digitaltwins-hostname/digitaltwins/myTwinId?api-version=2020-10-31
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://digitaltwins-hostname/digitaltwins/myTwinId?api-version=2020-10-31
+      ```
+
   responses:
   - statusCode: "200"
     body: >-

@@ -94,6 +94,7 @@ definitions:
     description: Indicates if the model is decommissioned. Decommissioned models cannot be referenced by newly created digital twins.
     types:
     - uid: boolean
+    defaultValue: false
   - name: model
     description: The model definition.
     types:
@@ -175,6 +176,42 @@ examples:
           "@context": "dtmi:dtdl:context;2"
         }
       ]
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      POST https://digitaltwins-hostname/models?api-version=2020-10-31
+
+      [
+        {
+          "@id": "dtmi:com:example:Sample;1",
+          "@type": "Interface",
+          "displayName": "Sample Interface",
+          "contents": [
+            {
+              "@type": "Property",
+              "name": "name",
+              "displayName": "Sample instance name",
+              "schema": "string"
+            },
+            {
+              "@type": "Property",
+              "name": "temp",
+              "displayName": "Sample instance temperature",
+              "schema": "integer"
+            },
+            {
+              "@type": "Property",
+              "name": "comfortIndex",
+              "displayName": "Sample instance comfort index",
+              "schema": "integer"
+            }
+          ],
+          "@context": "dtmi:dtdl:context;2"
+        }
+      ]
+
+      ```
+
   responses:
   - statusCode: "201"
     body: >-

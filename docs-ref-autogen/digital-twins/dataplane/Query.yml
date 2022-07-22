@@ -12,7 +12,10 @@ operations:
 
     Status codes:
 
-    * 200 OK
+    - 200 OK
 
-    * 400 Bad Request
-      * BadRequest - The continuati...
+    - 400 Bad Request
+
+    - 429 Too Many Requests
+
+    - QuotaReachedEr...

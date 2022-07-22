@@ -113,6 +113,12 @@ examples:
 - name: Get a component in a digital twin
   request:
     uri: GET https://digitaltwins-hostname/digitaltwins/myTwinId/components/myComponent?api-version=2020-10-31
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://digitaltwins-hostname/digitaltwins/myTwinId/components/myComponent?api-version=2020-10-31
+      ```
+
   responses:
   - statusCode: "200"
     body: >-

@@ -104,6 +104,12 @@ examples:
 - name: Delete a model
   request:
     uri: DELETE https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2020-10-31
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      DELETE https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2020-10-31
+      ```
+
   responses:
   - statusCode: "204"
 security:

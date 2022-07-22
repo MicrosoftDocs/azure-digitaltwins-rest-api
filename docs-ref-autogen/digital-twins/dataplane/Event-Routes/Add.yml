@@ -139,6 +139,18 @@ examples:
         "endpointName": "endpoint-001",
         "filter": "true"
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PUT https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2020-10-31
+
+      {
+        "endpointName": "endpoint-001",
+        "filter": "true"
+      }
+
+      ```
+
   responses:
   - statusCode: "204"
 - name: Add an event route (with filter)
@@ -149,6 +161,18 @@ examples:
         "endpointName": "endpoint-001",
         "filter": "type = 'Microsoft.DigitalTwins.Twin.Create'"
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PUT https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2020-10-31
+
+      {
+        "endpointName": "endpoint-001",
+        "filter": "type = 'Microsoft.DigitalTwins.Twin.Create'"
+      }
+
+      ```
+
   responses:
   - statusCode: "204"
 security:

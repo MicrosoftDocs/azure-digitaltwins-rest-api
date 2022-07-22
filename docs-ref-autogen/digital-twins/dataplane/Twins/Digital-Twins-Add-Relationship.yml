@@ -136,6 +136,18 @@ examples:
         "$targetId": "myTargetTwin",
         "$relationshipName": "myRelationship"
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PUT https://digitaltwins-hostname/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-10-31
+
+      {
+        "$targetId": "myTargetTwin",
+        "$relationshipName": "myRelationship"
+      }
+
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -156,6 +168,20 @@ examples:
         "relationshipProperty1": 1,
         "relationshipProperty2": "some value"
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PUT https://digitaltwins-hostname/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-10-31
+
+      {
+        "$targetId": "myTargetTwin",
+        "$relationshipName": "myRelationship",
+        "relationshipProperty1": 1,
+        "relationshipProperty2": "some value"
+      }
+
+      ```
+
   responses:
   - statusCode: "200"
     body: >-

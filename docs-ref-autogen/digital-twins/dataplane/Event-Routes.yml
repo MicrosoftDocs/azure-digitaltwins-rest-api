@@ -12,10 +12,9 @@ operations:
 
     Status codes:
 
-    * 204 No Content
+    - 204 No Content
 
-    * 400 Bad Request
-      * EventRouteEndpointInvalid - The endpoint provided does not exist or is not...
+    - 400 Bad Request
 - uid: digitaltwins-hostname.digital-twins.dataplane.eventroutes.delete
   summary: >-
     Deletes an event route.

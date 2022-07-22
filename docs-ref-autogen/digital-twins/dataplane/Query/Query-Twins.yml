@@ -149,6 +149,17 @@ examples:
       {
         "query": "SELECT * FROM DIGITALTWINS WHERE temp = 79"
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      POST https://digitaltwins-hostname/query?api-version=2020-10-31
+
+      {
+        "query": "SELECT * FROM DIGITALTWINS WHERE temp = 79"
+      }
+
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -191,6 +202,17 @@ examples:
       {
         "continuationToken": "<continuationToken from previous query>"
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      POST https://digitaltwins-hostname/query?api-version=2020-10-31
+
+      {
+        "continuationToken": "<continuationToken from previous query>"
+      }
+
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -232,6 +254,17 @@ examples:
       {
         "query": "SELECT Widget, Gadget FROM DIGITALTWINS Widget JOIN Gadget RELATED Widget.Contains WHERE Widget.$dtId = 'Twin-01'"
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      POST https://digitaltwins-hostname/query?api-version=2020-10-31
+
+      {
+        "query": "SELECT Widget, Gadget FROM DIGITALTWINS Widget JOIN Gadget RELATED Widget.Contains WHERE Widget.$dtId = 'Twin-01'"
+      }
+
+      ```
+
   responses:
   - statusCode: "200"
     body: >-

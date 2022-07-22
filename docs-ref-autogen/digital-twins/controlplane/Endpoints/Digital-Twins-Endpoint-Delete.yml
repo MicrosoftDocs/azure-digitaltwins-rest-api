@@ -303,6 +303,12 @@ examples:
 - name: Delete a DigitalTwinsInstance endpoint
   request:
     uri: DELETE https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myendpoint?api-version=2020-12-01
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      DELETE https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myendpoint?api-version=2020-12-01
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -338,6 +344,12 @@ examples:
 - name: Delete a DigitalTwinsInstance endpoint with identity
   request:
     uri: DELETE https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myendpoint?api-version=2020-12-01
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      DELETE https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myendpoint?api-version=2020-12-01
+      ```
+
   responses:
   - statusCode: "200"
     body: >-

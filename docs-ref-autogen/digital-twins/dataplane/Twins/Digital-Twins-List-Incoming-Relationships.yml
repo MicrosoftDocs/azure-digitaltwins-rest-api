@@ -136,6 +136,12 @@ examples:
 - name: List incoming relationships
   request:
     uri: GET https://digitaltwins-hostname/digitaltwins/mySourceTwin/incomingrelationships?api-version=2020-10-31
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://digitaltwins-hostname/digitaltwins/mySourceTwin/incomingrelationships?api-version=2020-10-31
+      ```
+
   responses:
   - statusCode: "200"
     body: >-

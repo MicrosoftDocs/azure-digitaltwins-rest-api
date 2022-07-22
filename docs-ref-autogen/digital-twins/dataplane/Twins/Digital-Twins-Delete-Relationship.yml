@@ -115,6 +115,12 @@ examples:
 - name: Delete a relationship
   request:
     uri: DELETE https://digitaltwins-hostname/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2020-10-31
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      DELETE https://digitaltwins-hostname/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2020-10-31
+      ```
+
   responses:
   - statusCode: "204"
 security:

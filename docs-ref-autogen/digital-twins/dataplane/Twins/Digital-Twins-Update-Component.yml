@@ -138,6 +138,21 @@ examples:
           "value": 1
         }
       ]
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PATCH https://digitaltwins-hostname/digitaltwins/myTwinId/components/myComponent?api-version=2020-10-31
+
+      [
+        {
+          "op": "add",
+          "path": "/property",
+          "value": 1
+        }
+      ]
+
+      ```
+
   responses:
   - statusCode: "202"
   - statusCode: "204"
@@ -161,6 +176,30 @@ examples:
           "value": "new value"
         }
       ]
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PATCH https://digitaltwins-hostname/digitaltwins/myTwinId/components/myComponent?api-version=2020-10-31
+
+      [
+        {
+          "op": "add",
+          "path": "/property1",
+          "value": 1
+        },
+        {
+          "op": "remove",
+          "path": "/property2"
+        },
+        {
+          "op": "replace",
+          "path": "/property3/subProperty1",
+          "value": "new value"
+        }
+      ]
+
+      ```
+
   responses:
   - statusCode: "202"
   - statusCode: "204"

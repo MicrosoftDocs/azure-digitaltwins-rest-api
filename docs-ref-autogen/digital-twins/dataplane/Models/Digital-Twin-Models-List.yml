@@ -120,6 +120,7 @@ definitions:
     description: Indicates if the model is decommissioned. Decommissioned models cannot be referenced by newly created digital twins.
     types:
     - uid: boolean
+    defaultValue: false
   - name: model
     description: The model definition.
     types:
@@ -164,6 +165,12 @@ examples:
 - name: List models
   request:
     uri: GET https://digitaltwins-hostname/models?api-version=2020-10-31
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://digitaltwins-hostname/models?api-version=2020-10-31
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -196,6 +203,12 @@ examples:
 - name: List models (include dependencies and definitions)
   request:
     uri: GET https://digitaltwins-hostname/models?dependenciesFor=dtmi:com:example:SampleDeviceModel;1&includeModelDefinition=True&api-version=2020-10-31
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://digitaltwins-hostname/models?dependenciesFor=dtmi:com:example:SampleDeviceModel;1&includeModelDefinition=True&api-version=2020-10-31
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
