@@ -1,3 +1,11 @@
-- name: Docs
+- name: Learn
   tocHref: /
   topicHref: /
+  items:
+  - name: Partner Center REST API reference
+  tocHref: /partner-center/develop/partner-center-rest-api-reference/
+  topicHref: /partner-center/develop/partner-center-rest-api-reference
+  items:
+  - name: Azure Digital Twins
+  tocHref: /azure/digital-twins/
+  topicHref: /azure/digital-twins
