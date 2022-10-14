@@ -2,10 +2,14 @@
   tocHref: /
   topicHref: /
   items:
-  - name: Partner Center REST API reference
-    tocHref: /partner-center/develop/partner-center-rest-api-reference/
-    topicHref: /partner-center/develop/partner-center-rest-api-reference
+  - name: Partner Center developer documentation
+    tocHref: /partner-center/develop/
+    topicHref: /partner-center/develop/index
     items:
-    - name: Azure Digital Twins REST API reference
-      tocHref: /rest/api/azure-digitaltwins/
-      topicHref: /rest/api/azure-digitaltwins/index
+    - name: Partner Center REST API reference
+      tocHref: /partner-center/develop/partner-center-rest-api-reference/
+      topicHref: /partner-center/develop/partner-center-rest-api-reference
+      items:
+      - name: Azure Digital Twins REST API reference
+        tocHref: /rest/api/azure-digitaltwins/
+        topicHref: /rest/api/azure-digitaltwins/index
