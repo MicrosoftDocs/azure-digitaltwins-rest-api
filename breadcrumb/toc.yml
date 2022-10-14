@@ -6,6 +6,6 @@
     tocHref: /partner-center/develop/partner-center-rest-api-reference/
     topicHref: /partner-center/develop/partner-center-rest-api-reference
     items:
-    - name: Azure Digital Twins
+    - name: Azure Digital Twins REST API reference
       tocHref: /azure/digital-twins/
       topicHref: /azure/digital-twins
