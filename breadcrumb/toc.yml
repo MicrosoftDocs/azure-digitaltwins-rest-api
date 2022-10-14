@@ -8,4 +8,4 @@
     items:
     - name: Azure Digital Twins REST API reference
       tocHref: /rest/api/azure-digitaltwins/
-      topicHref: /azure/digital-twins
+      topicHref: /rest/api/azure-digitaltwins/index
