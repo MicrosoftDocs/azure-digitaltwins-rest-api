@@ -26,7 +26,15 @@
           "index.md"
         ],
         "dest": "api/azure-digitaltwins"
-      }
+      },
+      {
+        "src": "breadcrumb",
+        "files": [
+         "toc.yml"
+     ],
+           "exclude": [],
+           "dest": "api/azure-digitaltwins/breadcrumb"
+       }
     ],
     "externalReference": [],
     "globalMetadata": {
@@ -37,7 +45,7 @@
       },
       "_mockServerUrl": "https://apiexproxy.azurewebsites.net/svc",
       "_mockServerAuthorization": "Bearer {token:https://graph.windows.net/}",
-      "breadcrumb_path": "~/breadcrumb/toc.yml",
+      "breadcrumb_path": "/rest/api/azure-digitaltwins/breadcrumb/toc.json",
       "rest_product": "azure-digitaltwins",
       "titleSuffix": "Azure DigitalTwins Rest API",
       "author": "v-jutao",
