@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_getbyid
 name: DigitalTwins GetById
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-10-31
+apiVersion: 2023-02-27-preview
 summary: >-
   Retrieves a digital twin.
 
@@ -20,7 +20,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-hostname/digitaltwins/{id}?api-version=2020-10-31
+- content: GET https://digitaltwins-hostname/digitaltwins/{id}?api-version=2023-02-27-preview
 uriParameters:
 - name: id
   in: path
@@ -41,7 +41,7 @@ responses:
     value: string
   description: Success
   types:
-  - uid: object
+  - uid: DigitalTwin
 - name: Other Status Codes
   description: Default response.
   types:
@@ -71,17 +71,17 @@ definitions:
   kind: object
   properties:
   - name: code
-    isReadyOnly: true
+    isReadOnly: true
     description: Service specific error code which serves as the substatus for the HTTP error code.
     types:
     - uid: string
   - name: message
-    isReadyOnly: true
+    isReadOnly: true
     description: A human-readable representation of the error.
     types:
     - uid: string
   - name: details
-    isReadyOnly: true
+    isReadOnly: true
     description: Internal error details.
     types:
     - uid: Error
@@ -105,31 +105,41 @@ definitions:
 examples:
 - name: Get a digital twin by id
   request:
-    uri: GET https://digitaltwins-hostname/digitaltwins/myTwinId?api-version=2020-10-31
+    uri: GET https://digitaltwins-hostname/digitaltwins/myTwinId?api-version=2023-02-27-preview
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://digitaltwins-hostname/digitaltwins/myTwinId?api-version=2023-02-27-preview
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
       {
         "$dtId": "myTwinId",
-        "$metadata": {
-          "$model": "dtmi:com:example:interfaces:interfaceName;1",
-          "property1": {
-            "lastUpdateTime": "2020-05-23T21:44:02Z"
-          },
-          "property2": {
-            "lastUpdateTime": "2020-05-23T21:44:02Z"
-          }
-        },
+        "$etag": "W/\"9c2876c2-aff0-40b3-9fba-0c6be9d020a6\"",
         "property1": 1,
         "property2": {
           "subProperty1": "some value",
           "subProperty2": "some other value"
         },
         "component1": {
+          "componentProperty": "some value",
           "$metadata": {
+            "$lastUpdateTime": "2022-02-28T00:30:00.1234567Z",
             "componentProperty": {
-              "lastUpdateTime": "2020-05-23T21:44:02Z"
+              "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
             }
+          }
+        },
+        "$metadata": {
+          "$model": "dtmi:com:example:interfaces:interfaceName;1",
+          "$lastUpdateTime": "2022-02-28T00:30:00.1234567Z",
+          "property1": {
+            "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+          },
+          "property2": {
+            "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
           }
         }
       }
@@ -144,8 +154,9 @@ metadata:
 
     Status codes:
 
-    * 200 OK
+    200 OK
 
-    * 400 Bad Request
-      * InvalidArgument - The digital twin id is invalid.
+    400 Bad Request
+
+    InvalidArgument - The digital twin id is invalid.
 errorCodes: []

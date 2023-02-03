@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.eventroutes.add
 name: Add
 service: Azure Digital Twins
 groupName: Event Routes
-apiVersion: 2020-10-31
+apiVersion: 2023-02-27-preview
 summary: >-
   Adds or replaces an event route.
 
@@ -21,7 +21,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: PUT https://digitaltwins-hostname/eventroutes/{id}?api-version=2020-10-31
+- content: PUT https://digitaltwins-hostname/eventroutes/{id}?api-version=2023-02-27-preview
 uriParameters:
 - name: id
   in: path
@@ -82,7 +82,7 @@ definitions:
   kind: object
   properties:
   - name: id
-    isReadyOnly: true
+    isReadOnly: true
     description: The id of the event route.
     types:
     - uid: string
@@ -99,17 +99,17 @@ definitions:
   kind: object
   properties:
   - name: code
-    isReadyOnly: true
+    isReadOnly: true
     description: Service specific error code which serves as the substatus for the HTTP error code.
     types:
     - uid: string
   - name: message
-    isReadyOnly: true
+    isReadOnly: true
     description: A human-readable representation of the error.
     types:
     - uid: string
   - name: details
-    isReadyOnly: true
+    isReadOnly: true
     description: Internal error details.
     types:
     - uid: Error
@@ -133,22 +133,46 @@ definitions:
 examples:
 - name: Add an event route
   request:
-    uri: PUT https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2020-10-31
+    uri: PUT https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2023-02-27-preview
     body: >-
       {
         "endpointName": "endpoint-001",
         "filter": "true"
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PUT https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2023-02-27-preview
+
+      {
+        "endpointName": "endpoint-001",
+        "filter": "true"
+      }
+
+      ```
+
   responses:
   - statusCode: "204"
 - name: Add an event route (with filter)
   request:
-    uri: PUT https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2020-10-31
+    uri: PUT https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2023-02-27-preview
     body: >-
       {
         "endpointName": "endpoint-001",
         "filter": "type = 'Microsoft.DigitalTwins.Twin.Create'"
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PUT https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2023-02-27-preview
+
+      {
+        "endpointName": "endpoint-001",
+        "filter": "type = 'Microsoft.DigitalTwins.Twin.Create'"
+      }
+
+      ```
+
   responses:
   - statusCode: "204"
 security:
@@ -162,8 +186,9 @@ metadata:
 
     Status codes:
 
-    * 204 No Content
+    204 No Content
 
-    * 400 Bad Request
-      * EventRouteEndpointInvalid - The endpoint provided does not exist or is not
+    400 Bad Request
+
+    EventRouteEndpointInvalid - The endpoint provided does not exist or is not active.
 errorCodes: []

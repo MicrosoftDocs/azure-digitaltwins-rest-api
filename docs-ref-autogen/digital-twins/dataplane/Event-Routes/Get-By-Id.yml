@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.eventroutes.getbyid
 name: Get By Id
 service: Azure Digital Twins
 groupName: Event Routes
-apiVersion: 2020-10-31
+apiVersion: 2023-02-27-preview
 summary: >-
   Retrieves an event route.
 
@@ -18,7 +18,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-hostname/eventroutes/{id}?api-version=2020-10-31
+- content: GET https://digitaltwins-hostname/eventroutes/{id}?api-version=2023-02-27-preview
 uriParameters:
 - name: id
   in: path
@@ -58,7 +58,7 @@ definitions:
   kind: object
   properties:
   - name: id
-    isReadyOnly: true
+    isReadOnly: true
     description: The id of the event route.
     types:
     - uid: string
@@ -83,17 +83,17 @@ definitions:
   kind: object
   properties:
   - name: code
-    isReadyOnly: true
+    isReadOnly: true
     description: Service specific error code which serves as the substatus for the HTTP error code.
     types:
     - uid: string
   - name: message
-    isReadyOnly: true
+    isReadOnly: true
     description: A human-readable representation of the error.
     types:
     - uid: string
   - name: details
-    isReadyOnly: true
+    isReadOnly: true
     description: Internal error details.
     types:
     - uid: Error
@@ -117,7 +117,13 @@ definitions:
 examples:
 - name: Get an event route by id
   request:
-    uri: GET https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2020-10-31
+    uri: GET https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2023-02-27-preview
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2023-02-27-preview
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -132,13 +138,14 @@ security:
   flow: implicit
   authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
 metadata:
-  description: >-
+  description: >
     Retrieves an event route.
 
     Status codes:
 
-    * 200 OK
+    200 OK
 
-    * 404 Not Found
-      * EventRouteNotFound - The event route was not found.
+    404 Not Found
+
+    EventRouteNotFound - The event route was not found.
 errorCodes: []

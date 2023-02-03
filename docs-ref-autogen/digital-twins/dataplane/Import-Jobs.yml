@@ -1,0 +1,54 @@
+### YamlMime:RESTOperationGroup
+uid: digitaltwins-hostname.digital-twins.dataplane.importjobs
+name: Import Jobs
+apiVersion: 2023-02-27-preview
+service: Azure Digital Twins
+metadata:
+  description: Learn more about [Azure Digital Twins Import Jobs Operations]. How to [Add,Cancel,Delete,Get By Id,List].
+operations:
+- uid: digitaltwins-hostname.digital-twins.dataplane.importjobs.add
+  summary: >-
+    Creates a bulk import job.
+
+    Status codes:
+
+    - 201 Created
+
+    - 400 Bad Request
+- uid: digitaltwins-hostname.digital-twins.dataplane.importjobs.cancel
+  summary: >-
+    Cancels a bulk import job.
+
+    Status codes:
+
+    * 200 Request Accepted
+
+    * 400 Bad Request
+      * ValidationFailed - The bulk job request is not valid.
+- uid: digitaltwins-hostname.digital-twins.dataplane.importjobs.delete
+  summary: >-
+    Deletes a bulk import job.
+
+    Status codes:
+
+    * 204 No Content
+
+    * 400 Bad Request
+      * ValidationFailed - The bulk job request is not valid.
+- uid: digitaltwins-hostname.digital-twins.dataplane.importjobs.getbyid
+  summary: >-
+    Retrieves a bulk job.
+
+    Status codes:
+
+    * 200 OK
+
+    * 404 Not Found
+      * BulkJobNotFound - The bulk job was not found.
+- uid: digitaltwins-hostname.digital-twins.dataplane.importjobs.list
+  summary: >-
+    Retrieves all bulk import jobs.
+
+    Status codes:
+
+    * 200 OK

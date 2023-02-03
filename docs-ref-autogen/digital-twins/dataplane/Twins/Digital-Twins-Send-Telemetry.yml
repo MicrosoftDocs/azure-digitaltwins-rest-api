@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_sendteleme
 name: DigitalTwins SendTelemetry
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-10-31
+apiVersion: 2023-02-27-preview
 summary: >-
   Sends telemetry on behalf of a digital twin.
 
@@ -21,7 +21,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: POST https://digitaltwins-hostname/digitaltwins/{id}/telemetry?api-version=2020-10-31
+- content: POST https://digitaltwins-hostname/digitaltwins/{id}/telemetry?api-version=2023-02-27-preview
 uriParameters:
 - name: id
   in: path
@@ -86,17 +86,17 @@ definitions:
   kind: object
   properties:
   - name: code
-    isReadyOnly: true
+    isReadOnly: true
     description: Service specific error code which serves as the substatus for the HTTP error code.
     types:
     - uid: string
   - name: message
-    isReadyOnly: true
+    isReadOnly: true
     description: A human-readable representation of the error.
     types:
     - uid: string
   - name: details
-    isReadyOnly: true
+    isReadOnly: true
     description: Internal error details.
     types:
     - uid: Error
@@ -120,11 +120,24 @@ definitions:
 examples:
 - name: Send telemetry
   request:
-    uri: POST https://digitaltwins-hostname/digitaltwins/myTwinId/telemetry?api-version=2020-10-31
+    uri: POST https://digitaltwins-hostname/digitaltwins/myTwinId/telemetry?api-version=2023-02-27-preview
     body: >-
       {
         "temperature": 1
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      POST https://digitaltwins-hostname/digitaltwins/myTwinId/telemetry?api-version=2023-02-27-preview
+
+
+
+      {
+        "temperature": 1
+      }
+
+      ```
+
     headers:
     - name: Message-Id
       value: e5ca50dd-ca31-4fae-8d84-3af5a72b10c5
@@ -143,8 +156,9 @@ metadata:
 
     Status codes:
 
-    * 204 No Content
+    204 No Content
 
-    * 400 Bad Request
-      * InvalidArgument - The digital twin id or message id is invalid
+    400 Bad Request
+
+    InvalidArgument - The digital twin id or message id is invalid.
 errorCodes: []

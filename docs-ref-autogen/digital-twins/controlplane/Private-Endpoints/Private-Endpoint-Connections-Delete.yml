@@ -69,17 +69,17 @@ definitions:
   kind: object
   properties:
   - name: code
-    isReadyOnly: true
+    isReadOnly: true
     description: Service specific error code which serves as the substatus for the HTTP error code.
     types:
     - uid: string
   - name: message
-    isReadyOnly: true
+    isReadOnly: true
     description: Description of the error.
     types:
     - uid: string
   - name: details
-    isReadyOnly: true
+    isReadOnly: true
     description: Internal error details.
     types:
     - uid: ErrorDefinition
@@ -88,6 +88,12 @@ examples:
 - name: Delete private endpoint connection with the specified name
   request:
     uri: DELETE https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateEndpointConnections/myPrivateConnection?api-version=2020-12-01
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      DELETE https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateEndpointConnections/myPrivateConnection?api-version=2020-12-01
+      ```
+
   responses:
   - statusCode: "200"
   - statusCode: "202"
@@ -102,5 +108,6 @@ security:
   - name: user_impersonation
     description: impersonate your user account
 metadata:
-  description: Learn more about Azure Digital Twins service - Delete private endpoint connection with the specified name.
+  description: >
+    Learn more about Azure Digital Twins service - Delete private endpoint connection with the specified name.
 errorCodes: []

@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.query.querytwins
 name: Query Twins
 service: Azure Digital Twins
 groupName: Query
-apiVersion: 2020-10-31
+apiVersion: 2023-02-27-preview
 summary: >-
   Executes a query that allows traversing relationships and filtering by property values.
 
@@ -22,7 +22,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: POST https://digitaltwins-hostname/query?api-version=2020-10-31
+- content: POST https://digitaltwins-hostname/query?api-version=2023-02-27-preview
 uriParameters:
 - name: api-version
   in: query
@@ -110,17 +110,17 @@ definitions:
   kind: object
   properties:
   - name: code
-    isReadyOnly: true
+    isReadOnly: true
     description: Service specific error code which serves as the substatus for the HTTP error code.
     types:
     - uid: string
   - name: message
-    isReadyOnly: true
+    isReadOnly: true
     description: A human-readable representation of the error.
     types:
     - uid: string
   - name: details
-    isReadyOnly: true
+    isReadOnly: true
     description: Internal error details.
     types:
     - uid: Error
@@ -144,11 +144,22 @@ definitions:
 examples:
 - name: Query for digital twins
   request:
-    uri: POST https://digitaltwins-hostname/query?api-version=2020-10-31
+    uri: POST https://digitaltwins-hostname/query?api-version=2023-02-27-preview
     body: >-
       {
         "query": "SELECT * FROM DIGITALTWINS WHERE temp = 79"
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      POST https://digitaltwins-hostname/query?api-version=2023-02-27-preview
+
+      {
+        "query": "SELECT * FROM DIGITALTWINS WHERE temp = 79"
+      }
+
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -157,7 +168,17 @@ examples:
           {
             "$dtId": "Twin-01",
             "$metadata": {
-              "$model": "dtmi:com:example:Sample;1"
+              "$lastUpdateTime": "2022-02-28T00:30:00.1234567Z",
+              "$model": "dtmi:com:example:Sample;1",
+              "name": {
+                "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+              },
+              "temp": {
+                "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+              },
+              "comfortIndex": {
+                "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+              }
             },
             "name": "Sample01",
             "temp": 79,
@@ -166,7 +187,18 @@ examples:
           {
             "$dtId": "Twin-02",
             "$metadata": {
-              "$model": "dtmi:com:example:Sample;1"
+              "$lastUpdateTime": "2022-02-28T00:29:00.1234567Z",
+              "$model": "dtmi:com:example:Sample;1",
+              "name": {
+                "lastUpdateTime": "2022-02-28T00:29:00.1234567Z"
+              },
+              "temp": {
+                "lastUpdateTime": "2022-02-28T00:29:00.1234567Z",
+                "sourceTime": "2022-05-31T12:00:00.000125009Z"
+              },
+              "comfortIndex": {
+                "lastUpdateTime": "2022-02-28T00:29:00.1234567Z"
+              }
             },
             "name": "Sample02",
             "temp": 79,
@@ -175,7 +207,17 @@ examples:
           {
             "$dtId": "Twin-03",
             "$metadata": {
-              "$model": "dtmi:com:example:Sample;1"
+              "$lastUpdateTime": "2022-02-28T00:31:00.1234567Z",
+              "$model": "dtmi:com:example:Sample;1",
+              "name": {
+                "lastUpdateTime": "2022-02-28T00:31:00.1234567Z"
+              },
+              "temp": {
+                "lastUpdateTime": "2022-02-28T00:31:00.1234567Z"
+              },
+              "comfortIndex": {
+                "lastUpdateTime": "2022-02-28T00:31:00.1234567Z"
+              }
             },
             "name": "Sample03",
             "temp": 79,
@@ -186,11 +228,22 @@ examples:
       }
 - name: Retrieve paged query results
   request:
-    uri: POST https://digitaltwins-hostname/query?api-version=2020-10-31
+    uri: POST https://digitaltwins-hostname/query?api-version=2023-02-27-preview
     body: >-
       {
         "continuationToken": "<continuationToken from previous query>"
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      POST https://digitaltwins-hostname/query?api-version=2023-02-27-preview
+
+      {
+        "continuationToken": "<continuationToken from previous query>"
+      }
+
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -199,7 +252,17 @@ examples:
           {
             "$dtId": "Twin-04",
             "$metadata": {
-              "$model": "dtmi:com:example:Sample;1"
+              "$lastUpdateTime": "2022-02-28T00:30:00.1234567Z",
+              "$model": "dtmi:com:example:Sample;1",
+              "name": {
+                "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+              },
+              "temp": {
+                "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+              },
+              "comfortIndex": {
+                "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+              }
             },
             "name": "Sample04",
             "temp": 79,
@@ -208,7 +271,17 @@ examples:
           {
             "$dtId": "Twin-05",
             "$metadata": {
-              "$model": "dtmi:com:example:Sample;1"
+              "$lastUpdateTime": "2022-02-28T00:30:00.1234567Z",
+              "$model": "dtmi:com:example:Sample;1",
+              "name": {
+                "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+              },
+              "temp": {
+                "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+              },
+              "comfortIndex": {
+                "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+              }
             },
             "name": "Sample05",
             "temp": 79,
@@ -217,7 +290,17 @@ examples:
           {
             "$dtId": "Twin-06",
             "$metadata": {
-              "$model": "dtmi:com:example:Sample;1"
+              "$lastUpdateTime": "2022-02-28T00:30:00.1234567Z",
+              "$model": "dtmi:com:example:Sample;1",
+              "name": {
+                "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+              },
+              "temp": {
+                "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+              },
+              "comfortIndex": {
+                "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+              }
             },
             "name": "Sample06",
             "temp": 79,
@@ -227,11 +310,22 @@ examples:
       }
 - name: Query for digital twins through a relationship
   request:
-    uri: POST https://digitaltwins-hostname/query?api-version=2020-10-31
+    uri: POST https://digitaltwins-hostname/query?api-version=2023-02-27-preview
     body: >-
       {
         "query": "SELECT Widget, Gadget FROM DIGITALTWINS Widget JOIN Gadget RELATED Widget.Contains WHERE Widget.$dtId = 'Twin-01'"
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      POST https://digitaltwins-hostname/query?api-version=2023-02-27-preview
+
+      {
+        "query": "SELECT Widget, Gadget FROM DIGITALTWINS Widget JOIN Gadget RELATED Widget.Contains WHERE Widget.$dtId = 'Twin-01'"
+      }
+
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -241,7 +335,17 @@ examples:
             "Widget": {
               "$dtId": "Twin-01",
               "$metadata": {
-                "$model": "dtmi:com:example:Sample;1"
+                "$lastUpdateTime": "2022-02-28T00:30:00.1234567Z",
+                "$model": "dtmi:com:example:Sample;1",
+                "name": {
+                  "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+                },
+                "temp": {
+                  "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+                },
+                "comfortIndex": {
+                  "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+                }
               },
               "name": "Sample01",
               "temp": 79,
@@ -250,7 +354,17 @@ examples:
             "Gadget": {
               "$dtId": "Twin-02",
               "$metadata": {
-                "$model": "dtmi:com:example:Sample;1"
+                "$lastUpdateTime": "2022-02-28T00:30:00.1234567Z",
+                "$model": "dtmi:com:example:Sample;1",
+                "name": {
+                  "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+                },
+                "temp": {
+                  "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+                },
+                "comfortIndex": {
+                  "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+                }
               },
               "name": "Sample02",
               "temp": 79,
@@ -261,7 +375,17 @@ examples:
             "Widget": {
               "$dtId": "Twin-01",
               "$metadata": {
-                "$model": "dtmi:com:example:Sample;1"
+                "$lastUpdateTime": "2022-02-28T00:30:00.1234567Z",
+                "$model": "dtmi:com:example:Sample;1",
+                "name": {
+                  "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+                },
+                "temp": {
+                  "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+                },
+                "comfortIndex": {
+                  "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+                }
               },
               "name": "Sample01",
               "temp": 79,
@@ -270,7 +394,17 @@ examples:
             "Gadget": {
               "$dtId": "Twin-10",
               "$metadata": {
-                "$model": "dtmi:com:example:Sample;1"
+                "$lastUpdateTime": "2022-02-28T00:30:00.1234567Z",
+                "$model": "dtmi:com:example:Sample;1",
+                "name": {
+                  "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+                },
+                "temp": {
+                  "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+                },
+                "comfortIndex": {
+                  "lastUpdateTime": "2022-02-28T00:30:00.1234567Z"
+                }
               },
               "name": "Sample10",
               "temp": 79,
@@ -290,8 +424,9 @@ metadata:
 
     Status codes:
 
-    * 200 OK
+    200 OK
 
-    * 400 Bad Request
-      * BadRequest - The continuati
+    400 Bad Request
+
+    BadRequest - The continuation token
 errorCodes: []

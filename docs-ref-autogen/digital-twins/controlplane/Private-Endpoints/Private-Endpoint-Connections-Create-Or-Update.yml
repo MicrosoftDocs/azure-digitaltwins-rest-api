@@ -71,7 +71,7 @@ definitions:
   kind: object
   properties:
   - name: provisioningState
-    isReadyOnly: true
+    isReadOnly: true
     description: The provisioning state.
     types:
     - uid: ConnectionPropertiesProvisioningState
@@ -93,17 +93,17 @@ definitions:
   kind: object
   properties:
   - name: id
-    isReadyOnly: true
+    isReadOnly: true
     description: The resource identifier.
     types:
     - uid: string
   - name: name
-    isReadyOnly: true
+    isReadOnly: true
     description: The resource name.
     types:
     - uid: string
   - name: type
-    isReadyOnly: true
+    isReadOnly: true
     description: The resource type.
     types:
     - uid: string
@@ -139,7 +139,7 @@ definitions:
   kind: object
   properties:
   - name: id
-    isReadyOnly: true
+    isReadOnly: true
     description: The resource identifier.
     types:
     - uid: string
@@ -163,17 +163,17 @@ definitions:
   kind: object
   properties:
   - name: code
-    isReadyOnly: true
+    isReadOnly: true
     description: Service specific error code which serves as the substatus for the HTTP error code.
     types:
     - uid: string
   - name: message
-    isReadyOnly: true
+    isReadOnly: true
     description: Description of the error.
     types:
     - uid: string
   - name: details
-    isReadyOnly: true
+    isReadOnly: true
     description: Internal error details.
     types:
     - uid: ErrorDefinition
@@ -207,6 +207,22 @@ examples:
           }
         }
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateEndpointConnections/myPrivateConnection?api-version=2020-12-01
+
+      {
+        "properties": {
+          "privateLinkServiceConnectionState": {
+            "status": "Approved",
+            "description": "Approved by johndoe@company.com."
+          }
+        }
+      }
+
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -258,5 +274,6 @@ security:
   - name: user_impersonation
     description: impersonate your user account
 metadata:
-  description: Learn more about Azure Digital Twins service - Update the status of a private endpoint connection with the given name.
+  description: >
+    Learn more about Azure Digital Twins service - Update the status of a private endpoint connection with the given name.
 errorCodes: []
