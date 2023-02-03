@@ -2,7 +2,7 @@
   "repo": [
 	  {
          "url":"https://github.com/Azure/azure-rest-api-specs",
-         "branch":"master",
+         "branch":"main",
          "name":"digital-twins-control"
       }
   ]
