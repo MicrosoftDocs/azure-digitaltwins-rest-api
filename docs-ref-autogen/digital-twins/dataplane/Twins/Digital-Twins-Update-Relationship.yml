@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_updaterela
 name: DigitalTwins UpdateRelationship
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-10-31
+apiVersion: 2023-02-27-preview
 summary: >-
   Updates the properties on a relationship between two digital twins.
 
@@ -28,7 +28,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: PATCH https://digitaltwins-hostname/digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-10-31
+- content: PATCH https://digitaltwins-hostname/digitaltwins/{id}/relationships/{relationshipId}?api-version=2023-02-27-preview
 uriParameters:
 - name: id
   in: path
@@ -97,17 +97,17 @@ definitions:
   kind: object
   properties:
   - name: code
-    isReadyOnly: true
+    isReadOnly: true
     description: Service specific error code which serves as the substatus for the HTTP error code.
     types:
     - uid: string
   - name: message
-    isReadyOnly: true
+    isReadOnly: true
     description: A human-readable representation of the error.
     types:
     - uid: string
   - name: details
-    isReadyOnly: true
+    isReadOnly: true
     description: Internal error details.
     types:
     - uid: Error
@@ -131,7 +131,7 @@ definitions:
 examples:
 - name: Update relationship properties
   request:
-    uri: PATCH https://digitaltwins-hostname/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2020-10-31
+    uri: PATCH https://digitaltwins-hostname/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2023-02-27-preview
     body: >-
       [
         {
@@ -140,11 +140,26 @@ examples:
           "value": 1
         }
       ]
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PATCH https://digitaltwins-hostname/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2023-02-27-preview
+
+      [
+        {
+          "op": "add",
+          "path": "/property",
+          "value": 1
+        }
+      ]
+
+      ```
+
   responses:
   - statusCode: "204"
 - name: Update relationship properties (multiple updates)
   request:
-    uri: PATCH https://digitaltwins-hostname/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2020-10-31
+    uri: PATCH https://digitaltwins-hostname/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2023-02-27-preview
     body: >-
       [
         {
@@ -162,6 +177,30 @@ examples:
           "value": "new value"
         }
       ]
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PATCH https://digitaltwins-hostname/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2023-02-27-preview
+
+      [
+        {
+          "op": "add",
+          "path": "/property1",
+          "value": 1
+        },
+        {
+          "op": "remove",
+          "path": "/property2"
+        },
+        {
+          "op": "replace",
+          "path": "/property3/subProperty1",
+          "value": "new value"
+        }
+      ]
+
+      ```
+
   responses:
   - statusCode: "204"
 security:
@@ -175,8 +214,9 @@ metadata:
 
     Status codes:
 
-    * 204 No Content
+    204 No Content
 
-    * 400 Bad Request
-      * InvalidArgument - The digital twin id o
+    400 Bad Request
+
+    InvalidArgument - The digital twin id or relati
 errorCodes: []

@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.models.digitaltwinmodels_list
 name: DigitalTwinModels List
 service: Azure Digital Twins
 groupName: Models
-apiVersion: 2020-10-31
+apiVersion: 2023-02-27-preview
 summary: >-
   Retrieves model metadata and, optionally, model definitions.
 
@@ -21,13 +21,13 @@ consumes:
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-hostname/models?api-version=2020-10-31
-- content: GET https://digitaltwins-hostname/models?dependenciesFor={dependenciesFor}&includeModelDefinition={includeModelDefinition}&api-version=2020-10-31
+- content: GET https://digitaltwins-hostname/models?api-version=2023-02-27-preview
+- content: GET https://digitaltwins-hostname/models?dependenciesFor={dependenciesFor}&includeModelDefinition={includeModelDefinition}&api-version=2023-02-27-preview
   isOptional: true
 uriParameters:
 - name: dependenciesFor
   in: query
-  description: The set of the models which will have their dependencies retrieved. If omitted, all models are retrieved.
+  description: If specified, only return the set of the specified models along with their dependencies. If omitted, all models are retrieved.
   types:
   - uid: array
 - name: includeModelDefinition
@@ -120,6 +120,7 @@ definitions:
     description: Indicates if the model is decommissioned. Decommissioned models cannot be referenced by newly created digital twins.
     types:
     - uid: boolean
+    defaultValue: false
   - name: model
     description: The model definition.
     types:
@@ -129,17 +130,17 @@ definitions:
   kind: object
   properties:
   - name: code
-    isReadyOnly: true
+    isReadOnly: true
     description: Service specific error code which serves as the substatus for the HTTP error code.
     types:
     - uid: string
   - name: message
-    isReadyOnly: true
+    isReadOnly: true
     description: A human-readable representation of the error.
     types:
     - uid: string
   - name: details
-    isReadyOnly: true
+    isReadOnly: true
     description: Internal error details.
     types:
     - uid: Error
@@ -163,7 +164,13 @@ definitions:
 examples:
 - name: List models
   request:
-    uri: GET https://digitaltwins-hostname/models?api-version=2020-10-31
+    uri: GET https://digitaltwins-hostname/models?api-version=2023-02-27-preview
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://digitaltwins-hostname/models?api-version=2023-02-27-preview
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -171,7 +178,7 @@ examples:
         "value": [
           {
             "id": "dtmi:com:example:Sample;1",
-            "uploadTime": "2020-03-01T17:32:28Z",
+            "uploadTime": "2022-02-28T00:30:00.1234567Z",
             "decommissioned": false
           },
           {
@@ -179,7 +186,7 @@ examples:
             "displayName": {
               "en": "My Device Model"
             },
-            "uploadTime": "2020-05-01T17:32:28Z",
+            "uploadTime": "2022-02-27T00:30:00.1234567Z",
             "decommissioned": false
           },
           {
@@ -187,7 +194,7 @@ examples:
             "displayName": {
               "en": "My Sample"
             },
-            "uploadTime": "2020-03-01T17:32:28Z",
+            "uploadTime": "2022-02-26T00:30:00.1234567Z",
             "decommissioned": false
           }
         ],
@@ -195,7 +202,13 @@ examples:
       }
 - name: List models (include dependencies and definitions)
   request:
-    uri: GET https://digitaltwins-hostname/models?dependenciesFor=dtmi:com:example:SampleDeviceModel;1&includeModelDefinition=True&api-version=2020-10-31
+    uri: GET https://digitaltwins-hostname/models?dependenciesFor=dtmi:com:example:SampleDeviceModel;1&includeModelDefinition=True&api-version=2023-02-27-preview
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://digitaltwins-hostname/models?dependenciesFor=dtmi:com:example:SampleDeviceModel;1&includeModelDefinition=True&api-version=2023-02-27-preview
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -203,7 +216,7 @@ examples:
         "value": [
           {
             "id": "dtmi:com:example:Sample;1",
-            "uploadTime": "2020-03-01T17:32:28Z",
+            "uploadTime": "2022-02-28T00:30:00.1234567Z",
             "decommissioned": false,
             "model": {
               "@id": "dtmi:com:example:Sample;1",
@@ -236,7 +249,7 @@ examples:
             "displayName": {
               "en": "My Device Model"
             },
-            "uploadTime": "2020-03-01T17:32:28Z",
+            "uploadTime": "2022-02-28T00:30:00.1234567Z",
             "decommissioned": false,
             "model": {
               "@id": "dtmi:com:example:SampleDeviceModel;1",
@@ -266,8 +279,9 @@ metadata:
 
     Status codes:
 
-    * 200 OK
+    200 OK
 
-    * 400 Bad Request
-      * InvalidArgument - The model id is invalid.
+    400 Bad Request
+
+    InvalidArgument - The model id is invalid.
 errorCodes: []

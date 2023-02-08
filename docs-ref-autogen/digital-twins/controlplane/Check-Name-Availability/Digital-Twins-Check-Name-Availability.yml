@@ -107,17 +107,17 @@ definitions:
   kind: object
   properties:
   - name: code
-    isReadyOnly: true
+    isReadOnly: true
     description: Service specific error code which serves as the substatus for the HTTP error code.
     types:
     - uid: string
   - name: message
-    isReadyOnly: true
+    isReadOnly: true
     description: Description of the error.
     types:
     - uid: string
   - name: details
-    isReadyOnly: true
+    isReadOnly: true
     description: Internal error details.
     types:
     - uid: ErrorDefinition
@@ -138,6 +138,18 @@ examples:
         "name": "myadtinstance",
         "type": "Microsoft.DigitalTwins/digitalTwinsInstances"
       }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      POST https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/WestUS2/checkNameAvailability?api-version=2020-12-01
+
+      {
+        "name": "myadtinstance",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances"
+      }
+
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -156,5 +168,6 @@ security:
   - name: user_impersonation
     description: impersonate your user account
 metadata:
-  description: Learn more about Azure Digital Twins service - Check if a DigitalTwinsInstance name is available.
+  description: >
+    Learn more about Azure Digital Twins service - Check if a DigitalTwinsInstance name is available.
 errorCodes: []

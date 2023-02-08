@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.models.digitaltwinmodels_upda
 name: DigitalTwinModels Update
 service: Azure Digital Twins
 groupName: Models
-apiVersion: 2020-10-31
+apiVersion: 2023-02-27-preview
 summary: >-
   Updates the metadata for a model.
 
@@ -24,7 +24,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: PATCH https://digitaltwins-hostname/models/{id}?api-version=2020-10-31
+- content: PATCH https://digitaltwins-hostname/models/{id}?api-version=2023-02-27-preview
 uriParameters:
 - name: id
   in: path
@@ -79,17 +79,17 @@ definitions:
   kind: object
   properties:
   - name: code
-    isReadyOnly: true
+    isReadOnly: true
     description: Service specific error code which serves as the substatus for the HTTP error code.
     types:
     - uid: string
   - name: message
-    isReadyOnly: true
+    isReadOnly: true
     description: A human-readable representation of the error.
     types:
     - uid: string
   - name: details
-    isReadyOnly: true
+    isReadOnly: true
     description: Internal error details.
     types:
     - uid: Error
@@ -113,7 +113,7 @@ definitions:
 examples:
 - name: Decommission a model
   request:
-    uri: PATCH https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2020-10-31
+    uri: PATCH https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2023-02-27-preview
     body: >-
       [
         {
@@ -122,6 +122,21 @@ examples:
           "value": true
         }
       ]
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PATCH https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2023-02-27-preview
+
+      [
+        {
+          "op": "replace",
+          "path": "/decommissioned",
+          "value": true
+        }
+      ]
+
+      ```
+
   responses:
   - statusCode: "204"
 security:
@@ -135,8 +150,9 @@ metadata:
 
     Status codes:
 
-    * 204 No Content
+    204 No Content
 
-    * 400 Bad Request
-      * InvalidArgument - The model id is invalid.
+    400 Bad Request
+
+    InvalidArgument - The model id is invalid.
 errorCodes: []

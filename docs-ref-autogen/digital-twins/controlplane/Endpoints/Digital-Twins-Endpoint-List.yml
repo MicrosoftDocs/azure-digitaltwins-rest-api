@@ -81,17 +81,17 @@ definitions:
     - uid: EventGrid
     typesTitle: DigitalTwinsEndpointResourceProperties
   - name: id
-    isReadyOnly: true
+    isReadOnly: true
     description: The resource identifier.
     types:
     - uid: string
   - name: name
-    isReadyOnly: true
+    isReadOnly: true
     description: Extension resource name.
     types:
     - uid: string
   - name: type
-    isReadyOnly: true
+    isReadOnly: true
     description: The resource type.
     types:
     - uid: string
@@ -100,17 +100,17 @@ definitions:
   kind: object
   properties:
   - name: code
-    isReadyOnly: true
+    isReadOnly: true
     description: Service specific error code which serves as the substatus for the HTTP error code.
     types:
     - uid: string
   - name: message
-    isReadyOnly: true
+    isReadOnly: true
     description: Description of the error.
     types:
     - uid: string
   - name: details
-    isReadyOnly: true
+    isReadOnly: true
     description: Internal error details.
     types:
     - uid: ErrorDefinition
@@ -125,12 +125,12 @@ definitions:
     - uid: ServiceBus
     typesTitle: string
   - name: provisioningState
-    isReadyOnly: true
+    isReadOnly: true
     description: The provisioning state.
     types:
     - uid: EndpointProvisioningState
   - name: createdTime
-    isReadyOnly: true
+    isReadOnly: true
     description: Time when the Endpoint was added to DigitalTwinsInstance.
     types:
     - uid: string
@@ -172,12 +172,12 @@ definitions:
     - uid: EventHub
     typesTitle: string
   - name: provisioningState
-    isReadyOnly: true
+    isReadOnly: true
     description: The provisioning state.
     types:
     - uid: EndpointProvisioningState
   - name: createdTime
-    isReadyOnly: true
+    isReadOnly: true
     description: Time when the Endpoint was added to DigitalTwinsInstance.
     types:
     - uid: string
@@ -219,12 +219,12 @@ definitions:
     - uid: EventGrid
     typesTitle: string
   - name: provisioningState
-    isReadyOnly: true
+    isReadOnly: true
     description: The provisioning state.
     types:
     - uid: EndpointProvisioningState
   - name: createdTime
-    isReadyOnly: true
+    isReadOnly: true
     description: Time when the Endpoint was added to DigitalTwinsInstance.
     types:
     - uid: string
@@ -303,6 +303,12 @@ examples:
 - name: Get a DigitalTwinsInstance endpoints
   request:
     uri: GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints?api-version=2020-12-01
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints?api-version=2020-12-01
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -339,6 +345,12 @@ examples:
 - name: Get a DigitalTwinsInstance endpoints with identity
   request:
     uri: GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints?api-version=2020-12-01
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints?api-version=2020-12-01
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -382,5 +394,6 @@ security:
   - name: user_impersonation
     description: impersonate your user account
 metadata:
-  description: Learn more about Azure Digital Twins service - Get DigitalTwinsInstance Endpoints.
+  description: >
+    Learn more about Azure Digital Twins service - Get DigitalTwinsInstance Endpoints.
 errorCodes: []

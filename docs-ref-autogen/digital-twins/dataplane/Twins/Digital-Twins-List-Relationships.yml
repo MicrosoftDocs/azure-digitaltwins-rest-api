@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_listrelati
 name: DigitalTwins ListRelationships
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2020-10-31
+apiVersion: 2023-02-27-preview
 summary: >-
   Retrieves the relationships from a digital twin.
 
@@ -20,8 +20,8 @@ consumes:
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-hostname/digitaltwins/{id}/relationships?api-version=2020-10-31
-- content: GET https://digitaltwins-hostname/digitaltwins/{id}/relationships?relationshipName={relationshipName}&api-version=2020-10-31
+- content: GET https://digitaltwins-hostname/digitaltwins/{id}/relationships?api-version=2023-02-27-preview
+- content: GET https://digitaltwins-hostname/digitaltwins/{id}/relationships?relationshipName={relationshipName}&api-version=2023-02-27-preview
   isOptional: true
 uriParameters:
 - name: id
@@ -88,17 +88,17 @@ definitions:
   kind: object
   properties:
   - name: code
-    isReadyOnly: true
+    isReadOnly: true
     description: Service specific error code which serves as the substatus for the HTTP error code.
     types:
     - uid: string
   - name: message
-    isReadyOnly: true
+    isReadOnly: true
     description: A human-readable representation of the error.
     types:
     - uid: string
   - name: details
-    isReadyOnly: true
+    isReadOnly: true
     description: Internal error details.
     types:
     - uid: Error
@@ -122,7 +122,13 @@ definitions:
 examples:
 - name: List relationships
   request:
-    uri: GET https://digitaltwins-hostname/digitaltwins/mySourceTwin/relationships?api-version=2020-10-31
+    uri: GET https://digitaltwins-hostname/digitaltwins/mySourceTwin/relationships?api-version=2023-02-27-preview
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://digitaltwins-hostname/digitaltwins/mySourceTwin/relationships?api-version=2023-02-27-preview
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -149,7 +155,13 @@ examples:
       }
 - name: List relationships by name
   request:
-    uri: GET https://digitaltwins-hostname/digitaltwins/mySourceTwin/relationships?relationshipName=myRelationship&api-version=2020-10-31
+    uri: GET https://digitaltwins-hostname/digitaltwins/mySourceTwin/relationships?relationshipName=myRelationship&api-version=2023-02-27-preview
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://digitaltwins-hostname/digitaltwins/mySourceTwin/relationships?relationshipName=myRelationship&api-version=2023-02-27-preview
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -185,8 +197,9 @@ metadata:
 
     Status codes:
 
-    * 200 OK
+    200 OK
 
-    * 400 Bad Request
-      * InvalidArgument - The digital twin id is invalid.
+    400 Bad Request
+
+    InvalidArgument - The digital twin id is invalid.
 errorCodes: []

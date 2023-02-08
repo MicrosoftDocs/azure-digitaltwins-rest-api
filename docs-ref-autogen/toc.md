@@ -36,6 +36,13 @@
 #### [Delete](digital-twins/dataplane/Event-Routes/Delete.yml)
 #### [Get By Id](digital-twins/dataplane/Event-Routes/Get-By-Id.yml)
 #### [List](digital-twins/dataplane/Event-Routes/List.yml)
+### Import Jobs
+#### [Overview](digital-twins/dataplane/Import-Jobs.yml)
+#### [Add](digital-twins/dataplane/Import-Jobs/Add.yml)
+#### [Cancel](digital-twins/dataplane/Import-Jobs/Cancel.yml)
+#### [Delete](digital-twins/dataplane/Import-Jobs/Delete.yml)
+#### [Get By Id](digital-twins/dataplane/Import-Jobs/Get-By-Id.yml)
+#### [List](digital-twins/dataplane/Import-Jobs/List.yml)
 ### Models
 #### [Overview](digital-twins/dataplane/Models.yml)
 #### [DigitalTwinModels Add](digital-twins/dataplane/Models/Digital-Twin-Models-Add.yml)

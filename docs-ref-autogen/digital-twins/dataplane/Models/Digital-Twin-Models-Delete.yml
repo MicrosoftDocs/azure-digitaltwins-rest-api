@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.models.digitaltwinmodels_dele
 name: DigitalTwinModels Delete
 service: Azure Digital Twins
 groupName: Models
-apiVersion: 2020-10-31
+apiVersion: 2023-02-27-preview
 summary: >-
   Deletes a model. A model can only be deleted if no other models reference it.
 
@@ -23,7 +23,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: DELETE https://digitaltwins-hostname/models/{id}?api-version=2020-10-31
+- content: DELETE https://digitaltwins-hostname/models/{id}?api-version=2023-02-27-preview
 uriParameters:
 - name: id
   in: path
@@ -69,17 +69,17 @@ definitions:
   kind: object
   properties:
   - name: code
-    isReadyOnly: true
+    isReadOnly: true
     description: Service specific error code which serves as the substatus for the HTTP error code.
     types:
     - uid: string
   - name: message
-    isReadyOnly: true
+    isReadOnly: true
     description: A human-readable representation of the error.
     types:
     - uid: string
   - name: details
-    isReadyOnly: true
+    isReadOnly: true
     description: Internal error details.
     types:
     - uid: Error
@@ -103,7 +103,13 @@ definitions:
 examples:
 - name: Delete a model
   request:
-    uri: DELETE https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2020-10-31
+    uri: DELETE https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2023-02-27-preview
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      DELETE https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2023-02-27-preview
+      ```
+
   responses:
   - statusCode: "204"
 security:
@@ -117,8 +123,9 @@ metadata:
 
     Status codes:
 
-    * 204 No Content
+    204 No Content
 
-    * 400 Bad Request
-      * InvalidArgument - The model i
+    400 Bad Request
+
+    InvalidArgument - The model id is inv
 errorCodes: []

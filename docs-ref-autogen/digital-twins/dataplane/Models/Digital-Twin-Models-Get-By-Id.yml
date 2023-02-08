@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.models.digitaltwinmodels_getb
 name: DigitalTwinModels GetById
 service: Azure Digital Twins
 groupName: Models
-apiVersion: 2020-10-31
+apiVersion: 2023-02-27-preview
 summary: >-
   Retrieves model metadata and optionally the model definition.
 
@@ -21,8 +21,8 @@ consumes:
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-hostname/models/{id}?api-version=2020-10-31
-- content: GET https://digitaltwins-hostname/models/{id}?includeModelDefinition={includeModelDefinition}&api-version=2020-10-31
+- content: GET https://digitaltwins-hostname/models/{id}?api-version=2023-02-27-preview
+- content: GET https://digitaltwins-hostname/models/{id}?includeModelDefinition={includeModelDefinition}&api-version=2023-02-27-preview
   isOptional: true
 uriParameters:
 - name: id
@@ -95,6 +95,7 @@ definitions:
     description: Indicates if the model is decommissioned. Decommissioned models cannot be referenced by newly created digital twins.
     types:
     - uid: boolean
+    defaultValue: false
   - name: model
     description: The model definition.
     types:
@@ -112,17 +113,17 @@ definitions:
   kind: object
   properties:
   - name: code
-    isReadyOnly: true
+    isReadOnly: true
     description: Service specific error code which serves as the substatus for the HTTP error code.
     types:
     - uid: string
   - name: message
-    isReadyOnly: true
+    isReadOnly: true
     description: A human-readable representation of the error.
     types:
     - uid: string
   - name: details
-    isReadyOnly: true
+    isReadOnly: true
     description: Internal error details.
     types:
     - uid: Error
@@ -146,24 +147,36 @@ definitions:
 examples:
 - name: Get a model by id
   request:
-    uri: GET https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2020-10-31
+    uri: GET https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2023-02-27-preview
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2023-02-27-preview
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
       {
         "id": "dtmi:com:example:Sample;1",
-        "uploadTime": "2020-03-01T17:32:28Z",
+        "uploadTime": "2022-02-28T00:30:00.1234567Z",
         "decommissioned": false
       }
 - name: Get a model by id (with definition)
   request:
-    uri: GET https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?includeModelDefinition=True&api-version=2020-10-31
+    uri: GET https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?includeModelDefinition=True&api-version=2023-02-27-preview
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?includeModelDefinition=True&api-version=2023-02-27-preview
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
       {
         "id": "dtmi:com:example:Sample;1",
-        "uploadTime": "2020-03-01T17:32:28Z",
+        "uploadTime": "2022-02-28T00:30:00.1234567Z",
         "decommissioned": false,
         "model": {
           "@id": "dtmi:com:example:Sample;1",
@@ -202,8 +215,9 @@ metadata:
 
     Status codes:
 
-    * 200 OK
+    200 OK
 
-    * 400 Bad Request
-      * InvalidArgument - The model id is invalid.
+    400 Bad Request
+
+    InvalidArgument - The model id is invalid.
 errorCodes: []
