@@ -3,6 +3,8 @@ uid: management.azure.com.digital-twins.controlplane.operations
 name: Operations
 apiVersion: 2020-12-01
 service: Azure Digital Twins
+metadata:
+  description: Learn more about [Azure Digital Twins Operations Operations]. How to [List].
 operations:
 - uid: management.azure.com.digital-twins.controlplane.operations.list
   summary: Lists all of the available DigitalTwins service REST API operations.

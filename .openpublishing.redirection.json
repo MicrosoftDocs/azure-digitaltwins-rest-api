@@ -1,0 +1,249 @@
+{
+  "redirections": [
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/CheckNameAvailability.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/check-name-availability",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/CheckNameAvailability/DigitalTwins_CheckNameAvailability.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/check-name-availability/digital-twins-check-name-availability",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/DigitalTwinsInstance.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/digital-twins-instance",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/DigitalTwinsInstance/DigitalTwins_CreateOrUpdate.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/digital-twins-instance/digital-twins-create-or-update",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/DigitalTwinsInstance/DigitalTwins_Delete.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/digital-twins-instance/digital-twins-delete",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/DigitalTwinsInstance/DigitalTwins_Get.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/digital-twins-instance/digital-twins-get",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/DigitalTwinsInstance/DigitalTwins_List.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/digital-twins-instance/digital-twins-list",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/DigitalTwinsInstance/DigitalTwins_ListByResourceGroup.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/digital-twins-instance/digital-twins-list-by-resource-group",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/DigitalTwinsInstance/DigitalTwins_Update.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/digital-twins-instance/digital-twins-update",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/Endpoints/DigitalTwinsEndpoint_CreateOrUpdate.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/endpoints/digital-twins-endpoint-create-or-update",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/Endpoints/DigitalTwinsEndpoint_Delete.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/endpoints/digital-twins-endpoint-delete",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/Endpoints/DigitalTwinsEndpoint_Get.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/endpoints/digital-twins-endpoint-get",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/Endpoints/DigitalTwinsEndpoint_List.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/endpoints/digital-twins-endpoint-list",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/PrivateEndpoints.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/private-endpoints",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/PrivateEndpoints/PrivateEndpointConnections_CreateOrUpdate.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/private-endpoints/private-endpoint-connections-create-or-update",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/PrivateEndpoints/PrivateEndpointConnections_Delete.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/private-endpoints/private-endpoint-connections-delete",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/PrivateEndpoints/PrivateEndpointConnections_Get.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/private-endpoints/private-endpoint-connections-get",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/PrivateEndpoints/PrivateEndpointConnections_List.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/private-endpoints/private-endpoint-connections-list",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/PrivateEndpoints/PrivateLinkResources_Get.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/private-endpoints/private-link-resources-get",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/controlplane/PrivateEndpoints/PrivateLinkResources_List.md",
+      "redirect_url": "/rest/api/digital-twins/controlplane/private-endpoints/private-link-resources-list",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/EventRoutes.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/event-routes",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/EventRoutes/Add.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/event-routes/event-routes-add",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/EventRoutes/Delete.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/event-routes/event-routes-delete",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/EventRoutes/GetById.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/event-routes/event-routes-get-by-id",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/EventRoutes/List.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/event-routes/event-routes-list",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Models/DigitalTwinModels_Add.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/models/digital-twin-models-add",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Models/DigitalTwinModels_Delete.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/models/digital-twin-models-delete",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Models/DigitalTwinModels_GetById.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/models/digital-twin-models-get-by-id",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Models/DigitalTwinModels_List.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/models/digital-twin-models-list",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Models/DigitalTwinModels_Update.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/models/digital-twin-models-update",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Query/QueryTwins.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/query/query-twins",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Twins/DigitalTwins_Add.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/twins/digital-twins-add",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Twins/DigitalTwins_AddRelationship.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/twins/digital-twins-add-relationship",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Twins/DigitalTwins_Delete.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/twins/digital-twins-delete",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Twins/DigitalTwins_DeleteRelationship.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/twins/digital-twins-delete-relationship",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Twins/DigitalTwins_GetById.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/twins/digital-twins-get-by-id",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Twins/DigitalTwins_GetComponent.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/twins/digital-twins-get-component",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Twins/DigitalTwins_GetRelationshipById.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/twins/digital-twins-get-relationship-by-id",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Twins/DigitalTwins_ListIncomingRelationships.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/twins/digital-twins-list-incoming-relationships",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Twins/DigitalTwins_ListRelationships.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/twins/digital-twins-list-relationships",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Twins/DigitalTwins_SendComponentTelemetry.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/twins/digital-twins-send-component-telemetry",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Twins/DigitalTwins_SendTelemetry.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/twins/digital-twins-send-telemetry",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Twins/DigitalTwins_Update.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/twins/digital-twins-update",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Twins/DigitalTwins_UpdateComponent.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/twins/digital-twins-update-component",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Twins/DigitalTwins_UpdateRelationship.md",
+      "redirect_url": "/rest/api/digital-twins/dataplane/twins/digital-twins-update-relationship",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Event-Routes/Event-Routes-Add.yml",
+      "redirect_url": "/rest/api/digital-twins/dataplane/event-routes/add",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Event-Routes/Event-Routes-Delete.yml",
+      "redirect_url": "/rest/api/digital-twins/dataplane/event-routes/delete",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Event-Routes/Event-Routes-Get-By-Id.yml",
+      "redirect_url": "/rest/api/digital-twins/dataplane/event-routes/get-by-id",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "docs-ref-autogen/digital-twins/dataplane/Event-Routes/Event-Routes-List.yml",
+      "redirect_url": "/rest/api/digital-twins/dataplane/event-routes/list",
+      "redirect_document_id": true
+    }
+  ]
+}

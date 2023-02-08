@@ -38,7 +38,7 @@ definitions:
     types:
     - uid: string
   - name: value
-    isReadyOnly: true
+    isReadOnly: true
     description: A list of DigitalTwins operations supported by the Microsoft.DigitalTwins resource provider.
     types:
     - uid: Operation
@@ -56,7 +56,7 @@ definitions:
   kind: object
   properties:
   - name: name
-    isReadyOnly: true
+    isReadOnly: true
     description: 'Operation name: {provider}/{resource}/{read | write | action | delete}'
     types:
     - uid: string
@@ -65,12 +65,12 @@ definitions:
     types:
     - uid: OperationDisplay
   - name: origin
-    isReadyOnly: true
+    isReadOnly: true
     description: The intended executor of the operation.
     types:
     - uid: string
   - name: isDataAction
-    isReadyOnly: true
+    isReadOnly: true
     description: If the operation is a data action (for data plane rbac).
     types:
     - uid: boolean
@@ -79,17 +79,17 @@ definitions:
   kind: object
   properties:
   - name: code
-    isReadyOnly: true
+    isReadOnly: true
     description: Service specific error code which serves as the substatus for the HTTP error code.
     types:
     - uid: string
   - name: message
-    isReadyOnly: true
+    isReadOnly: true
     description: Description of the error.
     types:
     - uid: string
   - name: details
-    isReadyOnly: true
+    isReadOnly: true
     description: Internal error details.
     types:
     - uid: ErrorDefinition
@@ -99,22 +99,22 @@ definitions:
   kind: object
   properties:
   - name: provider
-    isReadyOnly: true
+    isReadOnly: true
     description: 'Service provider: Microsoft DigitalTwins'
     types:
     - uid: string
   - name: resource
-    isReadyOnly: true
+    isReadOnly: true
     description: 'Resource Type: DigitalTwinsInstances'
     types:
     - uid: string
   - name: operation
-    isReadyOnly: true
+    isReadOnly: true
     description: Name of the operation
     types:
     - uid: string
   - name: description
-    isReadyOnly: true
+    isReadOnly: true
     description: Friendly description for the operation,
     types:
     - uid: string
@@ -122,6 +122,12 @@ examples:
 - name: Get available operations
   request:
     uri: GET https://management.azure.com/providers/Microsoft.DigitalTwins/operations?api-version=2020-12-01
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://management.azure.com/providers/Microsoft.DigitalTwins/operations?api-version=2020-12-01
+      ```
+
   responses:
   - statusCode: "200"
     body: >-
@@ -178,4 +184,7 @@ security:
   scopes:
   - name: user_impersonation
     description: impersonate your user account
+metadata:
+  description: >
+    Learn more about Azure Digital Twins service - Lists all of the available DigitalTwins service REST API operations.
 errorCodes: []
