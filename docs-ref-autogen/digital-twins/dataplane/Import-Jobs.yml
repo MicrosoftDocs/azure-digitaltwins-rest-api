@@ -8,7 +8,7 @@ metadata:
 operations:
 - uid: digitaltwins-hostname.digital-twins.dataplane.importjobs.add
   summary: >-
-    Creates a bulk import job.
+    Creates an import job.
 
     Status codes:
 
@@ -17,37 +17,37 @@ operations:
     - 400 Bad Request
 - uid: digitaltwins-hostname.digital-twins.dataplane.importjobs.cancel
   summary: >-
-    Cancels a bulk import job.
+    Cancels an import job.
 
     Status codes:
 
     * 200 Request Accepted
 
     * 400 Bad Request
-      * ValidationFailed - The bulk job request is not valid.
+      * ValidationFailed - The import job request is not valid.
 - uid: digitaltwins-hostname.digital-twins.dataplane.importjobs.delete
   summary: >-
-    Deletes a bulk import job.
+    Deletes an import job.
 
     Status codes:
 
     * 204 No Content
 
     * 400 Bad Request
-      * ValidationFailed - The bulk job request is not valid.
+      * ValidationFailed - The import job request is not valid.
 - uid: digitaltwins-hostname.digital-twins.dataplane.importjobs.getbyid
   summary: >-
-    Retrieves a bulk job.
+    Retrieves an import job.
 
     Status codes:
 
     * 200 OK
 
     * 404 Not Found
-      * BulkJobNotFound - The bulk job was not found.
+      * ImportJobNotFound - The import job was not found.
 - uid: digitaltwins-hostname.digital-twins.dataplane.importjobs.list
   summary: >-
-    Retrieves all bulk import jobs.
+    Retrieves all import jobs.
 
     Status codes:
 

@@ -5,14 +5,14 @@ service: Azure Digital Twins
 groupName: Import Jobs
 apiVersion: 2023-02-27-preview
 summary: >-
-  Cancels a bulk import job.
+  Cancels an import job.
 
   Status codes:
 
   * 200 Request Accepted
 
   * 400 Bad Request
-    * ValidationFailed - The bulk job request is not valid.
+    * ValidationFailed - The import job request is not valid.
 consumes:
 - application/json
 produces:
@@ -23,7 +23,7 @@ uriParameters:
 - name: id
   in: path
   isRequired: true
-  description: The id for the bulk import job. The id is unique within the service and case sensitive.
+  description: The id for the import job. The id is unique within the service and case sensitive.
   types:
   - uid: string
 - name: api-version
@@ -36,7 +36,7 @@ responses:
 - name: 200 OK
   description: Success
   types:
-  - uid: BulkImportJob
+  - uid: ImportJob
 - name: Other Status Codes
   description: Default response.
   types:
@@ -53,13 +53,13 @@ requestHeader:
   types:
   - uid: string
 definitions:
-- name: BulkImportJob
+- name: ImportJob
   description: A job which contains a reference to the operations to perform, results, and execution metadata.
   kind: object
   properties:
   - name: id
     isReadOnly: true
-    description: The identifier of the bulk import job.
+    description: The identifier of the import job.
     types:
     - uid: string
   - name: inputBlobUri
@@ -96,7 +96,7 @@ definitions:
     types:
     - uid: string
   - name: error
-    description: Details of the error(s) that occurred executing the bulk job.
+    description: Details of the error(s) that occurred executing the import job.
     types:
     - uid: Error
 - name: ErrorResponse
@@ -168,23 +168,22 @@ definitions:
 examples:
 - name: Cancel a job
   request:
-    uri: POST https://digitaltwins-hostname/jobs/imports/bulkimportjob1/cancel?api-version=2023-02-27-preview
+    uri: POST https://digitaltwins-hostname/jobs/imports/importjob1/cancel?api-version=2023-02-27-preview
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      POST https://digitaltwins-hostname/jobs/imports/bulkimportjob1/cancel?api-version=2023-02-27-preview
+      POST https://digitaltwins-hostname/jobs/imports/importjob1/cancel?api-version=2023-02-27-preview
       ```
 
   responses:
   - statusCode: "200"
     body: >-
       {
-        "id": "bulkimportjob1",
+        "id": "importjob1",
         "inputBlobUri": "path to input blob",
         "outputBlobUri": "path to output blob",
         "createdDateTime": "2022-01-01T00:00:00.0000000+00:00",
         "lastActionDateTime": "2022-01-01T00:01:00.0000000+00:00",
-        "finishedDateTime": null,
         "purgeDateTime": "2022-01-31T00:01:00.0000000+00:00",
         "status": "cancelling"
       }
@@ -195,7 +194,7 @@ security:
   authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
 metadata:
   description: >
-    Cancels a bulk import job.
+    Cancels an import job.
 
     Status codes:
 
@@ -203,5 +202,5 @@ metadata:
 
     400 Bad Request
 
-    ValidationFailed - The bulk job request is not valid.
+    ValidationFailed - The import job request is not valid.
 errorCodes: []

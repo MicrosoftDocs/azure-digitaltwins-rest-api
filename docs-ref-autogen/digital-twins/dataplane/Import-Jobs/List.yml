@@ -5,7 +5,7 @@ service: Azure Digital Twins
 groupName: Import Jobs
 apiVersion: 2023-02-27-preview
 summary: >-
-  Retrieves all bulk import jobs.
+  Retrieves all import jobs.
 
   Status codes:
 
@@ -27,7 +27,7 @@ responses:
 - name: 200 OK
   description: Success
   types:
-  - uid: BulkImportJobCollection
+  - uid: ImportJobCollection
 - name: Other Status Codes
   description: Default response.
   types:
@@ -49,14 +49,14 @@ requestHeader:
   types:
   - uid: string
 definitions:
-- name: BulkImportJobCollection
-  description: A collection of bulk import job objects.
+- name: ImportJobCollection
+  description: A collection of import job objects.
   kind: object
   properties:
   - name: value
-    description: The list of bulk import job objects.
+    description: The list of import job objects.
     types:
-    - uid: BulkImportJob
+    - uid: ImportJob
       isArray: true
   - name: nextLink
     description: A URI to retrieve the next page of results.
@@ -70,13 +70,13 @@ definitions:
     description: The error details.
     types:
     - uid: Error
-- name: BulkImportJob
+- name: ImportJob
   description: A job which contains a reference to the operations to perform, results, and execution metadata.
   kind: object
   properties:
   - name: id
     isReadOnly: true
-    description: The identifier of the bulk import job.
+    description: The identifier of the import job.
     types:
     - uid: string
   - name: inputBlobUri
@@ -113,7 +113,7 @@ definitions:
     types:
     - uid: string
   - name: error
-    description: Details of the error(s) that occurred executing the bulk job.
+    description: Details of the error(s) that occurred executing the import job.
     types:
     - uid: Error
 - name: Error
@@ -175,7 +175,7 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: Get all bulk jobs
+- name: Get all import jobs
   request:
     uri: GET https://digitaltwins-hostname/jobs/imports?api-version=2023-02-27-preview
     codeTab: |+
@@ -190,7 +190,7 @@ examples:
       {
         "value": [
           {
-            "id": "bulkimportjob1",
+            "id": "importjob1",
             "inputBlobUri": "path to input blob",
             "outputBlobUri": "path to output blob",
             "createdDateTime": "2022-01-01T00:00:00.0000000+00:00",
@@ -200,7 +200,7 @@ examples:
             "status": "succeeded"
           },
           {
-            "id": "bulkimportjob2",
+            "id": "importjob2",
             "inputBlobUri": "path to input blob",
             "outputBlobUri": "path to output blob",
             "createdDateTime": "2022-01-01T00:00:00.0000000+00:00",
@@ -219,7 +219,7 @@ security:
   authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
 metadata:
   description: >
-    Learn more about Azure Digital Twins service - Retrieves all bulk import jobs.
+    Learn more about Azure Digital Twins service - Retrieves all import jobs.
 
     Status codes:
 
