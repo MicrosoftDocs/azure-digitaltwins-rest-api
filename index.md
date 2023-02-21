@@ -19,4 +19,4 @@ The **data plane APIs** are used to manage the elements within your Azure Digita
 
 ## Learn more
 
-To learn more about these concepts and about working with Azure Digital Twins, visit the [Azure Digital Twins documentation](https://learn.microsoft.com/azure/digital-twins/).
+To learn more about these concepts and about working with Azure Digital Twins, visit the [Azure Digital Twins documentation](/azure/digital-twins/).
