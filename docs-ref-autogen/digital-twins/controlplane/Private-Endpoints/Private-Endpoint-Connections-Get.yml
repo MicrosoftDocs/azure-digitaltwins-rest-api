@@ -3,14 +3,14 @@ uid: management.azure.com.digital-twins.controlplane.privateendpoints.privateend
 name: PrivateEndpointConnections Get
 service: Azure Digital Twins
 groupName: Private Endpoints
-apiVersion: 2020-12-01
+apiVersion: 2023-01-31
 summary: Get private endpoint connection properties for the given private endpoint.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}?api-version=2020-12-01
+- content: GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}?api-version=2023-01-31
 uriParameters:
 - name: subscriptionId
   in: path
@@ -74,9 +74,14 @@ definitions:
     types:
     - uid: string
   - name: properties
-    description: ''
+    description: The connection properties.
     types:
-    - uid: Properties
+    - uid: ConnectionProperties
+  - name: systemData
+    isReadOnly: true
+    description: Metadata pertaining to creation and last modification of the private endpoint connection.
+    types:
+    - uid: SystemData
 - name: ErrorResponse
   description: Error response.
   kind: object
@@ -85,7 +90,8 @@ definitions:
     description: Error description
     types:
     - uid: ErrorDefinition
-- name: Properties
+- name: ConnectionProperties
+  description: The properties of a private endpoint connection.
   kind: object
   properties:
   - name: provisioningState
@@ -94,7 +100,7 @@ definitions:
     types:
     - uid: ConnectionPropertiesProvisioningState
   - name: privateEndpoint
-    description: ''
+    description: The private endpoint.
     types:
     - uid: PrivateEndpoint
   - name: groupIds
@@ -103,9 +109,37 @@ definitions:
     - uid: string
       isArray: true
   - name: privateLinkServiceConnectionState
-    description: ''
+    description: The connection state.
     types:
     - uid: PrivateLinkServiceConnectionState
+- name: SystemData
+  description: Metadata pertaining to creation and last modification of the resource.
+  kind: object
+  properties:
+  - name: createdBy
+    description: The identity that created the resource.
+    types:
+    - uid: string
+  - name: createdByType
+    description: The type of identity that created the resource.
+    types:
+    - uid: createdByType
+  - name: createdAt
+    description: The timestamp of resource creation (UTC).
+    types:
+    - uid: string
+  - name: lastModifiedBy
+    description: The identity that last modified the resource.
+    types:
+    - uid: string
+  - name: lastModifiedByType
+    description: The type of identity that last modified the resource.
+    types:
+    - uid: createdByType
+  - name: lastModifiedAt
+    description: The timestamp of resource last modification (UTC)
+    types:
+    - uid: string
 - name: ErrorDefinition
   description: Error definition.
   kind: object
@@ -143,6 +177,7 @@ definitions:
     types:
     - uid: string
 - name: PrivateEndpoint
+  description: The private endpoint property of a private endpoint connection.
   kind: object
   properties:
   - name: id
@@ -151,6 +186,7 @@ definitions:
     types:
     - uid: string
 - name: PrivateLinkServiceConnectionState
+  description: The connection state.
   kind: object
   properties:
   - name: status
@@ -163,6 +199,22 @@ definitions:
     - uid: string
   - name: actionsRequired
     description: Actions required for a private endpoint connection.
+    types:
+    - uid: string
+- name: createdByType
+  description: The type of identity that created the resource.
+  kind: enum
+  properties:
+  - name: User
+    types:
+    - uid: string
+  - name: Application
+    types:
+    - uid: string
+  - name: ManagedIdentity
+    types:
+    - uid: string
+  - name: Key
     types:
     - uid: string
 - name: PrivateLinkServiceConnectionStatus
@@ -184,11 +236,11 @@ definitions:
 examples:
 - name: Get private endpoint connection properties for the given private endpoint
   request:
-    uri: GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateEndpointConnections/myPrivateConnection?api-version=2020-12-01
+    uri: GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateEndpointConnections/myPrivateConnection?api-version=2023-01-31
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateEndpointConnections/myPrivateConnection?api-version=2020-12-01
+      GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateEndpointConnections/myPrivateConnection?api-version=2023-01-31
       ```
 
   responses:
@@ -218,7 +270,7 @@ security:
   authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
   scopes:
   - name: user_impersonation
-    description: impersonate your user account
+    description: Impersonate your user account
 metadata:
   description: >
     Learn more about Azure Digital Twins service - Get private endpoint connection properties for the given private endpoint.

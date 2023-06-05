@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.models.digitaltwinmodels_dele
 name: DigitalTwinModels Delete
 service: Azure Digital Twins
 groupName: Models
-apiVersion: 2023-02-27-preview
+apiVersion: 2023-06-30
 summary: >-
   Deletes a model. A model can only be deleted if no other models reference it.
 
@@ -23,7 +23,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: DELETE https://digitaltwins-hostname/models/{id}?api-version=2023-02-27-preview
+- content: DELETE https://digitaltwins-hostname/models/{id}?api-version=2023-06-30
 uriParameters:
 - name: id
   in: path
@@ -41,6 +41,9 @@ responses:
 - name: 204 No Content
   description: Success
 - name: Other Status Codes
+  headers:
+  - name: x-ms-error-code
+    value: string
   description: Default response.
   types:
   - uid: ErrorResponse
@@ -103,11 +106,11 @@ definitions:
 examples:
 - name: Delete a model
   request:
-    uri: DELETE https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2023-02-27-preview
+    uri: DELETE https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2023-06-30
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      DELETE https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2023-02-27-preview
+      DELETE https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2023-06-30
       ```
 
   responses:

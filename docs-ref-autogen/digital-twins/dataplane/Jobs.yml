@@ -1,12 +1,12 @@
 ### YamlMime:RESTOperationGroup
-uid: digitaltwins-hostname.digital-twins.dataplane.importjobs
-name: Import Jobs
-apiVersion: 2023-02-27-preview
+uid: digitaltwins-hostname.digital-twins.dataplane.jobs
+name: Jobs
+apiVersion: 2023-06-30
 service: Azure Digital Twins
 metadata:
-  description: Learn more about [Azure Digital Twins Import Jobs Operations]. How to [Add,Cancel,Delete,Get By Id,List].
+  description: Learn more about [Azure Digital Twins Jobs Operations]. How to [ImportJobs Add,ImportJobs Cancel,ImportJobs Delete,ImportJobs GetById,ImportJobs List].
 operations:
-- uid: digitaltwins-hostname.digital-twins.dataplane.importjobs.add
+- uid: digitaltwins-hostname.digital-twins.dataplane.jobs.importjobs_add
   summary: >-
     Creates an import job.
 
@@ -15,7 +15,7 @@ operations:
     - 201 Created
 
     - 400 Bad Request
-- uid: digitaltwins-hostname.digital-twins.dataplane.importjobs.cancel
+- uid: digitaltwins-hostname.digital-twins.dataplane.jobs.importjobs_cancel
   summary: >-
     Cancels an import job.
 
@@ -25,7 +25,7 @@ operations:
 
     * 400 Bad Request
       * ValidationFailed - The import job request is not valid.
-- uid: digitaltwins-hostname.digital-twins.dataplane.importjobs.delete
+- uid: digitaltwins-hostname.digital-twins.dataplane.jobs.importjobs_delete
   summary: >-
     Deletes an import job.
 
@@ -35,7 +35,7 @@ operations:
 
     * 400 Bad Request
       * ValidationFailed - The import job request is not valid.
-- uid: digitaltwins-hostname.digital-twins.dataplane.importjobs.getbyid
+- uid: digitaltwins-hostname.digital-twins.dataplane.jobs.importjobs_getbyid
   summary: >-
     Retrieves an import job.
 
@@ -45,7 +45,7 @@ operations:
 
     * 404 Not Found
       * ImportJobNotFound - The import job was not found.
-- uid: digitaltwins-hostname.digital-twins.dataplane.importjobs.list
+- uid: digitaltwins-hostname.digital-twins.dataplane.jobs.importjobs_list
   summary: >-
     Retrieves all import jobs.
 

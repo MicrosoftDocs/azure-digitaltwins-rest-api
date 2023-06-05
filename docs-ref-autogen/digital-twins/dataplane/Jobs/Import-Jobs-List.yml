@@ -1,32 +1,22 @@
 ### YamlMime:RESTOperation
-uid: digitaltwins-hostname.digital-twins.dataplane.importjobs.add
-name: Add
+uid: digitaltwins-hostname.digital-twins.dataplane.jobs.importjobs_list
+name: ImportJobs List
 service: Azure Digital Twins
-groupName: Import Jobs
-apiVersion: 2023-02-27-preview
+groupName: Jobs
+apiVersion: 2023-06-30
 summary: >-
-  Creates an import job.
+  Retrieves all import jobs.
 
   Status codes:
 
-  * 201 Created
-
-  * 400 Bad Request
-    * JobLimitReached - The maximum number of import jobs allowed has been reached.
-    * ValidationFailed - The import job request is not valid.
+  * 200 OK
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: PUT https://digitaltwins-hostname/jobs/imports/{id}?api-version=2023-02-27-preview
+- content: GET https://digitaltwins-hostname/jobs/imports?api-version=2023-06-30
 uriParameters:
-- name: id
-  in: path
-  isRequired: true
-  description: The id for the import job. The id is unique within the service and case sensitive.
-  types:
-  - uid: string
 - name: api-version
   in: query
   isRequired: true
@@ -34,35 +24,23 @@ uriParameters:
   types:
   - uid: string
 responses:
-- name: 201 Created
+- name: 200 OK
   description: Success
   types:
-  - uid: ImportJob
+  - uid: ImportJobCollection
 - name: Other Status Codes
+  headers:
+  - name: x-ms-error-code
+    value: string
   description: Default response.
   types:
   - uid: ErrorResponse
-requestBody:
-- name: default
-  parameters:
-  - name: inputBlobUri
-    in: body
-    isRequired: true
-    description: The path to the input Azure storage blob that contains file(s) describing the operations to perform in the job.
-    types:
-    - uid: string
-  - name: outputBlobUri
-    in: body
-    isRequired: true
-    description: The path to the output Azure storage blob that will contain the errors and progress logs of import job.
-    types:
-    - uid: string
-  - name: error
-    in: body
-    description: Details of the error(s) that occurred executing the import job.
-    types:
-    - uid: Error
 requestHeader:
+- name: max-items-per-page
+  in: header
+  description: The maximum number of items to retrieve per request. The server may choose to return less than the requested number.
+  types:
+  - uid: integer
 - name: traceparent
   in: header
   description: Identifies the request in a distributed tracing system.
@@ -74,30 +52,27 @@ requestHeader:
   types:
   - uid: string
 definitions:
-- name: Error
-  description: Error definition.
+- name: ImportJobCollection
+  description: A collection of import job objects.
   kind: object
   properties:
-  - name: code
-    isReadOnly: true
-    description: Service specific error code which serves as the substatus for the HTTP error code.
+  - name: value
+    description: The list of import job objects.
+    types:
+    - uid: ImportJob
+      isArray: true
+  - name: nextLink
+    description: A URI to retrieve the next page of results.
     types:
     - uid: string
-  - name: message
-    isReadOnly: true
-    description: A human-readable representation of the error.
-    types:
-    - uid: string
-  - name: details
-    isReadOnly: true
-    description: Internal error details.
+- name: ErrorResponse
+  description: Error response.
+  kind: object
+  properties:
+  - name: error
+    description: The error details.
     types:
     - uid: Error
-      isArray: true
-  - name: innererror
-    description: An object containing more specific information than the current object about the error.
-    types:
-    - uid: InnerError
 - name: ImportJob
   description: A job which contains a reference to the operations to perform, results, and execution metadata.
   kind: object
@@ -144,22 +119,26 @@ definitions:
     description: Details of the error(s) that occurred executing the import job.
     types:
     - uid: Error
-- name: ErrorResponse
-  description: Error response.
-  kind: object
-  properties:
-  - name: error
-    description: The error details.
-    types:
-    - uid: Error
-- name: InnerError
-  description: A more specific error description than was provided by the containing error.
+- name: Error
+  description: Error definition.
   kind: object
   properties:
   - name: code
-    description: A more specific error code than was provided by the containing error.
+    isReadOnly: true
+    description: Service specific error code which serves as the substatus for the HTTP error code.
     types:
     - uid: string
+  - name: message
+    isReadOnly: true
+    description: A human-readable representation of the error.
+    types:
+    - uid: string
+  - name: details
+    isReadOnly: true
+    description: Internal error details.
+    types:
+    - uid: Error
+      isArray: true
   - name: innererror
     description: An object containing more specific information than the current object about the error.
     types:
@@ -186,38 +165,55 @@ definitions:
   - name: cancelled
     types:
     - uid: string
+- name: InnerError
+  description: A more specific error description than was provided by the containing error.
+  kind: object
+  properties:
+  - name: code
+    description: A more specific error code than was provided by the containing error.
+    types:
+    - uid: string
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
 examples:
-- name: Add a job
+- name: Get all import jobs
   request:
-    uri: PUT https://digitaltwins-hostname/jobs/imports/importjob1?api-version=2023-02-27-preview
-    body: >-
-      {
-        "inputBlobUri": "path to input blob",
-        "outputBlobUri": "path to output blob"
-      }
+    uri: GET https://digitaltwins-hostname/jobs/imports?api-version=2023-06-30
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      PUT https://digitaltwins-hostname/jobs/imports/importjob1?api-version=2023-02-27-preview
-
-      {
-        "inputBlobUri": "path to input blob",
-        "outputBlobUri": "path to output blob"
-      }
-
+      GET https://digitaltwins-hostname/jobs/imports?api-version=2023-06-30
       ```
 
   responses:
-  - statusCode: "201"
+  - statusCode: "200"
     body: >-
       {
-        "id": "importjob1",
-        "inputBlobUri": "path to input blob",
-        "outputBlobUri": "path to output blob",
-        "createdDateTime": "2022-01-01T00:00:00.0000000+00:00",
-        "lastActionDateTime": "2022-01-01T00:01:00.0000000+00:00",
-        "purgeDateTime": "2022-01-31T00:01:00.0000000+00:00",
-        "status": "notstarted"
+        "value": [
+          {
+            "id": "importjob1",
+            "inputBlobUri": "path to input blob",
+            "outputBlobUri": "path to output blob",
+            "createdDateTime": "2022-01-01T00:00:00.0000000+00:00",
+            "lastActionDateTime": "2022-01-01T00:01:00.0000000+00:00",
+            "finishedDateTime": "2022-01-01T00:01:00.0000000+00:00",
+            "purgeDateTime": "2022-01-31T00:01:00.0000000+00:00",
+            "status": "succeeded"
+          },
+          {
+            "id": "importjob2",
+            "inputBlobUri": "path to input blob",
+            "outputBlobUri": "path to output blob",
+            "createdDateTime": "2022-01-01T00:00:00.0000000+00:00",
+            "lastActionDateTime": "2022-01-01T00:01:00.0000000+00:00",
+            "finishedDateTime": "2022-01-01T00:01:00.0000000+00:00",
+            "purgeDateTime": "2022-01-31T00:01:00.0000000+00:00",
+            "status": "succeeded"
+          }
+        ],
+        "nextLink": "url-to-next-page"
       }
 security:
 - name: oauth2
@@ -225,14 +221,10 @@ security:
   flow: implicit
   authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
 metadata:
-  description: >-
-    Creates an import job.
+  description: >
+    Learn more about Azure Digital Twins service - Retrieves all import jobs.
 
     Status codes:
 
-    201 Created
-
-    400 Bad Request
-
-    JobLimitReached - The maximum number of import jobs allowed has been reached.
+    200 OK
 errorCodes: []

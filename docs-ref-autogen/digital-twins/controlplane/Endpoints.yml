@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperationGroup
 uid: management.azure.com.digital-twins.controlplane.endpoints
 name: Endpoints
-apiVersion: 2020-12-01
+apiVersion: 2023-01-31
 service: Azure Digital Twins
 metadata:
   description: Learn more about [Azure Digital Twins Endpoints Operations]. How to [DigitalTwinsEndpoint CreateOrUpdate,DigitalTwinsEndpoint Delete,DigitalTwinsEndpoint Get,Di

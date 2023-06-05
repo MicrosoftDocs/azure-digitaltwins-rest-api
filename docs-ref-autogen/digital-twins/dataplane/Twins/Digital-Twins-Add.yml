@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_add
 name: DigitalTwins Add
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2023-02-27-preview
+apiVersion: 2023-06-30
 summary: >-
   Adds or replaces a digital twin.
 
@@ -23,7 +23,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: PUT https://digitaltwins-hostname/digitaltwins/{id}?api-version=2023-02-27-preview
+- content: PUT https://digitaltwins-hostname/digitaltwins/{id}?api-version=2023-06-30
 uriParameters:
 - name: id
   in: path
@@ -46,6 +46,9 @@ responses:
   types:
   - uid: DigitalTwin
 - name: Other Status Codes
+  headers:
+  - name: x-ms-error-code
+    value: string
   description: Default response.
   types:
   - uid: ErrorResponse
@@ -121,7 +124,7 @@ definitions:
 examples:
 - name: Add a digital twin
   request:
-    uri: PUT https://digitaltwins-hostname/digitaltwins/myNewTwinId?api-version=2023-02-27-preview
+    uri: PUT https://digitaltwins-hostname/digitaltwins/myNewTwinId?api-version=2023-06-30
     body: >-
       {
         "$metadata": {
@@ -131,7 +134,7 @@ examples:
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      PUT https://digitaltwins-hostname/digitaltwins/myNewTwinId?api-version=2023-02-27-preview
+      PUT https://digitaltwins-hostname/digitaltwins/myNewTwinId?api-version=2023-06-30
 
       {
         "$metadata": {
@@ -153,7 +156,7 @@ examples:
       }
 - name: Add a digital twin (with properties and components)
   request:
-    uri: PUT https://digitaltwins-hostname/digitaltwins/myNewTwinId?api-version=2023-02-27-preview
+    uri: PUT https://digitaltwins-hostname/digitaltwins/myNewTwinId?api-version=2023-06-30
     body: >-
       {
         "$metadata": {
@@ -179,7 +182,7 @@ examples:
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      PUT https://digitaltwins-hostname/digitaltwins/myNewTwinId?api-version=2023-02-27-preview
+      PUT https://digitaltwins-hostname/digitaltwins/myNewTwinId?api-version=2023-06-30
 
 
       {

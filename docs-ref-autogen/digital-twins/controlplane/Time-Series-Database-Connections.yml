@@ -1,0 +1,16 @@
+### YamlMime:RESTOperationGroup
+uid: management.azure.com.digital-twins.controlplane.timeseriesdatabaseconnections
+name: Time Series Database Connections
+apiVersion: 2023-01-31
+service: Azure Digital Twins
+metadata:
+  description: Learn more about [Azure Digital Twins Time Series Database Connections Operations]. How to [Create Or Update,Delete,Get,List].
+operations:
+- uid: management.azure.com.digital-twins.controlplane.timeseriesdatabaseconnections.createorupdate
+  summary: Create or update a time series database connection.
+- uid: management.azure.com.digital-twins.controlplane.timeseriesdatabaseconnections.delete
+  summary: Delete a time series database connection.
+- uid: management.azure.com.digital-twins.controlplane.timeseriesdatabaseconnections.get
+  summary: Get the description of an existing time series database connection.
+- uid: management.azure.com.digital-twins.controlplane.timeseriesdatabaseconnections.list
+  summary: Get all existing time series database connections for this DigitalTwins instance.

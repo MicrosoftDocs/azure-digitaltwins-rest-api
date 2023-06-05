@@ -3,14 +3,14 @@ uid: management.azure.com.digital-twins.controlplane.privateendpoints.privatelin
 name: PrivateLinkResources Get
 service: Azure Digital Twins
 groupName: Private Endpoints
-apiVersion: 2020-12-01
+apiVersion: 2023-01-31
 summary: Get the specified private link resource for the given Digital Twin.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}/privateLinkResources/{resourceId}?api-version=2020-12-01
+- content: GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}/privateLinkResources/{resourceId}?api-version=2023-01-31
 uriParameters:
 - name: subscriptionId
   in: path
@@ -59,9 +59,9 @@ definitions:
   kind: object
   properties:
   - name: properties
-    description: ''
+    description: The group information properties.
     types:
-    - uid: Properties
+    - uid: GroupIdInformationProperties
   - name: id
     description: The resource identifier.
     types:
@@ -84,27 +84,24 @@ definitions:
     description: Error description
     types:
     - uid: ErrorDefinition
-- name: Properties
+- name: GroupIdInformationProperties
+  description: The properties for a group information object.
   kind: object
   properties:
-  - name: provisioningState
-    isReadOnly: true
-    description: The provisioning state.
+  - name: groupId
+    description: The group id.
     types:
-    - uid: ConnectionPropertiesProvisioningState
-  - name: privateEndpoint
-    description: ''
-    types:
-    - uid: PrivateEndpoint
-  - name: groupIds
-    description: The list of group ids for the private endpoint connection.
+    - uid: string
+  - name: requiredMembers
+    description: The required members for a specific group id.
     types:
     - uid: string
       isArray: true
-  - name: privateLinkServiceConnectionState
-    description: ''
+  - name: requiredZoneNames
+    description: The required DNS zones for a specific group id.
     types:
-    - uid: PrivateLinkServiceConnectionState
+    - uid: string
+      isArray: true
 - name: ErrorDefinition
   description: Error definition.
   kind: object
@@ -125,69 +122,14 @@ definitions:
     types:
     - uid: ErrorDefinition
       isArray: true
-- name: ConnectionPropertiesProvisioningState
-  description: The provisioning state.
-  kind: enum
-  properties:
-  - name: Pending
-    types:
-    - uid: string
-  - name: Approved
-    types:
-    - uid: string
-  - name: Rejected
-    types:
-    - uid: string
-  - name: Disconnected
-    types:
-    - uid: string
-- name: PrivateEndpoint
-  kind: object
-  properties:
-  - name: id
-    isReadOnly: true
-    description: The resource identifier.
-    types:
-    - uid: string
-- name: PrivateLinkServiceConnectionState
-  kind: object
-  properties:
-  - name: status
-    description: The status of a private endpoint connection.
-    types:
-    - uid: PrivateLinkServiceConnectionStatus
-  - name: description
-    description: The description for the current state of a private endpoint connection.
-    types:
-    - uid: string
-  - name: actionsRequired
-    description: Actions required for a private endpoint connection.
-    types:
-    - uid: string
-- name: PrivateLinkServiceConnectionStatus
-  description: The status of a private endpoint connection.
-  kind: enum
-  properties:
-  - name: Pending
-    types:
-    - uid: string
-  - name: Approved
-    types:
-    - uid: string
-  - name: Rejected
-    types:
-    - uid: string
-  - name: Disconnected
-    types:
-    - uid: string
 examples:
 - name: Get the specified private link resource for the given Digital Twin
   request:
-    uri: GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateLinkResources/subResource?api-version=2020-12-01
+    uri: GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateLinkResources/subResource?api-version=2023-01-31
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateLinkResources/subResource?api-version=2020-12-01
+      GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateLinkResources/subResource?api-version=2023-01-31
       ```
 
   responses:
@@ -215,7 +157,7 @@ security:
   authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
   scopes:
   - name: user_impersonation
-    description: impersonate your user account
+    description: Impersonate your user account
 metadata:
   description: >
     Learn more about Azure Digital Twins service - Get the specified private link resource for the given Digital Twin.

@@ -1,24 +1,24 @@
 ### YamlMime:RESTOperation
-uid: digitaltwins-hostname.digital-twins.dataplane.importjobs.cancel
-name: Cancel
+uid: digitaltwins-hostname.digital-twins.dataplane.jobs.importjobs_getbyid
+name: ImportJobs GetById
 service: Azure Digital Twins
-groupName: Import Jobs
-apiVersion: 2023-02-27-preview
+groupName: Jobs
+apiVersion: 2023-06-30
 summary: >-
-  Cancels an import job.
+  Retrieves an import job.
 
   Status codes:
 
-  * 200 Request Accepted
+  * 200 OK
 
-  * 400 Bad Request
-    * ValidationFailed - The import job request is not valid.
+  * 404 Not Found
+    * ImportJobNotFound - The import job was not found.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: POST https://digitaltwins-hostname/jobs/imports/{id}/cancel?api-version=2023-02-27-preview
+- content: GET https://digitaltwins-hostname/jobs/imports/{id}?api-version=2023-06-30
 uriParameters:
 - name: id
   in: path
@@ -38,6 +38,9 @@ responses:
   types:
   - uid: ImportJob
 - name: Other Status Codes
+  headers:
+  - name: x-ms-error-code
+    value: string
   description: Default response.
   types:
   - uid: ErrorResponse
@@ -166,13 +169,13 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: Cancel a job
+- name: Get an import job by id
   request:
-    uri: POST https://digitaltwins-hostname/jobs/imports/importjob1/cancel?api-version=2023-02-27-preview
+    uri: GET https://digitaltwins-hostname/jobs/imports/importjob1?api-version=2023-06-30
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      POST https://digitaltwins-hostname/jobs/imports/importjob1/cancel?api-version=2023-02-27-preview
+      GET https://digitaltwins-hostname/jobs/imports/importjob1?api-version=2023-06-30
       ```
 
   responses:
@@ -184,8 +187,9 @@ examples:
         "outputBlobUri": "path to output blob",
         "createdDateTime": "2022-01-01T00:00:00.0000000+00:00",
         "lastActionDateTime": "2022-01-01T00:01:00.0000000+00:00",
+        "finishedDateTime": "2022-01-01T00:01:00.0000000+00:00",
         "purgeDateTime": "2022-01-31T00:01:00.0000000+00:00",
-        "status": "cancelling"
+        "status": "succeeded"
       }
 security:
 - name: oauth2
@@ -194,13 +198,13 @@ security:
   authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
 metadata:
   description: >
-    Cancels an import job.
+    Retrieves an import job.
 
     Status codes:
 
-    200 Request Accepted
+    200 OK
 
-    400 Bad Request
+    404 Not Found
 
-    ValidationFailed - The import job request is not valid.
+    ImportJobNotFound - The import job was not found.
 errorCodes: []
