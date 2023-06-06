@@ -3,14 +3,14 @@ uid: management.azure.com.digital-twins.controlplane.operations.list
 name: List
 service: Azure Digital Twins
 groupName: Operations
-apiVersion: 2020-12-01
+apiVersion: 2023-01-31
 summary: Lists all of the available DigitalTwins service REST API operations.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https://management.azure.com/providers/Microsoft.DigitalTwins/operations?api-version=2020-12-01
+- content: GET https://management.azure.com/providers/Microsoft.DigitalTwins/operations?api-version=2023-01-31
 uriParameters:
 - name: api-version
   in: query
@@ -74,6 +74,15 @@ definitions:
     description: If the operation is a data action (for data plane rbac).
     types:
     - uid: boolean
+  - name: properties
+    isReadOnly: true
+    description: Operation properties.
+    types:
+    - uid: object
+      isDictionary: true
+      additionalTypes:
+      - uid: string
+      - uid: object
 - name: ErrorDefinition
   description: Error definition.
   kind: object
@@ -100,32 +109,32 @@ definitions:
   properties:
   - name: provider
     isReadOnly: true
-    description: 'Service provider: Microsoft DigitalTwins'
+    description: 'Service provider: Microsoft DigitalTwins.'
     types:
     - uid: string
   - name: resource
     isReadOnly: true
-    description: 'Resource Type: DigitalTwinsInstances'
+    description: 'Resource Type: DigitalTwinsInstances.'
     types:
     - uid: string
   - name: operation
     isReadOnly: true
-    description: Name of the operation
+    description: Name of the operation.
     types:
     - uid: string
   - name: description
     isReadOnly: true
-    description: Friendly description for the operation,
+    description: Friendly description for the operation.
     types:
     - uid: string
 examples:
 - name: Get available operations
   request:
-    uri: GET https://management.azure.com/providers/Microsoft.DigitalTwins/operations?api-version=2020-12-01
+    uri: GET https://management.azure.com/providers/Microsoft.DigitalTwins/operations?api-version=2023-01-31
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      GET https://management.azure.com/providers/Microsoft.DigitalTwins/operations?api-version=2020-12-01
+      GET https://management.azure.com/providers/Microsoft.DigitalTwins/operations?api-version=2023-01-31
       ```
 
   responses:
@@ -183,7 +192,7 @@ security:
   authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
   scopes:
   - name: user_impersonation
-    description: impersonate your user account
+    description: Impersonate your user account
 metadata:
   description: >
     Learn more about Azure Digital Twins service - Lists all of the available DigitalTwins service REST API operations.

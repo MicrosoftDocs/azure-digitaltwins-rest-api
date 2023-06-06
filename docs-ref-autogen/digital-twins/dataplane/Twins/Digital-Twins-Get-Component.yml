@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_getcompone
 name: DigitalTwins GetComponent
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2023-02-27-preview
+apiVersion: 2023-06-30
 summary: >-
   Retrieves a component from a digital twin.
 
@@ -21,7 +21,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-hostname/digitaltwins/{id}/components/{componentPath}?api-version=2023-02-27-preview
+- content: GET https://digitaltwins-hostname/digitaltwins/{id}/components/{componentPath}?api-version=2023-06-30
 uriParameters:
 - name: id
   in: path
@@ -50,6 +50,9 @@ responses:
   types:
   - uid: Component
 - name: Other Status Codes
+  headers:
+  - name: x-ms-error-code
+    value: string
   description: Default response.
   types:
   - uid: ErrorResponse
@@ -112,11 +115,11 @@ definitions:
 examples:
 - name: Get a component in a digital twin
   request:
-    uri: GET https://digitaltwins-hostname/digitaltwins/myTwinId/components/myComponent?api-version=2023-02-27-preview
+    uri: GET https://digitaltwins-hostname/digitaltwins/myTwinId/components/myComponent?api-version=2023-06-30
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      GET https://digitaltwins-hostname/digitaltwins/myTwinId/components/myComponent?api-version=2023-02-27-preview
+      GET https://digitaltwins-hostname/digitaltwins/myTwinId/components/myComponent?api-version=2023-06-30
       ```
 
   responses:

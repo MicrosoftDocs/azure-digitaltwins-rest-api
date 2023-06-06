@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_delete
 name: DigitalTwins Delete
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2023-02-27-preview
+apiVersion: 2023-06-30
 summary: >-
   Deletes a digital twin. All relationships referencing the digital twin must already be deleted.
 
@@ -23,7 +23,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: DELETE https://digitaltwins-hostname/digitaltwins/{id}?api-version=2023-02-27-preview
+- content: DELETE https://digitaltwins-hostname/digitaltwins/{id}?api-version=2023-06-30
 uriParameters:
 - name: id
   in: path
@@ -41,6 +41,9 @@ responses:
 - name: 204 No Content
   description: Success
 - name: Other Status Codes
+  headers:
+  - name: x-ms-error-code
+    value: string
   description: Default response.
   types:
   - uid: ErrorResponse
@@ -108,11 +111,11 @@ definitions:
 examples:
 - name: Delete a digital twin
   request:
-    uri: DELETE https://digitaltwins-hostname/digitaltwins/myTwinId?api-version=2023-02-27-preview
+    uri: DELETE https://digitaltwins-hostname/digitaltwins/myTwinId?api-version=2023-06-30
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      DELETE https://digitaltwins-hostname/digitaltwins/myTwinId?api-version=2023-02-27-preview
+      DELETE https://digitaltwins-hostname/digitaltwins/myTwinId?api-version=2023-06-30
       ```
 
   responses:

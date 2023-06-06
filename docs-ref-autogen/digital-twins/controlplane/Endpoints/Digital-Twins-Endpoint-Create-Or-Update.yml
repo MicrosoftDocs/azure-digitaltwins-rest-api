@@ -3,14 +3,14 @@ uid: management.azure.com.digital-twins.controlplane.endpoints.digitaltwinsendpo
 name: DigitalTwinsEndpoint CreateOrUpdate
 service: Azure Digital Twins
 groupName: Endpoints
-apiVersion: 2020-12-01
+apiVersion: 2023-01-31
 summary: Create or update DigitalTwinsInstance endpoint.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}/endpoints/{endpointName}?api-version=2020-12-01
+- content: PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}/endpoints/{endpointName}?api-version=2023-01-31
 uriParameters:
 - name: subscriptionId
   in: path
@@ -71,6 +71,34 @@ requestBody:
     typesTitle: DigitalTwinsEndpointResourceProperties
 requestHeader: []
 definitions:
+- name: SystemData
+  description: Metadata pertaining to creation and last modification of the resource.
+  kind: object
+  properties:
+  - name: createdBy
+    description: The identity that created the resource.
+    types:
+    - uid: string
+  - name: createdByType
+    description: The type of identity that created the resource.
+    types:
+    - uid: createdByType
+  - name: createdAt
+    description: The timestamp of resource creation (UTC).
+    types:
+    - uid: string
+  - name: lastModifiedBy
+    description: The identity that last modified the resource.
+    types:
+    - uid: string
+  - name: lastModifiedByType
+    description: The type of identity that last modified the resource.
+    types:
+    - uid: createdByType
+  - name: lastModifiedAt
+    description: The timestamp of resource last modification (UTC)
+    types:
+    - uid: string
 - name: DigitalTwinsEndpointResource
   description: DigitalTwinsInstance endpoint resource.
   kind: object
@@ -97,6 +125,11 @@ definitions:
     description: The resource type.
     types:
     - uid: string
+  - name: systemData
+    isReadOnly: true
+    description: Metadata pertaining to creation and last modification of the resource.
+    types:
+    - uid: SystemData
 - name: ErrorResponse
   description: Error response.
   kind: object
@@ -109,6 +142,22 @@ definitions:
   description: Properties related to ServiceBus.
   kind: object
   properties:
+  - name: primaryConnectionString
+    description: PrimaryConnectionString of the endpoint for key-based authentication. Will be obfuscated during read.
+    types:
+    - uid: string
+  - name: secondaryConnectionString
+    description: SecondaryConnectionString of the endpoint for key-based authentication. Will be obfuscated during read.
+    types:
+    - uid: string
+  - name: endpointUri
+    description: The URL of the ServiceBus namespace for identity-based authentication. It must include the protocol 'sb://'.
+    types:
+    - uid: string
+  - name: entityPath
+    description: The ServiceBus Topic name for identity-based authentication.
+    types:
+    - uid: string
   - name: endpointType
     description: The type of Digital Twins endpoint
     types:
@@ -125,7 +174,7 @@ definitions:
     types:
     - uid: string
   - name: authenticationType
-    description: Specifies the authentication type being used for connecting to the endpoint.
+    description: Specifies the authentication type being used for connecting to the endpoint. Defaults to 'KeyBased'. If 'KeyBased' is selected, a connection string must be specified (at least the primary connection string). If 'IdentityBased' is select, the endpointUri and entityPath properties must be specified.
     types:
     - uid: AuthenticationType
   - name: deadLetterSecret
@@ -136,26 +185,30 @@ definitions:
     description: Dead letter storage URL for identity-based authentication.
     types:
     - uid: string
-  - name: primaryConnectionString
-    description: PrimaryConnectionString of the endpoint for key-based authentication. Will be obfuscated during read.
+  - name: identity
+    description: Managed identity properties for the endpoint.
     types:
-    - uid: string
-  - name: secondaryConnectionString
-    description: SecondaryConnectionString of the endpoint for key-based authentication. Will be obfuscated during read.
-    types:
-    - uid: string
-  - name: endpointUri
-    description: The URL of the ServiceBus namespace for identity-based authentication. It must include the protocol sb://
-    types:
-    - uid: string
-  - name: entityPath
-    description: The ServiceBus Topic name for identity-based authentication
-    types:
-    - uid: string
+    - uid: ManagedIdentityReference
 - name: EventHub
   description: Properties related to EventHub.
   kind: object
   properties:
+  - name: connectionStringPrimaryKey
+    description: PrimaryConnectionString of the endpoint for key-based authentication. Will be obfuscated during read.
+    types:
+    - uid: string
+  - name: connectionStringSecondaryKey
+    description: SecondaryConnectionString of the endpoint for key-based authentication. Will be obfuscated during read.
+    types:
+    - uid: string
+  - name: endpointUri
+    description: The URL of the EventHub namespace for identity-based authentication. It must include the protocol 'sb://'.
+    types:
+    - uid: string
+  - name: entityPath
+    description: The EventHub name in the EventHub namespace for identity-based authentication.
+    types:
+    - uid: string
   - name: endpointType
     description: The type of Digital Twins endpoint
     types:
@@ -172,7 +225,7 @@ definitions:
     types:
     - uid: string
   - name: authenticationType
-    description: Specifies the authentication type being used for connecting to the endpoint.
+    description: Specifies the authentication type being used for connecting to the endpoint. Defaults to 'KeyBased'. If 'KeyBased' is selected, a connection string must be specified (at least the primary connection string). If 'IdentityBased' is select, the endpointUri and entityPath properties must be specified.
     types:
     - uid: AuthenticationType
   - name: deadLetterSecret
@@ -183,26 +236,26 @@ definitions:
     description: Dead letter storage URL for identity-based authentication.
     types:
     - uid: string
-  - name: connectionStringPrimaryKey
-    description: PrimaryConnectionString of the endpoint for key-based authentication. Will be obfuscated during read.
+  - name: identity
+    description: Managed identity properties for the endpoint.
     types:
-    - uid: string
-  - name: connectionStringSecondaryKey
-    description: SecondaryConnectionString of the endpoint for key-based authentication. Will be obfuscated during read.
-    types:
-    - uid: string
-  - name: endpointUri
-    description: The URL of the EventHub namespace for identity-based authentication. It must include the protocol sb://
-    types:
-    - uid: string
-  - name: entityPath
-    description: The EventHub name in the EventHub namespace for identity-based authentication.
-    types:
-    - uid: string
+    - uid: ManagedIdentityReference
 - name: EventGrid
   description: Properties related to EventGrid.
   kind: object
   properties:
+  - name: TopicEndpoint
+    description: EventGrid Topic Endpoint.
+    types:
+    - uid: string
+  - name: accessKey1
+    description: EventGrid secondary accesskey. Will be obfuscated during read.
+    types:
+    - uid: string
+  - name: accessKey2
+    description: EventGrid secondary accesskey. Will be obfuscated during read.
+    types:
+    - uid: string
   - name: endpointType
     description: The type of Digital Twins endpoint
     types:
@@ -219,7 +272,7 @@ definitions:
     types:
     - uid: string
   - name: authenticationType
-    description: Specifies the authentication type being used for connecting to the endpoint.
+    description: Specifies the authentication type being used for connecting to the endpoint. Defaults to 'KeyBased'. If 'KeyBased' is selected, a connection string must be specified (at least the primary connection string). If 'IdentityBased' is select, the endpointUri and entityPath properties must be specified.
     types:
     - uid: AuthenticationType
   - name: deadLetterSecret
@@ -230,16 +283,24 @@ definitions:
     description: Dead letter storage URL for identity-based authentication.
     types:
     - uid: string
-  - name: TopicEndpoint
-    description: EventGrid Topic Endpoint
+  - name: identity
+    description: Managed identity properties for the endpoint.
+    types:
+    - uid: ManagedIdentityReference
+- name: createdByType
+  description: The type of identity that created the resource.
+  kind: enum
+  properties:
+  - name: User
     types:
     - uid: string
-  - name: accessKey1
-    description: EventGrid secondary accesskey. Will be obfuscated during read.
+  - name: Application
     types:
     - uid: string
-  - name: accessKey2
-    description: EventGrid secondary accesskey. Will be obfuscated during read.
+  - name: ManagedIdentity
+    types:
+    - uid: string
+  - name: Key
     types:
     - uid: string
 - name: ErrorDefinition
@@ -272,6 +333,9 @@ definitions:
   - name: Deleting
     types:
     - uid: string
+  - name: Updating
+    types:
+    - uid: string
   - name: Succeeded
     types:
     - uid: string
@@ -300,7 +364,7 @@ definitions:
     types:
     - uid: string
 - name: AuthenticationType
-  description: Specifies the authentication type being used for connecting to the endpoint.
+  description: Specifies the authentication type being used for connecting to the endpoint. Defaults to 'KeyBased'. If 'KeyBased' is selected, a connection string must be specified (at least the primary connection string). If 'IdentityBased' is select, the endpointUri and entityPath properties must be specified.
   kind: enum
   properties:
   - name: KeyBased
@@ -309,10 +373,32 @@ definitions:
   - name: IdentityBased
     types:
     - uid: string
+- name: ManagedIdentityReference
+  description: The properties of the Managed Identity.
+  kind: object
+  properties:
+  - name: type
+    description: The type of managed identity used.
+    types:
+    - uid: IdentityType
+  - name: userAssignedIdentity
+    description: The user identity ARM resource id if the managed identity type is 'UserAssigned'.
+    types:
+    - uid: string
+- name: IdentityType
+  description: The type of managed identity used.
+  kind: enum
+  properties:
+  - name: SystemAssigned
+    types:
+    - uid: string
+  - name: UserAssigned
+    types:
+    - uid: string
 examples:
-- name: Put a DigitalTwinsInstance resource
+- name: Put a DigitalTwinsEndpoint resource
   request:
-    uri: PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus?api-version=2020-12-01
+    uri: PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus?api-version=2023-01-31
     body: >-
       {
         "properties": {
@@ -325,7 +411,7 @@ examples:
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus?api-version=2020-12-01
+      PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus?api-version=2023-01-31
 
       {
         "properties": {
@@ -345,6 +431,14 @@ examples:
         "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus",
         "type": "Microsoft.DigitalTwins/digitalTwinsInstances/endpoints",
         "name": "myServiceBus",
+        "systemData": {
+          "createdBy": "user@example.com",
+          "createdByType": "User",
+          "createdAt": "2021-03-11T17:13:59.4037715Z",
+          "lastModifiedBy": "user@example.com",
+          "lastModifiedByType": "User",
+          "lastModifiedAt": "2021-03-11T17:14:02.5281409Z"
+        },
         "properties": {
           "endpointType": "ServiceBus",
           "authenticationType": "KeyBased",
@@ -355,11 +449,26 @@ examples:
         }
       }
   - statusCode: "201"
+    headers:
+    - name: azure-asyncoperation
+      value: https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/westus2/operationStatuses/12345678-1234-1234-123456789012
+    - name: location
+      value: https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/westus2/operationResults/12345678-1234-1234-123456789012
+    - name: retry-after
+      value: "10"
     body: >-
       {
         "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus",
         "type": "Microsoft.DigitalTwins/digitalTwinsInstances/endpoints",
         "name": "myServiceBus",
+        "systemData": {
+          "createdBy": "user@example.com",
+          "createdByType": "User",
+          "createdAt": "2021-03-11T17:13:59.4037715Z",
+          "lastModifiedBy": "user@example.com",
+          "lastModifiedByType": "User",
+          "lastModifiedAt": "2021-03-11T17:14:02.5281409Z"
+        },
         "properties": {
           "endpointType": "ServiceBus",
           "authenticationType": "KeyBased",
@@ -369,9 +478,9 @@ examples:
           "createdTime": "2019-11-19T01:10:34.350Z"
         }
       }
-- name: Put a DigitalTwinsInstance resource with identity
+- name: Put a DigitalTwinsEndpoint resource with identity
   request:
-    uri: PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus?api-version=2020-12-01
+    uri: PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus?api-version=2023-01-31
     body: >-
       {
         "properties": {
@@ -384,7 +493,7 @@ examples:
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus?api-version=2020-12-01
+      PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus?api-version=2023-01-31
 
       {
         "properties": {
@@ -404,6 +513,14 @@ examples:
         "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus",
         "type": "Microsoft.DigitalTwins/digitalTwinsInstances/endpoints",
         "name": "myServiceBus",
+        "systemData": {
+          "createdBy": "user@example.com",
+          "createdByType": "User",
+          "createdAt": "2021-03-11T17:13:59.4037715Z",
+          "lastModifiedBy": "user@example.com",
+          "lastModifiedByType": "User",
+          "lastModifiedAt": "2021-03-11T17:14:02.5281409Z"
+        },
         "properties": {
           "endpointType": "ServiceBus",
           "provisioningState": "Provisioning",
@@ -414,11 +531,26 @@ examples:
         }
       }
   - statusCode: "201"
+    headers:
+    - name: azure-asyncoperation
+      value: https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/westus2/operationStatuses/12345678-1234-1234-123456789012
+    - name: location
+      value: https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/westus2/operationResults/12345678-1234-1234-123456789012
+    - name: retry-after
+      value: "10"
     body: >-
       {
         "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus",
         "type": "Microsoft.DigitalTwins/digitalTwinsInstances/endpoints",
         "name": "myServiceBus",
+        "systemData": {
+          "createdBy": "user@example.com",
+          "createdByType": "User",
+          "createdAt": "2021-03-11T17:13:59.4037715Z",
+          "lastModifiedBy": "user@example.com",
+          "lastModifiedByType": "User",
+          "lastModifiedAt": "2021-03-11T17:14:02.5281409Z"
+        },
         "properties": {
           "endpointType": "ServiceBus",
           "provisioningState": "Provisioning",
@@ -426,6 +558,104 @@ examples:
           "endpointUri": "sb://mysb.servicebus.windows.net/",
           "entityPath": "mysbtopic",
           "createdTime": "2019-11-19T01:10:34.350Z"
+        }
+      }
+- name: Put a DigitalTwinsEndpoint resource with user assigned identity
+  request:
+    uri: PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus?api-version=2023-01-31
+    body: >-
+      {
+        "properties": {
+          "endpointType": "ServiceBus",
+          "authenticationType": "IdentityBased",
+          "endpointUri": "sb://mysb.servicebus.windows.net/",
+          "entityPath": "mysbtopic",
+          "identity": {
+            "type": "UserAssigned",
+            "userAssignedIdentity": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/testrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity"
+          }
+        }
+      }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PUT https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus?api-version=2023-01-31
+
+      {
+        "properties": {
+          "endpointType": "ServiceBus",
+          "authenticationType": "IdentityBased",
+          "endpointUri": "sb://mysb.servicebus.windows.net/",
+          "entityPath": "mysbtopic",
+          "identity": {
+            "type": "UserAssigned",
+            "userAssignedIdentity": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/testrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity"
+          }
+        }
+      }
+
+      ```
+
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances/endpoints",
+        "name": "myServiceBus",
+        "systemData": {
+          "createdBy": "user@example.com",
+          "createdByType": "User",
+          "createdAt": "2021-03-11T17:13:59.4037715Z",
+          "lastModifiedBy": "user@example.com",
+          "lastModifiedByType": "User",
+          "lastModifiedAt": "2021-03-11T17:14:02.5281409Z"
+        },
+        "properties": {
+          "endpointType": "ServiceBus",
+          "provisioningState": "Provisioning",
+          "authenticationType": "IdentityBased",
+          "endpointUri": "sb://mysb.servicebus.windows.net/",
+          "entityPath": "mysbtopic",
+          "createdTime": "2019-11-19T01:10:34.350Z",
+          "identity": {
+            "type": "UserAssigned",
+            "userAssignedIdentity": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/testrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity"
+          }
+        }
+      }
+  - statusCode: "201"
+    headers:
+    - name: azure-asyncoperation
+      value: https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/westus2/operationStatuses/12345678-1234-1234-123456789012
+    - name: location
+      value: https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/westus2/operationResults/12345678-1234-1234-123456789012
+    - name: retry-after
+      value: "10"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/endpoints/myServiceBus",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances/endpoints",
+        "name": "myServiceBus",
+        "systemData": {
+          "createdBy": "user@example.com",
+          "createdByType": "User",
+          "createdAt": "2021-03-11T17:13:59.4037715Z",
+          "lastModifiedBy": "user@example.com",
+          "lastModifiedByType": "User",
+          "lastModifiedAt": "2021-03-11T17:14:02.5281409Z"
+        },
+        "properties": {
+          "endpointType": "ServiceBus",
+          "provisioningState": "Provisioning",
+          "authenticationType": "IdentityBased",
+          "endpointUri": "sb://mysb.servicebus.windows.net/",
+          "entityPath": "mysbtopic",
+          "createdTime": "2019-11-19T01:10:34.350Z",
+          "identity": {
+            "type": "UserAssigned",
+            "userAssignedIdentity": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/testrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity"
+          }
         }
       }
 security:
@@ -436,7 +666,7 @@ security:
   authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
   scopes:
   - name: user_impersonation
-    description: impersonate your user account
+    description: Impersonate your user account
 metadata:
   description: >
     Learn more about Azure Digital Twins service - Create or update DigitalTwinsInstance endpoint.

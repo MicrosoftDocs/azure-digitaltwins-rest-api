@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperationGroup
 uid: management.azure.com.digital-twins.controlplane.operations
 name: Operations
-apiVersion: 2020-12-01
+apiVersion: 2023-01-31
 service: Azure Digital Twins
 metadata:
   description: Learn more about [Azure Digital Twins Operations Operations]. How to [List].

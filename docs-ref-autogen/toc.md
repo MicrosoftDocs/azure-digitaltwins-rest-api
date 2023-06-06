@@ -29,6 +29,12 @@
 #### [PrivateEndpointConnections List](digital-twins/controlplane/Private-Endpoints/Private-Endpoint-Connections-List.yml)
 #### [PrivateLinkResources Get](digital-twins/controlplane/Private-Endpoints/Private-Link-Resources-Get.yml)
 #### [PrivateLinkResources List](digital-twins/controlplane/Private-Endpoints/Private-Link-Resources-List.yml)
+### Time Series Database Connections
+#### [Overview](digital-twins/controlplane/Time-Series-Database-Connections.yml)
+#### [Create Or Update](digital-twins/controlplane/Time-Series-Database-Connections/Create-Or-Update.yml)
+#### [Delete](digital-twins/controlplane/Time-Series-Database-Connections/Delete.yml)
+#### [Get](digital-twins/controlplane/Time-Series-Database-Connections/Get.yml)
+#### [List](digital-twins/controlplane/Time-Series-Database-Connections/List.yml)
 ## Data Plane
 ### Event Routes
 #### [Overview](digital-twins/dataplane/Event-Routes.yml)
@@ -36,13 +42,13 @@
 #### [Delete](digital-twins/dataplane/Event-Routes/Delete.yml)
 #### [Get By Id](digital-twins/dataplane/Event-Routes/Get-By-Id.yml)
 #### [List](digital-twins/dataplane/Event-Routes/List.yml)
-### Import Jobs
-#### [Overview](digital-twins/dataplane/Import-Jobs.yml)
-#### [Add](digital-twins/dataplane/Import-Jobs/Add.yml)
-#### [Cancel](digital-twins/dataplane/Import-Jobs/Cancel.yml)
-#### [Delete](digital-twins/dataplane/Import-Jobs/Delete.yml)
-#### [Get By Id](digital-twins/dataplane/Import-Jobs/Get-By-Id.yml)
-#### [List](digital-twins/dataplane/Import-Jobs/List.yml)
+### Jobs
+#### [Overview](digital-twins/dataplane/Jobs.yml)
+#### [ImportJobs Add](digital-twins/dataplane/Jobs/Import-Jobs-Add.yml)
+#### [ImportJobs Cancel](digital-twins/dataplane/Jobs/Import-Jobs-Cancel.yml)
+#### [ImportJobs Delete](digital-twins/dataplane/Jobs/Import-Jobs-Delete.yml)
+#### [ImportJobs GetById](digital-twins/dataplane/Jobs/Import-Jobs-Get-By-Id.yml)
+#### [ImportJobs List](digital-twins/dataplane/Jobs/Import-Jobs-List.yml)
 ### Models
 #### [Overview](digital-twins/dataplane/Models.yml)
 #### [DigitalTwinModels Add](digital-twins/dataplane/Models/Digital-Twin-Models-Add.yml)
