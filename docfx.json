@@ -63,7 +63,10 @@
           "azure-digitaltwins",
           "REST"
         ]
-      }
+      },
+        "ms.service": {
+            "docs-ref-autogen/digital-twins/**.yml": "digital-twins"
+            }
     },
     "template": [],
     "dest": "rest-ref-template",
