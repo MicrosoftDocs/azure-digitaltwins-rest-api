@@ -48,7 +48,7 @@
       "breadcrumb_path": "/rest/api/azure-digitaltwins/breadcrumb/toc.json",
       "rest_product": "azure-digitaltwins",
       "titleSuffix": "Azure DigitalTwins Rest API",
-      "author": "v-jutao",
+      "author": "Taojunshen",
       "ms.author": "v-jutao",
       "ms.topic": "reference",
       "ms.devlang": "rest-apis",
@@ -63,7 +63,10 @@
           "azure-digitaltwins",
           "REST"
         ]
-      }
+      },
+        "ms.service": {
+            "docs-ref-autogen/digital-twins/**.yml": "digital-twins"
+            }
     },
     "template": [],
     "dest": "rest-ref-template",

@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperationGroup
 uid: management.azure.com.digital-twins.controlplane.digitaltwinsinstance
 name: Digital Twins Instance
-apiVersion: 2020-12-01
+apiVersion: 2023-01-31
 service: Azure Digital Twins
 metadata:
   description: 'Learn more about [Azure Digital Twins Digital Twins Instance Operations]. How to [DigitalTwins CreateOrUpdate,DigitalTwins Delete,DigitalTwins Get,DigitalTwins '

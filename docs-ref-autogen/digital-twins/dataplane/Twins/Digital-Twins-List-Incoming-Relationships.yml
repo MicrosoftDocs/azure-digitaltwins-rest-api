@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_listincomi
 name: DigitalTwins ListIncomingRelationships
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2023-02-27-preview
+apiVersion: 2023-06-30
 summary: >-
   Retrieves all incoming relationship for a digital twin.
 
@@ -20,7 +20,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-hostname/digitaltwins/{id}/incomingrelationships?api-version=2023-02-27-preview
+- content: GET https://digitaltwins-hostname/digitaltwins/{id}/incomingrelationships?api-version=2023-06-30
 uriParameters:
 - name: id
   in: path
@@ -40,6 +40,9 @@ responses:
   types:
   - uid: IncomingRelationshipCollection
 - name: Other Status Codes
+  headers:
+  - name: x-ms-error-code
+    value: string
   description: Default response.
   types:
   - uid: ErrorResponse
@@ -135,11 +138,11 @@ definitions:
 examples:
 - name: List incoming relationships
   request:
-    uri: GET https://digitaltwins-hostname/digitaltwins/mySourceTwin/incomingrelationships?api-version=2023-02-27-preview
+    uri: GET https://digitaltwins-hostname/digitaltwins/mySourceTwin/incomingrelationships?api-version=2023-06-30
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      GET https://digitaltwins-hostname/digitaltwins/mySourceTwin/incomingrelationships?api-version=2023-02-27-preview
+      GET https://digitaltwins-hostname/digitaltwins/mySourceTwin/incomingrelationships?api-version=2023-06-30
       ```
 
   responses:

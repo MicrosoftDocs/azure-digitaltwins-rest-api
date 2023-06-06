@@ -10,14 +10,18 @@
           "toc_title": "Azure Digital Twins",
           "url_group": "digital-twins",
           "service_index": "index.md",
+          "readme_files":[
+		    "digital-twins-control/specification/digitaltwins/data-plane/readme.md",
+			"digital-twins-control/specification/digitaltwins/resource-manager/readme.md"
+		  ],
           "swagger_files": [
             {
-              "source": "digital-twins-control/specification/digitaltwins/data-plane/Microsoft.DigitalTwins/preview/2023-02-27-preview/digitaltwins.json",
-			  "sub_group_toc_title": "Data Plane"
+              "source": "digital-twins-control/specification/digitaltwins/data-plane/Microsoft.DigitalTwins/[version]/digitaltwins.json",
+              "sub_group_toc_title": "Data Plane"
             },
 			{
-              "source": "digital-twins-control/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2020-12-01/digitaltwins.json",
-			  "sub_group_toc_title": "Control Plane"
+              "source": "digital-twins-control/specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/[version]/digitaltwins.json",
+              "sub_group_toc_title": "Control Plane"
             }
           ]
       }]

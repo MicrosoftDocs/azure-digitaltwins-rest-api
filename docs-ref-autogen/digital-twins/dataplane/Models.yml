@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperationGroup
 uid: digitaltwins-hostname.digital-twins.dataplane.models
 name: Models
-apiVersion: 2023-02-27-preview
+apiVersion: 2023-06-30
 service: Azure Digital Twins
 metadata:
   description: Learn more about [Azure Digital Twins Models Operations]. How to [DigitalTwinModels Add,DigitalTwinModels Delete,DigitalTwinModels GetById,DigitalTwinModels Lis

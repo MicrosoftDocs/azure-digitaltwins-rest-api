@@ -3,14 +3,14 @@ uid: management.azure.com.digital-twins.controlplane.checknameavailability.digit
 name: DigitalTwins CheckNameAvailability
 service: Azure Digital Twins
 groupName: Check Name Availability
-apiVersion: 2020-12-01
+apiVersion: 2023-01-31
 summary: Check if a DigitalTwinsInstance name is available.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: POST https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.DigitalTwins/locations/{location}/checkNameAvailability?api-version=2020-12-01
+- content: POST https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.DigitalTwins/locations/{location}/checkNameAvailability?api-version=2023-01-31
 uriParameters:
 - name: subscriptionId
   in: path
@@ -132,7 +132,7 @@ definitions:
 examples:
 - name: Check name Availability
   request:
-    uri: POST https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/WestUS2/checkNameAvailability?api-version=2020-12-01
+    uri: POST https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/WestUS2/checkNameAvailability?api-version=2023-01-31
     body: >-
       {
         "name": "myadtinstance",
@@ -141,7 +141,7 @@ examples:
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      POST https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/WestUS2/checkNameAvailability?api-version=2020-12-01
+      POST https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/WestUS2/checkNameAvailability?api-version=2023-01-31
 
       {
         "name": "myadtinstance",
@@ -166,7 +166,7 @@ security:
   authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
   scopes:
   - name: user_impersonation
-    description: impersonate your user account
+    description: Impersonate your user account
 metadata:
   description: >
     Learn more about Azure Digital Twins service - Check if a DigitalTwinsInstance name is available.

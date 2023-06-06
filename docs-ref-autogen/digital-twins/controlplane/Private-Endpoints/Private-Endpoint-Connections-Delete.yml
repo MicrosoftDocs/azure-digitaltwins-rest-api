@@ -3,14 +3,14 @@ uid: management.azure.com.digital-twins.controlplane.privateendpoints.privateend
 name: PrivateEndpointConnections Delete
 service: Azure Digital Twins
 groupName: Private Endpoints
-apiVersion: 2020-12-01
+apiVersion: 2023-01-31
 summary: Delete private endpoint connection with the specified name.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}?api-version=2020-12-01
+- content: DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}?api-version=2023-01-31
 uriParameters:
 - name: subscriptionId
   in: path
@@ -87,16 +87,23 @@ definitions:
 examples:
 - name: Delete private endpoint connection with the specified name
   request:
-    uri: DELETE https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateEndpointConnections/myPrivateConnection?api-version=2020-12-01
+    uri: DELETE https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateEndpointConnections/myPrivateConnection?api-version=2023-01-31
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      DELETE https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateEndpointConnections/myPrivateConnection?api-version=2020-12-01
+      DELETE https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateEndpointConnections/myPrivateConnection?api-version=2023-01-31
       ```
 
   responses:
   - statusCode: "200"
   - statusCode: "202"
+    headers:
+    - name: azure-asyncoperation
+      value: https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/westus2/operationStatuses/12345678-1234-1234-123456789012
+    - name: location
+      value: https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/westus2/operationResults/12345678-1234-1234-123456789012
+    - name: retry-after
+      value: "10"
   - statusCode: "204"
 security:
 - name: azure_auth
@@ -106,7 +113,7 @@ security:
   authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
   scopes:
   - name: user_impersonation
-    description: impersonate your user account
+    description: Impersonate your user account
 metadata:
   description: >
     Learn more about Azure Digital Twins service - Delete private endpoint connection with the specified name.
