@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperationGroup
 uid: digitaltwins-hostname.digital-twins.dataplane.query
 name: Query
-apiVersion: 2023-06-30
+apiVersion: 2023-10-31
 service: Azure Digital Twins
 metadata:
   description: Learn more about [Azure Digital Twins Query Operations]. How to [Query Twins].

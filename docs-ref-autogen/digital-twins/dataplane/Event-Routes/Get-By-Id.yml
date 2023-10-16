@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.eventroutes.getbyid
 name: Get By Id
 service: Azure Digital Twins
 groupName: Event Routes
-apiVersion: 2023-06-30
+apiVersion: 2023-10-31
 summary: >-
   Retrieves an event route.
 
@@ -18,7 +18,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-hostname/eventroutes/{id}?api-version=2023-06-30
+- content: GET https://digitaltwins-hostname/eventroutes/{id}?api-version=2023-10-31
 uriParameters:
 - name: id
   in: path
@@ -120,11 +120,11 @@ definitions:
 examples:
 - name: Get an event route by id
   request:
-    uri: GET https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2023-06-30
+    uri: GET https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2023-10-31
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      GET https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2023-06-30
+      GET https://digitaltwins-hostname/eventroutes/eventroute-001?api-version=2023-10-31
       ```
 
   responses:

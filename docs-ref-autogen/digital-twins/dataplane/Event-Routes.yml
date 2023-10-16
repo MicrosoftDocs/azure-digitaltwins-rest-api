@@ -1,7 +1,7 @@
 ### YamlMime:RESTOperationGroup
 uid: digitaltwins-hostname.digital-twins.dataplane.eventroutes
 name: Event Routes
-apiVersion: 2023-06-30
+apiVersion: 2023-10-31
 service: Azure Digital Twins
 metadata:
   description: Learn more about [Azure Digital Twins Event Routes Operations]. How to [Add,Delete,Get By Id,List].

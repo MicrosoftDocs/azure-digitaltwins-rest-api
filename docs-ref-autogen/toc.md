@@ -44,6 +44,9 @@
 #### [List](digital-twins/dataplane/Event-Routes/List.yml)
 ### Jobs
 #### [Overview](digital-twins/dataplane/Jobs.yml)
+#### [DeleteJobs Add](digital-twins/dataplane/Jobs/Delete-Jobs-Add.yml)
+#### [DeleteJobs GetById](digital-twins/dataplane/Jobs/Delete-Jobs-Get-By-Id.yml)
+#### [DeleteJobs List](digital-twins/dataplane/Jobs/Delete-Jobs-List.yml)
 #### [ImportJobs Add](digital-twins/dataplane/Jobs/Import-Jobs-Add.yml)
 #### [ImportJobs Cancel](digital-twins/dataplane/Jobs/Import-Jobs-Cancel.yml)
 #### [ImportJobs Delete](digital-twins/dataplane/Jobs/Import-Jobs-Delete.yml)

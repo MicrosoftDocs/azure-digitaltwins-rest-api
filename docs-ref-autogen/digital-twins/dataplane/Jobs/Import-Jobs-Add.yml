@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.jobs.importjobs_add
 name: ImportJobs Add
 service: Azure Digital Twins
 groupName: Jobs
-apiVersion: 2023-06-30
+apiVersion: 2023-10-31
 summary: >-
   Creates an import job.
 
@@ -19,7 +19,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: PUT https://digitaltwins-hostname/jobs/imports/{id}?api-version=2023-06-30
+- content: PUT https://digitaltwins-hostname/jobs/imports/{id}?api-version=2023-10-31
 uriParameters:
 - name: id
   in: path
@@ -192,7 +192,7 @@ definitions:
 examples:
 - name: Add a job
   request:
-    uri: PUT https://digitaltwins-hostname/jobs/imports/importjob1?api-version=2023-06-30
+    uri: PUT https://digitaltwins-hostname/jobs/imports/importjob1?api-version=2023-10-31
     body: >-
       {
         "inputBlobUri": "path to input blob",
@@ -201,7 +201,7 @@ examples:
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      PUT https://digitaltwins-hostname/jobs/imports/importjob1?api-version=2023-06-30
+      PUT https://digitaltwins-hostname/jobs/imports/importjob1?api-version=2023-10-31
 
       {
         "inputBlobUri": "path to input blob",

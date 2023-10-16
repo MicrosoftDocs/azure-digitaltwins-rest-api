@@ -1,34 +1,39 @@
 ### YamlMime:RESTOperation
-uid: digitaltwins-hostname.digital-twins.dataplane.jobs.importjobs_cancel
-name: ImportJobs Cancel
+uid: digitaltwins-hostname.digital-twins.dataplane.jobs.deletejobs_add
+name: DeleteJobs Add
 service: Azure Digital Twins
 groupName: Jobs
 apiVersion: 2023-10-31
-summary: "Cancels an import job that is currently running. Service will stop any import operations triggered by the current import job that are in progress, and go to a cancelled state. Please note that this will leave your instance in an unknown state as there won't be any rollback operation. \nStatus codes:\n* 200 Request Accepted\n* 400 Bad Request\n  * ValidationFailed - The import job request is not valid."
+summary: "Initiates a job which deletes all models, twins, and relationships on the instance. Does not delete any other types of entities.\nStatus codes:\n* 202 Created\n* 400 Bad Request\n  * JobLimitReached - The maximum number of delete jobs allowed has been reached. \n  * ValidationFailed - Operation-Id already exists."
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: POST https://digitaltwins-hostname/jobs/imports/{id}/cancel?api-version=2023-10-31
+- content: POST https://digitaltwins-hostname/jobs/deletions?api-version=2023-10-31
+- content: POST https://digitaltwins-hostname/jobs/deletions?api-version=2023-10-31&timeoutInMinutes={timeoutInMinutes}
+  isOptional: true
 uriParameters:
-- name: id
-  in: path
-  isRequired: true
-  description: The id for the import job. The id is unique within the service and case sensitive.
-  types:
-  - uid: string
 - name: api-version
   in: query
   isRequired: true
   description: The requested API version.
   types:
   - uid: string
-responses:
-- name: 200 OK
-  description: Success
+- name: timeoutInMinutes
+  in: query
+  description: Desired timeout for the delete job. Once the specified timeout is reached, service will stop any delete operations triggered by the current delete job that are in progress, and go to a failed state. Please note that this will leave your instance in an unknown state as there won't be any rollback operation.
   types:
-  - uid: ImportJob
+  - uid: integer
+  format: int32
+responses:
+- name: 202 Accepted
+  headers:
+  - name: Operation-Location
+    value: string
+  description: Job Accepted
+  types:
+  - uid: DeleteJob
 - name: Other Status Codes
   headers:
   - name: x-ms-error-code
@@ -37,6 +42,11 @@ responses:
   types:
   - uid: ErrorResponse
 requestHeader:
+- name: operation-id
+  in: header
+  description: ID for the operation's status monitor. The ID is generated if header was not passed by the client.
+  types:
+  - uid: string
 - name: traceparent
   in: header
   description: Identifies the request in a distributed tracing system.
@@ -48,36 +58,23 @@ requestHeader:
   types:
   - uid: string
 definitions:
-- name: ImportJob
+- name: DeleteJob
   description: A job which contains a reference to the operations to perform, results, and execution metadata.
   kind: object
   properties:
   - name: id
     isReadOnly: true
-    description: The identifier of the import job.
-    types:
-    - uid: string
-  - name: inputBlobUri
-    description: The path to the input Azure storage blob that contains file(s) describing the operations to perform in the job.
-    types:
-    - uid: string
-  - name: outputBlobUri
-    description: The path to the output Azure storage blob that will contain the errors and progress logs of import job.
+    description: The identifier of the delete job.
     types:
     - uid: string
   - name: status
     isReadOnly: true
     description: Status of the job.
     types:
-    - uid: status
+    - uid: delete-job-status
   - name: createdDateTime
     isReadOnly: true
     description: 'Start time of the job. The timestamp is in RFC3339 format: `yyyy-MM-ddTHH:mm:ssZ`.'
-    types:
-    - uid: string
-  - name: lastActionDateTime
-    isReadOnly: true
-    description: 'Last time service performed any action from the job. The timestamp is in RFC3339 format: `yyyy-MM-ddTHH:mm:ssZ`.'
     types:
     - uid: string
   - name: finishedDateTime
@@ -102,7 +99,7 @@ definitions:
     description: The error details.
     types:
     - uid: Error
-- name: status
+- name: delete-job-status
   description: Status of the job.
   kind: enum
   properties:
@@ -116,12 +113,6 @@ definitions:
     types:
     - uid: string
   - name: succeeded
-    types:
-    - uid: string
-  - name: cancelling
-    types:
-    - uid: string
-  - name: cancelled
     types:
     - uid: string
 - name: Error
@@ -161,26 +152,29 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: Cancel a job
+- name: Add a job
   request:
-    uri: POST https://digitaltwins-hostname/jobs/imports/importjob1/cancel?api-version=2023-10-31
+    uri: POST https://digitaltwins-hostname/jobs/deletions?api-version=2023-10-31&timeoutInMinutes=60
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      POST https://digitaltwins-hostname/jobs/imports/importjob1/cancel?api-version=2023-10-31
+      POST https://digitaltwins-hostname/jobs/deletions?api-version=2023-10-31&timeoutInMinutes=60
       ```
 
   responses:
-  - statusCode: "200"
+  - statusCode: "202"
+    headers:
+    - name: Operation-Location
+      value: https://instance-name/jobs/deletions/{id}?api-version=2023-10-31
+    - name: Operation-Id
+      value: '{id}'
     body: >-
       {
-        "id": "importjob1",
-        "inputBlobUri": "path to input blob",
-        "outputBlobUri": "path to output blob",
+        "id": "deletejob1",
         "createdDateTime": "2022-01-01T00:00:00.0000000+00:00",
-        "lastActionDateTime": "2022-01-01T00:01:00.0000000+00:00",
+        "finishedDateTime": "2022-01-01T00:01:00.0000000+00:00",
         "purgeDateTime": "2022-01-31T00:01:00.0000000+00:00",
-        "status": "cancelling"
+        "status": "notstarted"
       }
 security:
 - name: oauth2
@@ -188,5 +182,5 @@ security:
   flow: implicit
   authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
 metadata:
-  description: Cancels an import job that is currently running. Service will stop any import operations triggered by the current import job that are in progress, and go to a c
+  description: Initiates a job which deletes all models, twins, and relationships on the instance. Does not delete any other types of entities.
 errorCodes: []

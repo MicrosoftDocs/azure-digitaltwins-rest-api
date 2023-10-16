@@ -1,38 +1,29 @@
 ### YamlMime:RESTOperation
-uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_getrelationshipbyid
-name: DigitalTwins GetRelationshipById
+uid: digitaltwins-hostname.digital-twins.dataplane.jobs.deletejobs_getbyid
+name: DeleteJobs GetById
 service: Azure Digital Twins
-groupName: Twins
+groupName: Jobs
 apiVersion: 2023-10-31
 summary: >-
-  Retrieves a relationship between two digital twins.
+  Retrieves a delete job.
 
   Status codes:
 
   * 200 OK
 
-  * 400 Bad Request
-    * InvalidArgument - The digital twin id or relationship id is invalid.
   * 404 Not Found
-    * DigitalTwinNotFound - The digital twin was not found.
-    * RelationshipNotFound - The relationship was not found.
+    * DeleteJobNotFound - The delete job was not found.
 consumes:
 - application/json
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-hostname/digitaltwins/{id}/relationships/{relationshipId}?api-version=2023-10-31
+- content: GET https://digitaltwins-hostname/jobs/deletions/{id}?api-version=2023-10-31
 uriParameters:
 - name: id
   in: path
   isRequired: true
-  description: The id of the digital twin. The id is unique within the service and case sensitive.
-  types:
-  - uid: string
-- name: relationshipId
-  in: path
-  isRequired: true
-  description: The id of the relationship. The id is unique within the digital twin and case sensitive.
+  description: The id for the delete job. The id is unique within the service and case sensitive.
   types:
   - uid: string
 - name: api-version
@@ -43,12 +34,9 @@ uriParameters:
   - uid: string
 responses:
 - name: 200 OK
-  headers:
-  - name: ETag
-    value: string
   description: Success
   types:
-  - uid: Relationship
+  - uid: DeleteJob
 - name: Other Status Codes
   headers:
   - name: x-ms-error-code
@@ -68,6 +56,39 @@ requestHeader:
   types:
   - uid: string
 definitions:
+- name: DeleteJob
+  description: A job which contains a reference to the operations to perform, results, and execution metadata.
+  kind: object
+  properties:
+  - name: id
+    isReadOnly: true
+    description: The identifier of the delete job.
+    types:
+    - uid: string
+  - name: status
+    isReadOnly: true
+    description: Status of the job.
+    types:
+    - uid: delete-job-status
+  - name: createdDateTime
+    isReadOnly: true
+    description: 'Start time of the job. The timestamp is in RFC3339 format: `yyyy-MM-ddTHH:mm:ssZ`.'
+    types:
+    - uid: string
+  - name: finishedDateTime
+    isReadOnly: true
+    description: 'End time of the job. The timestamp is in RFC3339 format: `yyyy-MM-ddTHH:mm:ssZ`.'
+    types:
+    - uid: string
+  - name: purgeDateTime
+    isReadOnly: true
+    description: 'Time at which job will be purged by the service from the system. The timestamp is in RFC3339 format: `yyyy-MM-ddTHH:mm:ssZ`.'
+    types:
+    - uid: string
+  - name: error
+    description: Details of the error(s) that occurred executing the import job.
+    types:
+    - uid: Error
 - name: ErrorResponse
   description: Error response.
   kind: object
@@ -76,6 +97,22 @@ definitions:
     description: The error details.
     types:
     - uid: Error
+- name: delete-job-status
+  description: Status of the job.
+  kind: enum
+  properties:
+  - name: notstarted
+    types:
+    - uid: string
+  - name: running
+    types:
+    - uid: string
+  - name: failed
+    types:
+    - uid: string
+  - name: succeeded
+    types:
+    - uid: string
 - name: Error
   description: Error definition.
   kind: object
@@ -113,25 +150,24 @@ definitions:
     types:
     - uid: InnerError
 examples:
-- name: Get a relationship by id
+- name: Get an import job by id
   request:
-    uri: GET https://digitaltwins-hostname/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2023-10-31
+    uri: GET https://digitaltwins-hostname/jobs/deletions/deletejob1?api-version=2023-10-31
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      GET https://digitaltwins-hostname/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2023-10-31
+      GET https://digitaltwins-hostname/jobs/deletions/deletejob1?api-version=2023-10-31
       ```
 
   responses:
   - statusCode: "200"
     body: >-
       {
-        "$relationshipId": "myRelationshipId",
-        "$sourceId": "mySourceTwin",
-        "$targetId": "myTargetTwin",
-        "$relationshipName": "myRelationship",
-        "$etag": "W/\"1553dbf5-0052-4be8-bea8-46269075b503\"",
-        "relationshipProperty": "some value"
+        "id": "deletejob1",
+        "createdDateTime": "2022-01-01T00:00:00.0000000+00:00",
+        "finishedDateTime": "2022-01-01T00:01:00.0000000+00:00",
+        "purgeDateTime": "2022-01-31T00:01:00.0000000+00:00",
+        "status": "succeeded"
       }
 security:
 - name: oauth2
@@ -139,14 +175,14 @@ security:
   flow: implicit
   authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
 metadata:
-  description: >-
-    Retrieves a relationship between two digital twins.
+  description: >
+    Retrieves a delete job.
 
     Status codes:
 
     200 OK
 
-    400 Bad Request
+    404 Not Found
 
-    InvalidArgument - The digital twin id or relationship id is invalid.
+    DeleteJobNotFound - The delete job was not found.
 errorCodes: []

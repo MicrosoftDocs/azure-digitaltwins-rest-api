@@ -3,9 +3,9 @@ uid: digitaltwins-hostname.digital-twins.dataplane.jobs.importjobs_delete
 name: ImportJobs Delete
 service: Azure Digital Twins
 groupName: Jobs
-apiVersion: 2023-06-30
+apiVersion: 2023-10-31
 summary: >-
-  Deletes an import job.
+  Deletes an import job. This is simply used to remove a job id, so it may be reused later. It can not be used to stop entities from being imported.
 
   Status codes:
 
@@ -18,7 +18,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: DELETE https://digitaltwins-hostname/jobs/imports/{id}?api-version=2023-06-30
+- content: DELETE https://digitaltwins-hostname/jobs/imports/{id}?api-version=2023-10-31
 uriParameters:
 - name: id
   in: path
@@ -101,11 +101,11 @@ definitions:
 examples:
 - name: Delete an import job
   request:
-    uri: DELETE https://digitaltwins-hostname/jobs/imports/bulkimportjob1?api-version=2023-06-30
+    uri: DELETE https://digitaltwins-hostname/jobs/imports/bulkimportjob1?api-version=2023-10-31
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      DELETE https://digitaltwins-hostname/jobs/imports/bulkimportjob1?api-version=2023-06-30
+      DELETE https://digitaltwins-hostname/jobs/imports/bulkimportjob1?api-version=2023-10-31
       ```
 
   responses:
@@ -116,14 +116,5 @@ security:
   flow: implicit
   authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
 metadata:
-  description: >
-    Deletes an import job.
-
-    Status codes:
-
-    204 No Content
-
-    400 Bad Request
-
-    ValidationFailed - The import job request is not valid.
+  description: Deletes an import job. This is simply used to remove a job id, so it may be reused later. It can not be used to stop entities from being imported.
 errorCodes: []

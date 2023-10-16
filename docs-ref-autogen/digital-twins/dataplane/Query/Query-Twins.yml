@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.query.querytwins
 name: Query Twins
 service: Azure Digital Twins
 groupName: Query
-apiVersion: 2023-06-30
+apiVersion: 2023-10-31
 summary: >-
   Executes a query that allows traversing relationships and filtering by property values.
 
@@ -22,7 +22,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: POST https://digitaltwins-hostname/query?api-version=2023-06-30
+- content: POST https://digitaltwins-hostname/query?api-version=2023-10-31
 uriParameters:
 - name: api-version
   in: query
@@ -147,7 +147,7 @@ definitions:
 examples:
 - name: Query for digital twins
   request:
-    uri: POST https://digitaltwins-hostname/query?api-version=2023-06-30
+    uri: POST https://digitaltwins-hostname/query?api-version=2023-10-31
     body: >-
       {
         "query": "SELECT * FROM DIGITALTWINS WHERE temp = 79"
@@ -155,7 +155,7 @@ examples:
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      POST https://digitaltwins-hostname/query?api-version=2023-06-30
+      POST https://digitaltwins-hostname/query?api-version=2023-10-31
 
       {
         "query": "SELECT * FROM DIGITALTWINS WHERE temp = 79"
@@ -231,7 +231,7 @@ examples:
       }
 - name: Retrieve paged query results
   request:
-    uri: POST https://digitaltwins-hostname/query?api-version=2023-06-30
+    uri: POST https://digitaltwins-hostname/query?api-version=2023-10-31
     body: >-
       {
         "continuationToken": "<continuationToken from previous query>"
@@ -239,7 +239,7 @@ examples:
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      POST https://digitaltwins-hostname/query?api-version=2023-06-30
+      POST https://digitaltwins-hostname/query?api-version=2023-10-31
 
       {
         "continuationToken": "<continuationToken from previous query>"
@@ -313,7 +313,7 @@ examples:
       }
 - name: Query for digital twins through a relationship
   request:
-    uri: POST https://digitaltwins-hostname/query?api-version=2023-06-30
+    uri: POST https://digitaltwins-hostname/query?api-version=2023-10-31
     body: >-
       {
         "query": "SELECT Widget, Gadget FROM DIGITALTWINS Widget JOIN Gadget RELATED Widget.Contains WHERE Widget.$dtId = 'Twin-01'"
@@ -321,7 +321,7 @@ examples:
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      POST https://digitaltwins-hostname/query?api-version=2023-06-30
+      POST https://digitaltwins-hostname/query?api-version=2023-10-31
 
       {
         "query": "SELECT Widget, Gadget FROM DIGITALTWINS Widget JOIN Gadget RELATED Widget.Contains WHERE Widget.$dtId = 'Twin-01'"
