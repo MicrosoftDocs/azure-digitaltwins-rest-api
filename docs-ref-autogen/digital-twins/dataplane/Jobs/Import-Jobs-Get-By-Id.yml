@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.jobs.importjobs_getbyid
 name: ImportJobs GetById
 service: Azure Digital Twins
 groupName: Jobs
-apiVersion: 2023-06-30
+apiVersion: 2023-10-31
 summary: >-
   Retrieves an import job.
 
@@ -18,7 +18,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: GET https://digitaltwins-hostname/jobs/imports/{id}?api-version=2023-06-30
+- content: GET https://digitaltwins-hostname/jobs/imports/{id}?api-version=2023-10-31
 uriParameters:
 - name: id
   in: path
@@ -171,11 +171,11 @@ definitions:
 examples:
 - name: Get an import job by id
   request:
-    uri: GET https://digitaltwins-hostname/jobs/imports/importjob1?api-version=2023-06-30
+    uri: GET https://digitaltwins-hostname/jobs/imports/importjob1?api-version=2023-10-31
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      GET https://digitaltwins-hostname/jobs/imports/importjob1?api-version=2023-06-30
+      GET https://digitaltwins-hostname/jobs/imports/importjob1?api-version=2023-10-31
       ```
 
   responses:

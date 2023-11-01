@@ -3,7 +3,7 @@ uid: digitaltwins-hostname.digital-twins.dataplane.twins.digitaltwins_deleterela
 name: DigitalTwins DeleteRelationship
 service: Azure Digital Twins
 groupName: Twins
-apiVersion: 2023-06-30
+apiVersion: 2023-10-31
 summary: >-
   Deletes a relationship between two digital twins.
 
@@ -23,7 +23,7 @@ consumes:
 produces:
 - application/json
 paths:
-- content: DELETE https://digitaltwins-hostname/digitaltwins/{id}/relationships/{relationshipId}?api-version=2023-06-30
+- content: DELETE https://digitaltwins-hostname/digitaltwins/{id}/relationships/{relationshipId}?api-version=2023-10-31
 uriParameters:
 - name: id
   in: path
@@ -117,11 +117,11 @@ definitions:
 examples:
 - name: Delete a relationship
   request:
-    uri: DELETE https://digitaltwins-hostname/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2023-06-30
+    uri: DELETE https://digitaltwins-hostname/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2023-10-31
     codeTab: |+
       # [HTTP](#tab/HTTP)
       ``` http
-      DELETE https://digitaltwins-hostname/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2023-06-30
+      DELETE https://digitaltwins-hostname/digitaltwins/myTwinId/relationships/myRelationshipId?api-version=2023-10-31
       ```
 
   responses:
