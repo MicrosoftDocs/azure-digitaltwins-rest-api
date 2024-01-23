@@ -10,12 +10,12 @@
         "exclude": [
           "toc.md"
         ],
-        "dest": "api"
+        "dest": "api/digital-twins"
       },
       {
         "src": "docs-ref-autogen",
         "files": [
-          "toc.md"
+          "toc.yml"
         ],
         "exclude": [],
         "dest": "api/azure-digitaltwins"
