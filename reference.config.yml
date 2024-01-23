@@ -12,15 +12,14 @@ language:
 toc:
 - name: Azure Digital Twins
   href: index.md
-- name: Data Plane
+- name: Reference
   items:
+  - name: Data Plane
     rest:
       url_path: dataplane
       readme:
-        source: digital-twins-control/specification/digitaltwins/data-plane/readme.md
-
-- name: Control Plane
-  items:
+        source: digital-twins-control/specification/digitaltwins/data-plane/readme.m
+  - name: Control Plane
     rest:
       url_path: controlplane
       readme:
