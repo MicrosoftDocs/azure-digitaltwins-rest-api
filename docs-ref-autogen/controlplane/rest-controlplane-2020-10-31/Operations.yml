@@ -1,0 +1,10 @@
+### YamlMime:RESTOperationGroup
+uid: management.azure.com.controlplane.operations
+name: Operations
+apiVersion: 2020-10-31
+service: Reference
+metadata:
+  description: Learn more about [Reference Operations Operations]. How to [List].
+operations:
+- uid: management.azure.com.controlplane.operations.list
+  summary: Lists all of the available DigitalTwins service REST API operations.

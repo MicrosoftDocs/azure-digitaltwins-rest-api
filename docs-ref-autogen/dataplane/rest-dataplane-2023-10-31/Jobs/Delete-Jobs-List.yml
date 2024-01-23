@@ -1,0 +1,200 @@
+### YamlMime:RESTOperation
+uid: digitaltwins-hostname.dataplane.jobs.deletejobs_list
+name: DeleteJobs List
+service: Reference
+groupName: Jobs
+apiVersion: 2023-10-31
+summary: >-
+  Retrieves all deletion jobs. This may be useful to find a delete job that was previously requested, or to view a history of delete jobs that have run or are currently running on the instance.
+
+  Status codes:
+
+  * 200 OK
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: GET https://digitaltwins-hostname/jobs/deletions?api-version=2023-10-31
+uriParameters:
+- name: api-version
+  in: query
+  isRequired: true
+  description: The requested API version.
+  types:
+  - uid: string
+responses:
+- name: 200 OK
+  description: Success
+  types:
+  - uid: DeleteJobCollection
+- name: Other Status Codes
+  headers:
+  - name: x-ms-error-code
+    value: string
+  description: Default response.
+  types:
+  - uid: ErrorResponse
+requestHeader:
+- name: max-items-per-page
+  in: header
+  description: The maximum number of items to retrieve per request. The server may choose to return less than the requested number.
+  types:
+  - uid: integer
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
+- name: tracestate
+  in: header
+  description: Provides vendor-specific trace identification information and is a companion to traceparent.
+  types:
+  - uid: string
+definitions:
+- name: DeleteJobCollection
+  description: A collection of delete job objects.
+  kind: object
+  properties:
+  - name: value
+    description: The list of delete job objects.
+    types:
+    - uid: DeleteJob
+      isArray: true
+  - name: nextLink
+    description: A URI to retrieve the next page of results.
+    types:
+    - uid: string
+- name: ErrorResponse
+  description: Error response.
+  kind: object
+  properties:
+  - name: error
+    description: The error details.
+    types:
+    - uid: Error
+- name: DeleteJob
+  description: A job which contains a reference to the operations to perform, results, and execution metadata.
+  kind: object
+  properties:
+  - name: id
+    isReadOnly: true
+    description: The identifier of the delete job.
+    types:
+    - uid: string
+  - name: status
+    isReadOnly: true
+    description: Status of the job.
+    types:
+    - uid: delete-job-status
+  - name: createdDateTime
+    isReadOnly: true
+    description: 'Start time of the job. The timestamp is in RFC3339 format: `yyyy-MM-ddTHH:mm:ssZ`.'
+    types:
+    - uid: string
+  - name: finishedDateTime
+    isReadOnly: true
+    description: 'End time of the job. The timestamp is in RFC3339 format: `yyyy-MM-ddTHH:mm:ssZ`.'
+    types:
+    - uid: string
+  - name: purgeDateTime
+    isReadOnly: true
+    description: 'Time at which job will be purged by the service from the system. The timestamp is in RFC3339 format: `yyyy-MM-ddTHH:mm:ssZ`.'
+    types:
+    - uid: string
+  - name: error
+    description: Details of the error(s) that occurred executing the import job.
+    types:
+    - uid: Error
+- name: Error
+  description: Error definition.
+  kind: object
+  properties:
+  - name: code
+    isReadOnly: true
+    description: Service specific error code which serves as the substatus for the HTTP error code.
+    types:
+    - uid: string
+  - name: message
+    isReadOnly: true
+    description: A human-readable representation of the error.
+    types:
+    - uid: string
+  - name: details
+    isReadOnly: true
+    description: Internal error details.
+    types:
+    - uid: Error
+      isArray: true
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+- name: delete-job-status
+  description: Status of the job.
+  kind: enum
+  properties:
+  - name: notstarted
+    types:
+    - uid: string
+  - name: running
+    types:
+    - uid: string
+  - name: failed
+    types:
+    - uid: string
+  - name: succeeded
+    types:
+    - uid: string
+- name: InnerError
+  description: A more specific error description than was provided by the containing error.
+  kind: object
+  properties:
+  - name: code
+    description: A more specific error code than was provided by the containing error.
+    types:
+    - uid: string
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+examples:
+- name: Get all import jobs
+  request:
+    uri: GET https://digitaltwins-hostname/jobs/deletions?api-version=2023-10-31
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://digitaltwins-hostname/jobs/deletions?api-version=2023-10-31
+      ```
+
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "value": [
+          {
+            "id": "deletejob1",
+            "createdDateTime": "2022-01-01T00:00:00.0000000+00:00",
+            "finishedDateTime": "2022-01-01T00:01:00.0000000+00:00",
+            "purgeDateTime": "2022-01-31T00:01:00.0000000+00:00",
+            "status": "succeeded"
+          },
+          {
+            "id": "deletejob2",
+            "createdDateTime": "2022-01-01T00:00:00.0000000+00:00",
+            "finishedDateTime": "2022-01-01T00:01:00.0000000+00:00",
+            "purgeDateTime": "2022-01-31T00:01:00.0000000+00:00",
+            "status": "succeeded"
+          }
+        ],
+        "nextLink": "url-to-next-page"
+      }
+security:
+- name: oauth2
+  type: oauth2
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
+metadata:
+  description: Retrieves all deletion jobs. This may be useful to find a delete job that was previously requested, or to view a history of delete jobs that have run or are cur
+errorCodes: []
