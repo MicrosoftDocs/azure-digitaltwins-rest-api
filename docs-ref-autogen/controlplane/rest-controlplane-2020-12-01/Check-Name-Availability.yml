@@ -1,0 +1,10 @@
+### YamlMime:RESTOperationGroup
+uid: management.azure.com.controlplane.checknameavailability
+name: Check Name Availability
+apiVersion: 2020-12-01
+service: Reference
+metadata:
+  description: Learn more about [Reference Check Name Availability Operations]. How to [DigitalTwins CheckNameAvailability].
+operations:
+- uid: management.azure.com.controlplane.checknameavailability.digitaltwins_checknameavailability
+  summary: Check if a DigitalTwinsInstance name is available.

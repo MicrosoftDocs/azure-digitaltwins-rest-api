@@ -1,0 +1,79 @@
+{
+    "products": [
+        {
+            "productName": "dataplane",
+            "familyName": "dataplane",
+            "monikers": [
+                {
+                    "platform": "rest",
+                    "monikerName": "rest-dataplane-2023-10-31",
+                    "monikerDisplayName": "2023-10-31",
+                    "versionDisplayName": "2023-10-31",
+                    "isPrerelease": false
+                },
+                {
+                    "platform": "rest",
+                    "monikerName": "rest-dataplane-2023-06-30",
+                    "monikerDisplayName": "2023-06-30",
+                    "versionDisplayName": "2023-06-30",
+                    "isPrerelease": false
+                },
+                {
+                    "platform": "rest",
+                    "monikerName": "rest-dataplane-2022-05-31",
+                    "monikerDisplayName": "2022-05-31",
+                    "versionDisplayName": "2022-05-31",
+                    "isPrerelease": false
+                },
+                {
+                    "platform": "rest",
+                    "monikerName": "rest-dataplane-2020-10-31",
+                    "monikerDisplayName": "2020-10-31",
+                    "versionDisplayName": "2020-10-31",
+                    "isPrerelease": false
+                }
+            ]
+        },
+        {
+            "productName": "controlplane",
+            "familyName": "controlplane",
+            "monikers": [
+                {
+                    "platform": "rest",
+                    "monikerName": "rest-controlplane-2023-01-31",
+                    "monikerDisplayName": "2023-01-31",
+                    "versionDisplayName": "2023-01-31",
+                    "isPrerelease": false
+                },
+                {
+                    "platform": "rest",
+                    "monikerName": "rest-controlplane-2022-10-31",
+                    "monikerDisplayName": "2022-10-31",
+                    "versionDisplayName": "2022-10-31",
+                    "isPrerelease": false
+                },
+                {
+                    "platform": "rest",
+                    "monikerName": "rest-controlplane-2022-05-31",
+                    "monikerDisplayName": "2022-05-31",
+                    "versionDisplayName": "2022-05-31",
+                    "isPrerelease": false
+                },
+                {
+                    "platform": "rest",
+                    "monikerName": "rest-controlplane-2020-12-01",
+                    "monikerDisplayName": "2020-12-01",
+                    "versionDisplayName": "2020-12-01",
+                    "isPrerelease": false
+                },
+                {
+                    "platform": "rest",
+                    "monikerName": "rest-controlplane-2020-10-31",
+                    "monikerDisplayName": "2020-10-31",
+                    "versionDisplayName": "2020-10-31",
+                    "isPrerelease": false
+                }
+            ]
+        }
+    ]
+}

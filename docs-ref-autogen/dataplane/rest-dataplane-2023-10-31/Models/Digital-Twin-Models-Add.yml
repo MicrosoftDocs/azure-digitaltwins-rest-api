@@ -1,0 +1,247 @@
+### YamlMime:RESTOperation
+uid: digitaltwins-hostname.dataplane.models.digitaltwinmodels_add
+name: DigitalTwinModels Add
+service: Reference
+groupName: Models
+apiVersion: 2023-10-31
+summary: >-
+  Uploads one or more models. When any error occurs, no models are uploaded.
+
+  Status codes:
+
+  * 201 Created
+
+  * 400 Bad Request
+    * DTDLParserError - The models provided are not valid DTDL.
+    * InvalidArgument - The model id is invalid.
+    * LimitExceeded - The maximum number of model ids allowed in 'dependenciesFor' has been reached.
+    * ModelVersionNotSupported - The version of DTDL used is not supported.
+  * 409 Conflict
+    * ModelAlreadyExists - The model provided already exists.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: POST https://digitaltwins-hostname/models?api-version=2023-10-31
+uriParameters:
+- name: api-version
+  in: query
+  isRequired: true
+  description: The requested API version.
+  types:
+  - uid: string
+responses:
+- name: 201 Created
+  description: Success
+  types:
+  - uid: DigitalTwinsModelData
+    isArray: true
+- name: Other Status Codes
+  headers:
+  - name: x-ms-error-code
+    value: string
+  description: Default response.
+  types:
+  - uid: ErrorResponse
+requestBody:
+- name: default
+  parameters:
+  - name: models
+    in: body
+    description: An array of models to add.
+    types:
+    - uid: object
+      isArray: true
+requestHeader:
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
+- name: tracestate
+  in: header
+  description: Provides vendor-specific trace identification information and is a companion to traceparent.
+  types:
+  - uid: string
+definitions:
+- name: DigitalTwinsModelData
+  description: A model definition and metadata for that model.
+  kind: object
+  properties:
+  - name: displayName
+    description: A language map that contains the localized display names as specified in the model definition.
+    types:
+    - uid: object
+      isDictionary: true
+      additionalTypes:
+      - uid: string
+      - uid: string
+  - name: description
+    description: A language map that contains the localized descriptions as specified in the model definition.
+    types:
+    - uid: object
+      isDictionary: true
+      additionalTypes:
+      - uid: string
+      - uid: string
+  - name: id
+    description: The id of the model as specified in the model definition.
+    types:
+    - uid: string
+  - name: uploadTime
+    description: The time the model was uploaded to the service.
+    types:
+    - uid: string
+  - name: decommissioned
+    description: Indicates if the model is decommissioned. Decommissioned models cannot be referenced by newly created digital twins.
+    types:
+    - uid: boolean
+    defaultValue: false
+  - name: model
+    description: The model definition.
+    types:
+    - uid: object
+- name: ErrorResponse
+  description: Error response.
+  kind: object
+  properties:
+  - name: error
+    description: The error details.
+    types:
+    - uid: Error
+- name: Error
+  description: Error definition.
+  kind: object
+  properties:
+  - name: code
+    isReadOnly: true
+    description: Service specific error code which serves as the substatus for the HTTP error code.
+    types:
+    - uid: string
+  - name: message
+    isReadOnly: true
+    description: A human-readable representation of the error.
+    types:
+    - uid: string
+  - name: details
+    isReadOnly: true
+    description: Internal error details.
+    types:
+    - uid: Error
+      isArray: true
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+- name: InnerError
+  description: A more specific error description than was provided by the containing error.
+  kind: object
+  properties:
+  - name: code
+    description: A more specific error code than was provided by the containing error.
+    types:
+    - uid: string
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+examples:
+- name: Add models
+  request:
+    uri: POST https://digitaltwins-hostname/models?api-version=2023-10-31
+    body: >-
+      [
+        {
+          "@id": "dtmi:com:example:Sample;1",
+          "@type": "Interface",
+          "displayName": "Sample Interface",
+          "contents": [
+            {
+              "@type": "Property",
+              "name": "name",
+              "displayName": "Sample instance name",
+              "schema": "string"
+            },
+            {
+              "@type": "Property",
+              "name": "temp",
+              "displayName": "Sample instance temperature",
+              "schema": "integer"
+            },
+            {
+              "@type": "Property",
+              "name": "comfortIndex",
+              "displayName": "Sample instance comfort index",
+              "schema": "integer"
+            }
+          ],
+          "@context": "dtmi:dtdl:context;2"
+        }
+      ]
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      POST https://digitaltwins-hostname/models?api-version=2023-10-31
+
+      [
+        {
+          "@id": "dtmi:com:example:Sample;1",
+          "@type": "Interface",
+          "displayName": "Sample Interface",
+          "contents": [
+            {
+              "@type": "Property",
+              "name": "name",
+              "displayName": "Sample instance name",
+              "schema": "string"
+            },
+            {
+              "@type": "Property",
+              "name": "temp",
+              "displayName": "Sample instance temperature",
+              "schema": "integer"
+            },
+            {
+              "@type": "Property",
+              "name": "comfortIndex",
+              "displayName": "Sample instance comfort index",
+              "schema": "integer"
+            }
+          ],
+          "@context": "dtmi:dtdl:context;2"
+        }
+      ]
+
+      ```
+
+  responses:
+  - statusCode: "201"
+    body: >-
+      [
+        {
+          "id": "dtmi:com:example:Sample;1",
+          "displayName": {
+            "en": "Sample Interface"
+          },
+          "uploadTime": "2022-02-28T00:30:00.1234567Z",
+          "decommissioned": false
+        }
+      ]
+security:
+- name: oauth2
+  type: oauth2
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
+metadata:
+  description: >-
+    Uploads one or more models. When any error occurs, no models are uploaded.
+
+    Status codes:
+
+    201 Created
+
+    400 Bad Request
+
+    DTDLParserError - The models provided are n
+errorCodes: []

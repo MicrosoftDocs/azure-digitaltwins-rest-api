@@ -1,0 +1,213 @@
+### YamlMime:RESTOperation
+uid: digitaltwins-hostname.dataplane.twins.digitaltwins_addrelationship
+name: DigitalTwins AddRelationship
+service: Reference
+groupName: Twins
+apiVersion: 2020-10-31
+summary: >-
+  Adds a relationship between two digital twins.
+
+  Status codes:
+
+  * 200 OK
+
+  * 400 Bad Request
+    * InvalidArgument - The digital twin id, relationship id, or payload is invalid.
+    * InvalidRelationship - The relationship is invalid.
+    * OperationNotAllowed - The relationship cannot connect to the same digital twin.
+    * ValidationFailed - The relationship content is invalid.
+  * 404 Not Found
+    * DigitalTwinNotFound - The digital twin was not found.
+    * TargetTwinNotFound - The digital twin target of the relationship was not found.
+  * 412 Precondition Failed
+    * PreconditionFailed - The precondition check (If-Match or If-None-Match) failed.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: PUT https://digitaltwins-hostname/digitaltwins/{id}/relationships/{relationshipId}?api-version=2020-10-31
+uriParameters:
+- name: id
+  in: path
+  isRequired: true
+  description: The id of the digital twin. The id is unique within the service and case sensitive.
+  types:
+  - uid: string
+- name: relationshipId
+  in: path
+  isRequired: true
+  description: The id of the relationship. The id is unique within the digital twin and case sensitive.
+  types:
+  - uid: string
+- name: api-version
+  in: query
+  isRequired: true
+  description: The requested API version.
+  types:
+  - uid: string
+responses:
+- name: 200 OK
+  headers:
+  - name: ETag
+    value: string
+  description: Success
+  types:
+  - uid: object
+- name: Other Status Codes
+  description: Default response.
+  types:
+  - uid: ErrorResponse
+requestBody:
+- name: default
+  parameters:
+  - name: relationship
+    in: body
+    description: The data for the relationship.
+    types:
+    - uid: object
+requestHeader:
+- name: If-None-Match
+  in: header
+  description: Only perform the operation if the entity does not already exist.
+  types:
+  - uid: string
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
+- name: tracestate
+  in: header
+  description: Provides vendor-specific trace identification information and is a companion to traceparent.
+  types:
+  - uid: string
+definitions:
+- name: ErrorResponse
+  description: Error response.
+  kind: object
+  properties:
+  - name: error
+    description: The error details.
+    types:
+    - uid: Error
+- name: Error
+  description: Error definition.
+  kind: object
+  properties:
+  - name: code
+    isReadOnly: true
+    description: Service specific error code which serves as the substatus for the HTTP error code.
+    types:
+    - uid: string
+  - name: message
+    isReadOnly: true
+    description: A human-readable representation of the error.
+    types:
+    - uid: string
+  - name: details
+    isReadOnly: true
+    description: Internal error details.
+    types:
+    - uid: Error
+      isArray: true
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+- name: InnerError
+  description: A more specific error description than was provided by the containing error.
+  kind: object
+  properties:
+  - name: code
+    description: A more specific error code than was provided by the containing error.
+    types:
+    - uid: string
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+examples:
+- name: Create a relationship
+  request:
+    uri: PUT https://digitaltwins-hostname/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-10-31
+    body: >-
+      {
+        "$targetId": "myTargetTwin",
+        "$relationshipName": "myRelationship"
+      }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PUT https://digitaltwins-hostname/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-10-31
+
+      {
+        "$targetId": "myTargetTwin",
+        "$relationshipName": "myRelationship"
+      }
+
+      ```
+
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "$relationshipId": "myRelationshipId",
+        "$sourceId": "mySourceTwin",
+        "$targetId": "myTargetTwin",
+        "$relationshipName": "myRelationship",
+        "$etag": "W/\"1553dbf5-0052-4be8-bea8-46269075b503\""
+      }
+- name: Create a relationship (with properties)
+  request:
+    uri: PUT https://digitaltwins-hostname/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-10-31
+    body: >-
+      {
+        "$targetId": "myTargetTwin",
+        "$relationshipName": "myRelationship",
+        "relationshipProperty1": 1,
+        "relationshipProperty2": "some value"
+      }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PUT https://digitaltwins-hostname/digitaltwins/mySourceTwin/relationships/myRelationshipId?api-version=2020-10-31
+
+      {
+        "$targetId": "myTargetTwin",
+        "$relationshipName": "myRelationship",
+        "relationshipProperty1": 1,
+        "relationshipProperty2": "some value"
+      }
+
+      ```
+
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "$relationshipId": "myRelationshipId",
+        "$sourceId": "mySourceTwin",
+        "$targetId": "myTargetTwin",
+        "$relationshipName": "myRelationship",
+        "relationshipProperty1": 1,
+        "relationshipProperty2": "some value",
+        "$etag": "W/\"1553dbf5-0052-4be8-bea8-46269075b503\""
+      }
+security:
+- name: oauth2
+  type: oauth2
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
+metadata:
+  description: >-
+    Adds a relationship between two digital twins.
+
+    Status codes:
+
+    200 OK
+
+    400 Bad Request
+
+    InvalidArgument - The digital twin id, relationship id, or payload is invali
+errorCodes: []

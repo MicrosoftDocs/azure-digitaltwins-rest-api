@@ -1,0 +1,20 @@
+### YamlMime:RESTOperationGroup
+uid: management.azure.com.controlplane.privateendpoints
+name: Private Endpoints
+apiVersion: 2020-12-01
+service: Reference
+metadata:
+  description: Learn more about [Reference Private Endpoints Operations]. How to [PrivateEndpointConnections CreateOrUpdate,PrivateEndpointConnections Delete,PrivateEndpointCo
+operations:
+- uid: management.azure.com.controlplane.privateendpoints.privateendpointconnections_createorupdate
+  summary: Update the status of a private endpoint connection with the given name.
+- uid: management.azure.com.controlplane.privateendpoints.privateendpointconnections_delete
+  summary: Delete private endpoint connection with the specified name.
+- uid: management.azure.com.controlplane.privateendpoints.privateendpointconnections_get
+  summary: Get private endpoint connection properties for the given private endpoint.
+- uid: management.azure.com.controlplane.privateendpoints.privateendpointconnections_list
+  summary: List private endpoint connection properties.
+- uid: management.azure.com.controlplane.privateendpoints.privatelinkresources_get
+  summary: Get the specified private link resource for the given Digital Twin.
+- uid: management.azure.com.controlplane.privateendpoints.privatelinkresources_list
+  summary: List private link resources for given Digital Twin.

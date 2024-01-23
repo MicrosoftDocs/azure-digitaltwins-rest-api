@@ -1,0 +1,225 @@
+### YamlMime:RESTOperation
+uid: digitaltwins-hostname.dataplane.twins.digitaltwins_update
+name: DigitalTwins Update
+service: Reference
+groupName: Twins
+apiVersion: 2023-06-30
+summary: >-
+  Updates a digital twin.
+
+  Status codes:
+
+  * 204 No Content
+
+  * 400 Bad Request
+    * InvalidArgument - The digital twin id or payload is invalid.
+    * JsonPatchInvalid - The JSON Patch provided is invalid.
+    * ValidationFailed - Applying the patch results in an invalid digital twin.
+  * 404 Not Found
+    * DigitalTwinNotFound - The digital twin was not found.
+  * 412 Precondition Failed
+    * PreconditionFailed - The precondition check (If-Match or If-None-Match) failed.
+consumes:
+- application/json-patch+json
+produces:
+- application/json
+paths:
+- content: PATCH https://digitaltwins-hostname/digitaltwins/{id}?api-version=2023-06-30
+uriParameters:
+- name: id
+  in: path
+  isRequired: true
+  description: The id of the digital twin. The id is unique within the service and case sensitive.
+  types:
+  - uid: string
+- name: api-version
+  in: query
+  isRequired: true
+  description: The requested API version.
+  types:
+  - uid: string
+responses:
+- name: 204 No Content
+  headers:
+  - name: ETag
+    value: string
+  description: Success
+- name: Other Status Codes
+  headers:
+  - name: x-ms-error-code
+    value: string
+  description: Default response.
+  types:
+  - uid: ErrorResponse
+requestBody:
+- name: default
+  parameters:
+  - name: patchDocument
+    in: body
+    description: An update specification described by JSON Patch. Updates to property values and $model elements may happen in the same request. Operations are limited to add, replace and remove.
+    types:
+    - uid: object
+      isArray: true
+requestHeader:
+- name: If-Match
+  in: header
+  description: Only perform the operation if the entity's etag matches one of the etags provided or * is provided.
+  types:
+  - uid: string
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
+- name: tracestate
+  in: header
+  description: Provides vendor-specific trace identification information and is a companion to traceparent.
+  types:
+  - uid: string
+definitions:
+- name: ErrorResponse
+  description: Error response.
+  kind: object
+  properties:
+  - name: error
+    description: The error details.
+    types:
+    - uid: Error
+- name: Error
+  description: Error definition.
+  kind: object
+  properties:
+  - name: code
+    isReadOnly: true
+    description: Service specific error code which serves as the substatus for the HTTP error code.
+    types:
+    - uid: string
+  - name: message
+    isReadOnly: true
+    description: A human-readable representation of the error.
+    types:
+    - uid: string
+  - name: details
+    isReadOnly: true
+    description: Internal error details.
+    types:
+    - uid: Error
+      isArray: true
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+- name: InnerError
+  description: A more specific error description than was provided by the containing error.
+  kind: object
+  properties:
+  - name: code
+    description: A more specific error code than was provided by the containing error.
+    types:
+    - uid: string
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+examples:
+- name: Update a digital twin
+  request:
+    uri: PATCH https://digitaltwins-hostname/digitaltwins/myNewTwinId?api-version=2023-06-30
+    body: >-
+      [
+        {
+          "op": "replace",
+          "path": "/property1",
+          "value": 1
+        }
+      ]
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PATCH https://digitaltwins-hostname/digitaltwins/myNewTwinId?api-version=2023-06-30
+
+      [
+        {
+          "op": "replace",
+          "path": "/property1",
+          "value": 1
+        }
+      ]
+
+      ```
+
+  responses:
+  - statusCode: "204"
+- name: Update a digital twin (multiple updates)
+  request:
+    uri: PATCH https://digitaltwins-hostname/digitaltwins/myNewTwinId?api-version=2023-06-30
+    body: >-
+      [
+        {
+          "op": "replace",
+          "path": "/property1",
+          "value": 1
+        },
+        {
+          "op": "replace",
+          "path": "/$metadata/property1/sourceTime",
+          "value": "2022-05-31T12:00:01.000125009Z"
+        },
+        {
+          "op": "add",
+          "path": "/property2/subProperty1",
+          "value": 1
+        },
+        {
+          "op": "remove",
+          "path": "/property3"
+        }
+      ]
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      PATCH https://digitaltwins-hostname/digitaltwins/myNewTwinId?api-version=2023-06-30
+
+      [
+        {
+          "op": "replace",
+          "path": "/property1",
+          "value": 1
+        },
+        {
+          "op": "replace",
+          "path": "/$metadata/property1/sourceTime",
+          "value": "2022-05-31T12:00:01.000125009Z"
+        },
+        {
+          "op": "add",
+          "path": "/property2/subProperty1",
+          "value": 1
+        },
+        {
+          "op": "remove",
+          "path": "/property3"
+        }
+      ]
+
+      ```
+
+  responses:
+  - statusCode: "204"
+security:
+- name: oauth2
+  type: oauth2
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
+metadata:
+  description: >-
+    Updates a digital twin.
+
+    Status codes:
+
+    204 No Content
+
+    400 Bad Request
+
+    InvalidArgument - The digital twin id or payload is invalid.
+errorCodes: []
