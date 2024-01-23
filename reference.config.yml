@@ -1,0 +1,29 @@
+metadata:
+  platform: rest
+language:
+  rest:
+    target_api_root_dir: docs-ref-autogen
+    is_operation_level: true
+    use_yaml_schema: true
+    use_service_url_group: true
+    is_grouped_by_tag: true
+    remove_tag_from_operationId: true
+
+toc:
+- name: Azure Digital Twins
+  href: index.md
+- name: Data Plane
+  items:
+    rest:
+      url_path: dataplane
+      readme:
+        source: digital-twins-control/specification/digitaltwins/data-plane/readme.md
+
+- name: Control Plane
+  items:
+    rest:
+      url_path: controlplane
+      readme:
+        source: digital-twins-control/specification/digitaltwins/resource-manager/readme.md
+
+
