@@ -1,0 +1,173 @@
+### YamlMime:RESTOperation
+uid: management.azure.com.controlplane.checknameavailability.digitaltwins_checknameavailability
+name: DigitalTwins CheckNameAvailability
+service: Reference
+groupName: Check Name Availability
+apiVersion: 2020-12-01
+summary: Check if a DigitalTwinsInstance name is available.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: POST https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.DigitalTwins/locations/{location}/checkNameAvailability?api-version=2020-12-01
+uriParameters:
+- name: subscriptionId
+  in: path
+  isRequired: true
+  description: The subscription identifier.
+  types:
+  - uid: string
+- name: location
+  in: path
+  isRequired: true
+  description: Location of DigitalTwinsInstance.
+  types:
+  - uid: string
+- name: api-version
+  in: query
+  isRequired: true
+  description: Version of the DigitalTwinsInstance Management API.
+  types:
+  - uid: string
+responses:
+- name: 200 OK
+  description: This is a synchronous operation. The body contains a JSON-serialized response that specifies whether the DigitalTwins service name is available. If the name is not available, the body contains the reason.
+  types:
+  - uid: CheckNameResult
+- name: Other Status Codes
+  description: Error response describing why the operation failed.
+  types:
+  - uid: ErrorResponse
+requestBody:
+- name: default
+  parameters:
+  - name: name
+    in: body
+    isRequired: true
+    description: Resource name.
+    types:
+    - uid: string
+  - name: type
+    in: body
+    isRequired: true
+    description: The type of resource, for instance Microsoft.DigitalTwins/digitalTwinsInstances.
+    types:
+    - uid: Type
+requestHeader: []
+definitions:
+- name: CheckNameResult
+  description: The result returned from a check name availability request.
+  kind: object
+  properties:
+  - name: nameAvailable
+    description: Specifies a Boolean value that indicates if the name is available.
+    types:
+    - uid: boolean
+  - name: message
+    description: Message indicating an unavailable name due to a conflict, or a description of the naming rules that are violated.
+    types:
+    - uid: string
+  - name: reason
+    description: Message providing the reason why the given name is invalid.
+    types:
+    - uid: reason
+- name: ErrorResponse
+  description: Error response.
+  kind: object
+  properties:
+  - name: error
+    description: Error description
+    types:
+    - uid: ErrorDefinition
+- name: CheckNameRequest
+  description: The result returned from a database check name availability request.
+  kind: object
+  properties:
+  - name: name
+    description: Resource name.
+    types:
+    - uid: string
+  - name: type
+    description: The type of resource, for instance Microsoft.DigitalTwins/digitalTwinsInstances.
+    types:
+    - uid: Type
+- name: reason
+  description: Message providing the reason why the given name is invalid.
+  kind: enum
+  properties:
+  - name: Invalid
+    types:
+    - uid: string
+  - name: AlreadyExists
+    types:
+    - uid: string
+- name: ErrorDefinition
+  description: Error definition.
+  kind: object
+  properties:
+  - name: code
+    isReadOnly: true
+    description: Service specific error code which serves as the substatus for the HTTP error code.
+    types:
+    - uid: string
+  - name: message
+    isReadOnly: true
+    description: Description of the error.
+    types:
+    - uid: string
+  - name: details
+    isReadOnly: true
+    description: Internal error details.
+    types:
+    - uid: ErrorDefinition
+      isArray: true
+- name: Type
+  description: The type of resource, for instance Microsoft.DigitalTwins/digitalTwinsInstances.
+  kind: enum
+  properties:
+  - name: Microsoft.DigitalTwins/digitalTwinsInstances
+    types:
+    - uid: string
+examples:
+- name: Check name Availability
+  request:
+    uri: POST https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/WestUS2/checkNameAvailability?api-version=2020-12-01
+    body: >-
+      {
+        "name": "myadtinstance",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances"
+      }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      POST https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/WestUS2/checkNameAvailability?api-version=2020-12-01
+
+      {
+        "name": "myadtinstance",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances"
+      }
+
+      ```
+
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "nameAvailable": false,
+        "message": "Name 'myadtinstance' is already taken. Please specify a different name",
+        "reason": "AlreadyExists"
+      }
+security:
+- name: azure_auth
+  type: oauth2
+  description: Azure Active Directory OAuth2 Flow
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+  scopes:
+  - name: user_impersonation
+    description: impersonate your user account
+metadata:
+  description: >
+    Learn more about Reference service - Check if a DigitalTwinsInstance name is available.
+errorCodes: []

@@ -1,0 +1,67 @@
+### YamlMime:RESTOperationGroup
+uid: digitaltwins-hostname.dataplane.models
+name: Models
+apiVersion: 2023-06-30
+service: Reference
+metadata:
+  description: Learn more about [Reference Models Operations]. How to [DigitalTwinModels Add,DigitalTwinModels Delete,DigitalTwinModels GetById,DigitalTwinModels List,DigitalT
+operations:
+- uid: digitaltwins-hostname.dataplane.models.digitaltwinmodels_add
+  summary: >-
+    Uploads one or more models. When any error occurs, no models are uploaded.
+
+    Status codes:
+
+    - 201 Created
+
+    - 400 Bad Request
+
+    - 409 Conflict
+- uid: digitaltwins-hostname.dataplane.models.digitaltwinmodels_delete
+  summary: >-
+    Deletes a model. A model can only be deleted if no other models reference it.
+
+    Status codes:
+
+    - 204 No Content
+
+    - 400 Bad Request
+
+    - 404 Not Found
+
+    - 409 Conflict
+- uid: digitaltwins-hostname.dataplane.models.digitaltwinmodels_getbyid
+  summary: >-
+    Retrieves model metadata and optionally the model definition.
+
+    Status codes:
+
+    - 200 OK
+
+    - 400 Bad Request
+
+    - 404 Not Found
+- uid: digitaltwins-hostname.dataplane.models.digitaltwinmodels_list
+  summary: >-
+    Retrieves model metadata and, optionally, model definitions.
+
+    Status codes:
+
+    - 200 OK
+
+    - 400 Bad Request
+
+    - 404 Not Found
+- uid: digitaltwins-hostname.dataplane.models.digitaltwinmodels_update
+  summary: >-
+    Updates the metadata for a model.
+
+    Status codes:
+
+    - 204 No Content
+
+    - 400 Bad Request
+
+    - 404 Not Found
+
+    - 409 Conflict

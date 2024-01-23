@@ -1,0 +1,223 @@
+### YamlMime:RESTOperation
+uid: digitaltwins-hostname.dataplane.models.digitaltwinmodels_getbyid
+name: DigitalTwinModels GetById
+service: Reference
+groupName: Models
+apiVersion: 2020-10-31
+summary: >-
+  Retrieves model metadata and optionally the model definition.
+
+  Status codes:
+
+  * 200 OK
+
+  * 400 Bad Request
+    * InvalidArgument - The model id is invalid.
+    * MissingArgument - The model id was not provided.
+  * 404 Not Found
+    * ModelNotFound - The model was not found.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: GET https://digitaltwins-hostname/models/{id}?api-version=2020-10-31
+- content: GET https://digitaltwins-hostname/models/{id}?includeModelDefinition={includeModelDefinition}&api-version=2020-10-31
+  isOptional: true
+uriParameters:
+- name: id
+  in: path
+  isRequired: true
+  description: The id for the model. The id is globally unique and case sensitive.
+  types:
+  - uid: string
+- name: includeModelDefinition
+  in: query
+  description: When true the model definition will be returned as part of the result.
+  types:
+  - uid: boolean
+- name: api-version
+  in: query
+  isRequired: true
+  description: The requested API version.
+  types:
+  - uid: string
+responses:
+- name: 200 OK
+  description: Success
+  types:
+  - uid: DigitalTwinsModelData
+- name: Other Status Codes
+  description: Default response.
+  types:
+  - uid: ErrorResponse
+requestHeader:
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
+- name: tracestate
+  in: header
+  description: Provides vendor-specific trace identification information and is a companion to traceparent.
+  types:
+  - uid: string
+definitions:
+- name: DigitalTwinsModelData
+  description: A model definition and metadata for that model.
+  kind: object
+  properties:
+  - name: displayName
+    description: A language map that contains the localized display names as specified in the model definition.
+    types:
+    - uid: object
+      isDictionary: true
+      additionalTypes:
+      - uid: string
+      - uid: string
+  - name: description
+    description: A language map that contains the localized descriptions as specified in the model definition.
+    types:
+    - uid: object
+      isDictionary: true
+      additionalTypes:
+      - uid: string
+      - uid: string
+  - name: id
+    description: The id of the model as specified in the model definition.
+    types:
+    - uid: string
+  - name: uploadTime
+    description: The time the model was uploaded to the service.
+    types:
+    - uid: string
+  - name: decommissioned
+    description: Indicates if the model is decommissioned. Decommissioned models cannot be referenced by newly created digital twins.
+    types:
+    - uid: boolean
+    defaultValue: false
+  - name: model
+    description: The model definition.
+    types:
+    - uid: object
+- name: ErrorResponse
+  description: Error response.
+  kind: object
+  properties:
+  - name: error
+    description: The error details.
+    types:
+    - uid: Error
+- name: Error
+  description: Error definition.
+  kind: object
+  properties:
+  - name: code
+    isReadOnly: true
+    description: Service specific error code which serves as the substatus for the HTTP error code.
+    types:
+    - uid: string
+  - name: message
+    isReadOnly: true
+    description: A human-readable representation of the error.
+    types:
+    - uid: string
+  - name: details
+    isReadOnly: true
+    description: Internal error details.
+    types:
+    - uid: Error
+      isArray: true
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+- name: InnerError
+  description: A more specific error description than was provided by the containing error.
+  kind: object
+  properties:
+  - name: code
+    description: A more specific error code than was provided by the containing error.
+    types:
+    - uid: string
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+examples:
+- name: Get a model by id
+  request:
+    uri: GET https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2020-10-31
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?api-version=2020-10-31
+      ```
+
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "id": "dtmi:com:example:Sample;1",
+        "uploadTime": "2020-03-01T17:32:28Z",
+        "decommissioned": false
+      }
+- name: Get a model by id (with definition)
+  request:
+    uri: GET https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?includeModelDefinition=True&api-version=2020-10-31
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://digitaltwins-hostname/models/dtmi:com:example:Sample;1?includeModelDefinition=True&api-version=2020-10-31
+      ```
+
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "id": "dtmi:com:example:Sample;1",
+        "uploadTime": "2020-03-01T17:32:28Z",
+        "decommissioned": false,
+        "model": {
+          "@id": "dtmi:com:example:Sample;1",
+          "@type": "Interface",
+          "contents": [
+            {
+              "@type": "Property",
+              "name": "name",
+              "displayName": "Sample instance name",
+              "schema": "string"
+            },
+            {
+              "@type": "Property",
+              "name": "temp",
+              "displayName": "Sample instance temperature",
+              "schema": "integer"
+            },
+            {
+              "@type": "Property",
+              "name": "comfortIndex",
+              "displayName": "Sample instance comfort index",
+              "schema": "integer"
+            }
+          ],
+          "@context": "dtmi:dtdl:context;2"
+        }
+      }
+security:
+- name: oauth2
+  type: oauth2
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
+metadata:
+  description: >-
+    Retrieves model metadata and optionally the model definition.
+
+    Status codes:
+
+    200 OK
+
+    400 Bad Request
+
+    InvalidArgument - The model id is invalid.
+errorCodes: []
