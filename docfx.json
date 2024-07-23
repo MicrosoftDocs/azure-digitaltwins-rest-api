@@ -38,7 +38,7 @@
     ],
     "externalReference": [],
     "globalMetadata": {
-      "enable_rest_try_it": true,
+      "enable_rest_try_it": false,
       "rest_product": "Azure",
       "_gitContribute": {
         "apiSpecFolder": "docs-ref-overwrite"
