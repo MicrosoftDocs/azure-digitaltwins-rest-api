@@ -1,0 +1,164 @@
+### YamlMime:RESTOperation
+uid: digitaltwins-hostname.dataplane.twins.digitaltwins_sendtelemetry
+name: DigitalTwins SendTelemetry
+service: Reference
+groupName: Twins
+apiVersion: 2022-05-31
+summary: >-
+  Sends telemetry on behalf of a digital twin.
+
+  Status codes:
+
+  * 204 No Content
+
+  * 400 Bad Request
+    * InvalidArgument - The digital twin id or message id is invalid.
+    * ValidationFailed - The telemetry content is invalid.
+  * 404 Not Found
+    * DigitalTwinNotFound - The digital twin was not found.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: POST https://digitaltwins-hostname/digitaltwins/{id}/telemetry?api-version=2022-05-31
+uriParameters:
+- name: id
+  in: path
+  isRequired: true
+  description: The id of the digital twin. The id is unique within the service and case sensitive.
+  types:
+  - uid: string
+- name: api-version
+  in: query
+  isRequired: true
+  description: The requested API version.
+  types:
+  - uid: string
+responses:
+- name: 204 No Content
+  description: Success
+- name: Other Status Codes
+  description: Default response.
+  types:
+  - uid: ErrorResponse
+requestBody:
+- name: default
+  parameters:
+  - name: telemetry
+    in: body
+    description: The telemetry measurements to send from the digital twin.
+    types:
+    - uid: object
+requestHeader:
+- name: Message-Id
+  in: header
+  isRequired: true
+  description: A unique message identifier (in the scope of the digital twin id) that is commonly used for de-duplicating messages.
+  types:
+  - uid: string
+- name: Telemetry-Source-Time
+  in: header
+  description: An RFC 3339 timestamp that identifies the time the telemetry was measured.
+  types:
+  - uid: string
+- name: traceparent
+  in: header
+  description: Identifies the request in a distributed tracing system.
+  types:
+  - uid: string
+- name: tracestate
+  in: header
+  description: Provides vendor-specific trace identification information and is a companion to traceparent.
+  types:
+  - uid: string
+definitions:
+- name: ErrorResponse
+  description: Error response.
+  kind: object
+  properties:
+  - name: error
+    description: The error details.
+    types:
+    - uid: Error
+- name: Error
+  description: Error definition.
+  kind: object
+  properties:
+  - name: code
+    isReadOnly: true
+    description: Service specific error code which serves as the substatus for the HTTP error code.
+    types:
+    - uid: string
+  - name: message
+    isReadOnly: true
+    description: A human-readable representation of the error.
+    types:
+    - uid: string
+  - name: details
+    isReadOnly: true
+    description: Internal error details.
+    types:
+    - uid: Error
+      isArray: true
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+- name: InnerError
+  description: A more specific error description than was provided by the containing error.
+  kind: object
+  properties:
+  - name: code
+    description: A more specific error code than was provided by the containing error.
+    types:
+    - uid: string
+  - name: innererror
+    description: An object containing more specific information than the current object about the error.
+    types:
+    - uid: InnerError
+examples:
+- name: Send telemetry
+  request:
+    uri: POST https://digitaltwins-hostname/digitaltwins/myTwinId/telemetry?api-version=2022-05-31
+    body: >-
+      {
+        "temperature": 1
+      }
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      POST https://digitaltwins-hostname/digitaltwins/myTwinId/telemetry?api-version=2022-05-31
+
+
+
+      {
+        "temperature": 1
+      }
+
+      ```
+
+    headers:
+    - name: Message-Id
+      value: e5ca50dd-ca31-4fae-8d84-3af5a72b10c5
+    - name: Telemetry-Source-Time
+      value: 1985-04-12T23:20:50.52Z
+  responses:
+  - statusCode: "204"
+security:
+- name: oauth2
+  type: oauth2
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize?resource=0b07f429-9f4b-4714-9392-cc5e8e80c8b0
+metadata:
+  description: >-
+    Sends telemetry on behalf of a digital twin.
+
+    Status codes:
+
+    204 No Content
+
+    400 Bad Request
+
+    InvalidArgument - The digital twin id or message id is invalid.
+errorCodes: []

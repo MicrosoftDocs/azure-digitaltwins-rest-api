@@ -1,0 +1,560 @@
+### YamlMime:RESTOperation
+uid: management.azure.com.controlplane.digitaltwinsinstance.digitaltwins_delete
+name: DigitalTwins Delete
+service: Reference
+groupName: Digital Twins Instance
+apiVersion: 2023-01-31
+summary: Delete a DigitalTwinsInstance.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}?api-version=2023-01-31
+uriParameters:
+- name: subscriptionId
+  in: path
+  isRequired: true
+  description: The subscription identifier.
+  types:
+  - uid: string
+- name: resourceGroupName
+  in: path
+  isRequired: true
+  description: The name of the resource group that contains the DigitalTwinsInstance.
+  types:
+  - uid: string
+- name: resourceName
+  in: path
+  isRequired: true
+  description: The name of the DigitalTwinsInstance.
+  types:
+  - uid: string
+  pattern: ^(?!-)[A-Za-z0-9-]{3,63}(?<!-)$
+- name: api-version
+  in: query
+  isRequired: true
+  description: Version of the DigitalTwinsInstance Management API.
+  types:
+  - uid: string
+responses:
+- name: 200 OK
+  description: Returned if the operation was canceled or failed.
+  types:
+  - uid: DigitalTwinsDescription
+- name: 202 Accepted
+  description: Accepted - Delete request accepted; the operation will complete asynchronously.
+  types:
+  - uid: DigitalTwinsDescription
+- name: 204 No Content
+  description: Returned when the long running delete operation has finished, or the Digital Twins instance does not exist.
+- name: Other Status Codes
+  description: Error response describing why the operation failed.
+  types:
+  - uid: ErrorResponse
+requestHeader: []
+definitions:
+- name: DigitalTwinsDescription
+  description: The description of the DigitalTwins service.
+  kind: object
+  properties:
+  - name: properties.createdTime
+    isReadOnly: true
+    description: Time when DigitalTwinsInstance was created.
+    types:
+    - uid: string
+  - name: properties.lastUpdatedTime
+    isReadOnly: true
+    description: Time when DigitalTwinsInstance was updated.
+    types:
+    - uid: string
+  - name: properties.provisioningState
+    isReadOnly: true
+    description: The provisioning state.
+    types:
+    - uid: provisioningState
+  - name: properties.hostName
+    isReadOnly: true
+    description: Api endpoint to work with DigitalTwinsInstance.
+    types:
+    - uid: string
+  - name: properties.privateEndpointConnections
+    description: The private endpoint connections.
+    types:
+    - uid: PrivateEndpointConnection
+      isArray: true
+  - name: properties.publicNetworkAccess
+    description: Public network access for the DigitalTwinsInstance.
+    types:
+    - uid: publicNetworkAccess
+  - name: id
+    isReadOnly: true
+    description: The resource identifier.
+    types:
+    - uid: string
+  - name: name
+    isReadOnly: true
+    description: The resource name.
+    types:
+    - uid: string
+  - name: type
+    isReadOnly: true
+    description: The resource type.
+    types:
+    - uid: string
+  - name: location
+    description: The resource location.
+    types:
+    - uid: string
+  - name: tags
+    description: The resource tags.
+    types:
+    - uid: object
+      isDictionary: true
+      additionalTypes:
+      - uid: string
+      - uid: string
+  - name: identity
+    description: The managed identity for the DigitalTwinsInstance.
+    types:
+    - uid: DigitalTwinsIdentity
+  - name: systemData
+    isReadOnly: true
+    description: Metadata pertaining to creation and last modification of the DigitalTwinsInstance.
+    types:
+    - uid: SystemData
+- name: ErrorResponse
+  description: Error response.
+  kind: object
+  properties:
+  - name: error
+    description: Error description
+    types:
+    - uid: ErrorDefinition
+- name: provisioningState
+  description: The provisioning state.
+  kind: enum
+  properties:
+  - name: Provisioning
+    types:
+    - uid: string
+  - name: Deleting
+    types:
+    - uid: string
+  - name: Updating
+    types:
+    - uid: string
+  - name: Succeeded
+    types:
+    - uid: string
+  - name: Failed
+    types:
+    - uid: string
+  - name: Canceled
+    types:
+    - uid: string
+  - name: Deleted
+    types:
+    - uid: string
+  - name: Warning
+    types:
+    - uid: string
+  - name: Suspending
+    types:
+    - uid: string
+  - name: Restoring
+    types:
+    - uid: string
+  - name: Moving
+    types:
+    - uid: string
+- name: PrivateEndpointConnection
+  description: The private endpoint connection of a Digital Twin.
+  kind: object
+  properties:
+  - name: id
+    isReadOnly: true
+    description: The resource identifier.
+    types:
+    - uid: string
+  - name: name
+    isReadOnly: true
+    description: The resource name.
+    types:
+    - uid: string
+  - name: type
+    isReadOnly: true
+    description: The resource type.
+    types:
+    - uid: string
+  - name: properties
+    description: The connection properties.
+    types:
+    - uid: ConnectionProperties
+  - name: systemData
+    isReadOnly: true
+    description: Metadata pertaining to creation and last modification of the private endpoint connection.
+    types:
+    - uid: SystemData
+- name: publicNetworkAccess
+  description: Public network access for the DigitalTwinsInstance.
+  kind: enum
+  properties:
+  - name: Enabled
+    types:
+    - uid: string
+  - name: Disabled
+    types:
+    - uid: string
+- name: DigitalTwinsIdentity
+  description: The managed identity for the DigitalTwinsInstance.
+  kind: object
+  properties:
+  - name: type
+    description: The type of Managed Identity used by the DigitalTwinsInstance.
+    types:
+    - uid: DigitalTwinsIdentityType
+  - name: principalId
+    isReadOnly: true
+    description: The object id of the Managed Identity Resource. This will be sent to the RP from ARM via the x-ms-identity-principal-id header in the PUT request if the resource has a systemAssigned(implicit) identity
+    types:
+    - uid: string
+  - name: tenantId
+    isReadOnly: true
+    description: The tenant id of the Managed Identity Resource. This will be sent to the RP from ARM via the x-ms-client-tenant-id header in the PUT request if the resource has a systemAssigned(implicit) identity
+    types:
+    - uid: string
+  - name: userAssignedIdentities
+    description: >-
+      The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form:
+
+      '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
+
+      .
+    types:
+    - uid: object
+      isDictionary: true
+      additionalTypes:
+      - uid: string
+      - uid: UserAssignedIdentity
+- name: SystemData
+  description: Metadata pertaining to creation and last modification of the resource.
+  kind: object
+  properties:
+  - name: createdBy
+    description: The identity that created the resource.
+    types:
+    - uid: string
+  - name: createdByType
+    description: The type of identity that created the resource.
+    types:
+    - uid: createdByType
+  - name: createdAt
+    description: The timestamp of resource creation (UTC).
+    types:
+    - uid: string
+  - name: lastModifiedBy
+    description: The identity that last modified the resource.
+    types:
+    - uid: string
+  - name: lastModifiedByType
+    description: The type of identity that last modified the resource.
+    types:
+    - uid: createdByType
+  - name: lastModifiedAt
+    description: The timestamp of resource last modification (UTC)
+    types:
+    - uid: string
+- name: ErrorDefinition
+  description: Error definition.
+  kind: object
+  properties:
+  - name: code
+    isReadOnly: true
+    description: Service specific error code which serves as the substatus for the HTTP error code.
+    types:
+    - uid: string
+  - name: message
+    isReadOnly: true
+    description: Description of the error.
+    types:
+    - uid: string
+  - name: details
+    isReadOnly: true
+    description: Internal error details.
+    types:
+    - uid: ErrorDefinition
+      isArray: true
+- name: ConnectionProperties
+  description: The properties of a private endpoint connection.
+  kind: object
+  properties:
+  - name: provisioningState
+    isReadOnly: true
+    description: The provisioning state.
+    types:
+    - uid: ConnectionPropertiesProvisioningState
+  - name: privateEndpoint
+    description: The private endpoint.
+    types:
+    - uid: PrivateEndpoint
+  - name: groupIds
+    description: The list of group ids for the private endpoint connection.
+    types:
+    - uid: string
+      isArray: true
+  - name: privateLinkServiceConnectionState
+    description: The connection state.
+    types:
+    - uid: PrivateLinkServiceConnectionState
+- name: DigitalTwinsIdentityType
+  description: The type of Managed Identity used by the DigitalTwinsInstance.
+  kind: enum
+  properties:
+  - name: None
+    types:
+    - uid: string
+  - name: SystemAssigned
+    types:
+    - uid: string
+  - name: UserAssigned
+    types:
+    - uid: string
+  - name: SystemAssigned,UserAssigned
+    types:
+    - uid: string
+- name: UserAssignedIdentity
+  description: The information about the user assigned identity.
+  kind: object
+  properties:
+  - name: clientId
+    isReadOnly: true
+    description: The client id of the User Assigned Identity Resource.
+    types:
+    - uid: string
+  - name: principalId
+    isReadOnly: true
+    description: The object id of the User Assigned Identity Resource.
+    types:
+    - uid: string
+- name: createdByType
+  description: The type of identity that created the resource.
+  kind: enum
+  properties:
+  - name: User
+    types:
+    - uid: string
+  - name: Application
+    types:
+    - uid: string
+  - name: ManagedIdentity
+    types:
+    - uid: string
+  - name: Key
+    types:
+    - uid: string
+- name: ConnectionPropertiesProvisioningState
+  description: The provisioning state.
+  kind: enum
+  properties:
+  - name: Pending
+    types:
+    - uid: string
+  - name: Approved
+    types:
+    - uid: string
+  - name: Rejected
+    types:
+    - uid: string
+  - name: Disconnected
+    types:
+    - uid: string
+- name: PrivateEndpoint
+  description: The private endpoint property of a private endpoint connection.
+  kind: object
+  properties:
+  - name: id
+    isReadOnly: true
+    description: The resource identifier.
+    types:
+    - uid: string
+- name: PrivateLinkServiceConnectionState
+  description: The connection state.
+  kind: object
+  properties:
+  - name: status
+    description: The status of a private endpoint connection.
+    types:
+    - uid: PrivateLinkServiceConnectionStatus
+  - name: description
+    description: The description for the current state of a private endpoint connection.
+    types:
+    - uid: string
+  - name: actionsRequired
+    description: Actions required for a private endpoint connection.
+    types:
+    - uid: string
+- name: PrivateLinkServiceConnectionStatus
+  description: The status of a private endpoint connection.
+  kind: enum
+  properties:
+  - name: Pending
+    types:
+    - uid: string
+  - name: Approved
+    types:
+    - uid: string
+  - name: Rejected
+    types:
+    - uid: string
+  - name: Disconnected
+    types:
+    - uid: string
+examples:
+- name: Delete a DigitalTwinsInstance resource
+  request:
+    uri: DELETE https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService?api-version=2023-01-31
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      DELETE https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService?api-version=2023-01-31
+      ```
+
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService",
+        "location": "westus2",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
+        "name": "myDigitalTwinsService",
+        "systemData": {
+          "createdBy": "user@example.com",
+          "createdByType": "User",
+          "createdAt": "2021-03-11T17:13:59.4037715Z",
+          "lastModifiedBy": "user@example.com",
+          "lastModifiedByType": "User",
+          "lastModifiedAt": "2021-03-11T17:14:02.5281409Z"
+        },
+        "properties": {
+          "createdTime": "2019-11-19T12:55:05.229Z",
+          "lastUpdatedTime": "2019-12-06T12:21:58.610Z",
+          "provisioningState": "Failed",
+          "hostName": "https://myDigitalTwinsService.api.wus2.ss.azuredigitaltwins-test.net"
+        }
+      }
+  - statusCode: "202"
+    headers:
+    - name: azure-asyncoperation
+      value: https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/westus2/operationStatuses/12345678-1234-1234-123456789012
+    - name: location
+      value: https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/westus2/operationResults/12345678-1234-1234-123456789012
+    - name: retry-after
+      value: "10"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService",
+        "location": "westus2",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
+        "name": "myDigitalTwinsService",
+        "systemData": {
+          "createdBy": "user@example.com",
+          "createdByType": "User",
+          "createdAt": "2021-03-11T17:13:59.4037715Z",
+          "lastModifiedBy": "user@example.com",
+          "lastModifiedByType": "User",
+          "lastModifiedAt": "2021-03-11T17:14:02.5281409Z"
+        },
+        "properties": {
+          "createdTime": "2019-11-19T12:55:05.229Z",
+          "lastUpdatedTime": "2019-12-06T12:21:58.610Z",
+          "provisioningState": "Deleting",
+          "hostName": "https://myDigitalTwinsService.api.wus2.ss.azuredigitaltwins-test.net"
+        }
+      }
+  - statusCode: "204"
+- name: Delete a DigitalTwinsInstance resource with identity
+  request:
+    uri: DELETE https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService?api-version=2023-01-31
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      DELETE https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService?api-version=2023-01-31
+      ```
+
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService",
+        "location": "westus2",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
+        "name": "myDigitalTwinsService",
+        "identity": {
+          "type": "SystemAssigned",
+          "principalId": "544215a9-21d8-4fb5-8094-8efbcc311dd0",
+          "tenantId": "544215a9-21d8-4fb5-8094-8efbcc311dd0"
+        },
+        "systemData": {
+          "createdBy": "user@example.com",
+          "createdByType": "User",
+          "createdAt": "2021-03-11T17:13:59.4037715Z",
+          "lastModifiedBy": "user@example.com",
+          "lastModifiedByType": "User",
+          "lastModifiedAt": "2021-03-11T17:14:02.5281409Z"
+        },
+        "properties": {
+          "createdTime": "2019-11-19T12:55:05.229Z",
+          "lastUpdatedTime": "2019-12-06T12:21:58.610Z",
+          "provisioningState": "Failed",
+          "hostName": "https://myDigitalTwinsService.api.wus2.ss.azuredigitaltwins-test.net"
+        }
+      }
+  - statusCode: "202"
+    headers:
+    - name: azure-asyncoperation
+      value: https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/westus2/operationStatuses/12345678-1234-1234-123456789012
+    - name: location
+      value: https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/providers/Microsoft.DigitalTwins/locations/westus2/operationResults/12345678-1234-1234-123456789012
+    - name: retry-after
+      value: "10"
+    body: >-
+      {
+        "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService",
+        "location": "westus2",
+        "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
+        "name": "myDigitalTwinsService",
+        "identity": {
+          "type": "SystemAssigned",
+          "principalId": "544215a9-21d8-4fb5-8094-8efbcc311dd0",
+          "tenantId": "544215a9-21d8-4fb5-8094-8efbcc311dd0"
+        },
+        "systemData": {
+          "createdBy": "user@example.com",
+          "createdByType": "User",
+          "createdAt": "2021-03-11T17:13:59.4037715Z",
+          "lastModifiedBy": "user@example.com",
+          "lastModifiedByType": "User",
+          "lastModifiedAt": "2021-03-11T17:14:02.5281409Z"
+        },
+        "properties": {
+          "createdTime": "2019-11-19T12:55:05.229Z",
+          "lastUpdatedTime": "2019-12-06T12:21:58.610Z",
+          "provisioningState": "Deleting",
+          "hostName": "https://myDigitalTwinsService.api.wus2.ss.azuredigitaltwins-test.net"
+        }
+      }
+  - statusCode: "204"
+security:
+- name: azure_auth
+  type: oauth2
+  description: Azure Active Directory OAuth2 Flow
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+  scopes:
+  - name: user_impersonation
+    description: Impersonate your user account
+metadata:
+  description: >
+    Learn more about Reference service - Delete a DigitalTwinsInstance.
+errorCodes: []

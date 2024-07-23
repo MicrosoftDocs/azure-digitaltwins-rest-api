@@ -1,0 +1,548 @@
+- name: Azure Digital Twins
+  href: ..\index.md
+- name: Reference
+  items:
+  - name: Data Plane
+    items:
+    - name: Overview
+      href: dataplane\rest-dataplane-2023-10-31\operation-groups.md
+    - name: Overview
+      href: dataplane\rest-dataplane-2023-06-30\operation-groups.md
+    - name: Overview
+      href: dataplane\rest-dataplane-2022-05-31\operation-groups.md
+    - name: Overview
+      href: dataplane\rest-dataplane-2020-10-31\operation-groups.md
+    - name: Event Routes
+      items:
+      - name: Overview
+        href: dataplane\rest-dataplane-2023-10-31\Event-Routes.yml
+      - name: Add
+        href: dataplane\rest-dataplane-2023-10-31\Event-Routes\Add.yml
+      - name: Delete
+        href: dataplane\rest-dataplane-2023-10-31\Event-Routes\Delete.yml
+      - name: Get By Id
+        href: dataplane\rest-dataplane-2023-10-31\Event-Routes\Get-By-Id.yml
+      - name: List
+        href: dataplane\rest-dataplane-2023-10-31\Event-Routes\List.yml
+      - name: Overview
+        href: dataplane\rest-dataplane-2023-06-30\Event-Routes.yml
+      - name: Add
+        href: dataplane\rest-dataplane-2023-06-30\Event-Routes\Add.yml
+      - name: Delete
+        href: dataplane\rest-dataplane-2023-06-30\Event-Routes\Delete.yml
+      - name: Get By Id
+        href: dataplane\rest-dataplane-2023-06-30\Event-Routes\Get-By-Id.yml
+      - name: List
+        href: dataplane\rest-dataplane-2023-06-30\Event-Routes\List.yml
+      - name: Overview
+        href: dataplane\rest-dataplane-2022-05-31\Event-Routes.yml
+      - name: Add
+        href: dataplane\rest-dataplane-2022-05-31\Event-Routes\Add.yml
+      - name: Delete
+        href: dataplane\rest-dataplane-2022-05-31\Event-Routes\Delete.yml
+      - name: Get By Id
+        href: dataplane\rest-dataplane-2022-05-31\Event-Routes\Get-By-Id.yml
+      - name: List
+        href: dataplane\rest-dataplane-2022-05-31\Event-Routes\List.yml
+      - name: Overview
+        href: dataplane\rest-dataplane-2020-10-31\Event-Routes.yml
+      - name: Add
+        href: dataplane\rest-dataplane-2020-10-31\Event-Routes\Add.yml
+      - name: Delete
+        href: dataplane\rest-dataplane-2020-10-31\Event-Routes\Delete.yml
+      - name: Get By Id
+        href: dataplane\rest-dataplane-2020-10-31\Event-Routes\Get-By-Id.yml
+      - name: List
+        href: dataplane\rest-dataplane-2020-10-31\Event-Routes\List.yml
+    - name: Jobs
+      items:
+      - name: Overview
+        href: dataplane\rest-dataplane-2023-10-31\Jobs.yml
+      - name: DeleteJobs Add
+        href: dataplane\rest-dataplane-2023-10-31\Jobs\Delete-Jobs-Add.yml
+      - name: DeleteJobs GetById
+        href: dataplane\rest-dataplane-2023-10-31\Jobs\Delete-Jobs-Get-By-Id.yml
+      - name: DeleteJobs List
+        href: dataplane\rest-dataplane-2023-10-31\Jobs\Delete-Jobs-List.yml
+      - name: ImportJobs Add
+        href: dataplane\rest-dataplane-2023-10-31\Jobs\Import-Jobs-Add.yml
+      - name: ImportJobs Cancel
+        href: dataplane\rest-dataplane-2023-10-31\Jobs\Import-Jobs-Cancel.yml
+      - name: ImportJobs Delete
+        href: dataplane\rest-dataplane-2023-10-31\Jobs\Import-Jobs-Delete.yml
+      - name: ImportJobs GetById
+        href: dataplane\rest-dataplane-2023-10-31\Jobs\Import-Jobs-Get-By-Id.yml
+      - name: ImportJobs List
+        href: dataplane\rest-dataplane-2023-10-31\Jobs\Import-Jobs-List.yml
+      - name: Overview
+        href: dataplane\rest-dataplane-2023-06-30\Jobs.yml
+      - name: ImportJobs Add
+        href: dataplane\rest-dataplane-2023-06-30\Jobs\Import-Jobs-Add.yml
+      - name: ImportJobs Cancel
+        href: dataplane\rest-dataplane-2023-06-30\Jobs\Import-Jobs-Cancel.yml
+      - name: ImportJobs Delete
+        href: dataplane\rest-dataplane-2023-06-30\Jobs\Import-Jobs-Delete.yml
+      - name: ImportJobs GetById
+        href: dataplane\rest-dataplane-2023-06-30\Jobs\Import-Jobs-Get-By-Id.yml
+      - name: ImportJobs List
+        href: dataplane\rest-dataplane-2023-06-30\Jobs\Import-Jobs-List.yml
+    - name: Models
+      items:
+      - name: Overview
+        href: dataplane\rest-dataplane-2023-10-31\Models.yml
+      - name: DigitalTwinModels Add
+        href: dataplane\rest-dataplane-2023-10-31\Models\Digital-Twin-Models-Add.yml
+      - name: DigitalTwinModels Delete
+        href: dataplane\rest-dataplane-2023-10-31\Models\Digital-Twin-Models-Delete.yml
+      - name: DigitalTwinModels GetById
+        href: dataplane\rest-dataplane-2023-10-31\Models\Digital-Twin-Models-Get-By-Id.yml
+      - name: DigitalTwinModels List
+        href: dataplane\rest-dataplane-2023-10-31\Models\Digital-Twin-Models-List.yml
+      - name: DigitalTwinModels Update
+        href: dataplane\rest-dataplane-2023-10-31\Models\Digital-Twin-Models-Update.yml
+      - name: Overview
+        href: dataplane\rest-dataplane-2023-06-30\Models.yml
+      - name: DigitalTwinModels Add
+        href: dataplane\rest-dataplane-2023-06-30\Models\Digital-Twin-Models-Add.yml
+      - name: DigitalTwinModels Delete
+        href: dataplane\rest-dataplane-2023-06-30\Models\Digital-Twin-Models-Delete.yml
+      - name: DigitalTwinModels GetById
+        href: dataplane\rest-dataplane-2023-06-30\Models\Digital-Twin-Models-Get-By-Id.yml
+      - name: DigitalTwinModels List
+        href: dataplane\rest-dataplane-2023-06-30\Models\Digital-Twin-Models-List.yml
+      - name: DigitalTwinModels Update
+        href: dataplane\rest-dataplane-2023-06-30\Models\Digital-Twin-Models-Update.yml
+      - name: Overview
+        href: dataplane\rest-dataplane-2022-05-31\Models.yml
+      - name: DigitalTwinModels Add
+        href: dataplane\rest-dataplane-2022-05-31\Models\Digital-Twin-Models-Add.yml
+      - name: DigitalTwinModels Delete
+        href: dataplane\rest-dataplane-2022-05-31\Models\Digital-Twin-Models-Delete.yml
+      - name: DigitalTwinModels GetById
+        href: dataplane\rest-dataplane-2022-05-31\Models\Digital-Twin-Models-Get-By-Id.yml
+      - name: DigitalTwinModels List
+        href: dataplane\rest-dataplane-2022-05-31\Models\Digital-Twin-Models-List.yml
+      - name: DigitalTwinModels Update
+        href: dataplane\rest-dataplane-2022-05-31\Models\Digital-Twin-Models-Update.yml
+      - name: Overview
+        href: dataplane\rest-dataplane-2020-10-31\Models.yml
+      - name: DigitalTwinModels Add
+        href: dataplane\rest-dataplane-2020-10-31\Models\Digital-Twin-Models-Add.yml
+      - name: DigitalTwinModels Delete
+        href: dataplane\rest-dataplane-2020-10-31\Models\Digital-Twin-Models-Delete.yml
+      - name: DigitalTwinModels GetById
+        href: dataplane\rest-dataplane-2020-10-31\Models\Digital-Twin-Models-Get-By-Id.yml
+      - name: DigitalTwinModels List
+        href: dataplane\rest-dataplane-2020-10-31\Models\Digital-Twin-Models-List.yml
+      - name: DigitalTwinModels Update
+        href: dataplane\rest-dataplane-2020-10-31\Models\Digital-Twin-Models-Update.yml
+    - name: Query
+      items:
+      - name: Overview
+        href: dataplane\rest-dataplane-2023-10-31\Query.yml
+      - name: Query Twins
+        href: dataplane\rest-dataplane-2023-10-31\Query\Query-Twins.yml
+      - name: Overview
+        href: dataplane\rest-dataplane-2023-06-30\Query.yml
+      - name: Query Twins
+        href: dataplane\rest-dataplane-2023-06-30\Query\Query-Twins.yml
+      - name: Overview
+        href: dataplane\rest-dataplane-2022-05-31\Query.yml
+      - name: Query Twins
+        href: dataplane\rest-dataplane-2022-05-31\Query\Query-Twins.yml
+      - name: Overview
+        href: dataplane\rest-dataplane-2020-10-31\Query.yml
+      - name: Query Twins
+        href: dataplane\rest-dataplane-2020-10-31\Query\Query-Twins.yml
+    - name: Twins
+      items:
+      - name: Overview
+        href: dataplane\rest-dataplane-2023-10-31\Twins.yml
+      - name: DigitalTwins Add
+        href: dataplane\rest-dataplane-2023-10-31\Twins\Digital-Twins-Add.yml
+      - name: DigitalTwins AddRelationship
+        href: dataplane\rest-dataplane-2023-10-31\Twins\Digital-Twins-Add-Relationship.yml
+      - name: DigitalTwins Delete
+        href: dataplane\rest-dataplane-2023-10-31\Twins\Digital-Twins-Delete.yml
+      - name: DigitalTwins DeleteRelationship
+        href: dataplane\rest-dataplane-2023-10-31\Twins\Digital-Twins-Delete-Relationship.yml
+      - name: DigitalTwins GetById
+        href: dataplane\rest-dataplane-2023-10-31\Twins\Digital-Twins-Get-By-Id.yml
+      - name: DigitalTwins GetComponent
+        href: dataplane\rest-dataplane-2023-10-31\Twins\Digital-Twins-Get-Component.yml
+      - name: DigitalTwins GetRelationshipById
+        href: dataplane\rest-dataplane-2023-10-31\Twins\Digital-Twins-Get-Relationship-By-Id.yml
+      - name: DigitalTwins ListIncomingRelationships
+        href: dataplane\rest-dataplane-2023-10-31\Twins\Digital-Twins-List-Incoming-Relationships.yml
+      - name: DigitalTwins ListRelationships
+        href: dataplane\rest-dataplane-2023-10-31\Twins\Digital-Twins-List-Relationships.yml
+      - name: DigitalTwins SendComponentTelemetry
+        href: dataplane\rest-dataplane-2023-10-31\Twins\Digital-Twins-Send-Component-Telemetry.yml
+      - name: DigitalTwins SendTelemetry
+        href: dataplane\rest-dataplane-2023-10-31\Twins\Digital-Twins-Send-Telemetry.yml
+      - name: DigitalTwins Update
+        href: dataplane\rest-dataplane-2023-10-31\Twins\Digital-Twins-Update.yml
+      - name: DigitalTwins UpdateComponent
+        href: dataplane\rest-dataplane-2023-10-31\Twins\Digital-Twins-Update-Component.yml
+      - name: DigitalTwins UpdateRelationship
+        href: dataplane\rest-dataplane-2023-10-31\Twins\Digital-Twins-Update-Relationship.yml
+      - name: Overview
+        href: dataplane\rest-dataplane-2023-06-30\Twins.yml
+      - name: DigitalTwins Add
+        href: dataplane\rest-dataplane-2023-06-30\Twins\Digital-Twins-Add.yml
+      - name: DigitalTwins AddRelationship
+        href: dataplane\rest-dataplane-2023-06-30\Twins\Digital-Twins-Add-Relationship.yml
+      - name: DigitalTwins Delete
+        href: dataplane\rest-dataplane-2023-06-30\Twins\Digital-Twins-Delete.yml
+      - name: DigitalTwins DeleteRelationship
+        href: dataplane\rest-dataplane-2023-06-30\Twins\Digital-Twins-Delete-Relationship.yml
+      - name: DigitalTwins GetById
+        href: dataplane\rest-dataplane-2023-06-30\Twins\Digital-Twins-Get-By-Id.yml
+      - name: DigitalTwins GetComponent
+        href: dataplane\rest-dataplane-2023-06-30\Twins\Digital-Twins-Get-Component.yml
+      - name: DigitalTwins GetRelationshipById
+        href: dataplane\rest-dataplane-2023-06-30\Twins\Digital-Twins-Get-Relationship-By-Id.yml
+      - name: DigitalTwins ListIncomingRelationships
+        href: dataplane\rest-dataplane-2023-06-30\Twins\Digital-Twins-List-Incoming-Relationships.yml
+      - name: DigitalTwins ListRelationships
+        href: dataplane\rest-dataplane-2023-06-30\Twins\Digital-Twins-List-Relationships.yml
+      - name: DigitalTwins SendComponentTelemetry
+        href: dataplane\rest-dataplane-2023-06-30\Twins\Digital-Twins-Send-Component-Telemetry.yml
+      - name: DigitalTwins SendTelemetry
+        href: dataplane\rest-dataplane-2023-06-30\Twins\Digital-Twins-Send-Telemetry.yml
+      - name: DigitalTwins Update
+        href: dataplane\rest-dataplane-2023-06-30\Twins\Digital-Twins-Update.yml
+      - name: DigitalTwins UpdateComponent
+        href: dataplane\rest-dataplane-2023-06-30\Twins\Digital-Twins-Update-Component.yml
+      - name: DigitalTwins UpdateRelationship
+        href: dataplane\rest-dataplane-2023-06-30\Twins\Digital-Twins-Update-Relationship.yml
+      - name: Overview
+        href: dataplane\rest-dataplane-2022-05-31\Twins.yml
+      - name: DigitalTwins Add
+        href: dataplane\rest-dataplane-2022-05-31\Twins\Digital-Twins-Add.yml
+      - name: DigitalTwins AddRelationship
+        href: dataplane\rest-dataplane-2022-05-31\Twins\Digital-Twins-Add-Relationship.yml
+      - name: DigitalTwins Delete
+        href: dataplane\rest-dataplane-2022-05-31\Twins\Digital-Twins-Delete.yml
+      - name: DigitalTwins DeleteRelationship
+        href: dataplane\rest-dataplane-2022-05-31\Twins\Digital-Twins-Delete-Relationship.yml
+      - name: DigitalTwins GetById
+        href: dataplane\rest-dataplane-2022-05-31\Twins\Digital-Twins-Get-By-Id.yml
+      - name: DigitalTwins GetComponent
+        href: dataplane\rest-dataplane-2022-05-31\Twins\Digital-Twins-Get-Component.yml
+      - name: DigitalTwins GetRelationshipById
+        href: dataplane\rest-dataplane-2022-05-31\Twins\Digital-Twins-Get-Relationship-By-Id.yml
+      - name: DigitalTwins ListIncomingRelationships
+        href: dataplane\rest-dataplane-2022-05-31\Twins\Digital-Twins-List-Incoming-Relationships.yml
+      - name: DigitalTwins ListRelationships
+        href: dataplane\rest-dataplane-2022-05-31\Twins\Digital-Twins-List-Relationships.yml
+      - name: DigitalTwins SendComponentTelemetry
+        href: dataplane\rest-dataplane-2022-05-31\Twins\Digital-Twins-Send-Component-Telemetry.yml
+      - name: DigitalTwins SendTelemetry
+        href: dataplane\rest-dataplane-2022-05-31\Twins\Digital-Twins-Send-Telemetry.yml
+      - name: DigitalTwins Update
+        href: dataplane\rest-dataplane-2022-05-31\Twins\Digital-Twins-Update.yml
+      - name: DigitalTwins UpdateComponent
+        href: dataplane\rest-dataplane-2022-05-31\Twins\Digital-Twins-Update-Component.yml
+      - name: DigitalTwins UpdateRelationship
+        href: dataplane\rest-dataplane-2022-05-31\Twins\Digital-Twins-Update-Relationship.yml
+      - name: Overview
+        href: dataplane\rest-dataplane-2020-10-31\Twins.yml
+      - name: DigitalTwins Add
+        href: dataplane\rest-dataplane-2020-10-31\Twins\Digital-Twins-Add.yml
+      - name: DigitalTwins AddRelationship
+        href: dataplane\rest-dataplane-2020-10-31\Twins\Digital-Twins-Add-Relationship.yml
+      - name: DigitalTwins Delete
+        href: dataplane\rest-dataplane-2020-10-31\Twins\Digital-Twins-Delete.yml
+      - name: DigitalTwins DeleteRelationship
+        href: dataplane\rest-dataplane-2020-10-31\Twins\Digital-Twins-Delete-Relationship.yml
+      - name: DigitalTwins GetById
+        href: dataplane\rest-dataplane-2020-10-31\Twins\Digital-Twins-Get-By-Id.yml
+      - name: DigitalTwins GetComponent
+        href: dataplane\rest-dataplane-2020-10-31\Twins\Digital-Twins-Get-Component.yml
+      - name: DigitalTwins GetRelationshipById
+        href: dataplane\rest-dataplane-2020-10-31\Twins\Digital-Twins-Get-Relationship-By-Id.yml
+      - name: DigitalTwins ListIncomingRelationships
+        href: dataplane\rest-dataplane-2020-10-31\Twins\Digital-Twins-List-Incoming-Relationships.yml
+      - name: DigitalTwins ListRelationships
+        href: dataplane\rest-dataplane-2020-10-31\Twins\Digital-Twins-List-Relationships.yml
+      - name: DigitalTwins SendComponentTelemetry
+        href: dataplane\rest-dataplane-2020-10-31\Twins\Digital-Twins-Send-Component-Telemetry.yml
+      - name: DigitalTwins SendTelemetry
+        href: dataplane\rest-dataplane-2020-10-31\Twins\Digital-Twins-Send-Telemetry.yml
+      - name: DigitalTwins Update
+        href: dataplane\rest-dataplane-2020-10-31\Twins\Digital-Twins-Update.yml
+      - name: DigitalTwins UpdateComponent
+        href: dataplane\rest-dataplane-2020-10-31\Twins\Digital-Twins-Update-Component.yml
+      - name: DigitalTwins UpdateRelationship
+        href: dataplane\rest-dataplane-2020-10-31\Twins\Digital-Twins-Update-Relationship.yml
+  - name: Control Plane
+    items:
+    - name: Overview
+      href: controlplane\rest-controlplane-2023-01-31\operation-groups.md
+    - name: Overview
+      href: controlplane\rest-controlplane-2022-10-31\operation-groups.md
+    - name: Overview
+      href: controlplane\rest-controlplane-2022-05-31\operation-groups.md
+    - name: Overview
+      href: controlplane\rest-controlplane-2020-12-01\operation-groups.md
+    - name: Overview
+      href: controlplane\rest-controlplane-2020-10-31\operation-groups.md
+    - name: Check Name Availability
+      items:
+      - name: Overview
+        href: controlplane\rest-controlplane-2023-01-31\Check-Name-Availability.yml
+      - name: DigitalTwins CheckNameAvailability
+        href: controlplane\rest-controlplane-2023-01-31\Check-Name-Availability\Digital-Twins-Check-Name-Availability.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2022-10-31\Check-Name-Availability.yml
+      - name: DigitalTwins CheckNameAvailability
+        href: controlplane\rest-controlplane-2022-10-31\Check-Name-Availability\Digital-Twins-Check-Name-Availability.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2022-05-31\Check-Name-Availability.yml
+      - name: DigitalTwins CheckNameAvailability
+        href: controlplane\rest-controlplane-2022-05-31\Check-Name-Availability\Digital-Twins-Check-Name-Availability.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2020-12-01\Check-Name-Availability.yml
+      - name: DigitalTwins CheckNameAvailability
+        href: controlplane\rest-controlplane-2020-12-01\Check-Name-Availability\Digital-Twins-Check-Name-Availability.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2020-10-31\Check-Name-Availability.yml
+      - name: DigitalTwins CheckNameAvailability
+        href: controlplane\rest-controlplane-2020-10-31\Check-Name-Availability\Digital-Twins-Check-Name-Availability.yml
+    - name: Digital Twins Instance
+      items:
+      - name: Overview
+        href: controlplane\rest-controlplane-2023-01-31\Digital-Twins-Instance.yml
+      - name: DigitalTwins CreateOrUpdate
+        href: controlplane\rest-controlplane-2023-01-31\Digital-Twins-Instance\Digital-Twins-Create-Or-Update.yml
+      - name: DigitalTwins Delete
+        href: controlplane\rest-controlplane-2023-01-31\Digital-Twins-Instance\Digital-Twins-Delete.yml
+      - name: DigitalTwins Get
+        href: controlplane\rest-controlplane-2023-01-31\Digital-Twins-Instance\Digital-Twins-Get.yml
+      - name: DigitalTwins List
+        href: controlplane\rest-controlplane-2023-01-31\Digital-Twins-Instance\Digital-Twins-List.yml
+      - name: DigitalTwins ListByResourceGroup
+        href: controlplane\rest-controlplane-2023-01-31\Digital-Twins-Instance\Digital-Twins-List-By-Resource-Group.yml
+      - name: DigitalTwins Update
+        href: controlplane\rest-controlplane-2023-01-31\Digital-Twins-Instance\Digital-Twins-Update.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2022-10-31\Digital-Twins-Instance.yml
+      - name: DigitalTwins CreateOrUpdate
+        href: controlplane\rest-controlplane-2022-10-31\Digital-Twins-Instance\Digital-Twins-Create-Or-Update.yml
+      - name: DigitalTwins Delete
+        href: controlplane\rest-controlplane-2022-10-31\Digital-Twins-Instance\Digital-Twins-Delete.yml
+      - name: DigitalTwins Get
+        href: controlplane\rest-controlplane-2022-10-31\Digital-Twins-Instance\Digital-Twins-Get.yml
+      - name: DigitalTwins List
+        href: controlplane\rest-controlplane-2022-10-31\Digital-Twins-Instance\Digital-Twins-List.yml
+      - name: DigitalTwins ListByResourceGroup
+        href: controlplane\rest-controlplane-2022-10-31\Digital-Twins-Instance\Digital-Twins-List-By-Resource-Group.yml
+      - name: DigitalTwins Update
+        href: controlplane\rest-controlplane-2022-10-31\Digital-Twins-Instance\Digital-Twins-Update.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2022-05-31\Digital-Twins-Instance.yml
+      - name: DigitalTwins CreateOrUpdate
+        href: controlplane\rest-controlplane-2022-05-31\Digital-Twins-Instance\Digital-Twins-Create-Or-Update.yml
+      - name: DigitalTwins Delete
+        href: controlplane\rest-controlplane-2022-05-31\Digital-Twins-Instance\Digital-Twins-Delete.yml
+      - name: DigitalTwins Get
+        href: controlplane\rest-controlplane-2022-05-31\Digital-Twins-Instance\Digital-Twins-Get.yml
+      - name: DigitalTwins List
+        href: controlplane\rest-controlplane-2022-05-31\Digital-Twins-Instance\Digital-Twins-List.yml
+      - name: DigitalTwins ListByResourceGroup
+        href: controlplane\rest-controlplane-2022-05-31\Digital-Twins-Instance\Digital-Twins-List-By-Resource-Group.yml
+      - name: DigitalTwins Update
+        href: controlplane\rest-controlplane-2022-05-31\Digital-Twins-Instance\Digital-Twins-Update.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2020-12-01\Digital-Twins-Instance.yml
+      - name: DigitalTwins CreateOrUpdate
+        href: controlplane\rest-controlplane-2020-12-01\Digital-Twins-Instance\Digital-Twins-Create-Or-Update.yml
+      - name: DigitalTwins Delete
+        href: controlplane\rest-controlplane-2020-12-01\Digital-Twins-Instance\Digital-Twins-Delete.yml
+      - name: DigitalTwins Get
+        href: controlplane\rest-controlplane-2020-12-01\Digital-Twins-Instance\Digital-Twins-Get.yml
+      - name: DigitalTwins List
+        href: controlplane\rest-controlplane-2020-12-01\Digital-Twins-Instance\Digital-Twins-List.yml
+      - name: DigitalTwins ListByResourceGroup
+        href: controlplane\rest-controlplane-2020-12-01\Digital-Twins-Instance\Digital-Twins-List-By-Resource-Group.yml
+      - name: DigitalTwins Update
+        href: controlplane\rest-controlplane-2020-12-01\Digital-Twins-Instance\Digital-Twins-Update.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2020-10-31\Digital-Twins-Instance.yml
+      - name: DigitalTwins CreateOrUpdate
+        href: controlplane\rest-controlplane-2020-10-31\Digital-Twins-Instance\Digital-Twins-Create-Or-Update.yml
+      - name: DigitalTwins Delete
+        href: controlplane\rest-controlplane-2020-10-31\Digital-Twins-Instance\Digital-Twins-Delete.yml
+      - name: DigitalTwins Get
+        href: controlplane\rest-controlplane-2020-10-31\Digital-Twins-Instance\Digital-Twins-Get.yml
+      - name: DigitalTwins List
+        href: controlplane\rest-controlplane-2020-10-31\Digital-Twins-Instance\Digital-Twins-List.yml
+      - name: DigitalTwins ListByResourceGroup
+        href: controlplane\rest-controlplane-2020-10-31\Digital-Twins-Instance\Digital-Twins-List-By-Resource-Group.yml
+      - name: DigitalTwins Update
+        href: controlplane\rest-controlplane-2020-10-31\Digital-Twins-Instance\Digital-Twins-Update.yml
+    - name: Endpoints
+      items:
+      - name: Overview
+        href: controlplane\rest-controlplane-2023-01-31\Endpoints.yml
+      - name: DigitalTwinsEndpoint CreateOrUpdate
+        href: controlplane\rest-controlplane-2023-01-31\Endpoints\Digital-Twins-Endpoint-Create-Or-Update.yml
+      - name: DigitalTwinsEndpoint Delete
+        href: controlplane\rest-controlplane-2023-01-31\Endpoints\Digital-Twins-Endpoint-Delete.yml
+      - name: DigitalTwinsEndpoint Get
+        href: controlplane\rest-controlplane-2023-01-31\Endpoints\Digital-Twins-Endpoint-Get.yml
+      - name: DigitalTwinsEndpoint List
+        href: controlplane\rest-controlplane-2023-01-31\Endpoints\Digital-Twins-Endpoint-List.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2022-10-31\Endpoints.yml
+      - name: DigitalTwinsEndpoint CreateOrUpdate
+        href: controlplane\rest-controlplane-2022-10-31\Endpoints\Digital-Twins-Endpoint-Create-Or-Update.yml
+      - name: DigitalTwinsEndpoint Delete
+        href: controlplane\rest-controlplane-2022-10-31\Endpoints\Digital-Twins-Endpoint-Delete.yml
+      - name: DigitalTwinsEndpoint Get
+        href: controlplane\rest-controlplane-2022-10-31\Endpoints\Digital-Twins-Endpoint-Get.yml
+      - name: DigitalTwinsEndpoint List
+        href: controlplane\rest-controlplane-2022-10-31\Endpoints\Digital-Twins-Endpoint-List.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2022-05-31\Endpoints.yml
+      - name: DigitalTwinsEndpoint CreateOrUpdate
+        href: controlplane\rest-controlplane-2022-05-31\Endpoints\Digital-Twins-Endpoint-Create-Or-Update.yml
+      - name: DigitalTwinsEndpoint Delete
+        href: controlplane\rest-controlplane-2022-05-31\Endpoints\Digital-Twins-Endpoint-Delete.yml
+      - name: DigitalTwinsEndpoint Get
+        href: controlplane\rest-controlplane-2022-05-31\Endpoints\Digital-Twins-Endpoint-Get.yml
+      - name: DigitalTwinsEndpoint List
+        href: controlplane\rest-controlplane-2022-05-31\Endpoints\Digital-Twins-Endpoint-List.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2020-12-01\Endpoints.yml
+      - name: DigitalTwinsEndpoint CreateOrUpdate
+        href: controlplane\rest-controlplane-2020-12-01\Endpoints\Digital-Twins-Endpoint-Create-Or-Update.yml
+      - name: DigitalTwinsEndpoint Delete
+        href: controlplane\rest-controlplane-2020-12-01\Endpoints\Digital-Twins-Endpoint-Delete.yml
+      - name: DigitalTwinsEndpoint Get
+        href: controlplane\rest-controlplane-2020-12-01\Endpoints\Digital-Twins-Endpoint-Get.yml
+      - name: DigitalTwinsEndpoint List
+        href: controlplane\rest-controlplane-2020-12-01\Endpoints\Digital-Twins-Endpoint-List.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2020-10-31\Endpoints.yml
+      - name: DigitalTwinsEndpoint CreateOrUpdate
+        href: controlplane\rest-controlplane-2020-10-31\Endpoints\Digital-Twins-Endpoint-Create-Or-Update.yml
+      - name: DigitalTwinsEndpoint Delete
+        href: controlplane\rest-controlplane-2020-10-31\Endpoints\Digital-Twins-Endpoint-Delete.yml
+      - name: DigitalTwinsEndpoint Get
+        href: controlplane\rest-controlplane-2020-10-31\Endpoints\Digital-Twins-Endpoint-Get.yml
+      - name: DigitalTwinsEndpoint List
+        href: controlplane\rest-controlplane-2020-10-31\Endpoints\Digital-Twins-Endpoint-List.yml
+    - name: Operations
+      items:
+      - name: Overview
+        href: controlplane\rest-controlplane-2023-01-31\Operations.yml
+      - name: List
+        href: controlplane\rest-controlplane-2023-01-31\Operations\List.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2022-10-31\Operations.yml
+      - name: List
+        href: controlplane\rest-controlplane-2022-10-31\Operations\List.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2022-05-31\Operations.yml
+      - name: List
+        href: controlplane\rest-controlplane-2022-05-31\Operations\List.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2020-12-01\Operations.yml
+      - name: List
+        href: controlplane\rest-controlplane-2020-12-01\Operations\List.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2020-10-31\Operations.yml
+      - name: List
+        href: controlplane\rest-controlplane-2020-10-31\Operations\List.yml
+    - name: Private Endpoints
+      items:
+      - name: Overview
+        href: controlplane\rest-controlplane-2023-01-31\Private-Endpoints.yml
+      - name: PrivateEndpointConnections CreateOrUpdate
+        href: controlplane\rest-controlplane-2023-01-31\Private-Endpoints\Private-Endpoint-Connections-Create-Or-Update.yml
+      - name: PrivateEndpointConnections Delete
+        href: controlplane\rest-controlplane-2023-01-31\Private-Endpoints\Private-Endpoint-Connections-Delete.yml
+      - name: PrivateEndpointConnections Get
+        href: controlplane\rest-controlplane-2023-01-31\Private-Endpoints\Private-Endpoint-Connections-Get.yml
+      - name: PrivateEndpointConnections List
+        href: controlplane\rest-controlplane-2023-01-31\Private-Endpoints\Private-Endpoint-Connections-List.yml
+      - name: PrivateLinkResources Get
+        href: controlplane\rest-controlplane-2023-01-31\Private-Endpoints\Private-Link-Resources-Get.yml
+      - name: PrivateLinkResources List
+        href: controlplane\rest-controlplane-2023-01-31\Private-Endpoints\Private-Link-Resources-List.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2022-10-31\Private-Endpoints.yml
+      - name: PrivateEndpointConnections CreateOrUpdate
+        href: controlplane\rest-controlplane-2022-10-31\Private-Endpoints\Private-Endpoint-Connections-Create-Or-Update.yml
+      - name: PrivateEndpointConnections Delete
+        href: controlplane\rest-controlplane-2022-10-31\Private-Endpoints\Private-Endpoint-Connections-Delete.yml
+      - name: PrivateEndpointConnections Get
+        href: controlplane\rest-controlplane-2022-10-31\Private-Endpoints\Private-Endpoint-Connections-Get.yml
+      - name: PrivateEndpointConnections List
+        href: controlplane\rest-controlplane-2022-10-31\Private-Endpoints\Private-Endpoint-Connections-List.yml
+      - name: PrivateLinkResources Get
+        href: controlplane\rest-controlplane-2022-10-31\Private-Endpoints\Private-Link-Resources-Get.yml
+      - name: PrivateLinkResources List
+        href: controlplane\rest-controlplane-2022-10-31\Private-Endpoints\Private-Link-Resources-List.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2022-05-31\Private-Endpoints.yml
+      - name: PrivateEndpointConnections CreateOrUpdate
+        href: controlplane\rest-controlplane-2022-05-31\Private-Endpoints\Private-Endpoint-Connections-Create-Or-Update.yml
+      - name: PrivateEndpointConnections Delete
+        href: controlplane\rest-controlplane-2022-05-31\Private-Endpoints\Private-Endpoint-Connections-Delete.yml
+      - name: PrivateEndpointConnections Get
+        href: controlplane\rest-controlplane-2022-05-31\Private-Endpoints\Private-Endpoint-Connections-Get.yml
+      - name: PrivateEndpointConnections List
+        href: controlplane\rest-controlplane-2022-05-31\Private-Endpoints\Private-Endpoint-Connections-List.yml
+      - name: PrivateLinkResources Get
+        href: controlplane\rest-controlplane-2022-05-31\Private-Endpoints\Private-Link-Resources-Get.yml
+      - name: PrivateLinkResources List
+        href: controlplane\rest-controlplane-2022-05-31\Private-Endpoints\Private-Link-Resources-List.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2020-12-01\Private-Endpoints.yml
+      - name: PrivateEndpointConnections CreateOrUpdate
+        href: controlplane\rest-controlplane-2020-12-01\Private-Endpoints\Private-Endpoint-Connections-Create-Or-Update.yml
+      - name: PrivateEndpointConnections Delete
+        href: controlplane\rest-controlplane-2020-12-01\Private-Endpoints\Private-Endpoint-Connections-Delete.yml
+      - name: PrivateEndpointConnections Get
+        href: controlplane\rest-controlplane-2020-12-01\Private-Endpoints\Private-Endpoint-Connections-Get.yml
+      - name: PrivateEndpointConnections List
+        href: controlplane\rest-controlplane-2020-12-01\Private-Endpoints\Private-Endpoint-Connections-List.yml
+      - name: PrivateLinkResources Get
+        href: controlplane\rest-controlplane-2020-12-01\Private-Endpoints\Private-Link-Resources-Get.yml
+      - name: PrivateLinkResources List
+        href: controlplane\rest-controlplane-2020-12-01\Private-Endpoints\Private-Link-Resources-List.yml
+    - name: Time Series Database Connections
+      items:
+      - name: Overview
+        href: controlplane\rest-controlplane-2023-01-31\Time-Series-Database-Connections.yml
+      - name: Create Or Update
+        href: controlplane\rest-controlplane-2023-01-31\Time-Series-Database-Connections\Create-Or-Update.yml
+      - name: Delete
+        href: controlplane\rest-controlplane-2023-01-31\Time-Series-Database-Connections\Delete.yml
+      - name: Get
+        href: controlplane\rest-controlplane-2023-01-31\Time-Series-Database-Connections\Get.yml
+      - name: List
+        href: controlplane\rest-controlplane-2023-01-31\Time-Series-Database-Connections\List.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2022-10-31\Time-Series-Database-Connections.yml
+      - name: Create Or Update
+        href: controlplane\rest-controlplane-2022-10-31\Time-Series-Database-Connections\Create-Or-Update.yml
+      - name: Delete
+        href: controlplane\rest-controlplane-2022-10-31\Time-Series-Database-Connections\Delete.yml
+      - name: Get
+        href: controlplane\rest-controlplane-2022-10-31\Time-Series-Database-Connections\Get.yml
+      - name: List
+        href: controlplane\rest-controlplane-2022-10-31\Time-Series-Database-Connections\List.yml
+      - name: Overview
+        href: controlplane\rest-controlplane-2022-05-31\Time-Series-Database-Connections.yml
+      - name: Create Or Update
+        href: controlplane\rest-controlplane-2022-05-31\Time-Series-Database-Connections\Create-Or-Update.yml
+      - name: Delete
+        href: controlplane\rest-controlplane-2022-05-31\Time-Series-Database-Connections\Delete.yml
+      - name: Get
+        href: controlplane\rest-controlplane-2022-05-31\Time-Series-Database-Connections\Get.yml
+      - name: List
+        href: controlplane\rest-controlplane-2022-05-31\Time-Series-Database-Connections\List.yml

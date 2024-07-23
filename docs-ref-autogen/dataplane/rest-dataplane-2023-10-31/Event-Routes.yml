@@ -1,0 +1,44 @@
+### YamlMime:RESTOperationGroup
+uid: digitaltwins-hostname.dataplane.eventroutes
+name: Event Routes
+apiVersion: 2023-10-31
+service: Reference
+metadata:
+  description: Learn more about [Reference Event Routes Operations]. How to [Add,Delete,Get By Id,List].
+operations:
+- uid: digitaltwins-hostname.dataplane.eventroutes.add
+  summary: >-
+    Adds or replaces an event route.
+
+    Status codes:
+
+    - 204 No Content
+
+    - 400 Bad Request
+- uid: digitaltwins-hostname.dataplane.eventroutes.delete
+  summary: >-
+    Deletes an event route.
+
+    Status codes:
+
+    * 204 No Content
+
+    * 404 Not Found
+      * EventRouteNotFound - The event route was not found.
+- uid: digitaltwins-hostname.dataplane.eventroutes.getbyid
+  summary: >-
+    Retrieves an event route.
+
+    Status codes:
+
+    * 200 OK
+
+    * 404 Not Found
+      * EventRouteNotFound - The event route was not found.
+- uid: digitaltwins-hostname.dataplane.eventroutes.list
+  summary: >-
+    Retrieves all event routes.
+
+    Status codes:
+
+    * 200 OK

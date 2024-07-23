@@ -1,0 +1,284 @@
+### YamlMime:RESTOperation
+uid: management.azure.com.controlplane.privateendpoints.privateendpointconnections_list
+name: PrivateEndpointConnections List
+service: Reference
+groupName: Private Endpoints
+apiVersion: 2022-10-31
+summary: List private endpoint connection properties.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/{resourceName}/privateEndpointConnections?api-version=2022-10-31
+uriParameters:
+- name: subscriptionId
+  in: path
+  isRequired: true
+  description: The subscription identifier.
+  types:
+  - uid: string
+- name: resourceGroupName
+  in: path
+  isRequired: true
+  description: The name of the resource group that contains the DigitalTwinsInstance.
+  types:
+  - uid: string
+- name: resourceName
+  in: path
+  isRequired: true
+  description: The name of the DigitalTwinsInstance.
+  types:
+  - uid: string
+  pattern: ^(?!-)[A-Za-z0-9-]{3,63}(?<!-)$
+- name: api-version
+  in: query
+  isRequired: true
+  description: Version of the DigitalTwinsInstance Management API.
+  types:
+  - uid: string
+responses:
+- name: 200 OK
+  description: The body contains the list of private endpoint connection properties.
+  types:
+  - uid: PrivateEndpointConnectionsResponse
+- name: Other Status Codes
+  description: Error response describing why the operation failed.
+  types:
+  - uid: ErrorResponse
+requestHeader: []
+definitions:
+- name: PrivateEndpointConnectionsResponse
+  description: The available private link connections for a Digital Twin.
+  kind: object
+  properties:
+  - name: value
+    description: The list of available private link connections for a Digital Twin.
+    types:
+    - uid: PrivateEndpointConnection
+      isArray: true
+- name: ErrorResponse
+  description: Error response.
+  kind: object
+  properties:
+  - name: error
+    description: Error description
+    types:
+    - uid: ErrorDefinition
+- name: PrivateEndpointConnection
+  description: The private endpoint connection of a Digital Twin.
+  kind: object
+  properties:
+  - name: id
+    isReadOnly: true
+    description: The resource identifier.
+    types:
+    - uid: string
+  - name: name
+    isReadOnly: true
+    description: The resource name.
+    types:
+    - uid: string
+  - name: type
+    isReadOnly: true
+    description: The resource type.
+    types:
+    - uid: string
+  - name: properties
+    description: The connection properties.
+    types:
+    - uid: ConnectionProperties
+  - name: systemData
+    isReadOnly: true
+    description: Metadata pertaining to creation and last modification of the private endpoint connection.
+    types:
+    - uid: SystemData
+- name: ErrorDefinition
+  description: Error definition.
+  kind: object
+  properties:
+  - name: code
+    isReadOnly: true
+    description: Service specific error code which serves as the substatus for the HTTP error code.
+    types:
+    - uid: string
+  - name: message
+    isReadOnly: true
+    description: Description of the error.
+    types:
+    - uid: string
+  - name: details
+    isReadOnly: true
+    description: Internal error details.
+    types:
+    - uid: ErrorDefinition
+      isArray: true
+- name: ConnectionProperties
+  description: The properties of a private endpoint connection.
+  kind: object
+  properties:
+  - name: provisioningState
+    isReadOnly: true
+    description: The provisioning state.
+    types:
+    - uid: ConnectionPropertiesProvisioningState
+  - name: privateEndpoint
+    description: The private endpoint.
+    types:
+    - uid: PrivateEndpoint
+  - name: groupIds
+    description: The list of group ids for the private endpoint connection.
+    types:
+    - uid: string
+      isArray: true
+  - name: privateLinkServiceConnectionState
+    description: The connection state.
+    types:
+    - uid: PrivateLinkServiceConnectionState
+- name: SystemData
+  description: Metadata pertaining to creation and last modification of the resource.
+  kind: object
+  properties:
+  - name: createdBy
+    description: The identity that created the resource.
+    types:
+    - uid: string
+  - name: createdByType
+    description: The type of identity that created the resource.
+    types:
+    - uid: createdByType
+  - name: createdAt
+    description: The timestamp of resource creation (UTC).
+    types:
+    - uid: string
+  - name: lastModifiedBy
+    description: The identity that last modified the resource.
+    types:
+    - uid: string
+  - name: lastModifiedByType
+    description: The type of identity that last modified the resource.
+    types:
+    - uid: createdByType
+  - name: lastModifiedAt
+    description: The timestamp of resource last modification (UTC)
+    types:
+    - uid: string
+- name: ConnectionPropertiesProvisioningState
+  description: The provisioning state.
+  kind: enum
+  properties:
+  - name: Pending
+    types:
+    - uid: string
+  - name: Approved
+    types:
+    - uid: string
+  - name: Rejected
+    types:
+    - uid: string
+  - name: Disconnected
+    types:
+    - uid: string
+- name: PrivateEndpoint
+  description: The private endpoint property of a private endpoint connection.
+  kind: object
+  properties:
+  - name: id
+    isReadOnly: true
+    description: The resource identifier.
+    types:
+    - uid: string
+- name: PrivateLinkServiceConnectionState
+  description: The connection state.
+  kind: object
+  properties:
+  - name: status
+    description: The status of a private endpoint connection.
+    types:
+    - uid: PrivateLinkServiceConnectionStatus
+  - name: description
+    description: The description for the current state of a private endpoint connection.
+    types:
+    - uid: string
+  - name: actionsRequired
+    description: Actions required for a private endpoint connection.
+    types:
+    - uid: string
+- name: createdByType
+  description: The type of identity that created the resource.
+  kind: enum
+  properties:
+  - name: User
+    types:
+    - uid: string
+  - name: Application
+    types:
+    - uid: string
+  - name: ManagedIdentity
+    types:
+    - uid: string
+  - name: Key
+    types:
+    - uid: string
+- name: PrivateLinkServiceConnectionStatus
+  description: The status of a private endpoint connection.
+  kind: enum
+  properties:
+  - name: Pending
+    types:
+    - uid: string
+  - name: Approved
+    types:
+    - uid: string
+  - name: Rejected
+    types:
+    - uid: string
+  - name: Disconnected
+    types:
+    - uid: string
+examples:
+- name: List private endpoint connection properties
+  request:
+    uri: GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateEndpointConnections?api-version=2022-10-31
+    codeTab: |+
+      # [HTTP](#tab/HTTP)
+      ``` http
+      GET https://management.azure.com/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateEndpointConnections?api-version=2022-10-31
+      ```
+
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "value": [
+          {
+            "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourcegroups/resRg/providers/Microsoft.DigitalTwins/digitalTwinsInstances/myDigitalTwinsService/privateEndpointConnections/myPrivateConnection",
+            "properties": {
+              "privateEndpoint": {
+                "id": "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/resRg/providers/Microsoft.Network/privateEndpoints/myPrivateEndpoint"
+              },
+              "groupIds": [
+                "digitalTwinsInstance"
+              ],
+              "privateLinkServiceConnectionState": {
+                "status": "Pending",
+                "description": "Please approve my request, thanks.",
+                "actionsRequired": "None"
+              }
+            }
+          }
+        ]
+      }
+security:
+- name: azure_auth
+  type: oauth2
+  description: Azure Active Directory OAuth2 Flow
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+  scopes:
+  - name: user_impersonation
+    description: Impersonate your user account
+metadata:
+  description: >
+    Learn more about Reference service - List private endpoint connection properties.
+errorCodes: []
