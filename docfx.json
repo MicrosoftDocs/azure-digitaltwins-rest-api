@@ -65,7 +65,7 @@
         ]
       },
         "ms.service": {
-            "docs-ref-autogen/digital-twins/**.yml": "digital-twins"
+            "docs-ref-autogen/digital-twins/**.yml": "azure-digital-twins"
             }
     },
     "template": [],
