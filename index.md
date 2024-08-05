@@ -5,7 +5,7 @@ description: "This is the overview page for the Azure Digital Twins REST API ref
 author: baanders              
 ms.author: baanders               
 ms.date: 02/21/2023                 
-ms.service: "digital-twins"                          
+ms.service: azure-digital-twins
 ms.topic: "reference"        
 ---                            
 
