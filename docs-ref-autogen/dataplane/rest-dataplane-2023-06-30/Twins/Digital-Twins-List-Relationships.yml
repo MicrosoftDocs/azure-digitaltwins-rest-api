@@ -41,6 +41,7 @@ uriParameters:
   description: The requested API version.
   types:
   - uid: string
+  constraints: 'minLength: 1'
 responses:
 - name: 200 OK
   description: Success

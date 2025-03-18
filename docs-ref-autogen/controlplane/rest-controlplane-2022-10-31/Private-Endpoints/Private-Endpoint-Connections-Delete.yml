@@ -24,13 +24,14 @@ uriParameters:
   description: The name of the resource group that contains the DigitalTwinsInstance.
   types:
   - uid: string
+  constraints: 'minLength: 1<br>maxLength: 90'
 - name: resourceName
   in: path
   isRequired: true
   description: The name of the DigitalTwinsInstance.
   types:
   - uid: string
-  pattern: ^(?!-)[A-Za-z0-9-]{3,63}(?<!-)$
+  constraints: 'minLength: 3<br>maxLength: 63<br>pattern: ^(?!-)[A-Za-z0-9-]{3,63}(?<!-)$'
 - name: privateEndpointConnectionName
   in: path
   isRequired: true
@@ -43,6 +44,7 @@ uriParameters:
   description: Version of the DigitalTwinsInstance Management API.
   types:
   - uid: string
+  constraints: 'minLength: 10'
 responses:
 - name: 200 OK
   description: Returned when the long running delete operation has failed, and has reached a terminal state.

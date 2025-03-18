@@ -18,6 +18,7 @@ uriParameters:
   description: Version of the DigitalTwinsInstance Management API.
   types:
   - uid: string
+  constraints: 'minLength: 10'
 responses:
 - name: 200 OK
   description: OK. The request has succeeded.

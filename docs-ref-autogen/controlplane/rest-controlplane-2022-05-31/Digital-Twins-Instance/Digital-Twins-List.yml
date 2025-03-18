@@ -24,6 +24,7 @@ uriParameters:
   description: Version of the DigitalTwinsInstance Management API.
   types:
   - uid: string
+  constraints: 'minLength: 10'
 responses:
 - name: 200 OK
   description: This is a synchronous operation. The body contains a JSON-serialized array of the metadata from all the DigitalTwinsInstances in the subscription.
@@ -65,11 +66,13 @@ definitions:
     description: Time when DigitalTwinsInstance was created.
     types:
     - uid: string
+    format: date-time
   - name: properties.lastUpdatedTime
     isReadOnly: true
     description: Time when DigitalTwinsInstance was updated.
     types:
     - uid: string
+    format: date-time
   - name: properties.provisioningState
     isReadOnly: true
     description: The provisioning state.
@@ -99,6 +102,7 @@ definitions:
     description: The resource name.
     types:
     - uid: string
+    constraints: 'pattern: ^(?!-)[A-Za-z0-9-]{3,63}(?<!-)$'
   - name: type
     isReadOnly: true
     description: The resource type.
@@ -196,6 +200,7 @@ definitions:
     description: The resource name.
     types:
     - uid: string
+    constraints: 'pattern: ^(?![0-9]+$)(?!-)[a-zA-Z0-9-]{2,49}[a-zA-Z0-9]$'
   - name: type
     isReadOnly: true
     description: The resource type.
@@ -254,6 +259,7 @@ definitions:
     description: The timestamp of resource creation (UTC).
     types:
     - uid: string
+    format: date-time
   - name: lastModifiedBy
     description: The identity that last modified the resource.
     types:
@@ -266,6 +272,7 @@ definitions:
     description: The timestamp of resource last modification (UTC)
     types:
     - uid: string
+    format: date-time
 - name: ConnectionProperties
   description: The properties of a private endpoint connection.
   kind: object

@@ -24,6 +24,7 @@ uriParameters:
   description: The requested API version.
   types:
   - uid: string
+  constraints: 'minLength: 1'
 responses:
 - name: 200 OK
   description: Success
@@ -75,21 +76,25 @@ definitions:
     description: 'Start time of the job. The timestamp is in RFC3339 format: `yyyy-MM-ddTHH:mm:ssZ`.'
     types:
     - uid: string
+    format: date-time
   - name: lastActionDateTime
     isReadOnly: true
     description: 'Last time service performed any action from the job. The timestamp is in RFC3339 format: `yyyy-MM-ddTHH:mm:ssZ`.'
     types:
     - uid: string
+    format: date-time
   - name: finishedDateTime
     isReadOnly: true
     description: 'End time of the job. The timestamp is in RFC3339 format: `yyyy-MM-ddTHH:mm:ssZ`.'
     types:
     - uid: string
+    format: date-time
   - name: purgeDateTime
     isReadOnly: true
     description: 'Time at which job will be purged by the service from the system. The timestamp is in RFC3339 format: `yyyy-MM-ddTHH:mm:ssZ`.'
     types:
     - uid: string
+    format: date-time
   - name: error
     description: Details of the error(s) that occurred executing the import job.
     types:

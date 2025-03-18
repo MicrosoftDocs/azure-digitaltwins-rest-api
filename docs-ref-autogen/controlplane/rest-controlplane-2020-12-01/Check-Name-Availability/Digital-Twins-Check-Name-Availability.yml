@@ -24,12 +24,14 @@ uriParameters:
   description: Location of DigitalTwinsInstance.
   types:
   - uid: string
+  constraints: 'minLength: 3'
 - name: api-version
   in: query
   isRequired: true
   description: Version of the DigitalTwinsInstance Management API.
   types:
   - uid: string
+  constraints: 'minLength: 10'
 responses:
 - name: 200 OK
   description: This is a synchronous operation. The body contains a JSON-serialized response that specifies whether the DigitalTwins service name is available. If the name is not available, the body contains the reason.

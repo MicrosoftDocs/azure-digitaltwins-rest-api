@@ -42,6 +42,7 @@ uriParameters:
   description: The requested API version.
   types:
   - uid: string
+  constraints: 'minLength: 1'
 responses:
 - name: 200 OK
   description: Success
@@ -91,6 +92,7 @@ definitions:
     description: The time the model was uploaded to the service.
     types:
     - uid: string
+    format: date-time
   - name: decommissioned
     description: Indicates if the model is decommissioned. Decommissioned models cannot be referenced by newly created digital twins.
     types:
